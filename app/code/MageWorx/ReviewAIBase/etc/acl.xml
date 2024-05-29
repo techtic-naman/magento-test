@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="MageWorx_ReviewAIBase::review_summary"
+                          title="Review Summary (by Mageworx)"
+                          translate="title">
+                    <resource id="MageWorx_ReviewAIBase::review_summary_access"
+                              title="Access"
+                              translate="title"/>
+                    <resource id="MageWorx_ReviewAIBase::review_summary_settings"
+                              title="Settings"
+                              translate="title"/>
+                    <resource id="MageWorx_ReviewAIBase::review_generate_answer"
+                              title="Allow to generate answer with AI"
+                              translate="title"/>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

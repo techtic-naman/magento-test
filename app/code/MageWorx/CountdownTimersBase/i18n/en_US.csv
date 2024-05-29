@@ -1,0 +1,94 @@
+"Conditions (don't add conditions if countdown timer can be displayed on any product(s))","Conditions (don't add conditions if countdown timer can be displayed on any product(s))"
+Conditions,Conditions
+Back,Back
+"Delete Timer","Delete Timer"
+"Are you sure you want to do this?","Are you sure you want to do this?"
+Save,Save
+"Save and Continue Edit","Save and Continue Edit"
+ID,ID
+Name,Name
+Status,Status
+"This setting allows you to enable or disable the countdown timers globally on the front-end.","This setting allows you to enable or disable the countdown timers globally on the front-end."
+"To add or modify the timers, go to Marketing - %link.","To add or modify the timers, go to Marketing - %link."
+"The Countdown Timer has been deleted.","The Countdown Timer has been deleted."
+"The Countdown Timer no longer exists.","The Countdown Timer no longer exists."
+"There was a problem deleting the Countdown Timer","There was a problem deleting the Countdown Timer"
+"We can't find a Countdown Timer to delete.","We can't find a Countdown Timer to delete."
+"We can't find a Countdown Timer to edit.","We can't find a Countdown Timer to edit."
+"Countdown Timers","Countdown Timers"
+"New Countdown Timer","New Countdown Timer"
+"You saved the Countdown Timer.","You saved the Countdown Timer."
+"There was a problem saving the Countdown Timer.","There was a problem saving the Countdown Timer."
+"Requested Countdown Timer doesn't exist","Requested Countdown Timer doesn't exist"
+"There was an error loading Countdown Timer data.","There was an error loading Countdown Timer data."
+"Requested Countdown Timers doesn't exist","Requested Countdown Timers doesn't exist"
+"There was an error loading Countdown Timers data.","There was an error loading Countdown Timers data."
+"Could not save the Countdown Timer: %1","Could not save the Countdown Timer: %1"
+"Unable to remove Countdown Timer %1","Unable to remove Countdown Timer %1"
+"All products","All products"
+"Specific products","Specific products"
+Custom,Custom
+"By conditions","By conditions"
+Disable,Disable
+Enable,Enable
+Edit,Edit
+Delete,Delete
+"Delete ""${ $.$data.name }""","Delete ""${ $.$data.name }"""
+"Are you sure you want to delete the Countdown Timer ""${ $.$data.name }""?","Are you sure you want to delete the Countdown Timer ""${ $.$data.name }""?"
+days,days
+hrs,hrs
+min,min
+sec,sec
+"Marketing Suite (by MageWorx)","Marketing Suite (by MageWorx)"
+"A total of %1 Countdown Timers have been deleted.","A total of %1 Countdown Timers have been deleted."
+"An error occurred while deleting Countdown Timers.","An error occurred while deleting Countdown Timers."
+"A total of %1 Countdown Timers have been enabled.","A total of %1 Countdown Timers have been enabled."
+"An error occurred while enabling Countdown Timers.","An error occurred while enabling Countdown Timers."
+"A total of %1 Countdown Timers have been disabled.","A total of %1 Countdown Timers have been disabled."
+"An error occurred while disabling Countdown Timers.","An error occurred while disabling Countdown Timers."
+"Marketing Suite","Marketing Suite"
+"Countdown Timer","Countdown Timer"
+"Select Countdown Timer...","Select Countdown Timer..."
+Template,Template
+"Countdown Timer Default Template","Countdown Timer Default Template"
+"Countdown Timer Information","Countdown Timer Information"
+General,General
+"Store Views","Store Views"
+"Customer Groups","Customer Groups"
+"Display mode","Display mode"
+"Display on Categories","Display on Categories"
+"Use discount dates","Use discount dates"
+Start,Start
+End,End
+Priority,Priority
+Products,Products
+"Assign Type","Assign Type"
+"Add Products","Add Products"
+Cancel,Cancel
+"Add Selected Products","Add Selected Products"
+Remove,Remove
+Thumbnail,Thumbnail
+"Attribute Set","Attribute Set"
+SKU,SKU
+Price,Price
+Actions,Actions
+Design,Design
+"Before timer text","Before timer text"
+"After timer text","After timer text"
+Templates,Templates
+load-template-modal,load-template-modal
+"Load Template","Load Template"
+Preview:,Preview:
+AttributeSetText,AttributeSetText
+StatusText,StatusText
+Type,Type
+"Add New Timer","Add New Timer"
+"All Store Views","All Store Views"
+"Store View","Store View"
+"Are you sure you want to delete selected Countdown Timer?","Are you sure you want to delete selected Countdown Timer?"
+"Are you sure you want to enable selected Countdown Timer?","Are you sure you want to enable selected Countdown Timer?"
+"Enable Countdown Timer","Enable Countdown Timer"
+"Are you sure you want to disable selected Countdown Timer?","Are you sure you want to disable selected Countdown Timer?"
+"Disable Countdown Timer","Disable Countdown Timer"
+"Created At","Created At"
+Modified,Modified

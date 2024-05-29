@@ -1,0 +1,45 @@
+<?php
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+/* @var $block \MageWorx\StockStatus\Block\ProductList\StockStatus */
+?>
+
+<?php if ($block->isEnabled()) :?>
+<script>
+    require([
+        'jquery'
+    ], function ($) {
+        $(function () {
+            var ids = [];
+
+            $('.products.list.items.product-items .product.details [data-role="priceBox"]').each(
+                function () {
+                    ids.push($(this).attr('data-product-id'));
+                });
+
+            if (ids.length > 0) {
+
+                $.ajax({
+                    url: '<?= /* @noEscape */ $block->getAjaxUrl() ?>',
+                    method: 'POST',
+                    data: {
+                        productIds: ids
+                    },
+                    success: function (result) {
+                        for (let key in result) {
+                            let block = result[key];
+
+                            let selector = '.products.list.items.product-items .product.details [data-product-id="' + key + '"]';
+
+                            $(selector).after(block);
+                        }
+                    },
+                });
+            }
+        });
+    });
+</script>
+<?php endif; ?>

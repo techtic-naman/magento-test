@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::marketing">
+                    <resource id="Meetanshi_Bulksms::bulksmss" title="Bulk SMS Marketing">
+                        <resource id="Meetanshi_Bulksms::campaign" title="Manage Campaigns"/>
+                        <resource id="Meetanshi_Bulksms::managebulksms" title="Manage Phonebook"/>
+                        <resource id="Meetanshi_Bulksms::logbulksms" title="SMS Logs"/>
+                        <resource id="Meetanshi_Bulksms::configbulksms" title="Configuration"/>
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Meetanshi_Bulksms::bulksms" title="Bulksms"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

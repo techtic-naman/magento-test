@@ -1,0 +1,283 @@
+Reward Points,Beloningspunten
+Reward Points Transactions,Transacties met beloningspunten
+Website,Website
+Balance,Balans
+Currency Amount,Bedrag in valuta
+Expiration Date,Vervaldatum
+Unlimited (functionality is disabled),Onbeperkt (functionaliteit is uitgeschakeld)
+Unlimited,Onbeperkt
+Update Reward Points Balance,Bijwerken beloningspunten balans
+Store,Winkel
+Update Points,Punten bijwerken
+It is possible to use a negative variable when subtracting points.,Het is mogelijk een negatieve waarde te gebruiken bij het aftrekken van punten.
+New Expiration Period,Nieuwe vervaldatum
+Send Notification,Notificatie verzenden
+Comment for Customer,Opmerking voor klant
+0 - remains unchanged.,0 - blijft onveranderd.
+Leave empty for the set unlimited expiration date.,Laat leeg voor de ingestelde onbeperkte vervaldatum.
+For reference:,Ter referentie:
+"The ""Default Expiration Period"" is %1 days.","De ""Standaard Vervaldatum"" is %1 dagen."
+Notifications are  sent only in case of the points balance changes.,Notificaties worden alleen verzonden bij wijzigingen in het punten saldo.
+Customers' Balances,Balansen van klanten
+Points Amount,Punten bedrag
+Total,Totaal
+Apply Reward Points. Customer balance is %1. Points can be applied for: %2.,Beloningspunten toepassen. Klantsaldo is %1. Punten kunnen worden toegepast op: %2.
+(max %1 points),(max %1 punten)
+Apply the rule only to cart items matching the following conditions (leave blank for all items).,De regel alleen toepassen op winkelwagenitems die overeenkomen met de volgende voorwaarden (leeg laten voor alle items).
+If the action conditions are empty - the price will be calculated from the cart subtotal with discount.,"Indien de actievoorwaarden leeg zijn, wordt de prijs berekend op basis van het winkelwagentotaal met korting."
+If the action conditions exist and include the valid items - the amount will be calculated using the valid items' price and qty.,"Als de actievoorwaarden bestaan en de geldige items bevatten, wordt het bedrag berekend op basis van de prijs en de hoeveelheid van de geldige items."
+If the action conditions exist and don't include the valid items  - the rule will be ignored.,"Als de actievoorwaarden bestaan en de geldige items niet bevatten, wordt de regel genegeerd."
+Apply To,Toepassen op
+Labels,Labels
+Store View Specific Labels,Labels specifiek voor winkelweergaven
+Expiration date is %1.,Vervaldatum is %1.
+%1 - Reward Points Actions,%1 - Acties met beloningspunten
+Reward Points Actions,Acties met beloningspunten
+Marketing,Marketing
+Points Transactions,Punten transacties
+You have deleted the rule.,Je hebt de regel verwijderd.
+"Sorry, the rule can't be deleted. Please, review the log and try again.","Sorry, de regel kan niet worden verwijderd. Bekijk het logboek en probeer opnieuw."
+"Sorry, it is impossible to find a rule to delete","Sorry, het is onmogelijk om een regel te vinden om te verwijderen."
+Edit Rule,Bewerk regel
+New Rule,Nieuwe regel
+New Reward Points Rule,Nieuwe regel voor beloningspunten
+Reward Points Rules,Regels voor beloningspunten
+"Please, correct the sent data.","Corrigeer de verzonden gegevens, alsjeblieft."
+The rule (ID: %1) is not exists,De regel (ID: %1) bestaat niet
+Something went wrong while saving the rule.,Er is iets misgegaan bij het opslaan van de regel.
+A total of %1 record(s) have been deleted.,Er is in totaal %1 record(s) verwijderd.
+An error occurred while deleting record(s).,Er is een fout opgetreden bij het verwijderen van record(s).
+A total of %1 Rule(s) have been disabled.,Er is in totaal %1 regel(s) uitgeschakeld.
+An error occurred while disabling rule(s).,Er is een fout opgetreden bij het uitschakelen van regel(s).
+A total of %1 Rule(s) have been enabled.,Er is in totaal %1 regel(s) ingeschakeld.
+An error occurred while enabling Rule(s).,Er is een fout opgetreden bij het inschakelen van regel(s).
+You have saved the rule.,Je hebt de regel opgeslagen.
+Something went wrong while saving the rule data. Please review the error log.,Er is iets misgegaan bij het opslaan van de regelgegevens. Bekijk het foutenlogboek.
+Access Denied,Toegang geweigerd
+the points exchange rate has incorrect format.,De punten wisselkoers heeft een onjuist formaat.
+Check the configuration settings.,Controleer de configuratie-instellingen.
+Enter amount of Reward Points you want to use in this order,Voer het aantal beloningspunten in dat je in deze bestelling wilt gebruiken
+Expired,Vervallen
+%num days left,%num dagen over
+%date (%num days left),%date (%num dagen over)
+%date (Expired),%date (Vervallen)
+Expiration date is %1,Vervaldatum is %1
+Reward Points (%1),Beloningspunten (%1)
+%1 Reward Points (%2),%1 Beloningspunten (%2)
+We can't save the Cron expression.,We kunnen de Cron-uitdrukking niet opslaan.
+You have %1,Je hebt %1
+and,en
+You can spend it to cover %1,Je kunt het gebruiken om %1 te dekken
+Could not save the customer point balance: %1,Kon het klantpuntensaldo niet opslaan: %1
+The customer point balance wasn't saved: %1.,Het klantpuntensaldo is niet opgeslagen: %1.
+Annul upon the expiration date.,Ongeldig bij vervaldatum.
+Updated by admin %1,Bijgewerkt door beheerder %1
+Updated by admin.,Bijgewerkt door beheerder.
+"Comment: ""%1""","Opmerking: ""%1"""
+Points were withdrawn by the refund order %1,Punten werden afgetrokken bij de teruggave van bestelling %1
+%1 were withdrawn from the customer account when refunding the order,%1 werden afgetrokken van het klantaccount bij het terugbetalen van de bestelling
+Points were added for the refunded order %1,Punten werden toegevoegd voor de terugbetaalde bestelling %1
+We refunded %1 which were used for this order.,We hebben %1 teruggestort die voor deze bestelling werden gebruikt.
+Points were restored for an unsuccessful order,Punten werden hersteld voor een mislukte bestelling
+Points were restored for the cancelled order %1,Punten werden hersteld voor de geannuleerde bestelling %1
+We restore %1 which were used for this order.,We herstellen %1 die voor deze bestelling werden gebruikt.
+Customer's Birthday present (%1),Verjaardagscadeau van klant (%1)
+Customer registration with email %1,Klantregistratie met e-mail %1
+Customer registration,Klantregistratie
+For submitting a review for the product: %1,Voor het indienen van een beoordeling voor het product: %1
+For submitting of the review,Voor het indienen van de beoordeling
+The reward points were added for the completed order %1,De beloningspunten werden toegevoegd voor de voltooide bestelling %1
+(currently not valid or deleted),(niet langer geldig of verwijderd)
+%1 were earned with this order (Rule %2).,%1 werden verdiend met deze bestelling (Regel %2).
+Signed up for a newsletter with an email %1,Aangemeld voor een nieuwsbrief met e-mail %1
+Points were used for the order %1,Punten werden gebruikt voor bestelling %1
+"Unknown event code ""%1"". Sorry, the message is not available now.","Onbekende gebeurteniscategorie ""%1"". Sorry, het bericht is nu niet beschikbaar."
+"MageWorx_RewardPoints: Unknown event code: ""%1"". Call method name: ""%2""","MageWorx_RewardPoints: Onbekende gebeurteniscategorie: ""%1"". Methode naam oproepen: ""%2"""
+Could not save the reward points transaction: %1,Kon de transactie met beloningspunten niet opslaan: %1
+"Reward point transaction with ID ""%1"" does not exist.","Beloningspunttransactie met ID ""%1"" bestaat niet."
+Could not remove reward points,Kon beloningspunten niet verwijderen
+Could not apply reward points,Kon beloningspunten niet toepassen
+Could not save reward points balance,Kon beloningspuntensaldo niet opslaan
+Class %1 should be an instance of %2,Klasse %1 moet een instantie zijn van %2
+Please choose a condition to add.,Kies alsjeblieft een voorwaarde om toe te voegen.
+Product attribute combination,Productattribuutcombinatie
+Products subselection,Productsubselectie
+Conditions combination,Voorwaardencombinatie
+Cart Attribute,Winkelwagenattribuut
+Active,Actief
+Inactive,Inactief
+Yes,Ja
+No,Nee
+Subtotal,Subtotaal
+Shipping,Verzending
+Tax,Belasting
+Please select a static block,Selecteer een statisch blok
+Fixed,Vast
+Percent,Percentage
+Use config,Configuratie gebruiken
+Placed order,Geplaatste bestelling
+Customer birthday,Klantverjaardag
+Customer review,Klantbeoordeling
+Newsletter subscription,Nieuwsbriefabonnement
+For balances if expiration date exists,Voor saldi als vervaldatum bestaat
+For all balances,Voor alle saldi
+Get X Points,Ontvang X punten
+Get X Points for every Y spent,Ontvang X punten voor elke Y uitgegeven
+Get X Points for every Y spent starting from Z spend,Ontvang X punten voor elke Y uitgegeven vanaf Z uitgave
+Get X Points for every Y quantity,Ontvang X punten voor elke Y hoeveelheid
+Get X Points for every Y quantity starting from Z quantity,Ontvang X punten voor elke Y hoeveelheid vanaf Z hoeveelheid
+All Websites,Alle websites
+Reward Points amount is too small,Beloningspunten bedrag is te laag
+Reward Points currency amount is zero,Beloningspunten valutabedrag is nul
+My Reward Points,Mijn Beloningspunten
+There are not enough reward points for the purchase,Er zijn niet genoeg beloningspunten voor de aankoop
+"%1 Reward Rules based on ""%2"" attribute have been disabled.","%1 Beloningsregels op basis van ""%2"" attribuut zijn uitgeschakeld."
+Edit,Bewerken
+Delete,Verwijderen
+Delete %1,Verwijder %1
+Are you sure you want to delete a %1 record?,Weet je zeker dat je een %1 record wilt verwijderen?
+Reward Points Balance,Beloningspuntensaldo
+Refund Reward Points,Terugbetaling beloningspunten
+Reward points,Beloningspunten
+View Point Transactions,Bekijk Puntentransacties
+You have %1.,Je hebt %1.
+No transactions detected.,Geen transacties gedetecteerd.
+Balance Transactions,Balans Transacties
+Points,Punten
+Message,Bericht
+Date,Datum
+Your Reward Points at %store_name are about to expire,Je beloningspunten bij %store_name verlopen binnenkort
+"%customer_name,","%customer_name,"
+"Your reward points at <a href=""%store_url"">%store_name</a> will expire in %expiration_period day(s) (%expiration_date).","Je beloningspunten bij <a href=""%store_url"">%store_name</a> verlopen over %expiration_period dag(en) (%expiration_date)."
+Your current points balance is %points_balance.,Je huidige puntensaldo is %points_balance.
+Your Reward Points Balance was updated at %store_name,Je Beloningspunten Balans is bijgewerkt bij %store_name
+"We have transferred reward points to your <a href=""%store_url"">%store_name</a> account. You can use them for your future purchases.","We hebben beloningspunten naar je <a href=""%store_url"">%store_name</a> account overgedragen. Je kunt ze gebruiken voor toekomstige aankopen."
+Your current reward points balance is %points_balance.,Je huidige beloningspuntensaldo is %points_balance.
+Cancel Reward Points,Beloningspunten annuleren
+Apply My Reward Points,Mijn Beloningspunten toepassen
+Apply All Reward Points,Alle Beloningspunten toepassen
+Apply Custom Points Amount,Aangepast puntenbedrag toepassen
+Apply,Toepassen
+Y spent,Y uitgegeven
+"It regulates the amount a customer must spend to get ""X points"". ""X points"" are assigned each time the customer spends the set amount.","Het regelt het bedrag dat een klant moet uitgeven om ""X punten"" te krijgen. ""X punten"" worden toegewezen telkens wanneer de klant het ingestelde bedrag uitgeeft."
+Z spent,Z uitgegeven
+"It regulates the min amount a customer must spend after which ""Y spent"" will be applied.","Dit regelt het minimumbedrag dat een klant moet uitgeven waarop ""Y uitgegeven"" zal worden toegepast."
+Y qty,Y hoeveelheid
+"It regulates the qty a customer must add to receive ""X points"". ""X points"" are assigned each time the customer adds the set qty.","Het regelt de hoeveelheid die een klant moet toevoegen om ""X punten"" te ontvangen. ""X punten"" worden telkens toegewezen wanneer de klant de ingestelde hoeveelheid toevoegt."
+Z qty,Z hoeveelheid
+"It regulates the min qty a customer must add after which ""Y qty"" will be applied.","Dit regelt de minimale hoeveelheid die een klant moet toevoegen waarop ""Y hoeveelheid"" zal worden toegepast."
+The reward points have been successfully applied.,De beloningspunten zijn succesvol toegepast.
+The reward points can't be applied,De beloningspunten kunnen niet worden toegepast
+The reward points have been successfully cancelled.,De beloningspunten zijn succesvol geannuleerd.
+The reward points can't be cancelled,De beloningspunten kunnen niet worden geannuleerd
+MageWorx Reward Points,MageWorx Beloningspunten
+Rules,Regels
+Point Transactions,Puntentransacties
+Main Settings,Belangrijkste instellingen
+Enable,Inschakelen
+"Static Block for ""My Reward Points"" Section","Statisch Blok voor ""Mijn Beloningspunten"" Sectie"
+Cover with the points,Dekken met de punten
+Points Exchange Rate,Punten Wisselkoers
+The cost of one Reward Point in the Website Base Currency. Use the dot symbol for a fractional number.,De kosten van één Beloningspunt in de Website Basisvaluta. Gebruik het punt symbool voor een fractioneel getal.
+Assign to Customer Groups,Toewijzen aan Klantgroepen
+Allow Custom Points Amount,Aangepast puntenbedrag toestaan
+"If enabled, your customers will be able to change amount of points they want to use in the orders.","Indien ingeschakeld, kunnen klanten het aantal punten dat ze willen gebruiken in de bestelling wijzigen."
+Annul the Received Points upon the Full Order Refund,Verjaardagspunten annuleren bij volledige bestellingsteruggave
+This setting allows to return the points the customers receive for the orders in case of full order refund.,Deze instelling maakt het mogelijk om de punten die klanten ontvangen voor bestellingen terug te geven in geval van volledige bestellingsteruggave.
+"I.e. if a customer received X points for placing an order, the X points will be deducted from the customer's balance if this order is refunded in full","D.w.z. als een klant X punten ontving voor het plaatsen van een bestelling, worden de X punten afgetrokken van het klantensaldo als deze bestelling volledig wordt terugbetaald."
+Return Spent Points in Case of Order Cancellation,Bestede punten teruggeven bij bestelling annulering
+"If enabled, the points used by the customers to place an order will be credited back in case of order cancellation.","Indien ingeschakeld, zullen de punten die door de klanten zijn gebruikt om een bestelling te plaatsen, worden teruggegeven in geval van bestelling annulering."
+Time of Day for Birthday Greetings,Tijd van de dag voor Verjaardag Groeten
+Display Product Messages,Productberichten weergeven
+"If enabled, the reward points message will be shown on the product pages.","Indien ingeschakeld, wordt het bericht met beloningspunten weergegeven op de productpagina's."
+Product Reward Message,Product Beloningsbericht
+"This message will be shown on the product pages if the ""Display Product Messages"" is enabled and the product matches the reward rules.","Dit bericht wordt weergegeven op de productpagina's als de ""Productberichten weergeven"" is ingeschakeld en het product overeenkomt met de beloningsregels."
+Display Category Messages,Categorieberichten weergeven
+"If enabled, the reward points message will be shown on the category pages.","Indien ingeschakeld, wordt het bericht met beloningspunten weergegeven op de categoriepagina's."
+Category Reward Message,Categorie Beloningsbericht
+"This message will be shown on the category pages if the ""Display Category Messages"" is enabled and only for products matches the reward rules.","Dit bericht wordt weergegeven op de categoriepagina's als de ""Categorieberichten weergeven"" is ingeschakeld en alleen voor producten die overeenkomen met de beloningsregels."
+Display Header Message,Kopbericht weergeven
+"If enabled, the customers will see the message with a number of points they will get if complete the order.","Indien ingeschakeld, zien klanten het bericht met het aantal punten dat ze zullen krijgen als ze de bestelling voltooien."
+Header Message,Kopbericht
+The message will be shown in the header. The following variables are available: [p] - it will display the number of points the customer will receive if completing an order; [c] - it will display the reward value expressed in the store currency.,Het bericht wordt weergegeven in de header. De volgende variabelen zijn beschikbaar: [p] - hiermee wordt het aantal punten weergegeven dat de klant zal ontvangen bij het voltooien van een bestelling; [c] - hiermee wordt de beloningswaarde weergegeven in de winkelvaluta.
+Display Mini-cart Points Balance Message,Mini-winkelwagenbericht over beloningsbalans weergeven
+"If enabled, the customer's current points balance will be shown in the mini-cart (if supported by a theme).","Indien ingeschakeld, wordt het huidige punten saldo van de klant weergegeven in de mini-winkelwagen (indien ondersteund door een thema)."
+Mini-cart Balance Message,Bericht over beloningsbalans in minicart
+The message will be shown in the min-cart. The following variables are available: [p] - it will display the customer’s current balance expressed in the points; [c] - it will display the customer’s current balance expressed in the store currency.,Het bericht wordt weergegeven in de minicart. De volgende variabelen zijn beschikbaar: [p] - hiermee wordt het huidige saldo van de klant weergegeven in punten; [c] - hiermee wordt het huidige saldo van de klant weergegeven in de winkelvaluta.
+"""Zero Balance"" Message for Mini-cart","Bericht ""Nul saldo"" voor minicart"
+The message will be shown in the min-cart if nothing is added to the cart yet.,Het bericht wordt weergegeven in de minicart als er nog niets aan de winkelwagen is toegevoegd.
+Display Cart Message,Bericht in winkelwagen weergeven
+Cart Message,Winkelwagenbericht
+The message will be shown in the notice on checkout pages. The following variables are available: [p] - it will display the number of points the customer will receive if completing an order; [c] - it will display the reward value expressed in the store currency.,Het bericht wordt weergegeven in de melding op de afrekenpagina's. De volgende variabelen zijn beschikbaar: [p] - hiermee wordt het aantal punten weergegeven dat de klant zal ontvangen bij het voltooien van een bestelling; [c] - hiermee wordt de beloningswaarde weergegeven in de winkelvaluta.
+Display Checkout Message,Bericht bij het afrekenen weergeven
+Checkout Message,Afrekenbericht
+Add to RSS Feeds,Toevoegen aan RSS-feeds
+Show Wrapper for Messages,Wrapper weergeven voor berichten
+"Add ""Updated By"" wrapper for manual update transactions' messages.",Updated By wrapper toevoegen voor handmatige update transactieberichten.
+Expiration Date Settings,Instellingen voor vervaldatum
+Enable Expiration Date,Vervaldatum inschakelen
+Default Expiration Period (days),Standaard Vervaldatum (dagen)
+Update Existing Expiration Dates,Bestaande vervaldatums bijwerken
+"Update the existing reward points expiration dates if the ""Default Expiration Period"" is changed. Works only if the expiration dates functionality is enabled.","Bestaande vervaldatums bijwerken als de ""Standaard Vervaldatum"" is gewijzigd. Werkt alleen als de functionaliteit voor vervaldatums is ingeschakeld."
+Send Expiration Date Email,Vervaldatum E-mail verzenden
+Notify Customers about Expiration Date,Klanten op de hoogte stellen van vervaldatum
+Email Settings,E-mail instellingen
+Email Sender,E-mail verzender
+Default Email Template for Balance Change by Rules,Standaard E-mailtemplate voor Saldo Wijziging door Regels
+"The email template is chosen based on the theme fallback when the ""Default"" option is selected.","Het e-mailtemplate wordt gekozen op basis van de thema fallback wanneer de optie ""Standaard"" is geselecteerd."
+Email Template for Balance Change by Admin,E-mailtemplate voor Saldo Wijziging door Beheerder
+Expiration Date Email Template,E-mailtemplate voor Vervaldatum
+Event Message,Gebeurtenisbericht
+Created,Aangemaakt
+Reward Points Rule,Beloningspunten Regel
+Back,Terug
+Rule Information,Regelinformatie
+Rule Name,Regelnaam
+Description,Omschrijving
+Websites,Websites
+Customer Groups,Klantgroepen
+From,Van
+To,Tot
+Priority,Prioriteit
+Allow Notification,Notificatie toestaan
+Personal Email Template,Persoonlijk E-mailtemplate
+Public In RSS Feed,Openbaar in RSS Feed
+Actions,Acties
+Event,Gebeurtenis
+Give Points,Punten geven
+Calculation Type,Berekeningstype
+Points Amount (Get X Points),Punten Bedrag (Ontvang X Punten)
+Y - Points Earn Step (Y spent / Y quantity),Y - Punten Verdien Stap (Y uitgegeven / Y hoeveelheid)
+"
+                    ""Y spent"" for ""Get X Points for every Y Spent"" / ""Y quantity"" for ""Get X Points for every Y quantity (starting from Z quantity)""
+                ","
+""Y uitgegeven"" voor ""Ontvang X Punten voor elke Y Uitgegeven"" / ""Y hoeveelheid"" voor ""Ontvang X Punten voor elke Y hoeveelheid (vanaf Z hoeveelheid)""
+                "
+Z quantity,Z hoeveelheid
+"
+                    For ""Get X Points for every Y quantity starting from Z quantity""
+                ","
+Voor ""Ontvang X Punten voor elke Y hoeveelheid vanaf Z hoeveelheid""
+                "
+Stop Rules Processing,Stop Regels Verwerking
+Conditions,Voorwaarden
+Default Rule Label for All Store Views,Standaard Regel Label voor Alle Winkelweergaven
+Add New Rule,Nieuwe Regel Toevoegen
+Store View,Winkelweergave
+Are you sure you want to delete selected items?,Weet je zeker dat je geselecteerde items wilt verwijderen?
+Delete items,Items verwijderen
+Disable,Uitschakelen
+ID,ID
+Name,Naam
+Start At,Beginnen op
+Finish At,Eindigen op
+Times Used,Gebruikt Tijden
+Points Generated,Punten gegenereerd
+Status,Status
+Reload,Vernieuwen
+Customer Email,Klant E-mail
+Points Delta,Punten Delta
+Points Balance,Punten Balans
+Purchased From,Gekocht bij
+Web Site,Website
+Created At,Aangemaakt Op

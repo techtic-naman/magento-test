@@ -1,0 +1,83 @@
+.mwrp-banner {
+    width: auto;
+    background-color: #E5F5EC;
+    border: 1px solid #D2EECD;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.mwrp-banner__content {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 16px;
+}
+
+.mwrp-banner__content > strong {
+    font-weight: bold;
+}
+
+#mageworx-reward-points-buttons-container.actions-toolbar > .primary {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+}
+
+#mageworx-reward-points-buttons-container.actions-toolbar > .primary .action {
+    margin-right: 0;
+    margin-bottom: 15px;
+}
+
+#mageworx-reward-points-buttons-container.actions-toolbar .payment-option-title {
+    border-top: none;
+    padding: 0px 0;
+    text-align: right;
+}
+
+#mageworx-reward-points-buttons-container .payment-option {
+    width: 100%;
+}
+
+#mageworx-reward-points-buttons-container .payment-option-inner {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+#mageworx-reward-points-buttons-container .payment-option-inner .field {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    margin-right: 15px;
+}
+
+@media (max-width: 768px) {
+    #mageworx-reward-points-buttons-container .payment-option {
+        margin: 0;
+    }
+
+    #mageworx-reward-points-buttons-container .payment-option-inner {
+        display: block;
+    }
+
+    #mageworx-reward-points-buttons-container .payment-option-content {
+        padding-left: 0;
+    }
+
+    #mageworx-reward-points-buttons-container .payment-option-inner .field {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+}

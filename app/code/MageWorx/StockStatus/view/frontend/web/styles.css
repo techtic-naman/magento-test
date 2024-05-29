@@ -1,0 +1,77 @@
+.mageworx-stock-status-default {
+    margin-bottom: 10px;
+}
+
+.mageworx-stock-status {
+    max-width: 250px;
+    margin-bottom: 15px;
+}
+
+.mw-stock-status-text {
+    font-family: Lato;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: rgba(0, 0, 0, 0.53);
+    max-width: 225px;
+}
+
+.mw-stock-status-count {
+    font-weight: bold;
+    color: #000000;
+}
+
+.mw-stock-status-low {
+    margin-left: 25px;
+}
+.mw-stock-status-urgent {
+    margin-left: 25px;
+}
+
+.mw-stock-status-low::before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 20px;
+    background: url(images/fire-yellow.svg) center center / contain no-repeat;
+    margin-left: -25px;
+}
+
+.mw-stock-status-urgent::before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 20px;
+    background: url(images/fire-red.svg) center center / contain no-repeat;
+    margin-left: -25px;
+}
+
+.mw-stock-status-urgent-bar {
+    width:100%;
+    height: 5px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    background: url(images/bar-urgent.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.mw-stock-status-low-bar {
+    width:100%;
+    height: 5px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    background: url(images/bar-low.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.mw-stock-status-bar {
+    width:100%;
+    height: 5px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    background: url(images/bar-default.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}

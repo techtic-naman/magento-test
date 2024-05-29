@@ -1,0 +1,200 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">mageworx_countdowntimersbase_countdown_timer_listing.mageworx_countdowntimersbase_countdown_timer_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add New Timer</label>
+            </button>
+        </buttons>
+        <spinner>mageworx_countdowntimersbase_countdown_timer_columns</spinner>
+        <deps>
+            <dep>mageworx_countdowntimersbase_countdown_timer_listing.mageworx_countdowntimersbase_countdown_timer_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="mageworx_countdowntimersbase_countdown_timer_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">countdown_timer_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="mageworx_countdowntimersbase_countdown_timer_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>countdown_timer_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="observers" xsi:type="array">
+                    <item name="column" xsi:type="string">column</item>
+                </item>
+            </argument>
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+            <filterSelect name="store_id" provider="${ $.parentName }">
+                <settings>
+                    <options class="Magento\Store\Ui\Component\Listing\Column\Store\Options"/>
+                    <caption translate="true">All Store Views</caption>
+                    <label translate="true">Store View</label>
+                    <dataScope>store_id</dataScope>
+                </settings>
+            </filterSelect>
+        </filters>
+        <massaction name="listing_massaction">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to delete selected Countdown Timer?</message>
+                        <title translate="true">Delete Timer</title>
+                    </confirm>
+                    <url path="mageworx_countdowntimersbase/countdownTimer/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+            <action name="enable">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to enable selected Countdown Timer?</message>
+                        <title translate="true">Enable Countdown Timer</title>
+                    </confirm>
+                    <url path="mageworx_countdowntimersbase/countdownTimer/massEnable"/>
+                    <type>enable</type>
+                    <label translate="true">Enable</label>
+                </settings>
+            </action>
+            <action name="disable">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to disable selected Countdown Timer?</message>
+                        <title translate="true">Disable Countdown Timer</title>
+                    </confirm>
+                    <url path="mageworx_countdowntimersbase/countdownTimer/massDisable"/>
+                    <type>disable</type>
+                    <label translate="true">Disable</label>
+                </settings>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="mageworx_countdowntimersbase_countdown_timer_columns">
+        <selectionsColumn name="ids" sortOrder="0">
+            <settings>
+                <indexField>countdown_timer_id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>55</resizeDefaultWidth>
+            </settings>
+        </selectionsColumn>
+        <column name="countdown_timer_id" sortOrder="10">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="name" sortOrder="20">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Name</label>
+            </settings>
+        </column>
+        <column name="store_id" sortOrder="30" class="Magento\Store\Ui\Component\Listing\Column\Store">
+            <argument name="storeKey" xsi:type="string">store_ids</argument>
+            <settings>
+                <label translate="true">Store View</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="start_date" sortOrder="40" class="MageWorx\CountdownTimersBase\Ui\Component\Listing\Column\DateOnly" component="Magento_Ui/js/grid/columns/date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dateFormat" xsi:type="string">MMM d, Y</item>
+                </item>
+            </argument>
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Start</label>
+            </settings>
+        </column>
+        <column name="end_date" sortOrder="50" class="MageWorx\CountdownTimersBase\Ui\Component\Listing\Column\DateOnly" component="Magento_Ui/js/grid/columns/date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dateFormat" xsi:type="string">MMM d, Y</item>
+                </item>
+            </argument>
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">End</label>
+            </settings>
+        </column>
+        <column name="created_at" sortOrder="60" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Created At</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="updated_at" sortOrder="70" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Modified</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="status" sortOrder="80" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <options class="MageWorx\CountdownTimersBase\Model\Source\CountdownTimer\Status"/>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <column name="priority" sortOrder="90">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Priority</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" sortOrder="100" class="MageWorx\CountdownTimersBase\Ui\Component\Listing\Column\CountdownTimerActions">
+            <settings>
+                <indexField>countdown_timer_id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>107</resizeDefaultWidth>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

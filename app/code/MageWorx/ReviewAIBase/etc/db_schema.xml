@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="mageworx_reviewai_review_summary" resource="default" engine="innodb" comment="Review Summary Table">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="int" name="product_id" unsigned="true" nullable="false" comment="Product ID"/>
+        <column xsi:type="text" name="summary_data" nullable="true" comment="Serialized Review Summary Data"/>
+        <column xsi:type="smallint" name="status" padding="6" unsigned="true" nullable="false" comment="Status (1: Ready, 2: Pending, 3: Disabled)"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Update Time"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" comment="Store ID"/>
+        <column xsi:type="boolean" name="update_required" nullable="false" default="1" comment="Is Sync Required"/>
+        <column xsi:type="boolean" name="is_enabled" nullable="false" default="0" comment="Is Generation enabled for this product"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="foreign"
+                    referenceId="MAGEWORX_REVIEWAI_REVIEW_SUMMARY_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID"
+                    table="mageworx_reviewai_review_summary"
+                    column="product_id"
+                    referenceTable="catalog_product_entity"
+                    referenceColumn="entity_id"/>
+        <constraint xsi:type="foreign" referenceId="MAGEWORX_REVIEWAI_REVIEW_SUMMARY_STORE_ID_STORE_STORE_ID"
+                    table="mageworx_reviewai_review_summary"
+                    column="store_id"
+                    referenceTable="store"
+                    referenceColumn="store_id"/>
+        <constraint xsi:type="unique" referenceId="UNIQUE_PRODUCT_STORE">
+            <column name="product_id"/>
+            <column name="store_id"/>
+        </constraint>
+    </table>
+</schema>

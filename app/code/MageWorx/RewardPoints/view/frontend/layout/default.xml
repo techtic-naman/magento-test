@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="MageWorx_RewardPoints::css/rewardpoints.css"/>
+    </head>
+    <body>
+        <referenceContainer name="header-wrapper">
+            <container name="upcoming-points-message-wrapper" label="Upcoming Points Message Wrapper" as="upcoming-points-message-wrapper" after="top.search" htmlTag="div" htmlClass="compare wrapper">
+                <block class="Magento\Framework\View\Element\Template" name="mageworx.rewardpoints.upcoming.message" before="-"
+                       template="MageWorx_RewardPoints::points/upcoming/message.phtml">
+                    <arguments>
+                        <argument name="jsLayout" xsi:type="array">
+                            <item name="components" xsi:type="array">
+                                <item name="pointsUpcoming" xsi:type="array">
+                                    <item name="component" xsi:type="string">MageWorx_RewardPoints/js/view/points-upcoming</item>
+                                </item>
+                            </item>
+                        </argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

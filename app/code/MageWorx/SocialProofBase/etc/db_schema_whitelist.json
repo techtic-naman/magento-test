@@ -1,0 +1,132 @@
+{
+    "mageworx_socialproofbase_campaign": {
+        "column": {
+            "campaign_id": true,
+            "name": true,
+            "created_at": true,
+            "updated_at": true,
+            "display_mode": true,
+            "event_type": true,
+            "status": true,
+            "restrict_to_current_product": true,
+            "period": true,
+            "start_delay": true,
+            "auto_close_in": true,
+            "max_number_per_page": true,
+            "display_on_mobile": true,
+            "priority": true,
+            "remove_verified": true,
+            "position": true,
+            "content": true,
+            "products_assign_type": true,
+            "display_on_products_conditions_serialized": true,
+            "categories_assign_type": true,
+            "cms_pages_assign_type": true,
+            "restriction_conditions_serialized": true,
+            "min_number_of_views": true
+        },
+        "index": {
+            "MAGEWORX_SOCIALPROOFBASE_CAMPAIGN_NAME": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "mageworx_socialproofbase_campaign_store": {
+        "column": {
+            "campaign_id": true,
+            "store_id": true
+        },
+        "index": {
+            "MAGEWORX_SOCIALPROOFBASE_CAMPAIGN_STORE_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_3D30B24549DD5424BFB967DB0D749209": true,
+            "MAGEWORX_SOCIALPROOFBASE_CAMPAIGN_STORE_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "mageworx_socialproofbase_campaign_customer_group": {
+        "column": {
+            "campaign_id": true,
+            "customer_group_id": true
+        },
+        "index": {
+            "MAGEWORX_SOCIALPROOFBASE_CAMPAIGN_CSTR_GROUP_CSTR_GROUP_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_6BF103F84076E9D54F699DDECA29226B": true,
+            "FK_BDC61AA29D5BF62A0C291FA17F8F6294": true
+        }
+    },
+    "mageworx_socialproofbase_campaign_display_on": {
+        "column": {
+            "campaign_id": true,
+            "page_type": true
+        },
+        "index": {
+            "MAGEWORX_SOCIALPROOFBASE_CAMPAIGN_DISPLAY_ON_PAGE_TYPE": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_9878932C5D01E7C58FAF6626AEEEDEF4": true
+        }
+    },
+    "mageworx_socialproofbase_campaign_product": {
+        "column": {
+            "campaign_id": true,
+            "product_id": true
+        },
+        "index": {
+            "MAGEWORX_SOCIALPROOFBASE_CAMPAIGN_PRODUCT_PRODUCT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_1DDD6A09F1AE618404BFA7EF933C9BF0": true,
+            "FK_8C5040A8578FBCCB83F289DC4BC9A2C7": true
+        }
+    },
+    "mageworx_socialproofbase_campaign_category": {
+        "column": {
+            "campaign_id": true,
+            "category_id": true
+        },
+        "index": {
+            "MAGEWORX_SOCIALPROOFBASE_CAMPAIGN_CATEGORY_CATEGORY_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_A5C70017F6E55D6044E6B891AAE71E59": true,
+            "FK_0C85F9070E99E4922716A6741DF1B046": true
+        }
+    },
+    "mageworx_socialproofbase_campaign_cms_page": {
+        "column": {
+            "campaign_id": true,
+            "cms_page_id": true
+        },
+        "index": {
+            "MAGEWORX_SOCIALPROOFBASE_CAMPAIGN_CMS_PAGE_CMS_PAGE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_513E6AF2F22D0D0110B4405FCC1DA699": true,
+            "FK_ED846B482B25A43936991AF693CE0CB1": true
+        }
+    },
+    "mageworx_socialproofbase_campaign_template": {
+        "column": {
+            "template_id": true,
+            "identifier": true,
+            "title": true,
+            "content": true,
+            "display_mode": true,
+            "event_type": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGEWORX_SOCIALPROOFBASE_CAMPAIGN_TEMPLATE_IDENTIFIER": true
+        }
+    }
+}

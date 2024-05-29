@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="mageworx_rewardpoints_annul_upon_expiration_date" instance="MageWorx\RewardPoints\Observer\PointsUpdate\AnnulUponExpirationDateObserver" method="annulPoints">
+            <schedule>5 0 * * *</schedule>
+        </job>
+        <job name="mageworx_rewardpoints_expiration_date_notice" instance="MageWorx\RewardPoints\Observer\ExpirationDateNotificationObserver" method="sendEmails">
+            <schedule>0 6 * * *</schedule>
+        </job>
+        <job name="mageworx_rewardpoints_customer_birthday" instance='MageWorx\RewardPoints\Observer\PointsEarn\CustomerBirthdayObserver' method="addPoints" />
+    </group>
+</config>

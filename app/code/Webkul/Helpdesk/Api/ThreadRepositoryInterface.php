@@ -1,0 +1,43 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_Helpdesk
+ * @author    Webkul Software Private Limited
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+
+namespace Webkul\Helpdesk\Api;
+
+/**
+ * @api
+ * @since 100.0.2
+ */
+interface ThreadRepositoryInterface
+{
+    /**
+     * Create product
+     *
+     * @param  int   $ticketId
+     * @param  mixed $wholedata
+     * @return int $ticketId
+     * @throws \Magento\Framework\Exception\CouldNotSaveException
+     */
+    public function createThread($ticketId, $wholedata);
+
+    /**
+     * DeleteThreads Delete thread from ticket
+     *
+     * @param Int $ticketId Ticket Id
+     */
+    public function deleteThreads($ticketId);
+
+    /**
+     * GetTicketIdByThreadId Return ticket id by thread id
+     *
+     * @param Int $threadId Thread id
+     */
+    public function getTicketIdByThreadId($threadId);
+}

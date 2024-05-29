@@ -1,0 +1,20 @@
+{
+    "mageworx_reviewai_review_summary": {
+        "column": {
+            "entity_id": true,
+            "product_id": true,
+            "summary_data": true,
+            "status": true,
+            "created_at": true,
+            "updated_at": true,
+            "store_id": true,
+            "update_required": true,
+            "is_enabled": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGEWORX_REVIEWAI_REVIEW_SUMMARY_PRD_ID_CAT_PRD_ENTT_ENTT_ID": true,
+            "MAGEWORX_REVIEWAI_REVIEW_SUMMARY_STORE_ID_STORE_STORE_ID": true
+        }
+    }
+}

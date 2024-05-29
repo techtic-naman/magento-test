@@ -1,0 +1,196 @@
+{
+    "mageworx_rewardpoints_rule": {
+        "column": {
+            "rule_id": true,
+            "name": true,
+            "description": true,
+            "from_date": true,
+            "to_date": true,
+            "is_active": true,
+            "conditions_serialized": true,
+            "stop_rules_processing": true,
+            "sort_order": true,
+            "event": true,
+            "simple_action": true,
+            "calculation_type": true,
+            "points_amount": true,
+            "points_step": true,
+            "point_stage": true,
+            "times_used": true,
+            "max_times_used": true,
+            "points_generated": true,
+            "max_points_generated": true,
+            "is_rss": true,
+            "is_allow_notification": true,
+            "email_template_id": true,
+            "actions_serialized": true
+        },
+        "index": {
+            "IDX_9F39AC7AD4A7C8734E701CF1FEF12EBC": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "mageworx_rewardpoints_customer_balance": {
+        "column": {
+            "customer_balance_id": true,
+            "customer_id": true,
+            "points": true,
+            "website_id": true,
+            "expiration_date": true
+        },
+        "index": {
+            "MAGEWORX_REWARDPOINTS_CUSTOMER_BALANCE_WEBSITE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGEWORX_REWARDPOINTS_CSTR_BALANCE_CSTR_ID_CSTR_ENTT_ENTT_ID": true,
+            "MAGEWORX_REWARDPOINTS_CUSTOMER_BALANCE_CUSTOMER_ID_WEBSITE_ID": true
+        }
+    },
+    "mageworx_rewardpoints_transaction": {
+        "column": {
+            "transaction_id": true,
+            "customer_balance_id": true,
+            "customer_id": true,
+            "website_id": true,
+            "store_id": true,
+            "points_balance": true,
+            "points_delta": true,
+            "event_code": true,
+            "event_data": true,
+            "rule_id": true,
+            "entity_id": true,
+            "created_at": true,
+            "is_notification_sent": true,
+            "expiration_period": true,
+            "comment": true,
+            "is_need_send_notification": true
+        },
+        "index": {
+            "MAGEWORX_REWARDPOINTS_TRANSACTION_CUSTOMER_BALANCE_ID": true,
+            "MAGEWORX_REWARDPOINTS_TRANSACTION_WEBSITE_ID": true,
+            "MAGEWORX_REWARDPOINTS_TRANSACTION_STORE_ID": true,
+            "MAGEWORX_REWARDPOINTS_TRANSACTION_RULE_ID_CUSTOMER_ID": true,
+            "MAGEWORX_REWARDPOINTS_TRANSACTION_CUSTOMER_ID_RULE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGEWORX_REWARDPOINTS_TRANSACTION_CSTR_ID_CSTR_ENTT_ENTT_ID": true,
+            "FK_F508D2FBD0133465D5834ABAA4FCCE49": true,
+            "MAGEWORX_REWARDPOINTS_TRANSACTION_STORE_ID_STORE_STORE_ID": true,
+            "MAGEWORX_REWARDPOINTS_TRANSACTION_WS_ID_STORE_WS_WS_ID": true
+        }
+    },
+    "mageworx_rewardpoints_rule_label": {
+        "column": {
+            "label_id": true,
+            "rule_id": true,
+            "store_id": true,
+            "label": true
+        },
+        "index": {
+            "MAGEWORX_REWARDPOINTS_RULE_LABEL_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_99470F1789A6AF0E6278E5933041B4C2": true,
+            "MAGEWORX_REWARDPOINTS_RULE_LABEL_STORE_ID_STORE_STORE_ID": true,
+            "MAGEWORX_REWARDPOINTS_RULE_LABEL_RULE_ID_STORE_ID": true
+        }
+    },
+    "mageworx_rewardpoints_rule_product_attribute": {
+        "column": {
+            "rule_id": true,
+            "website_id": true,
+            "customer_group_id": true,
+            "attribute_id": true
+        },
+        "index": {
+            "MAGEWORX_REWARDPOINTS_RULE_PRODUCT_ATTRIBUTE_WEBSITE_ID": true,
+            "MAGEWORX_REWARDPOINTS_RULE_PRODUCT_ATTRIBUTE_CUSTOMER_GROUP_ID": true,
+            "MAGEWORX_REWARDPOINTS_RULE_PRODUCT_ATTRIBUTE_ATTRIBUTE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGEWORX_REWARDPOINTS_RULE_PRD_ATTR_ATTR_ID_EAV_ATTR_ATTR_ID": true,
+            "FK_9493E94AF37B56551FDBFF99EFE8E695": true,
+            "FK_64255E05566CB6704C6F392BB61FD451": true,
+            "MAGEWORX_REWARDPOINTS_RULE_PRD_ATTR_WS_ID_STORE_WS_WS_ID": true
+        }
+    },
+    "mageworx_rewardpoints_rule_website": {
+        "column": {
+            "rule_id": true,
+            "website_id": true
+        },
+        "index": {
+            "MAGEWORX_REWARDPOINTS_RULE_WEBSITE_WEBSITE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_91E6F548D60F0F3B67AEF4A623606285": true,
+            "MAGEWORX_REWARDPOINTS_RULE_WS_WS_ID_STORE_WS_WS_ID": true
+        }
+    },
+    "mageworx_rewardpoints_rule_customer_group": {
+        "column": {
+            "rule_id": true,
+            "customer_group_id": true
+        },
+        "index": {
+            "MAGEWORX_REWARDPOINTS_RULE_CUSTOMER_GROUP_CUSTOMER_GROUP_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_C7AEEF1762E14CD224394F04EAF211FA": true,
+            "FK_42EFE283896B8879C49D5F79F1B6BBBD": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "mw_earn_points_data": true,
+            "mw_rwrdpoints_amnt": true,
+            "base_mw_rwrdpoints_cur_amnt": true,
+            "mw_rwrdpoints_cur_amnt": true,
+            "base_mw_rwrdpoints_cur_amnt_invoice": true,
+            "mw_rwrdpoints_cur_amnt_invoice": true,
+            "base_mw_rwrdpoints_cur_amnt_refund": true,
+            "mw_rwrdpoints_cur_amnt_refund": true,
+            "mw_rwrdpoints_amnt_refund": true
+        }
+    },
+    "quote": {
+        "column": {
+            "use_mw_reward_points": true,
+            "mw_rwrdpoints_amnt": true,
+            "base_mw_rwrdpoints_cur_amnt": true,
+            "mw_rwrdpoints_cur_amnt": true,
+            "mw_requested_points": true,
+            "mw_earn_points_data": true
+        }
+    },
+    "quote_address": {
+        "column": {
+            "mw_rwrdpoints_amnt": true,
+            "base_mw_rwrdpoints_cur_amnt": true,
+            "mw_rwrdpoints_cur_amnt": true
+        }
+    },
+    "sales_invoice": {
+        "column": {
+            "base_mw_rwrdpoints_cur_amnt": true,
+            "mw_rwrdpoints_cur_amnt": true,
+            "mw_rwrdpoints_amnt": true
+        }
+    },
+    "sales_creditmemo": {
+        "column": {
+            "base_mw_rwrdpoints_cur_amnt": true,
+            "mw_rwrdpoints_cur_amnt": true,
+            "mw_rwrdpoints_amnt": true,
+            "mw_rwrdpoints_amnt_refund": true
+        }
+    }
+}

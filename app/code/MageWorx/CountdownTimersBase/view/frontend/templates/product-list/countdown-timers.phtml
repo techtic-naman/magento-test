@@ -1,0 +1,68 @@
+<?php
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+/* @var $block \MageWorx\CountdownTimersBase\Block\ProductList\CountdownTimers */
+?>
+
+<?php if ($block->canBeDisplayed()): ?>
+    <script>
+        require([
+            'jquery',
+            'mage/translate'
+        ], function ($, $t) {
+            $(function () {
+                var ids = [];
+
+                $('.products.list.items.product-items .product.details [data-role="priceBox"]').each(
+                    function () {
+                        ids.push($(this).attr('data-product-id'));
+                    });
+
+                if (ids.length > 0) {
+
+                    $.ajax({
+                        url: '<?= /* @noEscape */ $block->getAjaxUrl() ?>',
+                        method: 'POST',
+                        data: {
+                            productIds: ids
+                        },
+                        success: function (result) {
+                            var timersData = result.timersData;
+
+                            for (let key in timersData) {
+                                let timerData = timersData[key];
+                                let timerElementId = 'product-list-timer-' + key;
+                                let timerElement = $('<div id="' + timerElementId + '" class="product-list-timer"></div>');
+
+                                let selector = '.products.list.items.product-items .product.details [data-product-id="' + key + '"]';
+
+                                $(selector).after(timerElement);
+
+                                new MwCountdown(
+                                    timerData.timeStamp * 1000,
+                                    document.getElementById(timerElementId),
+                                    {
+                                        theme: timerData.theme,
+                                        prefix: timerData.beforeTimerText,
+                                        suffix: timerData.afterTimerText,
+                                        labels: {
+                                            days:    $t('days'),
+                                            hours:   $t('hrs'),
+                                            minutes: $t('min'),
+                                            seconds: $t('sec')
+                                        },
+                                        accent: timerData.accent,
+                                        size: timerData.size
+                                    }
+                                );
+                            }
+                        },
+                    });
+                }
+            });
+        });
+    </script>
+<?php endif; ?>

@@ -1,0 +1,24 @@
+{
+  "name": "mageworx/module-personalpromotion",
+  "description": "MageWorx Personal Promotion",
+  "require": {
+    "magento/module-catalog": ">=100.1.0 <105",
+    "magento/module-ui": ">=100.1.0 <102",
+    "magento/module-customer": ">=100.1.0 <104",
+    "magento/module-sales-rule": ">=100.1.0 <102"
+  },
+  "type": "magento2-module",
+  "version": "1.2.8",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "MageWorx\\PersonalPromotion\\": ""
+    }
+  }
+}

@@ -1,0 +1,12 @@
+.admin__field > .admin__field-control > .review-ai-button {
+    margin-left: 5px;
+}
+
+.generate_summary_buttons > button:first-child {
+    margin-left: 30px;
+}
+.generate_summary_buttons > button {
+    margin-left: 10px;
+    margin-top: 10px;
+    float: left;
+}

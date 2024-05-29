@@ -1,0 +1,199 @@
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+.load-template-modal .template-wrapper .admin__field-control {
+    max-width: 1120px;
+    width: auto;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option {
+    display: inline;
+    float: left;
+    position: relative;
+    width: 280px;
+    height: 160px;
+    margin-top: 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option label {
+    position: absolute;
+    cursor: pointer;
+    padding-top: 110px;
+    padding-left: 0;
+    width: 262px;
+    height: 112px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option label:before {
+    margin: 1px 5px 0 0;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option .admin__control-radio:checked + label:after {
+    background-color: #514943;
+    border-radius: 50%;
+    content: '';
+    height: 10px;
+    left: 3px;
+    position: absolute;
+    top: 114px;
+    width: 10px;
+}
+
+.templates .preview span[class*="roll"],
+.load-template-modal .template-wrapper .admin__field.admin__field-option input[value^="roll"] + label {
+    background-size: 242px auto;
+}
+.templates .preview span[class*="roll"] {
+    width: 242px;
+    height: 107px;
+    margin-top: -35px;
+}
+.templates .preview .roll-1,
+.load-template-modal .template-wrapper .admin__field-option [value="roll-1"] + label {
+    background: url(../../images/templates/roll-1.png) no-repeat 0px 0px;
+}
+.templates .preview .roll-2,
+.load-template-modal .template-wrapper .admin__field-option [value="roll-2"] + label {
+    background: url(../../images/templates/roll-2.png) no-repeat 0px 0px;
+}
+.templates .preview .roll-3,
+.load-template-modal .template-wrapper .admin__field-option [value="roll-3"] + label {
+    background: url(../../images/templates/roll-3.png) no-repeat 0px 0px;
+}
+.templates .preview .roll-4,
+.load-template-modal .template-wrapper .admin__field-option [value="roll-4"] + label {
+    background: url(../../images/templates/roll-4.png) no-repeat 0px 0px;
+}
+
+.templates .preview span[class*="flip_single"],
+.load-template-modal .template-wrapper .admin__field.admin__field-option input[value^="flip_single"] + label {
+    background-size: 246px auto;
+}
+.templates .preview span[class*="flip_single"] {
+    width: 246px;
+    height: 112px;
+    margin-top: -35px;
+}
+.templates .preview .flip_single-1,
+.load-template-modal .template-wrapper .admin__field-option [value="flip_single-1"] + label {
+    background: url(../../images/templates/flip_single-1.png) no-repeat 0px 0px;
+}
+.templates .preview .flip_single-2,
+.load-template-modal .template-wrapper .admin__field-option [value="flip_single-2"] + label {
+    background: url(../../images/templates/flip_single-2.png) no-repeat 0px 0px;
+}
+.templates .preview .flip_single-3,
+.load-template-modal .template-wrapper .admin__field-option [value="flip_single-3"] + label {
+    background: url(../../images/templates/flip_single-3.png) no-repeat 0px 0px;
+}
+.templates .preview .flip_single-4,
+.load-template-modal .template-wrapper .admin__field-option [value="flip_single-4"] + label {
+    background: url(../../images/templates/flip_single-4.png) no-repeat 0px 0px;
+}
+
+.templates .preview span[class*="flip_double"],
+.load-template-modal .template-wrapper .admin__field.admin__field-option input[value^="flip_double"] + label {
+    background-size: 186px auto;
+}
+.templates .preview span[class*="flip_double"] {
+    width: 186px;
+    height: 111px;
+    margin-top: -35px;
+}
+.templates .preview .flip_double-1,
+.load-template-modal .template-wrapper .admin__field-option [value="flip_double-1"] + label {
+    background: url(../../images/templates/flip_double-1.png) no-repeat 0px 0px;
+}
+.templates .preview .flip_double-2,
+.load-template-modal .template-wrapper .admin__field-option [value="flip_double-2"] + label {
+    background: url(../../images/templates/flip_double-2.png) no-repeat 0px 0px;
+}
+.templates .preview .flip_double-3,
+.load-template-modal .template-wrapper .admin__field-option [value="flip_double-3"] + label {
+    background: url(../../images/templates/flip_double-3.png) no-repeat 0px 0px;
+}
+.templates .preview .flip_double-4,
+.load-template-modal .template-wrapper .admin__field-option [value="flip_double-4"] + label {
+    background: url(../../images/templates/flip_double-4.png) no-repeat 0px 0px;
+}
+
+.templates .preview span[class*="tick"],
+.load-template-modal .template-wrapper .admin__field.admin__field-option input[value^="tick"] + label {
+    background-size: 220px auto;
+}
+.templates .preview span[class*="tick"] {
+    width: 220px;
+    height: 111px;
+    margin-top: -35px;
+}
+.templates .preview .tick-3,
+.load-template-modal .template-wrapper .admin__field-option [value="tick-3"] + label {
+    background: url(../../images/templates/tick-3.png) no-repeat 0px 0px;
+}
+.templates .preview .tick-1,
+.load-template-modal .template-wrapper .admin__field-option [value="tick-1"] + label {
+    background: url(../../images/templates/tick-1.png) no-repeat 0px 0px;
+}
+.templates .preview .tick-2,
+.load-template-modal .template-wrapper .admin__field-option [value="tick-2"] + label {
+    background: url(../../images/templates/tick-2.png) no-repeat 0px 0px;
+}
+.templates .preview .tick-4,
+.load-template-modal .template-wrapper .admin__field-option [value="tick-4"] + label {
+    background: url(../../images/templates/tick-4.png) no-repeat 0px 0px;
+}
+
+.templates .preview span[class*="plain"],
+.load-template-modal .template-wrapper .admin__field.admin__field-option input[value^="plain"] + label {
+    background-size: 186px auto;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option input[value^="plain"] + label {
+    margin-top: 10px;
+    padding-top: 100px;
+}
+.templates .preview span[class*="plain"] {
+    width: 186px;
+    height: 87px;
+    margin-top: -25px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option input[value^="plain"]:checked + label:after {
+    top: 104px;
+}
+.templates .preview .plain-1,
+.load-template-modal .template-wrapper .admin__field-option [value="plain-1"] + label {
+    background: url(../../images/templates/plain-1.png) no-repeat 0px 0px;
+}
+
+.templates .preview span[class*="inline"],
+.load-template-modal .template-wrapper .admin__field.admin__field-option input[value^="inline"] + label {
+    background-size: 262px auto;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option input[value^="inline"] + label {
+    margin-top: 50px;
+    padding-top: 60px;
+}
+.templates .preview span[class*="inline"] {
+    width: 262px;
+    height: 24px;
+    margin-top: 7px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option input[value^="inline"]:checked + label:after {
+    top: 64px;
+}
+.templates .preview .inline-1,
+.load-template-modal .template-wrapper .admin__field-option [value="inline-1"] + label {
+    background: url(../../images/templates/inline-1.png) no-repeat 0px 0px;
+}
+.templates .preview .inline-2,
+.load-template-modal .template-wrapper .admin__field-option [value="inline-2"] + label {
+    background: url(../../images/templates/inline-2.png) no-repeat 0px 0px;
+}
+.templates .preview .inline-3,
+.load-template-modal .template-wrapper .admin__field-option [value="inline-3"] + label {
+    background: url(../../images/templates/inline-3.png) no-repeat 0px 0px;
+}
+.templates .preview .inline-4,
+.load-template-modal .template-wrapper .admin__field-option [value="inline-4"] + label {
+    background: url(../../images/templates/inline-4.png) no-repeat 0px 0px;
+}
+.templates .preview .inline-5,
+.load-template-modal .template-wrapper .admin__field-option [value="inline-5"] + label {
+    background: url(../../images/templates/inline-5.png) no-repeat 0px 0px;
+}

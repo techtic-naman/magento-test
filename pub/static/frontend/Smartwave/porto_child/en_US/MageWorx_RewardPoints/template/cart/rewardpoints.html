@@ -1,0 +1,16 @@
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<!-- ko if: isAvailable() -->
+<tr class="totals mageworx_rewardpoints">
+    <th colspan="1" style="" class="mark" scope="row">
+        <span data-bind="text: $t('Reward Points')"></span>
+    </th>
+    <td class="amount">
+        <span data-bind="text: getValue(), attr: {'data-th': $t(title)}" class="price"></span>
+    </td>
+</tr>
+<!-- /ko -->

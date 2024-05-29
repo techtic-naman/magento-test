@@ -1,0 +1,31 @@
+Website Code,Website-Code
+Customer Email,Kunden-E-Mail
+Points,Punkte
+Expiration Date,Ablaufdatum
+Reward Points Customer Balance,Belohnungspunkte Kunden-Guthaben
+Import and Export Reward Points Balance,Belohnungspunkte importieren und exportieren Guthaben
+The reward points balance has been imported.,Das Belohnungspunkte-Guthaben wurde importiert.
+Invalid file upload attempt,Ungültiger Versuch des Datei-Uploads
+Invalid file upload attempt.,Ungültiger Versuch des Datei-Uploads.
+Data for import not found,Daten für den Import nicht gefunden
+Missed website code in line %1,Fehlende Website-Code in Zeile %1
+Missed Email in line %1,Fehlende E-Mail in Zeile %1
+Invalid email format in line %1,Ungültiges E-Mail-Format in Zeile %1
+Invalid points format in line %1,Ungültiges Punkte-Format in Zeile %1
+"Invalid action in line %1 (The action must be one of ""replace"", ""add"", ""deduct"")","Ungültige Aktion in Zeile %1 (Die Aktion muss eine von ""ersetzen"", ""hinzufügen"", ""abziehen"" sein)"
+"Invalid expiration period in line %line. The expiration period must be one of ""%default"", ""%unchanged"", ""%unlimited"" or be numeric.","Ungültige Verfallsdauer in Zeile %line. Die Verfallsdauer muss eine von ""%default"", ""%unchanged"", ""%unlimited"" oder eine numerische sein."
+Duplicate row (email and website code combination) was found in line %1,Doppelte Zeile (Kombination aus E-Mail und Website-Code) wurde in Zeile %1 gefunden
+The requested website code(s) is not found: %1.,Die angeforderten Website-Codes wurden nicht gefunden: %1.
+The requested customer email(s) not found: %1.,Die angeforderten Kunden-E-Mails wurden nicht gefunden: %1.
+Customer with not correct email(s) and website code(s): %1,Kunde mit nicht korrekten E-Mails und Website-Codes: %1
+Reset balance for import of the new one.,Guthaben für Import des neuen zurücksetzen.
+Reset balance.,Guthaben zurücksetzen.
+Updated by admin %1,Aktualisiert von Admin %1
+Updated by admin.,Aktualisiert von Admin.
+"Comment: ""%1""","Kommentar: ""%1"""
+Import Reward Points Balance,Belohnungspunkte-Guthaben importieren
+Export Reward Points Balance,Belohnungspunkte-Guthaben exportieren
+Download example CSV file,Beispiel-CSV-Datei herunterladen
+Download,Herunterladen
+Please select a file to import!,Bitte wählen Sie eine Datei zum Importieren aus!
+Customer Points,Kundenpunkte

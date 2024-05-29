@@ -1,0 +1,261 @@
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+.steps-wizard-navigation {
+    box-sizing: border-box;
+}
+
+.design-position .position-wrapper .admin__field-control {
+    max-width: 600px;
+    width: auto;
+}
+.design-position .position-wrapper .admin__field.admin__field-option {
+    display: inline;
+    float: left;
+    position: relative;
+    width: 147px;
+    height: 121px;
+    margin-top: 0;
+}
+.design-position .position-wrapper .admin__field.admin__field-option label {
+    position: absolute;
+    color: #b0b0b0;
+    cursor: pointer;
+    padding-top: 86px;
+    padding-left: 0;
+    width: 100px;
+    height: 115px;
+    text-align: center;
+}
+.design-position .position-wrapper .admin__field.admin__field-option label:before,
+.design-position .position-wrapper .admin__field.admin__field-option label:after {
+    content: none;
+}
+.design-position .position-wrapper .admin__field.admin__field-option .admin__control-radio:checked + label {
+    color: #333333;
+    font-weight: bold;
+}
+
+.design-position .position-wrapper .admin__field.admin__field-option [value="top-right"] + label {
+    background: url(../../images/top-right-off.png) no-repeat 0px 0px;
+}
+.design-position .position-wrapper .admin__field.admin__field-option [value="top-right"]:checked + label {
+    background: url(../../images/top-right-on.png) no-repeat 0px 0px;
+}
+
+.design-position .position-wrapper .admin__field.admin__field-option [value="top-left"] + label {
+    background: url(../../images/top-left-off.png) no-repeat 0px 0px;
+}
+.design-position .position-wrapper .admin__field.admin__field-option [value="top-left"]:checked + label {
+    background: url(../../images/top-left-on.png) no-repeat 0px 0px;
+}
+
+.design-position .position-wrapper .admin__field.admin__field-option [value="bottom-left"] + label {
+    background: url(../../images/bottom-left-off.png) no-repeat 0px 0px;
+}
+.design-position .position-wrapper .admin__field.admin__field-option [value="bottom-left"]:checked + label {
+    background: url(../../images/bottom-left-on.png) no-repeat 0px 0px;
+}
+
+.design-position .position-wrapper .admin__field.admin__field-option [value="bottom-right"] + label {
+    background: url(../../images/bottom-right-off.png) no-repeat 0px 0px;
+}
+.design-position .position-wrapper .admin__field.admin__field-option [value="bottom-right"]:checked + label {
+    background: url(../../images/bottom-right-on.png) no-repeat 0px 0px;
+}
+
+
+.design-position .templates .content.admin__field > .admin__field-label {
+    width: calc( (100%) * 0.12 - 30px );
+}
+.design-position .templates .content.admin__field > .admin__field-control {
+    width: calc( (100%) * 0.77 - 30px );
+}
+
+
+.load-template-modal .template-wrapper .admin__field-control {
+    max-width: 1200px;
+    width: auto;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option {
+    display: inline;
+    float: left;
+    position: relative;
+    width: 400px;
+    height: 160px;
+    margin-top: 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option label {
+    position: absolute;
+    cursor: pointer;
+    padding-top: 125px;
+    padding-left: 0;
+    width: 385px;
+    height: 140px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value^="html-text"] + label {
+    padding-top: 35px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option label:before {
+    margin: 1px 5px 0 0;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option .admin__control-radio:checked + label:after {
+    background-color: #514943;
+    border-radius: 50%;
+    content: '';
+    height: 10px;
+    left: 3px;
+    position: absolute;
+    top: 129px;
+    width: 10px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option .admin__control-radio:checked[value^="html-text"] + label:after {
+    top: 39px;
+}
+
+.load-template-modal .template-wrapper .admin__field.admin__field-option input[value^="popup"] + label {
+    background-size: 356px auto;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-1"] + label {
+    background: url(../../images/templates/popup-recent-sales-1.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-2"] + label {
+    background: url(../../images/templates/popup-recent-sales-2.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-3"] + label {
+    background: url(../../images/templates/popup-recent-sales-3.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-4"] + label {
+    background: url(../../images/templates/popup-recent-sales-4.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-5"] + label {
+    background: url(../../images/templates/popup-recent-sales-5.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-6"] + label {
+    background: url(../../images/templates/popup-recent-sales-6.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-7"] + label {
+    background: url(../../images/templates/popup-recent-sales-7.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-8"] + label {
+    background: url(../../images/templates/popup-recent-sales-8.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-9"] + label {
+    background: url(../../images/templates/popup-recent-sales-9.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-10"] + label {
+    background: url(../../images/templates/popup-recent-sales-10.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-11"] + label {
+    background: url(../../images/templates/popup-recent-sales-11.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-12"] + label {
+    background: url(../../images/templates/popup-recent-sales-12.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-13"] + label {
+    background: url(../../images/templates/popup-recent-sales-13.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-14"] + label {
+    background: url(../../images/templates/popup-recent-sales-14.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-15"] + label {
+    background: url(../../images/templates/popup-recent-sales-15.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-16"] + label {
+    background: url(../../images/templates/popup-recent-sales-16.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-17"] + label {
+    background: url(../../images/templates/popup-recent-sales-17.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-18"] + label {
+    background: url(../../images/templates/popup-recent-sales-18.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-19"] + label {
+    background: url(../../images/templates/popup-recent-sales-19.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-20"] + label {
+    background: url(../../images/templates/popup-recent-sales-20.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-21"] + label {
+    background: url(../../images/templates/popup-recent-sales-21.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-22"] + label {
+    background: url(../../images/templates/popup-recent-sales-22.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-23"] + label {
+    background: url(../../images/templates/popup-recent-sales-23.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-24"] + label {
+    background: url(../../images/templates/popup-recent-sales-24.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-25"] + label {
+    background: url(../../images/templates/popup-recent-sales-25.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-26"] + label {
+    background: url(../../images/templates/popup-recent-sales-26.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-recent-sales-27"] + label {
+    background: url(../../images/templates/popup-recent-sales-27.png) no-repeat 0px 0px;
+}
+
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-views-1"] + label {
+    background: url(../../images/templates/popup-views-1.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-views-2"] + label {
+    background: url(../../images/templates/popup-views-2.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-views-3"] + label {
+    background: url(../../images/templates/popup-views-3.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-views-4"] + label {
+    background: url(../../images/templates/popup-views-4.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-views-5"] + label {
+    background: url(../../images/templates/popup-views-5.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="popup-views-6"] + label {
+    background: url(../../images/templates/popup-views-6.png) no-repeat 0px 0px;
+}
+
+.load-template-modal .template-wrapper .admin__field.admin__field-option input[value^="html-text"] + label {
+    background-size: 459px auto;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="html-text-views-1"] + label {
+    background: url(../../images/templates/html-text-views-1.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="html-text-views-2"] + label {
+    background: url(../../images/templates/html-text-views-2.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="html-text-views-3"] + label {
+    background: url(../../images/templates/html-text-views-3.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="html-text-views-4"] + label {
+    background: url(../../images/templates/html-text-views-4.png) no-repeat 0px 0px;
+}
+
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="html-text-recent-sales-1"] + label {
+    background: url(../../images/templates/html-text-recent-sales-1.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="html-text-recent-sales-2"] + label {
+    background: url(../../images/templates/html-text-recent-sales-2.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="html-text-recent-sales-3"] + label {
+    background: url(../../images/templates/html-text-recent-sales-3.png) no-repeat 0px 0px;
+}
+.load-template-modal .template-wrapper .admin__field.admin__field-option [value="html-text-recent-sales-4"] + label {
+    background: url(../../images/templates/html-text-recent-sales-4.png) no-repeat 0px 0px;
+}
+
+/*
+A customization for magento versions with non-working wysiwygConfigData['add_images'] parameter
+
+reason: Magento\Cms\Model\Wysiwyg\Gallery\DefaultConfigProvider
+        line 73
+        Magento 2.3.2
+*/
+.design-position .templates .content [aria-label="Insert/edit image"],
+.design-position .templates .content .action-add-image,
+.design-position .templates .content [aria-label="Insert/edit link"] {
+    display: none !important;
+}

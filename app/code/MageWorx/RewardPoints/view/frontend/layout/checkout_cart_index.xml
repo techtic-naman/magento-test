@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.cart.totals">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="block-totals" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="before_grandtotal" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="reward" xsi:type="array">
+                                            <item name="component" xsi:type="string">MageWorx_RewardPoints/js/view/cart/rewardpoints</item>
+                                            <item name="config" xsi:type="array">
+                                                <item name="template" xsi:type="string">MageWorx_RewardPoints/cart/rewardpoints</item>
+                                                <item name="title" xsi:type="string">Reward points</item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+        <referenceContainer name="page.messages">
+            <block class="MageWorx\RewardPoints\Block\Notification\Cart\UpcomingPoints"
+                   name="mageworx.notification.rewardpoints.cart.upcoming_points"
+                   template="MageWorx_RewardPoints::points/upcoming/cart-message.phtml">
+            </block>
+        </referenceContainer>
+    </body>
+</page>

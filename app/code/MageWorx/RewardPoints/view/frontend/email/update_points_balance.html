@@ -1,0 +1,55 @@
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<!--@subject {{trans "Your Reward Points Balance was updated at %store_name" store_name=$store.getFrontendName()}} @-->
+<!--@vars {
+"var name|escape":"Customer Name",
+"var store.getFrontendName()|escape":"Store Name",
+"store url=\"\"":"Store URL",
+
+"var points_balance":"Points Balance",
+"var points_since":"Points Since",
+"var points_delta":"Points Delta",
+"var expiration_period":"Expiration Period",
+"var expiration_date":"Expiration Date",
+
+"var message":"Message",
+"var comment":"Comment",
+
+"template config_path=\"design\/email\/footer_template\"":"Email Footer Template",
+"template config_path=\"design\/email\/header_template\"":"Email Header Template",
+"config path='trans_email\/ident_sales\/email'":"Sales Contact Email",
+"config path='general\/store_information\/phone'":"Sales Contact Phone"
+
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p class="greeting">{{trans "%customer_name," customer_name=$customer_name}}</p>
+<p>
+    {{trans
+    'We have transferred reward points to your <a href="%store_url">%store_name</a> account. You can use them for your future purchases.'
+
+    store_url="$this.getUrl($store, '',[_nosid:1])"
+    store_name="$store.getFrontendName()"
+    |raw}}
+
+<p><strong>{{trans "Your current reward points balance is %points_balance." points_balance=$points_balance}}</strong></p>
+
+{{depend expiration_date}}
+<p>
+    {{trans
+    'The reward points will expire in %expiration_period day(s) (%expiration_date).'
+    expiration_period="$expiration_period"
+    expiration_date="$expiration_date"
+    |raw}}
+</p>
+{{/depend}}
+
+
+</p>
+
+{{template config_path="design/email/footer_template"}}

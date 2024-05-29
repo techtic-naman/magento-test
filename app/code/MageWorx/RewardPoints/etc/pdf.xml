@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Sales:etc/pdf_file.xsd">
+    <totals>
+        <total name="mageworx_rewardpoints">
+            <title translate="true">Reward Points</title>
+            <source_field>mw_rwrdpoints_cur_amnt</source_field>
+            <model>MageWorx\RewardPoints\Model\Total\Pdf\RewardPoints</model>
+            <font_size>7</font_size>
+            <display_zero>false</display_zero>
+            <amount_prefix>-</amount_prefix>
+            <sort_order>600</sort_order>
+        </total>
+    </totals>
+</config>

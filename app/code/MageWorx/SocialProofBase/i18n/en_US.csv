@@ -1,0 +1,133 @@
+"Conditions (don't add conditions if campaign can display the activity of any product(s))","Conditions (don't add conditions if campaign can display the activity of any product(s))"
+Conditions,Conditions
+Back,Back
+"Delete Campaign","Delete Campaign"
+"Are you sure you want to do this?","Are you sure you want to do this?"
+Reset,Reset
+"Save Campaign","Save Campaign"
+"Save and Continue Edit","Save and Continue Edit"
+"Campaign Information","Campaign Information"
+"Display mode","Display mode"
+"Event Type","Event Type"
+"To add or modify the campaigns for the sales pop-up, go to Marketing - %link.","To add or modify the campaigns for the sales pop-up, go to Marketing - %link."
+"Verified by","Verified by"
+"The Campaign has been deleted.","The Campaign has been deleted."
+"The Campaign no longer exists.","The Campaign no longer exists."
+"There was a problem deleting the Campaign","There was a problem deleting the Campaign"
+"We can't find a Campaign to delete.","We can't find a Campaign to delete."
+"Social proof","Social proof"
+"New Campaign","New Campaign"
+"You saved the Campaign.","You saved the Campaign."
+"There was a problem saving the Campaign","There was a problem saving the Campaign"
+"Requested Campaign doesn't exist","Requested Campaign doesn't exist"
+"There was an error loading Campaign data.","There was an error loading Campaign data."
+"Could not save the Campaign: %1","Could not save the Campaign: %1"
+"Unable to remove Campaign %1","Unable to remove Campaign %1"
+"%1 Campaigns based on ""%2"" attribute have been disabled.","%1 Campaigns based on ""%2"" attribute have been disabled."
+"days ago","days ago"
+"day ago","day ago"
+"hours ago","hours ago"
+"hour ago","hour ago"
+"minutes ago","minutes ago"
+"minute ago","minute ago"
+"seconds ago","seconds ago"
+"1 second ago","1 second ago"
+day,day
+days,days
+customer,customer
+customers,customers
+time,time
+times,times
+"Unable to detect user agent.","Unable to detect user agent."
+"All categories","All categories"
+"Specific categories","Specific categories"
+"All pages","All pages"
+"Specific pages","Specific pages"
+Pop-up,Pop-up
+"HTML text","HTML text"
+"Product Pages","Product Pages"
+"Category Pages","Category Pages"
+"CMS Pages","CMS Pages"
+"Recent sales","Recent sales"
+"Views (Popularity)","Views (Popularity)"
+"Top Right","Top Right"
+"Top Left","Top Left"
+"Bottom Left","Bottom Left"
+"Bottom Right","Bottom Right"
+"All products","All products"
+"Specific products","Specific products"
+"By conditions","By conditions"
+Disable,Disable
+Enable,Enable
+"Delete ""%1""","Delete ""%1"""
+"Are you sure you want to delete the Campaign ""%1""?","Are you sure you want to delete the Campaign ""%1""?"
+Edit,Edit
+Delete,Delete
+Next,Next
+Save,Save
+"Marketing Suite (by MageWorx)","Marketing Suite (by MageWorx)"
+"A total of %1 Campaigns have been deleted.","A total of %1 Campaigns have been deleted."
+"An error occurred while deleting Campaigns.","An error occurred while deleting Campaigns."
+"A total of %1 Campaigns have been enabled.","A total of %1 Campaigns have been enabled."
+"An error occurred while enabling Campaigns.","An error occurred while enabling Campaigns."
+"A total of %1 Campaigns have been disabled.","A total of %1 Campaigns have been disabled."
+"An error occurred while disabling Campaigns.","An error occurred while disabling Campaigns."
+"Marketing Suite","Marketing Suite"
+General,General
+Name,Name
+Status,Status
+"Store Views","Store Views"
+"Customer Groups","Customer Groups"
+"Restrict to current product","Restrict to current product"
+"Period in days during which a recent sale or views activity should be checked.","Period in days during which a recent sale or views activity should be checked."
+Period,Period
+"A delay in seconds after page loading to display a pop-up or HTML text block.","A delay in seconds after page loading to display a pop-up or HTML text block."
+"Start Delay","Start Delay"
+"Time in seconds, when a pop-up or HTML text block will be closed/hided automatically.","Time in seconds, when a pop-up or HTML text block will be closed/hided automatically."
+"Auto Close in","Auto Close in"
+"Min Number Of Views","Min Number Of Views"
+"Max Number of Pop-ups per Page Load","Max Number of Pop-ups per Page Load"
+"Display On","Display On"
+"To use this feature the '<a target=""_blank"" href=""https://packagist.org/packages/matomo/device-detector"">matomo/device-detector</a>' module should be installed. See the user guide for more details.","To use this feature the '<a target=""_blank"" href=""https://packagist.org/packages/matomo/device-detector"">matomo/device-detector</a>' module should be installed. See the user guide for more details."
+"Display On Mobile","Display On Mobile"
+Priority,Priority
+"Remove ""Verified by MageWorx""","Remove ""Verified by MageWorx"""
+"Display On (Products)","Display On (Products)"
+"Assign Type","Assign Type"
+"Add Products","Add Products"
+Cancel,Cancel
+"Add Selected Products","Add Selected Products"
+Remove,Remove
+ID,ID
+Thumbnail,Thumbnail
+"Attribute Set","Attribute Set"
+SKU,SKU
+Price,Price
+Actions,Actions
+"Display On (Categories)","Display On (Categories)"
+Categories,Categories
+"Display On (CMS Pages)","Display On (CMS Pages)"
+"Add Pages","Add Pages"
+"Add Selected Pages","Add Selected Pages"
+Title,Title
+"URL Key","URL Key"
+Created,Created
+Modified,Modified
+Restrictions,Restrictions
+"Design & Position","Design & Position"
+Position,Position
+Templates,Templates
+load-template-modal,load-template-modal
+"Load Template","Load Template"
+AttributeSetText,AttributeSetText
+StatusText,StatusText
+Type,Type
+"Add New Campaign","Add New Campaign"
+"All Store Views","All Store Views"
+"Store View","Store View"
+"Are you sure you want to delete selected Campaign?","Are you sure you want to delete selected Campaign?"
+"Are you sure you want to enable selected Campaign?","Are you sure you want to enable selected Campaign?"
+"Enable Campaign","Enable Campaign"
+"Are you sure you want to disable selected Campaign?","Are you sure you want to disable selected Campaign?"
+"Disable Campaign","Disable Campaign"
+"Created At","Created At"

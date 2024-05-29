@@ -1,0 +1,277 @@
+Reward Points,Prämienpunkte
+Reward Points Transactions,Prämienpunkt-Transaktionen
+Website,Website
+Balance,Saldo
+Currency Amount,Währungsbetrag
+Expiration Date,Verfallsdatum
+Unlimited (functionality is disabled),Unbegrenzt (Funktionalität ist deaktiviert)
+Unlimited,Unbegrenzt
+Update Reward Points Balance,Prämienpunktestand aktualisieren
+Store,Speichern
+Update Points,Punkte aktualisieren
+It is possible to use a negative variable when subtracting points.,"Es ist möglich, beim Subtrahieren von Punkten eine negative Variable zu verwenden. "
+New Expiration Period,Neue Verfallsfrist
+Send Notification,Benachrichtigung senden
+Comment for Customer,Kommentar für Kunden
+0 - remains unchanged.,0 - bleibt unverändert.
+Leave empty for the set unlimited expiration date.,Für das festgelegte unbegrenzte Verfallsdatum leer lassen.
+For reference:,Als Referenz:
+"The ""Default Expiration Period"" is %1 days.",Die „Standard-Verfallszeit“ beträgt %1 Tage.
+Notifications are  sent only in case of the points balance changes.,"Benachrichtigungen werden nur gesendet, wenn sich der Punktestand ändert."
+Customers' Balances,Kundensalden
+Points Amount,Punktestand
+Total,Gesamtzahl
+Apply Reward Points. Customer balance is %1. Points can be applied for: %2.,Prämienpunkte anwenden. Das Guthaben des Kunden beträgt %1. Punkte können angewendet werden für: %2.
+(max %1 points),(max. %1 Punkte)
+Apply the rule only to cart items matching the following conditions (leave blank for all items).,"Wenden Sie die Regel nur auf Artikel im Warenkorb an, die den folgenden Bedingungen entsprechen (für alle Artikel leer lassen)."
+If the action conditions are empty - the price will be calculated from the cart subtotal with discount.,"Wenn die Aktionsbedingungen leer sind, wird der Preis aus der Zwischensumme des Warenkorbs mit Rabatt berechnet."
+If the action conditions exist and include the valid items - the amount will be calculated using the valid items' price and qty.,"Wenn die Aktionsbedingungen vorhanden sind und die gültigen Artikel einschließen, wird der Betrag anhand des Preises und der Menge der gültigen Artikel berechnet."
+If the action conditions exist and don't include the valid items  - the rule will be ignored.,"Falls die Aktionsbedingungen vorhanden sind und die gültigen Artikel nicht enthalten sind, wird die Regel ignoriert."
+Apply To,Anwenden auf
+Labels,Etiketten
+Store View Specific Labels,Geschäftsspezifische Etiketten anzeigen
+Expiration date is %1.,Das Verfallsdatum ist %1.
+%1 - Reward Points Actions,%1 - Prämienpunkte-Aktionen
+Reward Points Actions,Prämienpunkte-Aktionen
+Marketing,Marketing
+Points Transactions,Punkte-Transaktionen
+You have deleted the rule.,Sie haben die Regel gelöscht.
+"Sorry, the rule can't be deleted. Please, review the log and try again.",Leider kann die Regel nicht gelöscht werden. Bitte überprüfen Sie das Protokoll und versuchen Sie es erneut.
+"Sorry, it is impossible to find a rule to delete",Leider kann die zu löschende Regel nicht gefunden werden.
+Edit Rule,Regel bearbeiten
+New Rule,Neue Regel
+New Reward Points Rule,Neue Prämienpunkte-Regel
+Reward Points Rules,Prämienpunkte-Regeln
+"Please, correct the sent data.",Bitte korrigieren Sie die gesendeten Daten.
+The rule (ID: %1) is not exists,Die Regel (ID: %1) ist nicht vorhanden
+Something went wrong while saving the rule.,Beim Speichern der Regel ist ein Fehler aufgetreten.
+A total of %1 record(s) have been deleted.,Es wurde(n) insgesamt %1 Datensätze gelöscht.
+An error occurred while deleting record(s).,Beim Löschen des/der Datensatzes/Datensätze ist ein Fehler aufgetreten.
+A total of %1 Rule(s) have been disabled.,Insgesamt %1 Regel(n) wurde(n) deaktiviert.
+An error occurred while disabling rule(s).,Beim Deaktivieren der Regel(n) ist ein Fehler aufgetreten.
+A total of %1 Rule(s) have been enabled.,Insgesamt %1 Regel(n) wurde(n) aktiviert.
+An error occurred while enabling Rule(s).,Bei der Aktivierung der Regel(n) ist ein Fehler aufgetreten.
+You have saved the rule.,Sie haben die Regel gespeichert.
+Something went wrong while saving the rule data. Please review the error log.,Beim Speichern der Regeldaten ist ein Fehler aufgetreten. Bitte überprüfen Sie das Fehlerprotokoll.
+Access Denied,Zugriff verweigert
+the points exchange rate has incorrect format.,Der Punkteumrechnungskurs hat ein falsches Format.
+Check the configuration settings.,Überprüfen Sie die Konfigurationseinstellungen.
+Enter amount of Reward Points you want to use in this order,"Geben Sie die Anzahl der Prämienpunkte ein, die Sie in dieser Reihenfolge verwenden möchten"
+Expired,Abgelaufen
+%num days left,%num Tage übrig
+%date (%num days left),%date (%num Tage übrig)
+%date (Expired),%date (Abgelaufen)
+Expiration date is %1,Das Verfallsdatum ist %1
+Reward Points (%1),Prämienpunkte (%1)
+%1 Reward Points (%2),%1 Prämienpunkte (%2)
+We can't save the Cron expression.,Wir können den Cron-Ausdruck nicht speichern.
+You have %1,Sie haben %1
+and,und
+You can spend it to cover %1,"Sie können es ausgeben, um %1 zu decken"
+Could not save the customer point balance: %1,Der Punktestand des Kunden konnte nicht gespeichert werden: %1
+The customer point balance wasn't saved: %1.,Der Punktestand des Kunden wurde nicht gespeichert: %1.
+Annul upon the expiration date.,Annullieren Sie nach dem Verfallsdatum.
+Updated by admin %1,Von folgendem Admin aktualisiert: %1
+Updated by admin.,Vom Admin aktualisiert.
+"Comment: ""%1""",Kommentar: „%1“
+Points were withdrawn by the refund order %1,Durch den Rückerstattungsauftrag %1 wurden Punkte entzogen
+X were withdrawn from the customer account when refunding the order,%1 wurden bei der Rückerstattung der Bestellung vom Kundenkonto abgezogen
+Points were added for the refunded order %1,Für die erstattete Bestellung %1 wurden Punkte hinzugefügt
+We refunded %1 which were used for this order.,"Wir haben %1, die für diese Bestellung verwendet wurden, erstattet."
+Points were restored for an unsuccessful order,Für eine erfolglose Bestellung wurden Punkte wiederhergestellt
+Points were restored for the cancelled order %1,Für die stornierte Bestellung %1 wurden Punkte wiederhergestellt
+We restore %1 which were used for this order.,"Wir stellen %1 wieder her, das für diese Bestellung verwendet wurde."
+Customer's Birthday present (%1),Geburtstagsgeschenk des Kunden (%1)
+Customer registration with email %1,Kundenregistrierung mit E-Mail %1
+Customer registration,Kundenregistrierung
+For submitting a review for the product: %1,Um eine Bewertung für das Produkt abzugeben: %1
+For submitting of the review,Für die Abgabe der Bewertung
+The reward points were added for the completed order %1,Die Prämienpunkte wurden für die abgeschlossene Bestellung %1 gutgeschrieben
+(currently not valid or deleted),(derzeit nicht gültig oder gelöscht)
+%1 were earned with this order (Rule %2).,%1 wurden mit dieser Bestellung verdient (Regel %2).
+Signed up for a newsletter with an email %1,Habe mich für einen Newsletter mit der E-Mail-Adresse %1 angemeldet
+Points were used for the order %1,Für die Bestellung %1 wurden Punkte verwendet
+"Unknown event code ""%1"". Sorry, the message is not available now.",Unbekannter Ereigniscode „%1“. Leider ist die Nachricht derzeit nicht verfügbar.
+"Unknown event code: ""%1"". Call method name: ""%2""",Unbekannter Ereigniscode: „%1“. Name der Aufrufmethode: „%2“
+Could not save the reward points transaction: %1,Die Prämienpunkte-Transaktion konnte nicht gespeichert werden: %1
+"Reward point transaction with ID ""%1"" does not exist.",Prämienpunkte-Transaktion mit der ID „%1“ existiert nicht.
+Could not remove reward points,Prämienpunkte konnten nicht entfernt werden
+Could not apply reward points,Prämienpunkte konnten nicht angewendet werden
+Could not save reward points balance,Das Guthaben der Prämienpunkte konnte nicht gespeichert werden
+Class %1 should be an instance of %2,Klasse %1 sollte eine Instanz von %2 sein
+Please choose a condition to add.,"Bitte wählen Sie eine Bedingung aus, die hinzugefügt werden soll."
+Product attribute combination,Produkt-Attribut-Kombination
+Products subselection,Unterauswahl-Produkte
+Conditions combination,Kombination von Bedingungen
+Cart Attribute,Warenkorb-Attribut
+Active,Aktiv
+Inactive,Inaktiv
+Yes,Ja
+No,Nein
+Subtotal,Zwischensumme
+Shipping,Versand
+Tax,Steuer
+Please select a static block,Bitte wählen Sie einen statischen Block
+Fixed,Behoben
+Percent,Prozentsatz
+Use config,Konfiguration verwenden
+Placed order,Bestellung aufgegeben
+Customer birthday,Kundengeburtstag
+Customer review,Kundenbewertung
+Newsletter subscription,Newsletter-Abonnement
+For balances if expiration date exists,"Für Salden, wenn ein Verfallsdatum existiert"
+For all balances,Für alle Salden
+Get X Points,X Punkte erhalten
+Get X Points for every Y spent,X Punkte für jedes ausgegebene Y erhalten
+Get X Points for every Y spent starting from Z spend,"X Punkte für jedes ausgegebene Y, beginnend mit Ausgaben in Höhe von Z erhalten"
+Get X Points for every Y quantity,X Punkte für jede Y-Menge erhalten
+Get X Points for every Y quantity starting from Z quantity,"X Punkte für jede Y-Menge, beginnend mit der Z-Menge erhalten"
+All Websites,Alle Websites
+Reward Points amount is too small,Die Anzahl der Prämienpunkte ist zu klein
+Reward Points currency amount is zero,Der Währungsbetrag der Prämienpunkte ist Null
+My Reward Points,Meine Prämienpunkte
+There are not enough reward points for the purchase,Es gibt nicht genug Prämienpunkte für den Kauf
+"%1 Reward Rules based on ""%2"" attribute have been disabled.",%1-Prämienregeln basierend auf dem Attribut „%2“ wurden deaktiviert.
+Edit,Bearbeiten
+Delete,Löschen
+Delete %1,%1 löschen
+Are you sure you want to delete a %1 record?,Möchten Sie wirklich einen %1-Datensatz löschen?
+Reward Points Balance,Prämienpunkte-Saldo
+Refund Reward Points,Prämienpunkte zurückerstatten
+Reward points,Prämienpunkte
+View Point Transactions,Punktetransaktionen anzeigen
+You have %1.,Sie haben %1.
+No transactions detected.,Keine Transaktionen erkannt.
+Balance Transactions,Saldo-Transaktionen
+Points,Punkte
+Message,Mitteilung
+Date,Datum
+Your Reward Points at %store_name are about to expire,Ihre Prämienpunkte bei %store_name verfallen in Kürze
+"%customer_name,","%customer_name,"
+"Your reward points at <a href=""%store_url"">%store_name</a> will expire in %expiration_period day(s) (%expiration_date).","Ihre Prämienpunkte bei <a href=""%store_url"">%store_name</a> verfallen in %expiration_period Tag(en) (%expiration_date)."
+Your current points balance is %points_balance,Ihr aktueller Punktestand beträgt %points_balance
+Your Reward Points Balance was updated at %store_name,Ihr Prämienpunkte-Saldo wurde am %store_name aktualisiert
+"We have transferred reward points to your <a href=""%store_url"">%store_name</a> account. You can use them for your future purchases.","Wir haben Prämienpunkte auf Ihr <a href=""%store_url"">%store_name</a>-Konto übertragen. Sie können diese für Ihre zukünftigen Einkäufe verwenden."
+Your current reward points balance is %points_balance.,Ihr aktueller Prämienpunktestand beträgt %points_balance.
+Cancel Reward Points,Prämienpunkte stornieren
+Apply My Reward Points,Meine Prämienpunkte anwenden
+Apply All Reward Points,Alle Prämienpunkte anwenden
+Apply Custom Points Amount,Benutzerdefinierten Punktestand anwenden
+Apply,Anwenden
+Y spent,Y ausgegeben
+"It regulates the amount a customer must spend to get ""X points"". ""X points"" are assigned each time the customer spends the set amount.","Bestimmt den Betrag, den ein Kunde ausgeben muss, um „X Punkte“ zu erhalten. „X Punkte“ werden jedes Mal vergeben, wenn der Kunde den festgelegten Betrag ausgibt."
+Z spent,Z ausgegeben
+"It regulates the min amount a customer must spend after which ""Y spent"" will be applied.","Bestimmt den Mindestbetrag, den ein Kunde ausgeben muss, um „Y ausgegeben“ zu erhalten."
+Y qty,Y-Menge
+"It regulates the qty a customer must add to receive ""X points"". ""X points"" are assigned each time the customer adds the set qty.","Bestimmt die Menge, die ein Kunde hinzufügen muss, um „X Punkte“ zu erhalten. „X Punkte“ werden jedes Mal vergeben, wenn der Kunde die festgelegte Menge hinzufügt."
+Z qty,Z-Menge
+"It regulates the min qty a customer must add after which ""Y qty"" will be applied.","Bestimmt die Mindestmenge, die ein Kunde hinzufügen muss, damit „Y-Menge“ angewendet wird."
+The reward points have been successfully applied.,Die Prämienpunkte wurden erfolgreich angewendet.
+The reward points can't be applied,Die Prämienpunkte können nicht angewendet werden
+The reward points have been successfully cancelled.,Die Prämienpunkte wurden erfolgreich storniert.
+The reward points can't be cancelled,Die Prämienpunkte können nicht storniert werden.
+MageWorx Reward Points,MageWorx-Prämienpunkte
+Rules,Regeln
+Point Transactions,Punkt-Transaktionen
+Main Settings,Haupt-Einstellungen
+Enable,Aktivieren Sie
+"Static Block for ""My Reward Points"" Section",Statische Sperre für den Abschnitt „Meine Pramienpunkte“
+Cover with the points,Mit den Punkten abdecken
+Points Exchange Rate,Punkte-Wechselkurs
+The cost of one Reward Point in the Website Base Currency. Use the dot symbol for a fractional number.,Der Wert eines Prämienpunktes in der Basiswährung der Website. Verwenden Sie das Punktsymbol für eine Bruchzahl.
+Assign to Customer Groups,Kundengruppen zuweisen
+Allow Custom Points Amount,Benutzerdefinierten Punktebetrag zulassen
+"If enabled, your customers will be able to change amount of points they want to use in the orders.","Wenn diese Option aktiviert ist, können Ihre Kunden die Anzahl der Punkte ändern, die sie für ihre Bestellungen verwenden möchten."
+Annul the Received Points upon the Full Order Refund,Die erhaltenen Punkte bei vollständiger Rückerstattung der Bestellung stornieren
+This setting allows to return the points the customers receive for the orders in case of full order refund.,"Diese Einstellung ermöglicht die Rückgabe der Punkte, die der Kunde für seine Bestellungen erhalten hat, wenn die Bestellung vollständig erstattet wird."
+"I.e. if a customer received X points for placing an order, the X points will be deducted from the customer's balance if this order is refunded in full","D.h. wenn ein Kunde X Punkte für eine Bestellung erhalten hat, werden die X Punkte vom Guthaben des Kunden abgezogen, wenn diese Bestellung vollständig erstattet wird."
+Return Spent Points in Case of Order Cancellation,Rückgabe ausgegebener Punkte im Falle einer Bestellstornierung
+"If enabled, the points used by the customers to place an order will be credited back in case of order cancellation.","Wenn diese Option aktiviert ist, werden die Punkte, die der Kunde für eine Bestellung verwendet hat, im Falle einer Stornierung der Bestellung wieder gutgeschrieben."
+Time of Day for Birthday Greetings,Tageszeit für Geburtstagsgrüße
+Display Product Messages,Produktnachrichten anzeigen
+"If enabled, the reward points message will be shown on the product pages.","Wenn diese Option aktiviert ist, wird auf den Produktseiten die Nachricht über die Prämienpunkte angezeigt."
+Product Reward Message,Produkt-Prämiennachricht
+"This message will be shown on the product pages if the ""Display Product Messages"" is enabled and the product matches the reward rules.","Diese Nachricht wird auf den Produktseiten angezeigt, wenn die Option „Produktnachrichten anzeigen“ aktiviert ist und das Produkt den Pramienregeln entspricht."
+Display Category Messages,Kategorie-Nachrichten anzeigen
+"If enabled, the reward points message will be shown on the category pages.","Wenn diese Option aktiviert ist, wird die Nachricht über die Prämienpunkte auf den Kategorieseiten angezeigt."
+Category Reward Message,Kategorie-Prämiennachricht
+"This message will be shown on the category pages if the ""Display Category Messages"" is enabled and only for products matches the reward rules.","Diese Nachricht wird auf den Kategorieseiten angezeigt, wenn die Option „Kategorie-Nachrichten anzeigen“ aktiv ist und das Produkt den Pramienregeln entspricht."
+Display Header Message,Kopfzeilen-Nachricht anzeigen
+"If enabled, the customers will see the message with a number of points they will get if complete the order.","Wenn diese Option aktiviert ist, wird den Kunden eine Nachricht mit der Punktzahl angezeigt, die sie erhalten, wenn sie die Bestellung abschließen."
+Header Message,Kopfzeilen-Nachricht
+The message will be shown in the header. The following variables are available: [p] - it will display the number of points the customer will receive if completing an order; [c] - it will display the reward value expressed in the store currency.,"Die Nachricht wird in der Kopfzeile angezeigt. Die folgenden Variablen sind verfügbar: [p] - es wird die Punktzahl angezeigt, die der Kunde erhält, wenn er eine Bestellung abschließt; [c] - es wird der Prämienwert in der Währung des Geschäfts angezeigt."
+Display Mini-cart Points Balance Message,Nachricht über den Punktestand im Mini-Warenkorb anzeigen
+"If enabled, the customer's current points balance will be shown in the mini-cart (if supported by a theme).","Wenn diese Option aktiviert ist, wird der aktuelle Punktestand des Kunden im Mini-Warenkorb angezeigt (sofern dies von einem Thema unterstützt wird)."
+Mini-cart Balance Message,Nachricht zum Mini-Warenkorb-Saldo
+The message will be shown in the min-cart. The following variables are available: [p] - it will display the customer’s current balance expressed in the points; [c] - it will display the customer’s current balance expressed in the store currency.,Die Meldung wird im Mini-Warenkorb angezeigt. Die folgenden Variablen sind verfügbar: [p] - es wird der aktuelle Kontostand des Kunden in Punkten angezeigt; [c] - es wird der aktuelle Kontostand des Kunden in der Währung des Geschäfts angezeigt.
+"""Zero Balance"" Message for Mini-cart",„Null-Saldo“-Nachricht für Mini-Warenkorb 
+The message will be shown in the min-cart if nothing is added to the cart yet.,"Diese Nachricht wird im Mini-Warenkorb angezeigt, wenn dem Warenkorb noch nichts hinzugefügt wurde."
+Display Cart Message,Warenkorb-Nachricht anzeigen
+Cart Message,Warenkorb-Nachricht 
+The message will be shown in the notice on checkout pages. The following variables are available: [p] - it will display the number of points the customer will receive if completing an order; [c] - it will display the reward value expressed in the store currency.,"Die Nachricht wird als Hinweis auf den Checkout-Seiten angezeigt. Die folgenden Variablen sind verfügbar: [p] - es wird die Anzahl der Punkte angezeigt, die der Kunde erhält, wenn er eine Bestellung abschließt; [c] - es wird der Prämienwert, ausgedrückt in der Währung des Geschäfts, angezeigt."
+Display Checkout Message,Checkout-Nachricht anzeigen
+Checkout Message,Checkout-Nachricht
+Add to RSS Feeds,Zu RSS-Feeds hinzufügen
+Show Wrapper for Messages,Wrapper für Nachrichten anzeigen
+"Add ""Updated By"" wrapper for manual update transactions' messages.",Fügen Sie den Wrapper „Aktualisiert von“ für Nachrichten zu manuellen Aktualisierungstransaktionen hinzu.
+Expiration Date Settings,Verfallsdatum-Einstellungen
+Enable Expiration Date,Verfallsdatum aktivieren
+Default Expiration Period (days),Standard-Verfallszeit (Tage)
+Update Existing Expiration Dates,Bestehende Verfallsdaten aktualisieren
+"Update the existing reward points expiration dates if the ""Default Expiration Period"" is changed. Works only if the expiration dates functionality is enabled.","Die bestehenden Verfallsdaten für Bonuspunkte werden aktualisiert, wenn die „Standard-Verfallszeit“ geändert wird. Funktioniert nur, wenn die Falldatenfunktion aktiviert ist."
+Send Expiration Date Email,Verfallsdatum-E-Mail senden
+Notify Customers about Expiration Date,Kunden über Verfallsdatum benachrichtigen
+Email Settings,E-Mail-Einstellungen
+Email Sender,E-Mail-Absender
+Default Email Template for Balance Change by Rules,Standard-E-Mail-Vorlage für Saldoänderung nach Regeln
+"The email template is chosen based on the theme fallback when the ""Default"" option is selected.","Die E-Mail-Vorlage wird auf der Grundlage des Fallback-Themas ausgewählt, wenn die Option ""'Standard'"" ausgewählt ist."
+Email Template for Balance Change by Admin,E-Mail-Vorlage für Saldoänderung durch den Admin
+Expiration Date Email Template,E-Mail-Vorlage für Verfallsdatum
+Event Message,Ereignis-Nachricht
+Created,Erstellt
+Reward Points Rule,Prämienpunkte-Regel
+Back,Zurück
+Rule Information,Regelinformationen
+Rule Name,Regelname
+Description,Beschreibung
+Websites,Websites
+Customer Groups,Kundengruppen
+From,Von
+To,Bis
+Priority,Vorrangig
+Allow Notification,Benachrichtigung zulassen
+Personal Email Template,Persönliche E-Mail-Vorlage
+Public In RSS Feed,Öffentlich im RSS-Feed
+Actions,Aktionen
+Event,Ereignis
+Give Points,Punkte vergeben
+Calculation Type,Berechnungsart
+Points Amount (Get X Points),Punkteanzahl (X Punkte erhalten)
+Y - Points Earn Step (Y spent / Y quantity),Y – Punktesammelschritt (Y ausgegeben / Y Menge)
+"""Y spent"" for ""Get X Points for every Y Spent"" / ""Y quantity"" for ""Get X Points for every Y quantity (starting from Z quantity)""",„Y ausgegeben“ für „X Punkte für jedes ausgegebene Y erhalten“ / „Y Menge“ für „X Punkte für jede ausgegebene Y Menge erhalten (beginnend mit der Menge Z)“
+Z quantity,Z-Menge
+"
+                    For ""Get X Points for every Y quantity starting from Z quantity""
+                ",Für „Erhalten Sie X Punkte für jede Y-Menge ab Z-Menge“
+Stop Rules Processing,Regelverarbeitung stoppen
+Conditions,Bedingungen
+Default Rule Label for All Store Views,Standard-Regelbezeichnung für alle Filial-Ansichten
+Add New Rule,Neue Regel hinzufügen
+Store View,Ansicht speichern
+Are you sure you want to delete selected items?,Möchten Sie die ausgewählten Artikel wirklich löschen?
+Delete items,Artikel löschen
+Disable,Deaktivieren
+ID,ID
+Name,Name
+Start At,Beginnt um 
+Finish At,Endet um 
+Times Used,Verwendete Zeiten
+Points Generated,Erzeugte Punkte
+Status,Status
+Reload,Neu laden
+Customer Email,Kunden-E-Mail
+Points Delta,Punkte Delta
+Points Balance,Punkte-Saldo
+Purchased From,Gekauft von
+Web Site,Website
+Created At,Erstellt am

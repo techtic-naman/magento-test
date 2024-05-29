@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category Mageants Voice Search
+ * @package Mageants_VoiceSearch
+ * @copyright Copyright (c) 2017 Mageants
+ * @author Mageants Team <support@mageants.com>
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <voice_section>
+            <voice_general>
+                <voice_enable>0</voice_enable>
+            </voice_general>
+        </voice_section>
+    </default>
+</config>

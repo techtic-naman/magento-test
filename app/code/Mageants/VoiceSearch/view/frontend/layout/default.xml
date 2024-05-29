@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category Mageants Voice Search
+ * @package Mageants_VoiceSearch
+ * @copyright Copyright (c) 2017 Mageants
+ * @author Mageants Team <support@mageants.com>
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="header-wrapper">
+            <block class="Magento\Framework\View\Element\Template" name="top.search" as="topSearch" template="Mageants_VoiceSearch::form.mini.phtml">
+                <arguments>
+                    <argument name="configProvider" xsi:type="object">Magento\Search\ViewModel\ConfigProvider</argument>
+                    <argument name="additionalSearchFormData" xsi:type="object">Magento\Search\ViewModel\AdditionalSearchFormData</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <referenceBlock name="top.search">
+            <block name="top.search.voice.input" template="Mageants_VoiceSearch::voice.phtml" ifconfig="voice_section/voice_general/voice_enable">
+                <arguments>
+                    <argument name="viewModel" xsi:type="object">Mageants\VoiceSearch\ViewModel\VoiceSearch</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+    </body>
+</page>

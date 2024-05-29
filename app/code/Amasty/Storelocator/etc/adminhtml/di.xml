@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Store Locator for Magento 2
+ */-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Amasty\Storelocator\Model\DataCollector\Location\CompositeCollector">
+        <arguments>
+            <argument name="dataCollectors" xsi:type="array">
+                <item name="attributes" xsi:type="object">Amasty\Storelocator\Model\DataCollector\Location\AttributeCollector</item>
+                <item name="marker_image_url" xsi:type="object">Amasty\Storelocator\Model\DataCollector\Location\MarkerImageUrlCollector</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\ImportExport\Controller\Adminhtml\Import\Index">
+        <plugin name="Amasty_Storelocator::info_message" type="Amasty\Storelocator\Plugin\ImportExport\Controller\Adminhtml\Import\Index\InfoMessage"/>
+    </type>
+
+    <!-- To build correct url during reindex from admin area -->
+    <type name="Amasty\Storelocator\Model\ConfigHtmlConverter">
+        <arguments>
+            <argument name="urlBuilder" xsi:type="object">Magento\Framework\Url</argument>
+        </arguments>
+    </type>
+</config>

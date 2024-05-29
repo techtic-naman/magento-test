@@ -1,0 +1,243 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_Helpdesk
+ * @author    Webkul Software Private Limited
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+
+namespace Webkul\Helpdesk\Controller\Ticket;
+
+use Magento\Framework\App\Action\Action;
+use Magento\Framework\App\Action\Context;
+use Magento\Framework\Data\Form\FormKey\Validator as FormKeyValidator;
+
+/**
+ * Webkul Marketplace Product Save Controller.
+ */
+class Userreply extends Action
+{
+    /**
+     * @var \Magento\Framework\Data\Form\FormKey\Validator
+     */
+    protected $_formKeyValidator;
+
+    /**
+     * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
+     */
+    protected $_helpdeskLogger;
+
+    /**
+     * @var \Magento\Framework\View\Result\PageFactory
+     */
+    protected $resultPageFactory;
+
+    /**
+     * @var \Webkul\Helpdesk\Model\ActivityRepository
+     */
+    protected $_activityRepo;
+
+    /**
+     * @var \Webkul\Helpdesk\Model\EventsRepository
+     */
+    protected $_eventsRepo;
+
+    /**
+     * @var \Webkul\Helpdesk\Model\TicketsFactory
+     */
+    protected $_ticketsFactory;
+
+    /**
+     * @var \Webkul\Helpdesk\Model\ThreadRepository
+     */
+    protected $_threadRepo;
+
+    /**
+     * @var \Webkul\Helpdesk\Helper\Tickets
+     */
+    protected $_ticketsHelper;
+
+    /**
+     * @var \Webkul\Helpdesk\Model\TicketdraftFactory
+     */
+    protected $_ticketdraftFactory;
+
+    /**
+     * @var \Webkul\Helpdesk\Model\AttachmentRepository
+     */
+    protected $_attachmentRepo;
+
+    /**
+     * @var \Webkul\Helpdesk\Model\ThreadFactory
+     */
+    protected $_threadFactory;
+
+    /**
+     * @var \Webkul\Helpdesk\Helper\Data
+     */
+    protected $helper;
+
+    /**
+     * @var \Magento\User\Model\UserFactory
+     */
+    protected $userFactory;
+
+    /**
+     * @param Context                                     $context
+     * @param FormKeyValidator                            $formKeyValidator
+     * @param \Magento\Framework\View\Result\PageFactory  $resultPageFactory
+     * @param \Webkul\Helpdesk\Model\ActivityRepository   $activityRepo
+     * @param \Webkul\Helpdesk\Model\EventsRepository     $eventsRepo
+     * @param \Webkul\Helpdesk\Model\TicketsFactory       $ticketsFactory
+     * @param \Webkul\Helpdesk\Model\ThreadRepository     $threadRepo
+     * @param \Webkul\Helpdesk\Helper\Tickets             $ticketsHelper
+     * @param \Webkul\Helpdesk\Logger\HelpdeskLogger      $helpdeskLogger
+     * @param \Webkul\Helpdesk\Model\TicketdraftFactory   $ticketdraftFactory
+     * @param \Webkul\Helpdesk\Model\AttachmentRepository $attachmentRepo
+     * @param \Webkul\Helpdesk\Model\ThreadFactory        $threadFactory
+     * @param \Webkul\Helpdesk\Helper\Data                $helper
+     * @param \Magento\User\Model\UserFactory             $userFactory
+     */
+    public function __construct(
+        Context $context,
+        FormKeyValidator $formKeyValidator,
+        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
+        \Webkul\Helpdesk\Model\ActivityRepository $activityRepo,
+        \Webkul\Helpdesk\Model\EventsRepository $eventsRepo,
+        \Webkul\Helpdesk\Model\TicketsFactory $ticketsFactory,
+        \Webkul\Helpdesk\Model\ThreadRepository $threadRepo,
+        \Webkul\Helpdesk\Helper\Tickets $ticketsHelper,
+        \Webkul\Helpdesk\Logger\HelpdeskLogger $helpdeskLogger,
+        \Webkul\Helpdesk\Model\TicketdraftFactory $ticketdraftFactory,
+        \Webkul\Helpdesk\Model\AttachmentRepository $attachmentRepo,
+        \Webkul\Helpdesk\Model\ThreadFactory $threadFactory,
+        \Webkul\Helpdesk\Helper\Data $helper,
+        \Magento\User\Model\UserFactory $userFactory
+    ) {
+        parent::__construct($context);
+        $this->_formKeyValidator = $formKeyValidator;
+        $this->resultPageFactory = $resultPageFactory;
+        $this->_activityRepo = $activityRepo;
+        $this->_eventsRepo = $eventsRepo;
+        $this->_ticketsFactory = $ticketsFactory;
+        $this->_threadRepo = $threadRepo;
+        $this->_ticketsHelper = $ticketsHelper;
+        $this->_helpdeskLogger = $helpdeskLogger;
+        $this->_ticketdraftFactory = $ticketdraftFactory;
+        $this->_attachmentRepo = $attachmentRepo;
+        $this->_threadFactory = $threadFactory;
+        $this->helper = $helper;
+        $this->userFactory = $userFactory;
+    }
+
+    /**
+     * Seller product save action.
+     *
+     * @return \Magento\Framework\Controller\Result\RedirectFactory
+     */
+    public function execute()
+    {
+        try {
+            $userId = $this->_ticketsHelper->getTsCustomerId();
+            $wholedata = $this->getRequest()->getPostValue();
+            $ticketId = (int)$this->getRequest()->getParam('wk_ts_id');
+            if (!$ticketId) {
+                return $this->resultRedirectFactory->create()->setPath("helpdesk/ticket/login/");
+            } else {
+                if ($this->getRequest()->isPost()) {
+                    if (!$this->_formKeyValidator->validate($this->getRequest())) {
+                        $this->messageManager->addErrorMessage(__("Form key is not valid!!"));
+                        return $this->resultRedirectFactory->create()->setPath(
+                            '*/*/',
+                            ['_secure' => $this->getRequest()->isSecure()]
+                        );
+                    }
+                    $tickets_data = $this->_ticketsFactory->create()->load($ticketId);
+                    $tickets_data = array_filter($tickets_data->getData());
+                    if (!empty($tickets_data)) {
+                        $ticketId = $wholedata["wk_ts_id"];
+                        $wholedata['thread_type'] = "reply";
+                        $wholedata['customer_id'] = $userId;
+                        $wholedata['source'] = "website";
+                        $threadId = $this->_threadRepo->createThread($ticketId, $wholedata);
+                        $adminEmail = $this->helper->getConfigHelpdeskEmail();
+                        $cc = [];
+                        if (isset($wholedata['cc'])) {
+                            $cc = explode(",", $wholedata['cc']);
+                            $cc = array_filter($cc);
+                        }
+                        if (isset($tickets_data['to_agent'])) {
+                            $agent = $this->userFactory->create()->load(
+                                $tickets_data['to_agent']
+                            );
+                            $fullname = $agent->getFirstname()." ".$agent->getLastname();
+                            $email = $agent->getEmail();
+                        } else {
+                            $fullname ='Admin';
+                            $email = $adminEmail;
+                        }
+                        $receiverInfo =
+                            [
+                                'name'=>$fullname,
+                                'email'=>$email,
+                                'cc'=>$cc
+                            ];
+                        $senderInfo = ['name' => $tickets_data['fullname'], 'email' => $tickets_data['email']];
+
+                        $emailTempVariables['name'] = $receiverInfo['name'];
+                        $emailTempVariables['ticket_id'] = $ticketId;
+                        $emailTempVariables['body'] = strip_tags($wholedata['query']);
+                        $template_name = "helpdesk/email/helpdesk_from_customer";
+                        $this->helper->sendMail(
+                            $template_name,
+                            $emailTempVariables,
+                            $senderInfo,
+                            $receiverInfo
+                        );
+                        $this->_activityRepo->saveActivity(
+                            $ticketId,
+                            "Query",
+                            "add",
+                            "ticket"
+                        );
+                        if ($threadId) {
+                            $this->_ticketsFactory->create()->load($ticketId)
+                                ->setAnswered(0)
+                                ->save();
+                        }
+                        $files = $this->getRequest()->getFiles();
+                        if (isset($files["fupld"]["tmp_name"][0])) {
+                            $this->_attachmentRepo->saveAttachment($ticketId, $threadId);
+                        } else {
+                            $this->_threadFactory->create()->load($threadId)->setAttachment(0)->save();
+                        }
+
+                        $customerId = $this->_ticketsHelper->getTsCustomerId();
+                        $draftCollection = $this->_ticketdraftFactory->create()->getCollection()
+                            ->addFieldToFilter("ticket_id", ["eq"=>$wholedata["wk_ts_id"]])
+                            ->addFieldToFilter("user_id", ["eq"=>$customerId])
+                            ->addFieldToFilter("field", ["eq"=>"reply"]);
+
+                        foreach ($draftCollection as $draft) {
+                            $draft->delete();
+                        }
+
+                        $this->_eventsRepo->checkTicketEvent("reply", $ticketId, "customer");
+                        $this->messageManager->addSuccessMessage(__("Message Sent Successfully"));
+                    } else {
+                        $this->messageManager->addErrorMessage(__('Ticket does not exist!!'));
+                    }
+                } else {
+                    $this->messageManager->addErrorMessage(__('Nothing Found To Send!!'));
+                }
+            }
+        } catch (\Exception $e) {
+            $this->_helpdeskLogger->info($e->getMessage());
+            $this->messageManager->addErrorMessage(__($e->getMessage()));
+        }
+        return $this->resultRedirectFactory->create()->setPath("*/*/view", ["id"=>$ticketId]);
+    }
+}

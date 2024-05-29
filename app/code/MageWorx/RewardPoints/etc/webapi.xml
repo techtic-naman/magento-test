@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+
+<!-- @see https://support.mageworx.com/manuals/reward-points/#api-support -->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+
+     <!--Receive applied Reward Points to the current Customer cart-->
+    <route url="/V1/mw-rewardpoints/mine/points" method="GET">
+        <service class="MageWorx\RewardPoints\Api\RewardManagerInterface" method="get"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="cartId" force="true">%cart_id%</parameter>
+        </data>
+    </route>
+
+    <!--Add the certain amount of the Reward Points to the current Customer cart-->
+    <route url="/V1/mw-rewardpoints/mine/points/:pointsAmount" method="PUT">
+        <service class="MageWorx\RewardPoints\Api\RewardManagerInterface" method="set"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="cartId" force="true">%cart_id%</parameter>
+        </data>
+    </route>
+
+    <!--Add all the Reward Points to the current Customer cart-->
+    <route url="/V1/mw-rewardpoints/mine/points/all" method="PUT">
+        <service class="MageWorx\RewardPoints\Api\RewardManagerInterface" method="setAll"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="cartId" force="true">%cart_id%</parameter>
+        </data>
+    </route>
+
+    <!--Remove the Reward Points from the current Customer cart-->
+    <route url="/V1/mw-rewardpoints/mine/points" method="DELETE">
+        <service class="MageWorx\RewardPoints\Api\RewardManagerInterface" method="remove"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="cartId" force="true">%cart_id%</parameter>
+        </data>
+    </route>
+
+    <!--Receive applied Reward Points to the specified Customer cart-->
+    <route url="/V1/mw-rewardpoints/carts/:cartId/points" method="GET">
+        <service class="MageWorx\RewardPoints\Api\RewardManagerInterface" method="get"/>
+        <resources>
+            <resource ref="Magento_Sales::create"/>
+        </resources>
+    </route>
+
+    <!--Add the certain amount of the Reward Points to the specified Customer cart-->
+    <route url="/V1/mw-rewardpoints/carts/:cartId/points/:pointsAmount" method="PUT">
+        <service class="MageWorx\RewardPoints\Api\RewardManagerInterface" method="set"/>
+        <resources>
+            <resource ref="Magento_Sales::create"/>
+        </resources>
+    </route>
+
+    <!--Add all the Reward Points to the specified Customer cart-->
+    <route url="/V1/mw-rewardpoints/carts/:cartId/points/all" method="PUT">
+        <service class="MageWorx\RewardPoints\Api\RewardManagerInterface" method="setAll"/>
+        <resources>
+            <resource ref="Magento_Sales::create"/>
+        </resources>
+    </route>
+
+    <!--Remove the Reward Points from the specified Customer cart-->
+    <route url="/V1/mw-rewardpoints/carts/:cartId/points" method="DELETE">
+        <service class="MageWorx\RewardPoints\Api\RewardManagerInterface" method="remove"/>
+        <resources>
+            <resource ref="Magento_Sales::create"/>
+        </resources>
+    </route>
+
+    <!--Receive customer balance for the Reward Points considering website ID and customer ID-->
+    <route url="/V1/mw-rewardpoints/balance/customer/:customerId/website/:website_id" method="GET">
+        <service class="MageWorx\RewardPoints\Api\CustomerBalanceRepositoryInterface" method="getByCustomer"/>
+        <resources>
+            <resource ref="MageWorx_RewardPoints::transaction"/>
+        </resources>
+    </route>
+
+    <!--Change customer balance for the Reward Points considering website ID and customer ID-->
+    <route url="/V1/mw-rewardpoints/balance" method="POST">
+        <service class="MageWorx\RewardPoints\Api\RewardManagerInterface" method="saveBalance"/>
+        <resources>
+            <resource ref="MageWorx_RewardPoints::transaction"/>
+        </resources>
+    </route>
+
+    <!--Apply customer balance transaction for the Reward Points considering store ID, customer ID and points delta-->
+    <route url="/V1/mw-rewardpoints/applyTransaction" method="POST">
+        <service class="MageWorx\RewardPoints\Api\RewardManagerInterface" method="applyTransaction"/>
+        <resources>
+            <resource ref="MageWorx_RewardPoints::transaction"/>
+        </resources>
+    </route>
+
+    <!-- Get reward promises for products -->
+    <route url="/V1/mw-rewardpoints/mine/getRewardPromise/" method="POST">
+        <service class="MageWorx\RewardPoints\Api\RewardPromiseManagerInterface" method="getByProductIds"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+    <route url="/V1/mw-rewardpoints/guest/getRewardPromise/" method="POST">
+        <service class="MageWorx\RewardPoints\Api\GuestRewardPromiseManagerInterface" method="getByProductIds"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

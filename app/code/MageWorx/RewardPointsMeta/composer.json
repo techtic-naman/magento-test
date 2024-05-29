@@ -1,0 +1,10 @@
+{
+    "name": "mageworx/module-rewardpointsmeta",
+    "version": "1.10.4",
+    "type": "metapackage",
+    "require": {
+        "mageworx/module-info": ">=1.0.0",
+        "mageworx/module-rewardpoints": "1.9.4",
+        "mageworx/module-rewardpointsimportexport": "1.1.3"
+    }
+}

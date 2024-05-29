@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">mageworx_rewardpoints_rule_form.mageworx_rewardpoints_rule_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Reward Points Rule</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="delete" class="Magento\SalesRule\Block\Adminhtml\Promo\Quote\Edit\DeleteButton"/>
+            <button name="save_and_continue" class="Magento\SalesRule\Block\Adminhtml\Promo\Quote\Edit\SaveAndContinueButton"/>
+            <button name="reset" class="Magento\SalesRule\Block\Adminhtml\Promo\Quote\Edit\ResetButton"/>
+            <button name="save" class="Magento\SalesRule\Block\Adminhtml\Promo\Quote\Edit\SaveButton"/>
+            <button name="back">
+                <url path="*/*/"/>
+                <class>back</class>
+                <label translate="true">Back</label>
+            </button>
+        </buttons>
+        <namespace>mageworx_rewardpoints_rule_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>mageworx_rewardpoints_rule_form.mageworx_rewardpoints_rule_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="mageworx_rewardpoints_rule_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="mageworx_rewardpoints/reward_rule/save"/>
+        </settings>
+        <dataProvider class="MageWorx\RewardPoints\Model\Rule\DataProvider" name="mageworx_rewardpoints_rule_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>rule_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <!--<fieldset name="general">-->
+        <!--<settings>-->
+            <!--<additionalClasses>-->
+                <!--<class name="fieldset-schedule">true</class>-->
+            <!--</additionalClasses>-->
+            <!--<label translate="true">Currently Active</label>-->
+        <!--</settings>-->
+    <!--</fieldset>-->
+    <fieldset name="rule_information" sortOrder="10">
+        <settings>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+            <label translate="true">Rule Information</label>
+        </settings>
+        <field name="name" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">mageworx_rewardpoints_rule</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Rule Name</label>
+                <visible>true</visible>
+                <dataScope>name</dataScope>
+            </settings>
+        </field>
+        <field name="description" formElement="textarea">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">mageworx_rewardpoints_rule</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Description</label>
+                <visible>true</visible>
+                <dataScope>description</dataScope>
+            </settings>
+        </field>
+        <field name="is_active" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">mageworx_rewardpoints_rule</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>boolean</dataType>
+                <label translate="true">Active</label>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="website_ids" formElement="multiselect">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">mageworx_rewardpoints_rule</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>number</dataType>
+                <label translate="true">Websites</label>
+                <dataScope>website_ids</dataScope>
+            </settings>
+        </field>
+        <field name="customer_group_ids" formElement="multiselect">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">mageworx_rewardpoints_rule</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>number</dataType>
+                <label translate="true">Customer Groups</label>
+                <dataScope>customer_group_ids</dataScope>
+            </settings>
+        </field>
+        <field name="from_date" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">mageworx_rewardpoints_rule</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="validate-date" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">From</label>
+                <visible>true</visible>
+                <dataScope>from_date</dataScope>
+            </settings>
+        </field>
+        <field name="to_date" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">mageworx_rewardpoints_rule</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="validate-date" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">To</label>
+                <visible>true</visible>
+                <dataScope>to_date</dataScope>
+            </settings>
+        </field>
+        <!-- for follow version -->
+
+        <!--<field name="max_times_used" formElement="input">-->
+            <!--<argument name="data" xsi:type="array">-->
+                <!--<item name="config" xsi:type="array">-->
+                    <!--<item name="source" xsi:type="string">mageworx_rewardpoints_rule</item>-->
+                <!--</item>-->
+            <!--</argument>-->
+            <!--<settings>-->
+                <!--<dataType>number</dataType>-->
+                <!--<label translate="true">Max Times Applied</label>-->
+                <!--<dataScope>max_times_used</dataScope>-->
+            <!--</settings>-->
+        <!--</field>-->
+        <!--<field name="max_points_generated" formElement="input">-->
+            <!--<argument name="data" xsi:type="array">-->
+                <!--<item name="config" xsi:type="array">-->
+                    <!--<item name="source" xsi:type="string">mageworx_rewardpoints_rule</item>-->
+                <!--</item>-->
+            <!--</argument>-->
+            <!--<settings>-->
+                <!--<dataType>text</dataType>-->
+                <!--<label translate="true">Max Points Generated</label>-->
+                <!--<dataScope>max_points_generated</dataScope>-->
+            <!--</settings>-->
+        <!--</field>-->
+        <field name="sort_order" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">mageworx_rewardpoints_rule</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Priority</label>
+                <dataScope>sort_order</dataScope>
+            </settings>
+        </field>
+        <field name="is_allow_notification" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">mageworx_rewardpoints_rule</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Allow Notification</label>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="email_template_id" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">mageworx_rewardpoints_rule</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Personal Email Template</label>
+                <dataScope>email_template_id</dataScope>
+            </settings>
+        </field>
+        <field name="is_rss" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">mageworx_rewardpoints_rule</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Public In RSS Feed</label>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="actions" sortOrder="20">
+        <settings>
+            <collapsible>true</collapsible>
+            <label translate="true">Actions</label>
+        </settings>
+        <field name="event" component="MageWorx_RewardPoints/js/form/element/event" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">mageworx_rewardpoints_rule</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Event</label>
+                <dataScope>event</dataScope>
+            </settings>
+        </field>
+        <field name="simple_action" component="MageWorx_RewardPoints/js/form/element/simple_action" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">mageworx_rewardpoints_rule</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>number</dataType>
+                <label translate="true">Give Points</label>
+                <dataScope>simple_action</dataScope>
+            </settings>
+        </field>
+        <field name="calculation_type" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">mageworx_rewardpoints_rule</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Calculation Type</label>
+                <dataScope>calculation_type</dataScope>
+            </settings>
+        </field>
+        <field name="points_amount" component="MageWorx_RewardPoints/js/form/element/abstract" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">mageworx_rewardpoints_rule</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Points Amount (Get X Points)</label>
+                <dataScope>points_amount</dataScope>
+            </settings>
+        </field>
+
+        <field name="points_step" component="MageWorx_RewardPoints/js/form/element/abstract" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">mageworx_rewardpoints_rule</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Y - Points Earn Step (Y spent / Y quantity)</label>
+                <dataScope>points_step</dataScope>
+                <notice translate="true">
+                    "Y spent" for "Get X Points for every Y Spent" / "Y quantity" for "Get X Points for every Y quantity (starting from Z quantity)"
+                </notice>
+            </settings>
+        </field>
+
+        <field name="point_stage" component="MageWorx_RewardPoints/js/form/element/abstract" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">mageworx_rewardpoints_rule</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Z quantity</label>
+                <dataScope>point_stage</dataScope>
+                <notice translate="true">
+                    For "Get X Points for every Y quantity starting from Z quantity"
+                </notice>
+            </settings>
+        </field>
+
+        <field name="stop_rules_processing" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="source" xsi:type="string">mageworx_rewardpoints_rule</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Stop Rules Processing</label>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+
+        <container name="actions_apply_to">
+            <htmlContent name="html_content">
+                <block name="actions_apply_to" class="MageWorx\RewardPoints\Block\Adminhtml\Reward\Rule\Edit\Tab\Actions"/>
+            </htmlContent>
+        </container>
+    </fieldset>
+    <fieldset name="conditions" sortOrder="30">
+        <settings>
+            <collapsible>true</collapsible>
+            <label translate="true">Conditions</label>
+        </settings>
+        <container name="conditions_apply_to" sortOrder="10">
+            <htmlContent name="html_content">
+                <block name="conditions_apply_to" class="MageWorx\RewardPoints\Block\Adminhtml\Reward\Rule\Edit\Tab\Conditions" />
+            </htmlContent>
+        </container>
+    </fieldset>
+    <fieldset name="labels" sortOrder="40">
+        <settings>
+            <collapsible>true</collapsible>
+            <label translate="true">Labels</label>
+        </settings>
+        <field name="store_labels[0]" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">mageworx_rewardpoints_rule</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Default Rule Label for All Store Views</label>
+                <dataScope>store_labels[0]</dataScope>
+            </settings>
+        </field>
+        <container name="store_view_labels" sortOrder="40">
+            <htmlContent name="html_content">
+                <block name="store_view_labels" class="MageWorx\RewardPoints\Block\Adminhtml\Reward\Rule\Edit\Tab\Labels"/>
+            </htmlContent>
+        </container>
+    </fieldset>
+</form>

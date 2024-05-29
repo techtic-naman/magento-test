@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="mageworx_rewardpoints_config_provider" xsi:type="object">MageWorx\RewardPoints\Model\ConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Checkout\Block\Onepage">
+        <arguments>
+            <argument name="layoutProcessors" xsi:type="array">
+                <item name="mageworxRewardPointsModifier" xsi:type="object">MageWorx\RewardPoints\Block\LayoutProcessor</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Section: Private customer data section -->
+
+    <type name="Magento\Checkout\CustomerData\Cart">
+        <plugin name="mageworx_rewardpoints_display_point_balance_in_minicart"
+                type="MageWorx\RewardPoints\Model\Plugin\DisplayPointBalanceInMinicart"/>
+    </type>
+
+    <type name="Magento\Customer\CustomerData\SectionPoolInterface">
+        <arguments>
+            <argument name="sectionSourceMap" xsi:type="array">
+                <item name="upcoming-points" xsi:type="string">MageWorx\RewardPoints\CustomerData\UpcomingPoints</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- We can't foresee all actions for cleaning point's data, we assume it will be needed every time when cart will be changed -->
+    <type name="Magento\Customer\CustomerData\SectionPoolInterface">
+        <plugin name="mageworx_rewardpoints_update_customer_reward_section_with_cart"
+                type="MageWorx\RewardPoints\Model\Plugin\UpdateCustomerRewardSectionPlugin"/>
+    </type>
+    <!-- /Section -->
+
+</config>

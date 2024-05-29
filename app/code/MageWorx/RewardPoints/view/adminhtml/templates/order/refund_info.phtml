@@ -1,0 +1,13 @@
+<?php
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+?>
+<?php if ((double) $block->getSource()->getMwRwrdpointsAmntRefund()): ?>
+    <tr>
+        <td class="label"><?= $block->escapeHtml(__('Reward points')) ?></td>
+        <td><?= $block->escapeHtml($block->getSource()->getMwRwrdpointsAmntRefund()) ?></td>
+    </tr>
+<?php endif; ?>

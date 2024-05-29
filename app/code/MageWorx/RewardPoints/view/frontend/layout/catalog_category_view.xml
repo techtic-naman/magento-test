@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="MageWorx_RewardPoints::css/category/style.css"/>
+    </head>
+    <body>
+        <referenceContainer name="category.product.list.additional">
+            <block class="MageWorx\RewardPoints\Block\ProductList\RewardPromise"
+                   name="mageworx_rewardpoints_product_list_reward_promise"
+                   template="MageWorx_RewardPoints::product/list/reward_promise.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

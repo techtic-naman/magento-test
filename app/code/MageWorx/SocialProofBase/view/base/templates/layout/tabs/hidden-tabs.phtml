@@ -1,0 +1,17 @@
+<?php
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+use MageWorx\SocialProofBase\Api\Data\CampaignInterface;
+
+/**
+ * @var \Magento\Ui\Component\Layout\Tabs\Nav $block
+ */
+?>
+<div class="ui-tabs"
+    <?= $block->getRequest()->getParam(CampaignInterface::CAMPAIGN_ID) ? '' : 'style="display: none;"'?>
+     data-bind="scope: '<?= /* @noEscape */ $block->getDataScope() ?>.sections'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>

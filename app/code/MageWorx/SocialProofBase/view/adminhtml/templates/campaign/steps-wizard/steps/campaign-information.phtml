@@ -1,0 +1,27 @@
+<?php
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+/** @var $block \MageWorx\SocialProofBase\Block\Adminhtml\Campaign\StepsWizard\Steps\CampaignInformation */
+?>
+
+<?= $block->getChildHtml() ?>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "<?= $block->escapeJs($block->getComponentName()) ?>": {
+                        "component": "MageWorx_SocialProofBase/js/campaign/steps-wizard/steps/campaign-information",
+                        "appendTo" : "<?= $block->escapeJs($block->getParentComponentName()) ?>",
+                        "form"     : "<?= $block->escapeJs($block->getData('config/form')) ?>",
+                        "fieldset" : "<?= $block->escapeJs($block->getData('config/fieldset')) ?>"
+                    }
+                }
+            }
+        }
+    }
+</script>

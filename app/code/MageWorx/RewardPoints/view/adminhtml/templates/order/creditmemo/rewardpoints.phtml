@@ -1,0 +1,20 @@
+<?php
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+/**@var \MageWorx\RewardPoints\Block\Adminhtml\Order\Creditmemo\RewardPoints $block */
+?>
+<?php if ($block->getIsPointRefundAvailable()): ?>
+    <div class="admin__field admin__field-option field-refund-reward-points">
+        <label for="creditmemo_refund_mageworx_rewardpoints" class="admin__field-label"><span>
+                <?= $block->escapeHtml(__('Refund Reward Points')) ?> <?= $block->escapeHtml($block->getPointRefundRangeLabel()) ?></span></label>
+        <input type="text"
+               class="admin__control-text not-negative-amount validate-digits-range digits-range-<?=
+               $block->escapeHtmlAttr($block->getPointRefundRange())
+               ?>" name="creditmemo[mageworx_rewardpoints_refund_points]"
+               value="<?= $block->escapeHtmlAttr($block->getRefundPointsBalance()) ?>"
+               id="creditmemo_refund_mageworx_rewardpoints">
+    </div>
+<?php endif; ?>

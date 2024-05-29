@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <mageworx_marketing_suite>
+            <stock_status>
+                <enable>1</enable>
+                <display_on>product_page,category_page,search_page</display_on>
+                <display_in_stock_message>1</display_in_stock_message>
+                <in_stock_message>[stock] items in stock</in_stock_message>
+                <display_low_stock_message>1</display_low_stock_message>
+                <low_stock_message>The stock is getting low. [stock] items left in stock</low_stock_message>
+                <low_stock_level>default</low_stock_level>
+                <custom_low_stock_value>10</custom_low_stock_value>
+                <display_urgent_stock_message>1</display_urgent_stock_message>
+                <urgent_stock_message>This product is almost sold out. Hurry up to order! [stock] items left in stock.</urgent_stock_message>
+                <urgent_stock_value>5</urgent_stock_value>
+                <template>default</template>
+            </stock_status>
+        </mageworx_marketing_suite>
+    </default>
+</config>

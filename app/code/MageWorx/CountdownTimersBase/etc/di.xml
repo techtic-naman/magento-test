@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="MageWorx\CountdownTimersBase\Api\Data\CountdownTimerInterface" type="MageWorx\CountdownTimersBase\Model\CountdownTimer"/>
+    <preference for="MageWorx\CountdownTimersBase\Api\Data\CountdownTimerSearchResultInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="MageWorx\CountdownTimersBase\Api\CountdownTimerRepositoryInterface" type="MageWorx\CountdownTimersBase\Model\CountdownTimerRepository"/>
+    <preference for="MageWorx\CountdownTimersBase\Model\CountdownTimerConfigReaderInterface" type="MageWorx\CountdownTimersBase\Model\CountdownTimerConfigReader"/>
+    <preference for="MageWorx\CountdownTimersBase\Api\FrontendCountdownTimerResolverInterface" type="MageWorx\CountdownTimersBase\Model\FrontendCountdownTimerResolver"/>
+    <preference for="MageWorx\CountdownTimersBase\Api\FrontendCountdownTimerListResolverInterface" type="MageWorx\CountdownTimersBase\Model\FrontendCountdownTimerListResolver"/>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="mageworx_countdowntimersbase_countdown_timer_listing_data_source" xsi:type="string">MageWorx\CountdownTimersBase\Model\ResourceModel\CountdownTimer\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\CountdownTimersBase\Model\ResourceModel\CountdownTimer\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mageworx_countdowntimersbase_countdown_timer</argument>
+            <argument name="eventPrefix" xsi:type="string">mageworx_countdowntimersbase_countdown_timer_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">countdown_timer_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">MageWorx\CountdownTimersBase\Model\ResourceModel\CountdownTimer</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Layout\Pool">
+        <arguments>
+            <argument name="types" xsi:type="array">
+                <item name="mageworx-countdowntimersbase-tabs" xsi:type="array">
+                    <item name="class" xsi:type="string">MageWorx\CountdownTimersBase\Component\Layout\Tabs</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="CountdownTimersAssignProductsByConditionCommand" xsi:type="object">MageWorx\CountdownTimersBase\Console\Command\AssignByConditionCommand</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

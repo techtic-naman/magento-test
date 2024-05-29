@@ -1,0 +1,21 @@
+<?php /** * Copyright © MageWorx. All rights reserved. * See LICENSE.txt for license details. */ ?> <?php /**@var $block \MageWorx\RewardPointsImportExport\Block\Adminhtml\Balance\ImportExport */ ?> <div class="import-export-rewardpoints-balance"><?php if (!$block->getIsReadonly()): ?> <div class="import-rewardpoints-balance"><?php if ($block->getUseContainer()): ?> <form id="import-form" class="admin__fieldset" action="<?= $block->escapeHtmlAttr($block->getUrl('mageworx_rewardpoints/rewardPoints/importPost')) ?>" method="post" enctype="multipart/form-data"><?php endif; ?> <?= $block->getBlockHtml('formkey') ?> <div class="fieldset admin__field"><label for="import_rewardpoints_balance_file" class="admin__field-label"><span><?= $block->escapeHtml(__('Import Reward Points Balance')) ?></span></label> <div class="admin__field-control"><input type="file" id="import_rewardpoints_balance_file" name="import_rewardpoints_balance_file" class="input-file required-entry"/><?= $block->getButtonHtml(__('Import Reward Points Balance'), '', 'import-submit') ?></div></div><?php if ($block->getUseContainer()): ?></form><?php endif; ?> <script>
+require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/mage', 'loadingPopup', 'mage/translate'], function(jQuery, uiAlert){
+
+    jQuery('#import-form').mage('form').mage('validation');
+    (function ($) {
+        $('.import-submit').click(function(){
+            if($(':input[name="import_rewardpoints_balance_file"]').val()) {
+                $('body').loadingPopup({
+                    timeout: false
+                });
+
+                $(this.form).submit();
+            } else {
+                uiAlert({
+                    content: $.mage.__('Please select a file to import!')
+                });
+            }
+        });
+    })(jQuery);
+
+});</script></div><?php endif; ?> <div class="export-rewardpoints-balance <?php if ($block->getIsReadonly()): ?>box-left<?php else: ?>box-right<?php endif; ?>"><?php if ($block->getUseContainer()): ?> <form id="export_form" class="admin__fieldset" action="<?= $block->escapeHtmlAttr($block->getUrl('mageworx_rewardpoints/rewardPoints/exportPost')) ?>" method="post" enctype="multipart/form-data"><?php endif; ?> <?= $block->getBlockHtml('formkey') ?> <div class="fieldset admin__field"><span class="admin__field-label"><span><?= $block->escapeHtml(__('Export Reward Points Balance')) ?></span></span> <div class="admin__field-control"><?= $block->getButtonHtml(__('Export Reward Points Balance'), "export_form.submit()") ?></div></div><?php if ($block->getUseContainer()): ?></form><?php endif; ?></div></div><div class="example-export"><?php if ($block->getUseContainer()): ?> <form id="example_export_form" class="admin__fieldset" action="<?= $block->escapeHtmlAttr($block->getUrl('mageworx_rewardpoints/rewardPoints/exportExamplePost')) ?>" method="post" enctype="multipart/form-data"><?php endif; ?> <?= $block->getBlockHtml('formkey') ?> <div class="fieldset admin__field"><span class="admin__field-label"><span><?= $block->escapeHtml(__('Download example CSV file')); ?></span></span> <div class="admin__field-control" style="line-height: 32px;"><a href="<?= $block->escapeHtmlAttr($block->getUrl( 'mageworx_rewardpoints/rewardPoints/exportExamplePost' )) ?>"><?= $block->escapeHtml(__('Download')); ?></a></div></div><?php if ($block->getUseContainer()): ?></form><?php endif; ?></div>

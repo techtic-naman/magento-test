@@ -1,0 +1,60 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_Helpdesk
+ * @author    Webkul Software Private Limited
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+namespace Webkul\Helpdesk\Block\Adminhtml\Ticketsmanagement\Attribute\Edit;
+
+class Options extends \Magento\Eav\Block\Adminhtml\Attribute\Edit\Options\Options
+{
+    /**
+     * @var string
+     */
+    protected $_template = 'Webkul_Helpdesk::customattribute/options.phtml';
+
+    /**
+     * @var \Magento\Eav\Model\Entity\Attribute
+     */
+    protected $_eavAttr;
+
+    /**
+     * @param \Magento\Backend\Block\Template\Context                                    $context
+     * @param \Magento\Framework\Registry                                                $registry
+     * @param \Magento\Eav\Model\ResourceModel\Entity\Attribute\Option\CollectionFactory $attrOptionCollectionFactory
+     * @param \Magento\Framework\Validator\UniversalFactory                              $universalFactory
+     * @param \Magento\Eav\Model\Entity\Attribute                                        $eavAttr
+     * @param array                                                                      $data
+     */
+    public function __construct(
+        \Magento\Backend\Block\Template\Context $context,
+        \Magento\Framework\Registry $registry,
+        \Magento\Eav\Model\ResourceModel\Entity\Attribute\Option\CollectionFactory $attrOptionCollectionFactory,
+        \Magento\Framework\Validator\UniversalFactory $universalFactory,
+        \Magento\Eav\Model\Entity\Attribute $eavAttr,
+        array $data = []
+    ) {
+        $this->_eavAttr = $eavAttr;
+        parent::__construct(
+            $context,
+            $registry,
+            $attrOptionCollectionFactory,
+            $universalFactory,
+            $data
+        );
+    }
+
+    /**
+     * Retrieve attribute object from registry
+     *
+     * @return \Magento\Eav\Model\Entity\Attribute\AbstractAttribute
+     */
+    public function getAttributeObject()
+    {
+        return $this->_registry->registry('helpdesk_ticket_attribute');
+    }
+}

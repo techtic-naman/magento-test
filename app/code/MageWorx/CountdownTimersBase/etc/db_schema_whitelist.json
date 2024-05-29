@@ -1,0 +1,84 @@
+{
+    "mageworx_countdowntimersbase_countdown_timer": {
+        "column": {
+            "countdown_timer_id": true,
+            "name": true,
+            "created_at": true,
+            "updated_at": true,
+            "status": true,
+            "display_mode": true,
+            "use_discount_dates": true,
+            "start_date": true,
+            "end_date": true,
+            "priority": true,
+            "before_timer_text": true,
+            "after_timer_text": true,
+            "theme": true,
+            "accent": true,
+            "products_assign_type": true,
+            "conditions_serialized": true,
+            "display_on_categories": true
+        },
+        "index": {
+            "MAGEWORX_COUNTDOWNTIMERSBASE_COUNTDOWN_TIMER_NAME": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "mageworx_countdowntimersbase_countdown_timer_store": {
+        "column": {
+            "countdown_timer_id": true,
+            "store_id": true
+        },
+        "index": {
+            "MAGEWORX_COUNTDOWNTIMERSBASE_COUNTDOWN_TIMER_STORE_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_FCA406D022944466E04E69CE2FF4B7CB": true,
+            "FK_183C44A10517C62C070E1964592626FA": true
+        }
+    },
+    "mageworx_countdowntimersbase_countdown_timer_customer_group": {
+        "column": {
+            "countdown_timer_id": true,
+            "customer_group_id": true
+        },
+        "index": {
+            "IDX_A6E46941C76D72212864685CA21B5388": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_E04AB03E84E473987E61F8D4C25012FB": true,
+            "FK_C6C89A96A900DF563F49949DC5A46075": true
+        }
+    },
+    "mageworx_countdowntimersbase_countdown_timer_product": {
+        "column": {
+            "countdown_timer_id": true,
+            "product_id": true
+        },
+        "index": {
+            "MAGEWORX_COUNTDOWNTIMERSBASE_COUNTDOWN_TIMER_PRODUCT_PRODUCT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_A2CACC243D3C88503B293B7FFEEC7361": true,
+            "FK_9B9F3461A50C488E65CFAF4B38AAA627": true
+        }
+    },
+    "mageworx_countdowntimersbase_countdown_timer_template": {
+        "column": {
+            "template_id": true,
+            "identifier": true,
+            "title": true,
+            "theme": true,
+            "accent": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGEWORX_COUNTDOWNTIMERSBASE_COUNTDOWN_TIMER_TEMPLATE_IDENTIFIER": true
+        }
+    }
+}

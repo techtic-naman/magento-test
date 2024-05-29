@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="mageworx" sortOrder="2001">
+            <label>MageWorx</label>
+        </tab>
+        <section id="mageworx_marketing_suite" translate="label" type="text" sortOrder="10" showInDefault="1"
+                 showInWebsite="1" showInStore="1">
+            <label>Marketing Suite</label>
+            <tab>mageworx</tab>
+            <resource>MageWorx_MarketingSuite::config_marketing_suite</resource>
+            <group id="stock_status" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Stock Status</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Enable]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[This setting enables/disables the stock bars on the front-end.]]></comment>
+                </field>
+                <field id="display_on" translate="label comment" type="multiselect" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Display On</label>
+                    <source_model>MageWorx\StockStatus\Model\Source\DisplayOn</source_model>
+                    <comment><![CDATA[This setting allows you to display the stock status on the chosen pages.]]></comment>
+                </field>
+                <field id="display_in_stock_message" translate="label comment" type="select" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Display "In Stock" message]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[If enabled, the "In Stock" message will be shown on the front-end.]]></comment>
+                </field>
+                <field id="in_stock_message" translate="label comment" type="text" sortOrder="40" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label><![CDATA["In Stock" message]]></label>
+                    <comment><![CDATA[This message will be shown on the front-end, when a product stock is more than "Low Stock Level".]]></comment>
+                    <depends>
+                        <field id="display_in_stock_message">1</field>
+                    </depends>
+                </field>
+                <field id="display_low_stock_message" translate="label comment" type="select" sortOrder="50" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Display "Low Stock" message]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[If enabled, the "Low Stock" message will be shown on the front-end.]]></comment>
+                </field>
+                <field id="low_stock_message" translate="label comment" type="text" sortOrder="60" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label><![CDATA["Low Stock" message]]></label>
+                    <comment><![CDATA[This message will be shown on the front-end, when a product stock triggers the "Low Stock Level".]]></comment>
+                    <depends>
+                        <field id="display_low_stock_message">1</field>
+                    </depends>
+                </field>
+                <field id="low_stock_level" translate="label comment" type="select" sortOrder="70" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label><![CDATA["Low Stock" level]]></label>
+                    <source_model>MageWorx\StockStatus\Model\Source\LowStockLevel</source_model>
+                    <comment><![CDATA[This setting defines whether to use native product setting to set the "Low Stock" value or to specify a custom value. If the option to use Magento 2 setting is selected, the extension will check the stock value specified in the "Notify for Quantity Below" setting in the "Advanced Inventory" window for each product.]]></comment>
+                    <depends>
+                        <field id="display_low_stock_message">1</field>
+                    </depends>
+                </field>
+                <field id="custom_low_stock_value" translate="label comment" type="text" sortOrder="80" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Custom "Low stock" value]]></label>
+                    <comment><![CDATA[This setting allows you to define a stock value, which should trigger the "Low Stock" functionality.]]></comment>
+                    <depends>
+                        <field id="low_stock_level">custom</field>
+                        <field id="display_low_stock_message">1</field>
+                    </depends>
+                    <validate>validate-greater-than-zero</validate>
+                </field>
+                <field id="display_urgent_stock_message" translate="label comment" type="select" sortOrder="90" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Display "Urgent Stock" message]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[If enabled, the "Urgent Stock" message will be shown on the front-end.]]></comment>
+                </field>
+                <field id="urgent_stock_message" translate="label comment" type="text" sortOrder="100" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label><![CDATA["Urgent Stock" message]]></label>
+                    <comment><![CDATA[This message will be shown on the front-end, when a product stock triggers the "Urgent Stock Level".]]></comment>
+                    <depends>
+                        <field id="display_urgent_stock_message">1</field>
+                    </depends>
+                </field>
+                <field id="urgent_stock_value" translate="label comment" type="text" sortOrder="110" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label><![CDATA["Urgent stock" value]]></label>
+                    <comment><![CDATA[This setting defines a stock level, when the urgency flow should be triggered.]]></comment>
+                    <depends>
+                        <field id="display_urgent_stock_message">1</field>
+                    </depends>
+                    <validate>validate-greater-than-zero</validate>
+                </field>
+                <!-- Planned to add this feature to the next updates -->
+                <!--<field id="template" translate="label comment" type="select" sortOrder="120" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Template]]></label>
+                    <source_model>MageWorx\StockStatus\Model\Source\Template</source_model>
+                    <comment><![CDATA[You can choose a preferred design for your stock status bar, appeared on the front-end.]]></comment>
+                </field>-->
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="phonebook_post_listing_data_source" xsi:type="string">Meetanshi\Bulksms\Model\ResourceModel\Bulksms\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+	<virtualType name="Meetanshi\Bulksms\Model\ResourceModel\Bulksms\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">mt_bulksms</argument>
+			<argument name="resourceModel" xsi:type="string">Meetanshi\Bulksms\Model\ResourceModel\Bulksms</argument>
+		</arguments>
+	</virtualType>
+
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="smslog_post_listing_data_source" xsi:type="string">Meetanshi\Bulksms\Model\ResourceModel\Smslog\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+	<virtualType name="Meetanshi\Bulksms\Model\ResourceModel\Smslog\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">mt_smslog</argument>
+			<argument name="resourceModel" xsi:type="string">Meetanshi\Bulksms\Model\ResourceModel\Smslog</argument>
+		</arguments>
+	</virtualType>
+
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="campaign_post_listing_data_source" xsi:type="string">Meetanshi\Bulksms\Model\ResourceModel\Campaign\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+	<virtualType name="Meetanshi\Bulksms\Model\ResourceModel\Campaign\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">mt_campaign</argument>
+			<argument name="resourceModel" xsi:type="string">Meetanshi\Bulksms\Model\ResourceModel\Campaign</argument>
+		</arguments>
+	</virtualType>
+
+</config>

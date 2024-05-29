@@ -1,0 +1,285 @@
+<?php
+$tickettypeArr = $block->getTicketTypeArray();
+$priorityArr = $block->getTicketPriorityArray();
+$groupArr = $block->getTicketGroupArray();
+$ticketStatusArr = $block->getTicketStatusArray();
+$ticketsHelper = $block->tickets;
+$helper = $block->helpdeskTickets;
+
+?>
+<form action="<?= $block->escapeHtml($block->getUrl('helpdesk/ticketsmanagement_tickets/save/')) ?>"
+enctype="multipart/form-data" method="post" id="edit_form">
+<?= $block->getBlockHtml('formkey')?>
+    <div class="admin__field field _required">
+                    <label class="label admin__field-label" for="fullname" >
+                        <span><?= $block->escapeHtml(__('Customer Name')) ?></span></label>
+            <div class="admin__field-control control">
+                <input id="fullname" name="fullname" title="Customer Name" type="text" 
+                class=" input-text admin__control-text required-entry " aria-required="true">
+            </div>
+    </div>
+    <div class="admin__field field _required">
+                    <label class="label admin__field-label" for="email" ><span>
+                        <?= $block->escapeHtml(__('Email')) ?></span></label>
+            <div class="admin__field-control control">
+                <input id="email" name="email" title="Customer Email" type="email" 
+                class="validate-email input-text admin__control-text required-entry" 
+                aria-required="true">                            
+            </div>
+    </div>
+    <div class="admin__field field field-type  required _required">
+                    <label class="label admin__field-label" for="type">
+                        <span><?= $block->escapeHtml(__('Ticket type')) ?></span></label>
+            <div class="admin__field-control control">
+                <select name="type" title="Type" id="help_type" 
+                class="required-entry select validate-select admin__control-select" aria-required="true">
+                <option value=""><?= /* @noEscape */ $block->escapeHtml(__("Select")); ?>
+                <?php foreach ($tickettypeArr as $type): ?>
+                                <option value="<?= /* @noEscape */ $block->escapeHtml($type['value']);?>"><?=
+                                    $block->escapeHtml($type['label']) ?></option>
+                            <?php endforeach; ?>
+                </select>
+            </div>
+    </div>
+
+    <?php $attrColl = $block->getTicketcustomAttributeCollection() ?>
+                <?php foreach ($attrColl as $ticketattr): ?>
+                    <?php $attribute = $block->getAttributeById($ticketattr->getAttributeId())?>
+                    <li class="custom_attribute" style="margin-bottom: 10px; position: relative;list-style:none;">
+                     <div class="admin__field field <?php if ($attribute['is_required']) {echo
+                            $block->escapeHtml('_required'); }?>">
+                        <label id="<?= $block->escapeHtml($attribute['attribute_code'])?>" 
+                        class="label admin__field-label"> 
+                        <span><?= $block->escapeHtml($attribute['frontend_label']);?></span></label>
+                        <div class="admin__field-control control">
+                          
+                        <?php if ($attribute['frontend_input'] == 'text') { ?>
+                            <input name="<?=$block->escapeHtml($attribute['attribute_code']);?>" type="text" 
+                            class="input-text admin__control-text  <?php if ($ticketattr->getFieldDependency() ==
+                                0) { if ($attribute['is_required']) { echo $block->escapeHtml('required-entry');
+                                } } else { echo $block->escapeHtml('hide_attribute'); } ?> 
+                                <?= $block->escapeHtml($attribute['frontend_class']);?>"
+                                data-hide-validation="<?php if ($attribute
+                                              ['is_required']) {echo 'required-entry'; } ?>"
+                                for="<?php if ($ticketattr->getFieldDependency()> 0) {
+                                    echo $block->escapeHtml($ticketattr->getFieldDependency());}?>">   
+                        <?php }?>
+
+                        <?php if ($attribute['frontend_input'] == 'select' || $attribute
+                            ['frontend_input'] == 'multiselect' || $attribute
+                            ['frontend_input'] == 'boolean') {
+                                        $fix="";
+                                        $multiselect="";
+    if ($attribute['frontend_input']=='multiselect') {
+        $fix="[]";
+        $multiselect="multiple";
+    } ?>  
+                                    <select name="<?=$block->escapeHtml($attribute['attribute_code'].$fix);?>" 
+                                    class="<?php
+                                    if ($ticketattr->getFieldDependency()
+                                    == 0) { if ($attribute['is_required']) { echo
+                                            $block->escapeHtml('required-entry');
+                                    } } else { echo 'hide_attribute'; } ?>
+                                               input-text <?= $block->escapeHtml($attribute
+                                                ['frontend_class']);?>" data-hide-validation="<?php if ($attribute
+                                               ['is_required']) {echo 'required-entry'; } ?>"
+                                               for="<?php if ($ticketattr->getFieldDependency(
+                                               ) > 0) {echo $block->escapeHtml($ticketattr->getFieldDependency())
+                                                   ; } ?>" select  admin__control-select " <?=
+                                                   $block->escapeHtml($multiselect);?>>
+                                                   <?php $attributeOptions = $attribute->getSource()
+                                                    ->getAllOptions();
+                                                    foreach ($attributeOptions as $each) {  ?>
+                                                                    <?php if ($each["value"] == "") {?>
+                                        <option value=""><?= $block->escapeHtml(__("Please
+                                        select")); ?></option>
+                                        <?php } else { ?>
+                                      <option value="<?= $block->escapeHtml($each["value"]);
+                                        ?>"><?= $block->escapeHtml($each["label"]); ?>
+                                      </option>
+                                        <?php } ?>
+                                            <?php } ?>
+                                    </select>
+                        <?php }?>
+                        <?php if ($attribute['frontend_input'] == 'date' ||
+                            $attribute['frontend_input'] == 'datetime') { ?>
+                                <input class="<?php  if ($ticketattr->getFieldDependency() ==
+                                0) { if ($attribute['is_required']) { echo 'required-entry';
+                                } } else { echo 'hide_attribute'; } ?>
+                                        input-text validate-date <?= $block->escapeHtml($attribute
+                                        ['frontend_class']); ?>"
+                                        data-hide-validation="<?php if ($attribute
+                                        ['is_required']) {echo 'required-entry'; } ?>"
+                                        for="<?php if ($ticketattr->getFieldDependency() > 0) {
+                                            echo $block->escapeHtml($ticketattr->getFieldDependency());} ?>"
+                                        type="<?= $attribute['frontend_input'] =='date' ? 'date' : 'datetime-local'?>"
+                                        name="<?= $block->escapeHtml($attribute['attribute_code']);?>"
+                                        <?php
+                                        $customAttrValue = "";
+                                        if (!empty($draftContent[$attribute['attribute_code']])) {
+                                            $customAttrValue = $draftContent[$attribute['attribute_code']];
+                                        }
+                                        ?>
+                                        value="<?= /* @noEscape */ $customAttrValue; ?>"/>
+                        <?php } ?>
+
+                        <?php if ($attribute['frontend_input'] == 'textarea') { ?>
+                                <textarea class="<?php  if ($ticketattr->getFieldDependency()
+                                == 0) { if ($attribute['is_required']) { echo
+                                    $block->escapeHtml('required-entry');
+                                } } else { echo 'hide_attribute'; } ?>
+                                                 input-text <?= $block->escapeHtml($attribute
+                                                    ['frontend_class']); ?> textarea admin__control-textarea"
+                                                 data-hide-validation="<?php if ($attribute
+                                                    ['is_required']) {echo 'required-entry'; }
+                                                    ?>" for="<?php if ($ticketattr->getFieldDependency() > 0) {
+                                                        echo $block->escapeHtml($ticketattr->getFieldDependency());
+                                                    }
+                                                    ?>"
+                                                 rows="5" cols="75" id="textar" name="<?=
+                                                    $block->escapeHtml($attribute
+                                                    ['attribute_code']);?>"></textarea>
+                            <?php } ?>
+
+                            <?php if ($attribute['frontend_input'] == 'texteditor') { ?>
+                                <textarea class="<?php  if ($ticketattr->getFieldDependency()
+                                == 0) { if ($attribute['is_required']) { echo
+                                    $block->escapeHtml('required-entry');
+                                } } else { echo 'hide_attribute'; } ?>
+                                                 input-text <?= $block->escapeHtml($attribute
+                                                    ['frontend_class']); ?> textarea admin__control-textarea"
+                                                 data-hide-validation="<?php if ($attribute
+                                                    ['is_required']) {echo 'required-entry'; }
+                                                    ?>" for="<?php if ($ticketattr->getFieldDependency() > 0) {
+                                                        echo $block->escapeHtml($ticketattr->getFieldDependency());
+                                                    }
+                                                    ?>"
+                                                  id="customFieldEditor" name="<?=
+                                                    $block->escapeHtml($attribute
+                                                    ['attribute_code']);?>">
+                                                
+                                                </textarea>
+                            <?php } ?>
+
+                            <?php if ($attribute['frontend_input'] == 'image') { ?>
+                                <input class="<?php  if ($ticketattr->getFieldDependency() ==
+                                0) { if ($attribute['is_required']) { echo 'required-entry';
+                                } } else { echo 'hide_attribute'; } ?> admin__control-text <?=
+                                $block->escapeHtml($attribute['frontend_class']); ?>"
+                                              data-hide-validation="<?php if ($attribute
+                                                ['is_required']) {echo 'required-entry'; } ?>"
+                                              for="<?php if ($ticketattr->getFieldDependency()
+                                                > 0) {
+                                                    echo $block->escapeHtml(
+                                                        $ticketattr->getFieldDependency()
+                                                    );
+                                                   } ?>"
+                                               type="file"
+                                               name="<?=
+                                                $block->escapeHtml($attribute
+                                                ['attribute_code']);
+                                                        ?>" />
+                            <?php } ?>
+
+                            <?php if ($attribute['frontend_input'] == 'file') {  ?>
+                                <input class="<?php  if ($ticketattr->getFieldDependency() ==
+                                0) { if ($attribute['is_required']) { echo 'required-entry';
+                                } } else { echo $block->escapeHtml(__('hide_attribute')); }?>
+                                admin__control-text <?= $block->escapeHtml($attribute['frontend_class']);
+                                ?>" data-hide-validation="<?php if ($attribute
+                                              ['is_required']) {echo 'required-entry'; } ?>"
+                                              for="<?php if ($ticketattr->getFieldDependency()
+                                                > 0) {echo $block->escapeHtml($ticketattr->getFieldDependency()); }
+                                                ?>" type="file" name="<?= $block->escapeHtml($attribute
+                                                ['attribute_code']);?>" />
+                            <?php } ?>
+
+                         </div>
+                     </div>
+                    </li>
+                <?php endforeach; ?>
+
+    <div class="admin__field field field-type _required">
+                    <label class="label admin__field-label" for="priority">
+                        <span><?= $block->escapeHtml(__('Priority')) ?></span></label>
+            <div class="admin__field-control control">
+                <select id="priority" name="priority" title="Priority" 
+                class="select validate-select admin__control-select" aria-required="true">
+                <option value=""><?= $block->escapeHtml(__("Select")); ?>
+                <?php foreach ($priorityArr as $type): ?>
+                                <option value="<?= $block->escapeHtml($type['value']);?>"><?=
+                                    $block->escapeHtml($type['label']) ?></option>
+                            <?php endforeach; ?>
+                </select>
+            </div>
+    </div>
+    <div class="admin__field field field-type _required">
+                    <label class="label admin__field-label" for="group">
+                        <span><?= $block->escapeHtml(__('Group')) ?></span></label>
+            <div class="admin__field-control control">
+                <select id="group" name="group" title="group" 
+                class="select validate-select admin__control-select" aria-required="true">
+                <option value=""><?= $block->escapeHtml(__("Select")); ?>
+                <?php foreach ($groupArr as $type): ?>
+                                <option value="<?= $block->escapeHtml($type['value']);?>"><?=
+                                    $block->escapeHtml($type['label']) ?></option>
+                            <?php endforeach; ?>
+                </select>
+            </div>
+    </div>
+    <div class="admin__field field field-type _required">
+                    <label class="label admin__field-label" for="status"><span>
+                        <?= $block->escapeHtml(__('Status')) ?></span></label>
+            <div class="admin__field-control control">
+                <select id="status" name="status" title="Status" 
+                class="select validate-select admin__control-select" aria-required="true">
+                <option value=""><?= $block->escapeHtml(__("Select")); ?>
+                <?php foreach ($ticketStatusArr as $type): ?>
+                                <option value="<?= $block->escapeHtml($type['value']);?>"><?=
+                                    $block->escapeHtml($type['label']) ?></option>
+                            <?php endforeach; ?>
+                </select>
+            </div>
+    </div>
+
+   
+    <div class="admin__field field _required">
+                    <label class="label admin__field-label" for="subject" ><span>Subject</span></label>
+            <div class="admin__field-control control">
+                <input id="subject" name="subject" title="Subject" type="text" 
+                class="input-text admin__control-text required-entry" aria-required="true">                            
+            </div>
+    </div>
+    <div class="admin__field field _required">
+                    <label class="label admin__field-label" for="query" >
+                        <span><?= $block->escapeHtml(__('Query')) ?></span></label>
+            <div class="admin__field-control control">
+                <textarea id="query" name="query" 
+                class="textarea admin__control-textarea required-entry" aria-required="true">  
+                </textarea>                          
+            </div>
+    </div>
+    <div class="admin__field">
+                    <label class="label admin__field-label" for="fileupload" >
+                        <span><?= $block->escapeHtml(__('File Upload')) ?></span></label>
+            <div class="admin__field-control control">
+            <input id="wk_ts_file" type="file" multiple="multiple" 
+            name="fupld" class="admin__control-text">                         
+            </div>
+    </div>
+</form>
+<?php
+$formData = [
+    'allowedextensions' => $helper->getConfigAllowedextensions(),
+    'alloweditor' => $helper->getConfigAllowEditor(),
+    'wysiwygConfig' => $block->getWysiwygConfig(),
+];
+$serializedFormData = $block->jsonData()->jsonEncode($formData);
+?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "newticket": <?= /* @noEscape */  $serializedFormData; ?>
+        }
+    }
+</script>

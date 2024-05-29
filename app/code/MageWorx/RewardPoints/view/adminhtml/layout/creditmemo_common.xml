@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="creditmemo_totals">
+            <block class="MageWorx\RewardPoints\Block\Adminhtml\Order\Totals\RewardPointsItem" name="mageworx_rewardpoints_total" template="MageWorx_RewardPoints::order/total.phtml">
+                <action method="setAfterCondition">
+                    <argument name="condition" xsi:type="string">customerbalance</argument>
+                </action>
+            </block>
+        </referenceBlock>
+        <referenceContainer name="submit_before">
+            <block class="MageWorx\RewardPoints\Block\Adminhtml\Order\Creditmemo\RewardPoints" name="mageworx_rewardpoints_creditmemo" template="MageWorx_RewardPoints::order/creditmemo/rewardpoints.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

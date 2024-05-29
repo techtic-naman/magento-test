@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="MageWorx_ReviewAIBase::css/review_summary.css"/>
+    </head>
+    <body>
+        <referenceBlock name="product.info.details">
+            <referenceBlock name="reviews.tab">
+                <block class="MageWorx\ReviewAIBase\Block\GeneralProductReviewSummary"
+                       name="review_summary"
+                       as="review_summary"
+                       template="MageWorx_ReviewAIBase::product/review_summary.phtml"
+                       before="-"
+                />
+            </referenceBlock>
+        </referenceBlock>
+    </body>
+</page>

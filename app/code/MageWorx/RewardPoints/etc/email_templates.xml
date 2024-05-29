@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="mageworx_rewardpoints_notification_default_email_template_update_points" label="Use the rule to update reward points balance" file="update_points_balance.html" type="html" module="MageWorx_RewardPoints" area="frontend"/>
+    <template id="mageworx_rewardpoints_notification_email_template_update_points_by_admin" label="Update Reward Points Balance By Admin" file="update_points_balance_by_admin.html" type="html" module="MageWorx_RewardPoints" area="frontend"/>
+    <template id="mageworx_rewardpoints_notification_email_template_expiration_date" label="Your Reward Points Balance will be expired soon" file="expiration_date_notification.html" type="html" module="MageWorx_RewardPoints" area="frontend"/>
+</config>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+<!--    <type name="\MageWorx\ReviewAIBase\Ui\Component\ReviewSummary\DataProvider">-->
+<!--        <arguments>-->
+<!--            <argument name="addFilterStrategies" xsi:type="array">-->
+<!--                <item name="sku" xsi:type="object">MageWorx\ReviewAIBase\Ui\Component\ReviewSummary\DataProvider\FilterStrategy\ProductSku</item>-->
+<!--            </argument>-->
+<!--            <argument name="addFieldStrategies" xsi:type="array">-->
+<!--                <item name="sku" xsi:type="object">MageWorx\ReviewAIBase\Ui\Component\ReviewSummary\DataProvider\FieldStrategy\ProductSku</item>-->
+<!--                <item name="unit_id" xsi:type="object">MageWorx\ReviewAIBase\Ui\Component\ReviewSummary\DataProvider\FieldStrategy\UnitId</item>-->
+<!--            </argument>-->
+<!--        </arguments>-->
+<!--    </type>-->
+    <!-- Plugins: -->
+    <virtualType name="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="mageworx_reviewai_data_provider" xsi:type="array">
+                    <item name="class" xsi:type="string">MageWorx\ReviewAIBase\Ui\DataProvider\Product\Form\Modifier\SummaryData</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>

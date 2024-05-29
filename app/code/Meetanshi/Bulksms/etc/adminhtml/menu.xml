@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Meetanshi_Bulksms::bulksmss" resource="Meetanshi_Bulksms::bulksms"
+             module="Meetanshi_Bulksms" title="Bulk SMS Marketing"  sortOrder="32" parent="Magento_Backend::marketing"/>
+
+        <add id="Meetanshi_Bulksms::campaign" resource="Meetanshi_Bulksms::campaign"
+             module="Meetanshi_Bulksms" title="Manage Campaigns" sortOrder="25"
+             action="bulksms/campaign/index" parent="Meetanshi_Bulksms::bulksmss"/>
+
+        <add id="Meetanshi_Bulksms::managebulksms" resource="Meetanshi_Bulksms::managebulksms"
+             module="Meetanshi_Bulksms" title="Manage Phonebook" sortOrder="30"
+             action="bulksms/phonebook/index" parent="Meetanshi_Bulksms::bulksmss"/>
+        
+        <add id="Meetanshi_Bulksms::logbulksms" resource="Meetanshi_Bulksms::logbulksms"
+             module="Meetanshi_Bulksms" title="SMS Logs" sortOrder="35"
+             action="bulksms/smslog/index" parent="Meetanshi_Bulksms::bulksmss"/>
+        
+        <add id="Meetanshi_Bulksms::configbulksms" resource="Meetanshi_Bulksms::bulksms"
+             module="Meetanshi_Bulksms" title="Configuration" sortOrder="40"
+             action="adminhtml/system_config/edit/section/bulksms" parent="Meetanshi_Bulksms::bulksmss"/>
+    </menu>
+</config>

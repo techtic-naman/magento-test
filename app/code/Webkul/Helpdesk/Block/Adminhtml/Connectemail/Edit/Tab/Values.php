@@ -1,0 +1,110 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_Helpdesk
+ * @author    Webkul Software Private Limited
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+namespace Webkul\Helpdesk\Block\Adminhtml\Connectemail\Edit\Tab;
+
+class Values extends \Magento\Backend\Block\Widget\Form\Generic
+{
+    /**
+     * @var \Webkul\Helpdesk\Model\TypeFactory
+     */
+    protected $_typeFactory;
+
+    /**
+     * @var \Webkul\Helpdesk\Model\GroupFactory
+     */
+    protected $_groupFactory;
+
+    /**
+     * @var \Webkul\Helpdesk\Model\TicketsPriorityFactory
+     */
+    protected $_priorityFactory;
+
+    /**
+     * @param \Magento\Backend\Block\Template\Context $context
+     * @param \Magento\Framework\Registry             $registry
+     * @param \Magento\Framework\Data\FormFactory     $formFactory
+     * @param \Webkul\Helpdesk\Model\TypeFactory      $typeFactory,
+     * @param \Webkul\Helpdesk\Model\GroupFactory     $groupFactory
+     * @param \Webkul\Helpdesk\Model\PriorityFactory  $priorityFactory
+     * @param array                                   $data
+     */
+    public function __construct(
+        \Magento\Backend\Block\Template\Context $context,
+        \Magento\Framework\Registry $registry,
+        \Magento\Framework\Data\FormFactory $formFactory,
+        \Webkul\Helpdesk\Model\TypeFactory $typeFactory,
+        \Webkul\Helpdesk\Model\GroupFactory $groupFactory,
+        \Webkul\Helpdesk\Model\TicketsPriorityFactory $priorityFactory,
+        array $data = []
+    ) {
+        $this->_typeFactory = $typeFactory;
+        $this->_groupFactory = $groupFactory;
+        $this->_priorityFactory = $priorityFactory;
+        parent::__construct($context, $registry, $formFactory, $data);
+    }
+
+    /**
+     * Prepare form fields
+     *
+     * @return \Magento\Backend\Block\Widget\Form
+     */
+    public function _prepareForm()
+    {
+        /**
+        * @var \Magento\Framework\Data\Form $form
+        */
+        $form = $this->_formFactory->create();
+        $form->setHtmlIdPrefix('connect_email_');
+        $cEmailModel = $this->_coreRegistry->registry('helpdesk_connectemail');
+
+        $fieldset = $form->addFieldset(
+            'base_fieldset',
+            ['legend' => __('Default Values of Ticket')]
+        );
+
+        $fieldset->addField(
+            "default_group",
+            "select",
+            [
+                "label" => __("Default Group"),
+                "class" => "required-entry",
+                "name" => "default_group",
+                "values" => $this->_groupFactory->create()->toOptionArray()
+            ]
+        );
+
+        $fieldset->addField(
+            "default_type",
+            "select",
+            [
+               "label" => __("Default Type"),
+               "class" => "required-entry",
+               "name" => "default_type",
+               "values" => $this->_typeFactory->create()->toOptionArray()
+            ]
+        );
+
+        $fieldset->addField(
+            "default_priority",
+            "select",
+            [
+               "label" => __("Default Priority"),
+               "class" => "required-entry",
+               "name" => "default_priority",
+               "values" => $this->_priorityFactory->create()->toOptionArray()
+            ]
+        );
+
+        $form->setValues($cEmailModel->getData());
+        $this->setForm($form);
+        return parent::_prepareForm();
+    }
+}

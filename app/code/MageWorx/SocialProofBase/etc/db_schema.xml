@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="mageworx_socialproofbase_campaign" resource="default" engine="innodb" comment="Campaign Table">
+    <column xsi:type="int" name="campaign_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Campaign ID"/>
+    <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Campaign Name"/>
+    <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Campaign Created At"/>
+    <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Campaign Updated At"/>
+    <column xsi:type="varchar" name="display_mode" nullable="false" length="100" comment="Campaign Display Mode"/>
+    <column xsi:type="varchar" name="event_type" nullable="false" length="100" comment="Campaign Event Type"/>
+    <column xsi:type="int" name="status" padding="10" unsigned="true" nullable="true" identity="false" comment="Campaign Status"/>
+    <column xsi:type="int" name="restrict_to_current_product" padding="10" unsigned="true" nullable="true" identity="false" comment="Campaign Restrict To Current Product"/>
+    <column xsi:type="int" name="period" padding="10" unsigned="true" nullable="true" identity="false" comment="Campaign Period"/>
+    <column xsi:type="int" name="start_delay" padding="10" unsigned="true" nullable="true" identity="false" comment="Campaign Start Delay"/>
+    <column xsi:type="int" name="auto_close_in" padding="10" unsigned="true" nullable="true" identity="false" comment="Campaign Auto Close In"/>
+    <column xsi:type="int" name="max_number_per_page" padding="10" unsigned="true" nullable="true" identity="false" comment="Campaign Max Number Per Page"/>
+    <column xsi:type="int" name="display_on_mobile" padding="10" unsigned="true" nullable="false" identity="false" comment="Campaign Display On Mobile"/>
+    <column xsi:type="smallint" name="priority" padding="5" unsigned="true" nullable="true" identity="false" comment="Campaign Priority"/>
+    <column xsi:type="int" name="remove_verified" padding="10" unsigned="true" nullable="false" identity="false" comment="Campaign Remove Verified"/>
+    <column xsi:type="varchar" name="position" nullable="false" length="100" comment="Campaign Position"/>
+    <column xsi:type="mediumtext" name="content" nullable="false" comment="Campaign Content"/>
+    <column xsi:type="int" name="products_assign_type" padding="10" unsigned="true" nullable="false" identity="false" comment="Campaign Products Assign Type"/>
+    <column xsi:type="mediumtext" name="display_on_products_conditions_serialized" nullable="true" comment="Campaign Display On Products Conditions Serialized"/>
+    <column xsi:type="int" name="categories_assign_type" padding="10" unsigned="true" nullable="false" identity="false" comment="Campaign Categories Assign Type"/>
+    <column xsi:type="int" name="cms_pages_assign_type" padding="10" unsigned="true" nullable="false" identity="false" comment="Campaign CMS Pages Assign Type"/>
+    <column xsi:type="mediumtext" name="restriction_conditions_serialized" nullable="true" comment="Campaign Display On Products Conditions Serialized"/>
+    <column xsi:type="int" name="min_number_of_views" padding="2" unsigned="true" nullable="true" identity="false" comment="Campaign Min Number Of Views"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="campaign_id"/>
+    </constraint>
+    <index referenceId="MAGEWORX_SOCIALPROOFBASE_CAMPAIGN_NAME" indexType="fulltext">
+      <column name="name"/>
+    </index>
+  </table>
+  <table name="mageworx_socialproofbase_campaign_store" resource="default" engine="innodb" comment="Campaign To Store Linkage Table">
+    <column xsi:type="int" name="campaign_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Campaign ID"/>
+    <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false" comment="Store ID"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="campaign_id"/>
+      <column name="store_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_3D30B24549DD5424BFB967DB0D749209" table="mageworx_socialproofbase_campaign_store" column="campaign_id" referenceTable="mageworx_socialproofbase_campaign" referenceColumn="campaign_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="MAGEWORX_SOCIALPROOFBASE_CAMPAIGN_STORE_STORE_ID_STORE_STORE_ID" table="mageworx_socialproofbase_campaign_store" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+    <index referenceId="MAGEWORX_SOCIALPROOFBASE_CAMPAIGN_STORE_STORE_ID" indexType="btree">
+      <column name="store_id"/>
+    </index>
+  </table>
+  <table name="mageworx_socialproofbase_campaign_customer_group" resource="default" engine="innodb" comment="Campaign To Customer Group Linkage Table">
+    <column xsi:type="int" name="campaign_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Campaign ID"/>
+    <column xsi:type="int" name="customer_group_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Customer Group ID"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="campaign_id"/>
+      <column name="customer_group_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_6BF103F84076E9D54F699DDECA29226B" table="mageworx_socialproofbase_campaign_customer_group" column="campaign_id" referenceTable="mageworx_socialproofbase_campaign" referenceColumn="campaign_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="FK_BDC61AA29D5BF62A0C291FA17F8F6294" table="mageworx_socialproofbase_campaign_customer_group" column="customer_group_id" referenceTable="customer_group" referenceColumn="customer_group_id" onDelete="CASCADE"/>
+    <index referenceId="MAGEWORX_SOCIALPROOFBASE_CAMPAIGN_CSTR_GROUP_CSTR_GROUP_ID" indexType="btree">
+      <column name="customer_group_id"/>
+    </index>
+  </table>
+  <table name="mageworx_socialproofbase_campaign_display_on" resource="default" engine="innodb" comment="Campaign To Page Type Linkage Table">
+    <column xsi:type="int" name="campaign_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Campaign ID"/>
+    <column xsi:type="varchar" name="page_type" nullable="false" length="100" comment="Page Type"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="campaign_id"/>
+      <column name="page_type"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_9878932C5D01E7C58FAF6626AEEEDEF4" table="mageworx_socialproofbase_campaign_display_on" column="campaign_id" referenceTable="mageworx_socialproofbase_campaign" referenceColumn="campaign_id" onDelete="CASCADE"/>
+    <index referenceId="MAGEWORX_SOCIALPROOFBASE_CAMPAIGN_DISPLAY_ON_PAGE_TYPE" indexType="btree">
+      <column name="page_type"/>
+    </index>
+  </table>
+  <table name="mageworx_socialproofbase_campaign_product" resource="default" engine="innodb" comment="Campaign To Product Linkage Table">
+    <column xsi:type="int" name="campaign_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Campaign ID"/>
+    <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Product ID"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="campaign_id"/>
+      <column name="product_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_1DDD6A09F1AE618404BFA7EF933C9BF0" table="mageworx_socialproofbase_campaign_product" column="campaign_id" referenceTable="mageworx_socialproofbase_campaign" referenceColumn="campaign_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="FK_8C5040A8578FBCCB83F289DC4BC9A2C7" table="mageworx_socialproofbase_campaign_product" column="product_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    <index referenceId="MAGEWORX_SOCIALPROOFBASE_CAMPAIGN_PRODUCT_PRODUCT_ID" indexType="btree">
+      <column name="product_id"/>
+    </index>
+  </table>
+  <table name="mageworx_socialproofbase_campaign_category" resource="default" engine="innodb" comment="Campaign To Category Linkage Table">
+    <column xsi:type="int" name="campaign_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Campaign ID"/>
+    <column xsi:type="int" name="category_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Category ID"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="campaign_id"/>
+      <column name="category_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_A5C70017F6E55D6044E6B891AAE71E59" table="mageworx_socialproofbase_campaign_category" column="campaign_id" referenceTable="mageworx_socialproofbase_campaign" referenceColumn="campaign_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="FK_0C85F9070E99E4922716A6741DF1B046" table="mageworx_socialproofbase_campaign_category" column="category_id" referenceTable="catalog_category_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    <index referenceId="MAGEWORX_SOCIALPROOFBASE_CAMPAIGN_CATEGORY_CATEGORY_ID" indexType="btree">
+      <column name="category_id"/>
+    </index>
+  </table>
+  <table name="mageworx_socialproofbase_campaign_cms_page" resource="default" engine="innodb" comment="Campaign To CMS Page Linkage Table">
+    <column xsi:type="int" name="campaign_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Campaign ID"/>
+    <column xsi:type="smallint" name="cms_page_id" padding="6" unsigned="false" nullable="false" identity="false" comment="CMS Page ID"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="campaign_id"/>
+      <column name="cms_page_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_513E6AF2F22D0D0110B4405FCC1DA699" table="mageworx_socialproofbase_campaign_cms_page" column="campaign_id" referenceTable="mageworx_socialproofbase_campaign" referenceColumn="campaign_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="FK_ED846B482B25A43936991AF693CE0CB1" table="mageworx_socialproofbase_campaign_cms_page" column="cms_page_id" referenceTable="cms_page" referenceColumn="page_id" onDelete="CASCADE"/>
+    <index referenceId="MAGEWORX_SOCIALPROOFBASE_CAMPAIGN_CMS_PAGE_CMS_PAGE_ID" indexType="btree">
+      <column name="cms_page_id"/>
+    </index>
+  </table>
+  <table name="mageworx_socialproofbase_campaign_template" resource="default" engine="innodb" comment="Campaign Template Table">
+    <column xsi:type="smallint" name="template_id" padding="5" unsigned="true" nullable="false" identity="true" comment="Campaign Template ID"/>
+    <column xsi:type="varchar" name="identifier" nullable="true" length="100" comment="Campaign Template String Identifier"/>
+    <column xsi:type="varchar" name="title" nullable="true" length="255" comment="Campaign Template Title"/>
+    <column xsi:type="mediumtext" name="content" nullable="true" comment="Campaign Template Content"/>
+    <column xsi:type="varchar" name="display_mode" nullable="false" length="100" comment="Campaign Display Mode"/>
+    <column xsi:type="varchar" name="event_type" nullable="false" length="100" comment="Campaign Event Type"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="template_id"/>
+    </constraint>
+    <constraint xsi:type="unique" referenceId="MAGEWORX_SOCIALPROOFBASE_CAMPAIGN_TEMPLATE_IDENTIFIER">
+      <column name="identifier"/>
+    </constraint>
+  </table>
+</schema>

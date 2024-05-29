@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="mageworx_personalpromotion" resource="default" engine="innodb" comment="mageworx_personalpromotion">
+    <column xsi:type="int" name="personal_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Personal Id"/>
+    <column xsi:type="int" name="sales_rule_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Sales Rule Id"/>
+    <column xsi:type="int" name="customer_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Customer Id"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="personal_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="MAGEWORX_PERSONALPROMOTION_SALES_RULE_ID_SALESRULE_RULE_ID" table="mageworx_personalpromotion" column="sales_rule_id" referenceTable="salesrule" referenceColumn="rule_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="MAGEWORX_PERSONALPROMOTION_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID" table="mageworx_personalpromotion" column="customer_id" referenceTable="customer_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+  </table>
+</schema>

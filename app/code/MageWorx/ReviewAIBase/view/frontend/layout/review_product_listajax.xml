@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <referenceContainer name="root">
+        <referenceBlock name="product.info.product_additional_data">
+            <block class="MageWorx\ReviewAIBase\Block\ProductReviewSummary"
+                   name="review_summary"
+                   as="review_summary"
+                   template="MageWorx_ReviewAIBase::product/review_summary.phtml"
+            />
+        </referenceBlock>
+    </referenceContainer>
+</layout>

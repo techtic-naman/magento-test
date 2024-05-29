@@ -1,0 +1,18 @@
+<?php /** * Copyright © MageWorx. All rights reserved. * See LICENSE.txt for license details. */ ?> <?php /**@var \MageWorx\RewardPoints\Block\Adminhtml\Order\Create\RewardPoints $block */ ?> <?php if ($block->canUseRewardPoints()): ?> <div class="admin__field admin__field-option"><input id="apply_mageworx_reward_points" class="admin__control-checkbox" name="payment[apply_mageworx_reward_points]" type="checkbox" value="1" <?php if ($block->appliedRewardPoints()): ?>checked="checked"<?php endif; ?> /><label class="admin__field-label" for="apply_mageworx_reward_points"><?= /* @noEscape */ $block->getTitle() ?></label> <script>
+            require(['jquery'], function ($) {
+                'use strict';
+
+                function runPointSwitcher() {
+                    order.loadArea(
+                        ['totals', 'billing_method'],
+                        true,
+                        {'payment[use_reward_points]': Boolean($('#apply_mageworx_reward_points').prop('checked'))}
+                    );
+                }
+
+                $(window).on('load', function() {
+                    runPointSwitcher();
+                });
+
+                $('#apply_mageworx_reward_points').on('change', runPointSwitcher);
+            });</script></div><?php endif; ?>

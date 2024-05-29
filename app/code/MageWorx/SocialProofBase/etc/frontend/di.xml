@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="MageWorx\SocialProofBase\Model\CurrentEntityIdResolverFactory">
+        <arguments>
+            <argument name="map" xsi:type="array">
+                <item name="catalog_product_view" xsi:type="string">MageWorx\SocialProofBase\Model\CurrentEntityIdResolver\Product</item>
+                <item name="catalog_category_view" xsi:type="string">MageWorx\SocialProofBase\Model\CurrentEntityIdResolver\Category</item>
+                <item name="cms_index_index" xsi:type="string">MageWorx\SocialProofBase\Model\CurrentEntityIdResolver\CmsPage</item>
+                <item name="cms_page_view" xsi:type="string">MageWorx\SocialProofBase\Model\CurrentEntityIdResolver\CmsPage</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\SocialProofBase\Model\ConverterFactory">
+        <arguments>
+            <argument name="map" xsi:type="array">
+                <item name="recent-sales" xsi:type="string">MageWorx\SocialProofBase\Model\Converter\RecentSales</item>
+                <item name="views" xsi:type="string">MageWorx\SocialProofBase\Model\Converter\Views</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

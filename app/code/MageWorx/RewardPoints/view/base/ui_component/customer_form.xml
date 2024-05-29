@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <htmlContent name="customer_edit_tab_mageworx_reward_points_content">
+        <block class="MageWorx\RewardPoints\Block\Adminhtml\Customer\Edit\Tab\RewardPoints" name="customer_edit_tab_mageworx_rewardpoints" template="MageWorx_RewardPoints::customer/reward.phtml" />
+    </htmlContent>
+</form>

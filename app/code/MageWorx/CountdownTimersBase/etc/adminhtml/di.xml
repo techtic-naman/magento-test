@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="MageWorx\CountdownTimersBase\Controller\Adminhtml\CountdownTimer\MassDelete">
+        <arguments>
+            <argument name="successMessage" xsi:type="string" translate="true">A total of %1 Countdown Timers have been deleted.</argument>
+            <argument name="errorMessage" xsi:type="string" translate="true">An error occurred while deleting Countdown Timers.</argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\CountdownTimersBase\Controller\Adminhtml\CountdownTimer\MassEnable">
+        <arguments>
+            <argument name="successMessage" xsi:type="string" translate="true">A total of %1 Countdown Timers have been enabled.</argument>
+            <argument name="errorMessage" xsi:type="string" translate="true">An error occurred while enabling Countdown Timers.</argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\CountdownTimersBase\Controller\Adminhtml\CountdownTimer\MassDisable">
+        <arguments>
+            <argument name="successMessage" xsi:type="string" translate="true">A total of %1 Countdown Timers have been disabled.</argument>
+            <argument name="errorMessage" xsi:type="string" translate="true">An error occurred while disabling Countdown Timers.</argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\CountdownTimersBase\Ui\DataProvider\CountdownTimer\Form\CountdownTimerDataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">MageWorx\CountdownTimersBase\Ui\DataProvider\CountdownTimer\Form\Modifier\Pool</argument>
+        </arguments>
+    </type>
+    <virtualType name="MageWorx\CountdownTimersBase\Ui\DataProvider\CountdownTimer\Form\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+    </virtualType>
+</config>

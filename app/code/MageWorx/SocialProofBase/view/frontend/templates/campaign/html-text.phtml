@@ -1,0 +1,13 @@
+<?php
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+/** @var \MageWorx\SocialProofBase\Block\Campaign $block */
+?>
+<?php if ($block->isCanBeDisplayed()): ?>
+    <div id="mw-ss" role="dialog" tabindex="-1" style="display: none"
+         data-mage-init='{ "campaign-html-text": <?= /* @noEscape */ $block->getJsonConfig() ?> }'>
+    </div>
+<?php endif; ?>

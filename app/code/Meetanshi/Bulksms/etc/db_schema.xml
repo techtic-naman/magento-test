@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="mt_bulksms" resource="default" engine="innodb" comment="Meetanshi_Bulksms">
+        <column xsi:type="int" name="id" unsigned="true" identity="true" nullable="false" padding="255" comment="ID"/>
+        <column xsi:type="text" name="mobilenumber" nullable="false" comment="mobilenumber"/>
+        <column xsi:type="text" name="name" nullable="false" comment="name"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="customer_appointment_Index" indexType="fulltext">
+            <column name="mobilenumber"/>
+            <column name="name"/>
+        </index>
+    </table>
+
+    <table name="mt_smslog" resource="default" engine="innodb" comment="mt_smslog">
+        <column xsi:type="int" name="id" unsigned="true" identity="true" nullable="false" padding="255" comment="ID"/>
+        <column xsi:type="text" name="msg_sid" nullable="false" comment="msg_sid"/>
+        <column xsi:type="text" name="api_provider" nullable="false" comment="api_provider"/>
+        <column xsi:type="text" name="mobilenumber" nullable="false" comment="mobilenumber"/>
+        <column xsi:type="text" name="msg_status" nullable="false" comment="msg_status"/>
+        <column xsi:type="text" name="sms_text" nullable="false" comment="sms_text"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="customer_appointment_Index" indexType="fulltext">
+            <column name="msg_sid"/>
+            <column name="api_provider"/>
+            <column name="mobilenumber"/>
+            <column name="msg_status"/>
+            <column name="sms_text"/>
+        </index>
+    </table>
+
+    <table name="mt_campaign" resource="default" engine="innodb" comment="mt_campaign">
+        <column xsi:type="int" name="id" unsigned="true" identity="true" nullable="false" padding="255" comment="ID"/>
+        <column xsi:type="text" name="name" nullable="false" comment="name"/>
+        <column xsi:type="text" name="phonebook_id" nullable="false" comment="phonebook_id"/>
+        <column xsi:type="text" name="message" nullable="false" comment="message"/>
+        <column xsi:type="date" name="startdate" nullable="false" comment="startdate"/>
+        <column xsi:type="int" name="status" nullable="false" padding="255" comment="status"/>
+        <column xsi:type="int" name="hour" nullable="false" padding="255" comment="hour"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="customer_appointment_Index" indexType="fulltext">
+            <column name="name"/>
+            <column name="message"/>
+        </index>
+    </table>
+</schema>

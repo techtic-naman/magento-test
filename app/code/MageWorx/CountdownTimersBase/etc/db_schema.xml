@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="mageworx_countdowntimersbase_countdown_timer" resource="default" engine="innodb" comment="Countdown Timer Table">
+        <column xsi:type="int" name="countdown_timer_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Countdown Timer ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Countdown Timer Name"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Countdown Timer Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Countdown Timer Updated At"/>
+        <column xsi:type="int" name="status" padding="10" unsigned="true" nullable="true" identity="false" comment="Countdown Timer Status"/>
+        <column xsi:type="varchar" name="display_mode" nullable="false" length="100" comment="Countdown Timer Display Mode"/>
+        <column xsi:type="int" name="use_discount_dates" padding="10" unsigned="true" nullable="false" identity="false" comment="Use Discount Dates for Countdown Timer"/>
+        <column xsi:type="date" name="start_date" comment="Countdown Timer Start Date"/>
+        <column xsi:type="date" name="end_date" comment="Countdown Timer End Date"/>
+        <column xsi:type="smallint" name="priority" padding="5" unsigned="true" nullable="true" identity="false" comment="Countdown Timer Priority"/>
+        <column xsi:type="varchar" name="before_timer_text" nullable="false" length="255" comment="Before Countdown Timer Text"/>
+        <column xsi:type="varchar" name="after_timer_text" nullable="false" length="255" comment="After Countdown Timer Text"/>
+        <column xsi:type="varchar" name="theme" nullable="true" length="95" comment="Countdown Timer Theme"/>
+        <column xsi:type="smallint" name="accent" padding="5" unsigned="true" nullable="false" identity="false" comment="Countdown Timer Accent"/>
+        <column xsi:type="int" name="products_assign_type" padding="10" unsigned="true" nullable="false" identity="false" comment="Countdown Timer Products Assign Type"/>
+        <column xsi:type="mediumtext" name="conditions_serialized" nullable="true" comment="Countdown Timer Conditions Serialized"/>
+        <column xsi:type="boolean" name="display_on_categories" nullable="false" default="true" comment="Display Countdown Timer On Categories"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="countdown_timer_id"/>
+        </constraint>
+        <index referenceId="MAGEWORX_COUNTDOWNTIMERSBASE_COUNTDOWN_TIMER_NAME" indexType="fulltext">
+            <column name="name"/>
+        </index>
+    </table>
+    <table name="mageworx_countdowntimersbase_countdown_timer_store" resource="default" engine="innodb" comment="Countdown Timer To Store Linkage Table">
+        <column xsi:type="int" name="countdown_timer_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Countdown Timer ID"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false" comment="Store ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="countdown_timer_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="FK_FCA406D022944466E04E69CE2FF4B7CB" table="mageworx_countdowntimersbase_countdown_timer_store" column="countdown_timer_id" referenceTable="mageworx_countdowntimersbase_countdown_timer" referenceColumn="countdown_timer_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="FK_183C44A10517C62C070E1964592626FA" table="mageworx_countdowntimersbase_countdown_timer_store" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="MAGEWORX_COUNTDOWNTIMERSBASE_COUNTDOWN_TIMER_STORE_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+    <table name="mageworx_countdowntimersbase_countdown_timer_customer_group" resource="default" engine="innodb" comment="Countdown Timer To Customer Group Linkage Table">
+        <column xsi:type="int" name="countdown_timer_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Countdown Timer ID"/>
+        <column xsi:type="int" name="customer_group_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Customer Group ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="countdown_timer_id"/>
+            <column name="customer_group_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="FK_E04AB03E84E473987E61F8D4C25012FB" table="mageworx_countdowntimersbase_countdown_timer_customer_group" column="countdown_timer_id" referenceTable="mageworx_countdowntimersbase_countdown_timer" referenceColumn="countdown_timer_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="FK_C6C89A96A900DF563F49949DC5A46075" table="mageworx_countdowntimersbase_countdown_timer_customer_group" column="customer_group_id" referenceTable="customer_group" referenceColumn="customer_group_id" onDelete="CASCADE"/>
+        <index referenceId="IDX_A6E46941C76D72212864685CA21B5388" indexType="btree">
+            <column name="customer_group_id"/>
+        </index>
+    </table>
+    <table name="mageworx_countdowntimersbase_countdown_timer_product" resource="default" engine="innodb" comment="Countdown Timer To Product Linkage Table">
+        <column xsi:type="int" name="countdown_timer_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Countdown Timer ID"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Product ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="countdown_timer_id"/>
+            <column name="product_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="FK_A2CACC243D3C88503B293B7FFEEC7361" table="mageworx_countdowntimersbase_countdown_timer_product" column="countdown_timer_id" referenceTable="mageworx_countdowntimersbase_countdown_timer" referenceColumn="countdown_timer_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="FK_9B9F3461A50C488E65CFAF4B38AAA627" table="mageworx_countdowntimersbase_countdown_timer_product" column="product_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <index referenceId="MAGEWORX_COUNTDOWNTIMERSBASE_COUNTDOWN_TIMER_PRODUCT_PRODUCT_ID" indexType="btree">
+            <column name="product_id"/>
+        </index>
+    </table>
+    <table name="mageworx_countdowntimersbase_countdown_timer_template" resource="default" engine="innodb" comment="Countdown Timer Template Table">
+        <column xsi:type="smallint" name="template_id" padding="5" unsigned="true" nullable="false" identity="true" comment="Countdown Timer Template ID"/>
+        <column xsi:type="varchar" name="identifier" nullable="true" length="100" comment="Countdown Timer Template String Identifier"/>
+        <column xsi:type="varchar" name="title" nullable="true" length="255" comment="Countdown Timer Template Title"/>
+        <column xsi:type="varchar" name="theme" nullable="true" length="95" comment="Countdown Timer Template Theme"/>
+        <column xsi:type="smallint" name="accent" padding="5" unsigned="true" nullable="false" identity="false" comment="Countdown Timer Template Accent"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="template_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="MAGEWORX_COUNTDOWNTIMERSBASE_COUNTDOWN_TIMER_TEMPLATE_IDENTIFIER">
+            <column name="identifier"/>
+        </constraint>
+    </table>
+</schema>

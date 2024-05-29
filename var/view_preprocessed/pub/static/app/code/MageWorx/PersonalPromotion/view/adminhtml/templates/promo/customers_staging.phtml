@@ -1,0 +1,11 @@
+<?php /** * Copyright © 2018 MageWorx. All rights reserved. * See LICENSE.txt for license details. */ /** @var \MageWorx\PersonalPromotion\Block\Adminhtml\Promo\PromoCustomers $block */ /** @var \MageWorx\PersonalPromotion\Block\Adminhtml\Promo\Tab\Customers $blockGrid */ $blockGrid = $block->getBlockGrid(); $gridJsObjectName = $blockGrid->getJsObjectName(); ?> <?= $block->getGridHtml() ?> <input type="hidden" name="promo_customers_staging" id="in_promo_customers_staging" data-form-part="salesrulestaging_update_form" value="" /><script type="text/x-magento-init">
+    {
+        "*": {
+            "MageWorx_PersonalPromotion/promo/assign-customers": {
+                "namePromoCustomers":"in_promo_customers_staging",
+                "selectedCustomers": <?= /* @noEscape */ $block->getCustomersJson() ?>,
+                "gridJsObjectName": <?= '"' . $block->escapeJs($gridJsObjectName) . '"' ?: '{}' ?>
+            }
+        }
+    }</script><script>
+    require('mage/apply/main').apply();</script>

@@ -1,0 +1,54 @@
+<?php
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+?>
+<?php
+/**@var \MageWorx\RewardPoints\Block\Customer\Account\Transactions $block */
+
+$transactions = $block->getTransactions();
+?>
+<div class="block block-rewardpoint-transactions">
+    <div class="block-title">
+        <strong><?= $block->escapeHtml(__('Reward Points Transactions')) ?></strong>
+    </div>
+    <div class="block-content">
+        <?php if (!$transactions): ?>
+            <div class="message info empty"><span><?= $block->escapeHtml(__('No transactions detected.')) ?></span></div>
+        <?php else: ?>
+            <div class="table-wrapper rewardpoint-transactions">
+                <table class="data table table-rewardpoint-transactions">
+                    <caption class="table-caption"><?= $block->escapeHtml(__('Balance Transactions')) ?></caption>
+                    <thead>
+                    <tr>
+                        <th scope="col" class="col balance"><?= $block->escapeHtml(__('Balance')) ?></th>
+                        <th scope="col" class="col points"><?= $block->escapeHtml(__('Points')) ?></th>
+                        <th scope="col" class="col message"><?= $block->escapeHtml(__('Message')) ?></th>
+                        <th scope="col" class="col date"><?= $block->escapeHtml(__('Date')) ?></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($transactions as $transaction): ?>
+                        <tr>
+                            <td data-th="<?= $block->escapeHtmlAttr(__('Balance')) ?>" class="col balance">
+                                <?= $block->escapeHtml($block->getPointsBalance($transaction)) ?>
+                            </td>
+                            <td data-th="<?= $block->escapeHtmlAttr(__('Points')) ?>" class="col points">
+                                <?= $block->escapeHtml($block->getPointsDelta($transaction)) ?>
+                            </td>
+                            <td data-th="<?= $block->escapeHtmlAttr(__('Message')) ?>" class="col reason">
+                                <?= $block->escapeHtml($block->getMessage($transaction)) ?>
+                            </td>
+                            <td data-th="<?= $block->escapeHtmlAttr(__('Date')) ?>" class="col date">
+                                <?= $block->escapeHtml($block->getDate($transaction)) ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="reward-transactions-toolbar toolbar bottom"><?= $block->getChildHtml('pager') ?></div>
+        <?php endif; ?>
+    </div>
+</div>

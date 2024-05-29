@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\SalesRule\Model\RulesApplier">
+        <plugin name="mageworx_personalpromotion_rules_customer_validator"
+                type="MageWorx\PersonalPromotion\Plugin\RulesApplier"/>
+    </type>
+    <type name="MageWorx\PersonalPromotion\Model\Rule\Condition\PurchasedAmount">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="form_name" xsi:type="string">sales_rule_form</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\PersonalPromotion\Model\Rule\Condition\PurchasedSku">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="form_name" xsi:type="string">sales_rule_form</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

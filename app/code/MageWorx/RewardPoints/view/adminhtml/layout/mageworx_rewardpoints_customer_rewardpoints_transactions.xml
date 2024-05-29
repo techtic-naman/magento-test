@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <container name="adminhtml.reward.history.customer.edit.tab.container.test" label="Reward Points Transactions">
+        <block class="MageWorx\RewardPoints\Block\Adminhtml\Customer\Edit\Tab\RewardPoints\Transactions\Grid" name="adminhtml.reward.history.customer.edit.tab.grid" as="grid">
+            <arguments>
+                <argument name="id" xsi:type="string">rewardPointsTransactionsGrid</argument>
+                <argument name="dataSource" xsi:type="object">MageWorx\RewardPoints\Model\ResourceModel\PointTransaction\Grid\Collection</argument>
+                <argument name="use_ajax" xsi:type="string">1</argument>
+                <argument name="grid_url" xsi:type="url" path="*/*/transactions">
+                    <param name="_current">1</param>
+                </argument>
+            </arguments>
+            <block class="Magento\Backend\Block\Widget\Grid\ColumnSet" name="adminhtml.reward.history.customer.edit.tab.grid.columnSet" as="grid.columnSet">
+                <arguments>
+                    <argument name="rowUrl" xsi:type="array">
+                        <item name="path" xsi:type="string"/>
+                    </argument>
+                </arguments>
+                <block class="Magento\Backend\Block\Widget\Grid\Column" as="points_balance">
+                    <arguments>
+                        <argument name="header" xsi:type="string" translate="true">Balance</argument>
+                        <argument name="type" xsi:type="string">number</argument>
+                        <argument name="index" xsi:type="string">points_balance</argument>
+                        <argument name="sortable" xsi:type="string">0</argument>
+                        <argument name="filter" xsi:type="string">0</argument>
+                        <argument name="width" xsi:type="string">1</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Backend\Block\Widget\Grid\Column" as="points_delta">
+                    <arguments>
+                        <argument name="type" xsi:type="string">number</argument>
+                        <argument name="index" xsi:type="string">points_delta</argument>
+                        <argument name="header" xsi:type="string" translate="true">Points</argument>
+                        <argument name="sortable" xsi:type="string">0</argument>
+                        <argument name="filter" xsi:type="string">0</argument>
+                        <argument name="show_number_sign" xsi:type="string">1</argument>
+                        <argument name="width" xsi:type="string">1</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Backend\Block\Widget\Grid\Column\Multistore" as="website">
+                    <arguments>
+                        <argument name="header" xsi:type="string" translate="true">Website</argument>
+                        <argument name="type" xsi:type="string">options</argument>
+                        <argument name="options" xsi:type="options" model="MageWorx\RewardPoints\Model\Source\Website"/>
+                        <argument name="index" xsi:type="string">website_id</argument>
+                        <argument name="sortable" xsi:type="string">0</argument>
+                    </arguments>
+                </block>
+
+                <block class="Magento\Backend\Block\Widget\Grid\Column" as="message">
+                    <arguments>
+                        <argument name="index" xsi:type="string">message</argument>
+                        <argument name="header" xsi:type="string" translate="true">Event Message</argument>
+                        <argument name="type" xsi:type="string">text</argument>
+                        <argument name="sortable" xsi:type="string">0</argument>
+                        <argument name="filter" xsi:type="string">0</argument>
+                        <argument name="renderer" xsi:type="string">MageWorx\RewardPoints\Block\Adminhtml\Customer\Edit\Tab\RewardPoints\Transactions\Grid\Column\Renderer\Message</argument>
+                    </arguments>
+                </block>
+
+                <block class="Magento\Backend\Block\Widget\Grid\Column" as="created_at">
+                    <arguments>
+                        <argument name="type" xsi:type="string">datetime</argument>
+                        <argument name="index" xsi:type="string">created_at</argument>
+                        <argument name="header" xsi:type="string" translate="true">Created</argument>
+                        <argument name="sortable" xsi:type="string">0</argument>
+                        <argument name="align" xsi:type="string">left</argument>
+                    </arguments>
+                </block>
+            </block>
+        </block>
+    </container>
+</layout>

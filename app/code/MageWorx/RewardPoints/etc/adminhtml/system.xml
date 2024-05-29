@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="mageworx" sortOrder="2001">
+            <label>MageWorx</label>
+        </tab>
+        <!-- The config paths has additional dependence with \MageWorx\RewardPoints\Setup\InstallSchema and etc/email_templates.xml -->
+        <section id="mageworx_rewardpoints" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Reward Points</label>
+            <tab>mageworx</tab>
+            <resource>MageWorx_RewardPoints::config_rewardpoints</resource>
+            <group id="main" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Main Settings</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Enable]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="block_for_customer_points" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Static Block for "My Reward Points" Section]]></label>
+                    <source_model>MageWorx\RewardPoints\Model\Source\Block</source_model>
+                </field>
+                <field id="apply_points_to" translate="label comment" type="multiselect" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label><![CDATA[Cover with the points]]></label>
+                    <source_model>MageWorx\RewardPoints\Model\Source\ApplyFor</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="point_exchange_rate" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label><![CDATA[Points Exchange Rate]]></label>
+                    <validate>required-entry validate-greater-than-zero</validate>
+                    <backend_model>MageWorx\RewardPoints\Model\Config\Backend\Rate</backend_model>
+                    <comment>The cost of one Reward Point in the Website Base Currency. Use the dot symbol for a fractional number.</comment>
+                    <can_be_empty>0</can_be_empty>
+                </field>
+                <field id="allowed_customer_groups" translate="label comment" type="multiselect" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label><![CDATA[Assign to Customer Groups]]></label>
+                    <source_model>MageWorx\RewardPoints\Model\Source\CustomerGroup</source_model>
+                    <can_be_empty>0</can_be_empty>
+                </field>
+                <field id="allow_custom_amount" translate="label comment" type="select" sortOrder="64" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label><![CDATA[Allow Custom Points Amount]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[If enabled, your customers will be able to change amount of points they want to use in the orders.]]></comment>
+                </field>
+                <field id="is_return_points_on_refund" translate="label comment tooltip" type="select" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Annul the Received Points upon the Full Order Refund]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[This setting allows to return the points the customers receive for the orders in case of full order refund.]]></comment>
+                    <tooltip><![CDATA[I.e. if a customer received X points for placing an order, the X points will be deducted from the customer's balance if this order is refunded in full]]></tooltip>
+                </field>
+                <field id="is_return_points_on_cancellation" translate="label comment" type="select" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Return Spent Points in Case of Order Cancellation]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[If enabled, the points used by the customers to place an order will be credited back in case of order cancellation.]]></comment>
+                </field>
+                <field id="birthday_time_notification" translate="label" type="time" sortOrder="170" showInDefault="1">
+                    <label>Time of Day for Birthday Greetings</label>
+                    <backend_model>MageWorx\RewardPoints\Model\Config\Backend\CustomerBirthday\SetCronJob</backend_model>
+                </field>
+            </group>
+            <group id="marketing" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Marketing</label>
+                <field id="display_product_reward_promise_message" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Display Product Messages]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If enabled, the reward points message will be shown on the product pages.</comment>
+                </field>
+                <field id="product_reward_promise_message" translate="label comment" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Product Reward Message]]></label>
+                    <validate>required-entry</validate>
+                    <comment><![CDATA[This message will be shown on the product pages if the "Display Product Messages" is enabled and the product matches the reward rules.]]></comment>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="display_category_reward_promise_message" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Display Category Messages]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If enabled, the reward points message will be shown on the category pages.</comment>
+                </field>
+                <field id="category_reward_promise_message" translate="label comment" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Category Reward Message]]></label>
+                    <validate>required-entry</validate>
+                    <comment><![CDATA[This message will be shown on the category pages if the "Display Category Messages" is enabled and only for products matches the reward rules.]]></comment>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="display_upcoming_points_message" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Display Header Message]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If enabled, the customers will see the message with a number of points they will get if complete the order.</comment>
+                </field>
+                <field id="upcoming_points_message" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Header Message]]></label>
+                    <validate>required-entry</validate>
+                    <comment><![CDATA[The message will be shown in the header. The following variables are available: [p] - it will display the number of points the customer will receive if completing an order; [c] - it will display the reward value expressed in the store currency.]]></comment>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="display_minicart_point_balance_message" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Display Mini-cart Points Balance Message]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[If enabled, the customer's current points balance will be shown in the mini-cart (if supported by a theme).]]></comment>
+                </field>
+                <field id="minicart_point_balance_message" translate="label comment" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Mini-cart Balance Message]]></label>
+                    <validate>required-entry</validate>
+                    <comment><![CDATA[The message will be shown in the min-cart. The following variables are available: [p] - it will display the customer’s current balance expressed in the points; [c] - it will display the customer’s current balance expressed in the store currency.]]></comment>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="minicart_empty_point_balance_message" translate="label comment" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA["Zero Balance" Message for Mini-cart]]></label>
+                    <validate>required-entry</validate>
+                    <comment><![CDATA[The message will be shown in the min-cart if nothing is added to the cart yet.]]></comment>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="display_cart_upcoming_points_message" translate="label comment" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Display Cart Message]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If enabled, the customers will see the message with a number of points they will get if complete the order.</comment>
+                </field>
+                <field id="cart_upcoming_points_message" translate="label comment" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Cart Message]]></label>
+                    <validate>required-entry</validate>
+                    <comment><![CDATA[The message will be shown in the notice on checkout pages. The following variables are available: [p] - it will display the number of points the customer will receive if completing an order; [c] - it will display the reward value expressed in the store currency.]]></comment>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="display_checkout_upcoming_points_message" translate="label comment" type="select" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Display Checkout Message]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If enabled, the customers will see the message with a number of points they will get if complete the order.</comment>
+                </field>
+                <field id="checkout_upcoming_points_message" translate="label comment" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Checkout Message]]></label>
+                    <validate>required-entry</validate>
+                    <comment><![CDATA[The message will be shown in the notice on checkout pages. The following variables are available: [p] - it will display the number of points the customer will receive if completing an order; [c] - it will display the reward value expressed in the store currency.]]></comment>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="custom_amount_input_placeholder" translate="label comment" type="text" sortOrder="155" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Custom Points Input Placeholder]]></label>
+                    <comment><![CDATA[Message visible in the empty input field.]]></comment>
+                </field>
+                <field id="rss_enable" translate="label comment" type="select" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Add to RSS Feeds]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="use_comment_wrapper" translate="label comment" type="select" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Show Wrapper for Messages]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Add "Updated By" wrapper for manual update transactions' messages.]]></comment>
+                </field>
+            </group>
+            <group id="expiration_date" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Expiration Date Settings</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label><![CDATA[Enable Expiration Date]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="default_period_in_days" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label><![CDATA[Default Expiration Period (days)]]></label>
+                    <validate>required-entry validate-number validate-greater-than-zero</validate>
+                    <backend_model>MageWorx\RewardPoints\Model\Config\Backend\UpdateExpirationDates</backend_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <can_be_empty>0</can_be_empty>
+                </field>
+                <field id="update_dates_condition" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label><![CDATA[Update Existing Expiration Dates]]></label>
+                    <source_model>MageWorx\RewardPoints\Model\Source\ExpirationPeriodUpdate</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <comment>Update the existing reward points expiration dates if the "Default Expiration Period" is changed. Works only if the expiration dates functionality is enabled.</comment>
+                </field>
+                <field id="enable_notification" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label><![CDATA[Send Expiration Date Email]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="days_before_notification" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label><![CDATA[Notify Customers about Expiration Date]]></label>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="enable_notification">1</field>
+                    </depends>
+                    <validate>required-entry validate-number validate-greater-than-zero</validate>
+                    <can_be_empty>0</can_be_empty>
+                </field>
+            </group>
+            <group id="notification" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Email Settings</label>
+
+                <field id="sender_email_identity" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+
+                <!-- Setting path has dependence with \MageWorx\RewardPoints\Setup\InstallSchema and etc/email_templates.xml -->
+                <field id="default_email_template_update_points" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Default Email Template for Balance Change by Rules]]></label>
+                    <comment><![CDATA[The email template is chosen based on the theme fallback when the "Default" option is selected.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+
+                <!-- Setting path has dependence with etc/email_templates.xml -->
+                <field id="email_template_update_points_by_admin" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Email Template for Balance Change by Admin]]></label>
+                    <comment><![CDATA[The email template is chosen based on the theme fallback when the "Default" option is selected.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+
+                <!-- Setting path has dependence with etc/email_templates.xml -->
+                <field id="email_template_expiration_date" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Expiration Date Email Template]]></label>
+                    <comment><![CDATA[The email template is chosen based on the theme fallback when the "Default" option is selected.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

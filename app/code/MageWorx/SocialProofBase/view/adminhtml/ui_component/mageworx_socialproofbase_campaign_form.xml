@@ -1,0 +1,1387 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">mageworx_socialproofbase_campaign_form.campaign_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Campaign Information</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="MageWorx\SocialProofBase\Block\Adminhtml\Campaign\Edit\Buttons\Back"/>
+            <button name="delete" class="MageWorx\SocialProofBase\Block\Adminhtml\Campaign\Edit\Buttons\Delete"/>
+            <button name="reset" class="MageWorx\SocialProofBase\Block\Adminhtml\Campaign\Edit\Buttons\Reset"/>
+            <button name="save" class="MageWorx\SocialProofBase\Block\Adminhtml\Campaign\Edit\Buttons\Save"/>
+            <button name="save_and_continue" class="MageWorx\SocialProofBase\Block\Adminhtml\Campaign\Edit\Buttons\SaveAndContinue"/>
+        </buttons>
+        <namespace>mageworx_socialproofbase_campaign_form</namespace>
+        <dataScope>data</dataScope>
+        <layout>
+            <navContainerName>left</navContainerName>
+            <type>mageworx-socialproofbase-hidden-tabs</type>
+        </layout>
+        <deps>
+            <dep>mageworx_socialproofbase_campaign_form.campaign_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="campaign_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="mageworx_socialproofbase/campaign/save"/>
+        </settings>
+        <dataProvider class="MageWorx\SocialProofBase\Ui\DataProvider\Campaign\Form\CampaignDataProvider" name="campaign_form_data_source">
+            <settings>
+                <requestFieldName>campaign_id</requestFieldName>
+                <primaryFieldName>campaign_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="display-mode">
+        <settings>
+            <label translate="true">Display mode</label>
+            <dataScope>data</dataScope>
+        </settings>
+        <field name="display_mode" formElement="select" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">campaign</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Display mode</label>
+                <dataScope>display_mode</dataScope>
+                <switcherConfig>
+                    <rules>
+                        <rule name="0">
+                            <value>popup</value>
+                            <actions>
+                                <action name="0">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.design-position.design-position.position-wrapper</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="1">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.general.general.display_on</target>
+                                    <callback>enable</callback>
+                                </action>
+                                <action name="2">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.general.general.remove_verified</target>
+                                    <callback>show</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="1">
+                            <value>html-text</value>
+                            <actions>
+                                <action name="0">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.design-position.design-position.position-wrapper</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="1">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.general.general.display_on</target>
+                                    <callback>disable</callback>
+                                </action>
+                                <action name="2">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.general.general.display_on</target>
+                                    <callback>value</callback>
+                                    <params>
+                                        <param name="0" xsi:type="array">
+                                            <item name="0" xsi:type="string">product-pages</item>
+                                        </param>
+                                    </params>
+                                </action>
+                                <action name="3">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.general.general.remove_verified</target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                    </rules>
+                    <enabled>true</enabled>
+                </switcherConfig>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="MageWorx\SocialProofBase\Model\Source\Campaign\DisplayMode"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="event-type">
+        <settings>
+            <label translate="true">Event Type</label>
+            <dataScope>data</dataScope>
+        </settings>
+        <field name="event_type" formElement="select" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">campaign</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Event Type</label>
+                <dataScope>event_type</dataScope>
+                <switcherConfig>
+                    <rules>
+                        <rule name="0">
+                            <value>recent-sales</value>
+                            <actions>
+                                <action name="0">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.general.general.restrict_to_current_product</target>
+                                    <callback>enable</callback>
+                                </action>
+                                <action name="1">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.general.general.max_number_per_page</target>
+                                    <callback>enable</callback>
+                                </action>
+                                <action name="2">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.general.general.min_number_of_views</target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="1">
+                            <value>views</value>
+                            <actions>
+                                <action name="0">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.general.general.restrict_to_current_product</target>
+                                    <callback>disable</callback>
+                                </action>
+                                <action name="1">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.general.general.restrict_to_current_product</target>
+                                    <callback>value</callback>
+                                    <params>
+                                        <param name="0" xsi:type="string">1</param>
+                                    </params>
+                                </action>
+                                <action name="2">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.general.general.max_number_per_page</target>
+                                    <callback>disable</callback>
+                                </action>
+                                <action name="3">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.general.general.max_number_per_page</target>
+                                    <callback>value</callback>
+                                    <params>
+                                        <param name="0" xsi:type="string">1</param>
+                                    </params>
+                                </action>
+                                <action name="4">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.general.general.min_number_of_views</target>
+                                    <callback>show</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                    </rules>
+                    <enabled>true</enabled>
+                </switcherConfig>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="MageWorx\SocialProofBase\Model\Source\Campaign\EventType"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="general" sortOrder="10">
+        <settings>
+            <label translate="true">General</label>
+            <dataScope>data</dataScope>
+        </settings>
+        <field name="campaign_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">campaign</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>campaign_id</dataScope>
+            </settings>
+        </field>
+        <field name="name" formElement="input" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">campaign</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <dataScope>name</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="status" formElement="select" sortOrder="20">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">campaign</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Status</label>
+                <dataScope>status</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="MageWorx\SocialProofBase\Model\Source\Campaign\Status"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="store_ids" formElement="multiselect" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">campaign</item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>int</dataType>
+                <label translate="true">Store Views</label>
+                <dataScope>store_ids</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Magento\Cms\Ui\Component\Listing\Column\Cms\Options"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <field name="customer_group_ids" formElement="multiselect" sortOrder="40">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">campaign</item>
+                    <item name="default" xsi:type="null"/>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>int</dataType>
+                <label translate="true">Customer Groups</label>
+                <dataScope>customer_group_ids</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="MageWorx\SocialProofBase\Model\Source\CustomerGroup"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <field name="restrict_to_current_product" formElement="checkbox" sortOrder="50">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">campaign</item>
+                    <item name="component" xsi:type="string">MageWorx_SocialProofBase/js/campaign/form/element/restrict-to-current-product</item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="indexies" xsi:type="array">
+                        <item name="tabs" xsi:type="array">
+                            <item name="restrictions-fieldset" xsi:type="string">restrictions</item>
+                        </item>
+                        <item name="navTabsObj" xsi:type="string">sections</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Restrict to current product</label>
+                <dataScope>restrict_to_current_product</dataScope>
+                <switcherConfig>
+                    <rules>
+                        <rule name="0">
+                            <value>0</value>
+                            <actions>
+                                <action name="0">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.general.general.display_on</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="1">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.general.general.restrict_to_current_product</target>
+                                    <callback>changeVisibilityOfDependentTabs</callback>
+                                    <params>
+                                        <param name="0" xsi:type="string">0</param>
+                                    </params>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="1">
+                            <value>1</value>
+                            <actions>
+                                <action name="0">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.general.general.display_on</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="1">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.general.general.restrict_to_current_product</target>
+                                    <callback>changeVisibilityOfDependentTabs</callback>
+                                    <params>
+                                        <param name="0" xsi:type="string">1</param>
+                                    </params>
+                                </action>
+                            </actions>
+                        </rule>
+                    </rules>
+                    <enabled>true</enabled>
+                </switcherConfig>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="period" formElement="input" sortOrder="60">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">campaign</item>
+                    <item name="notice" xsi:type="string" translate="true">Period in days during which a recent sale or views activity should be checked.</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Period</label>
+                <dataScope>period</dataScope>
+                <validation>
+                    <rule name="validate-digits" xsi:type="boolean">true</rule>
+                    <rule name="validate-digits-range" xsi:type="string">0-999</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="start_delay" formElement="input" sortOrder="70">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">campaign</item>
+                    <item name="notice" xsi:type="string" translate="true">A delay in seconds after page loading to display a pop-up or HTML text block.</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Start Delay</label>
+                <dataScope>start_delay</dataScope>
+                <validation>
+                    <rule name="validate-digits" xsi:type="boolean">true</rule>
+                    <rule name="validate-digits-range" xsi:type="string">0-86400</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="auto_close_in" formElement="input" sortOrder="80">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">campaign</item>
+                    <item name="notice" xsi:type="string" translate="true">Time in seconds, when a pop-up or HTML text block will be closed/hided automatically.</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Auto Close in</label>
+                <dataScope>auto_close_in</dataScope>
+                <validation>
+                    <rule name="validate-digits" xsi:type="boolean">true</rule>
+                    <rule name="validate-digits-range" xsi:type="string">0-86400</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="min_number_of_views" formElement="input" sortOrder="90">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">campaign</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Min Number Of Views</label>
+                <dataScope>min_number_of_views</dataScope>
+                <validation>
+                    <rule name="validate-digits" xsi:type="boolean">true</rule>
+                    <rule name="validate-digits-range" xsi:type="string">0-999</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="max_number_per_page" formElement="input" sortOrder="100">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">campaign</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Max Number of Pop-ups per Page Load</label>
+                <dataScope>max_number_per_page</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-digits" xsi:type="boolean">true</rule>
+                    <rule name="validate-digits-range" xsi:type="string">1-999</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="display_on" formElement="multiselect" sortOrder="110">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">campaign</item>
+                    <item name="component" xsi:type="string">MageWorx_SocialProofBase/js/campaign/form/element/display-on</item>
+                    <item name="default" xsi:type="null"/>
+                    <item name="indexies" xsi:type="array">
+                        <item name="tabs" xsi:type="array">
+                            <item name="display-on-products-fieldset" xsi:type="string">display-on-products</item>
+                            <item name="display-on-categories-fieldset" xsi:type="string">display-on-categories</item>
+                            <item name="display-on-cms-pages-fieldset" xsi:type="string">display-on-cms-pages</item>
+                        </item>
+                        <item name="restrict_to_current_product" xsi:type="string">restrict_to_current_product</item>
+                        <item name="navTabsObj" xsi:type="string">sections</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>int</dataType>
+                <label translate="true">Display On</label>
+                <dataScope>display_on</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="MageWorx\SocialProofBase\Model\Source\Campaign\DisplayOn"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <field name="display_on_mobile" formElement="checkbox" sortOrder="120">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">campaign</item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="additionalInfo" xsi:type="string" translate="true"><![CDATA[To use this feature the '<a target="_blank" href="https://packagist.org/packages/matomo/device-detector">matomo/device-detector</a>' module should be installed. See the user guide for more details.]]></item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Display On Mobile</label>
+                <dataScope>display_on_mobile</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="priority" formElement="input" sortOrder="130">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">campaign</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Priority</label>
+                <dataScope>priority</dataScope>
+                <validation>
+                    <rule name="validate-digits" xsi:type="boolean">true</rule>
+                    <rule name="validate-digits-range" xsi:type="string">0-65535</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="remove_verified" formElement="checkbox" sortOrder="140">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">campaign</item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Remove "Verified by MageWorx"</label>
+                <dataScope>remove_verified</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="display-on-products" sortOrder="20">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="visibleValue" xsi:type="string">product-pages</item>
+            </item>
+        </argument>
+        <settings>
+            <label translate="true">Display On (Products)</label>
+            <dataScope>data</dataScope>
+        </settings>
+        <field name="products_assign_type" formElement="select" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">campaign</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Assign Type</label>
+                <dataScope>products_assign_type</dataScope>
+                <switcherConfig>
+                    <rules>
+                        <rule name="0">
+                            <value>1</value>
+                            <actions>
+                                <action name="0">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.display-on-products.display-on-products.specific-products</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="1">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.display-on-products.display-on-products.display_on_products_conditions_wrapper</target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="1">
+                            <value>2</value>
+                            <actions>
+                                <action name="0">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.display-on-products.display-on-products.specific-products</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="1">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.display-on-products.display-on-products.display_on_products_conditions_wrapper</target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="2">
+                            <value>3</value>
+                            <actions>
+                                <action name="0">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.display-on-products.display-on-products.specific-products</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="1">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.display-on-products.display-on-products.display_on_products_conditions_wrapper</target>
+                                    <callback>show</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                    </rules>
+                    <enabled>true</enabled>
+                </switcherConfig>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="MageWorx\SocialProofBase\Model\Source\Campaign\Products\AssignType"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <fieldset name="specific-products" sortOrder="20">
+            <argument name="data" xsi:type="array">
+                <item name="dataScope" xsi:type="string"/>
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">MageWorx_SocialProofBase/js/campaign/form/element/fieldset-with-changing-visibility</item>
+                </item>
+            </argument>
+            <settings>
+                <collapsible>false</collapsible>
+                <label translate="true">Specific products</label>
+            </settings>
+            <container name="button_set" sortOrder="10">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="boolean">false</item>
+                        <item name="template" xsi:type="string">ui/form/components/complex</item>
+                    </item>
+                </argument>
+                <container name="add_products_button" component="Magento_Ui/js/form/components/button">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="formElement" xsi:type="string">container</item>
+                            <item name="title" xsi:type="string" translate="true">Add Products</item>
+                            <item name="provider" xsi:type="string">null</item>
+                            <item name="actions" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">mageworx_socialproofbase_campaign_form.areas.display-on-products.display-on-products.specific-products.add_products_modal</item>
+                                    <item name="actionName" xsi:type="string">toggleModal</item>
+                                </item>
+                                <item name="1" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">mageworx_socialproofbase_campaign_form.areas.display-on-products.display-on-products.specific-products.add_products_modal.mageworx_socialproofbase_campaign_form_product_listing</item>
+                                    <item name="actionName" xsi:type="string">render</item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </container>
+            </container>
+            <modal name="add_products_modal" sortOrder="20">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="options" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Add Products</item>
+                            <item name="buttons" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="text" xsi:type="string" translate="true">Cancel</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="string">closeModal</item>
+                                    </item>
+                                </item>
+                                <item name="1" xsi:type="array">
+                                    <item name="text" xsi:type="string" translate="true">Add Selected Products</item>
+                                    <item name="class" xsi:type="string">action-primary</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="array">
+                                            <item name="targetName" xsi:type="string">index = mageworx_socialproofbase_campaign_form_product_listing</item>
+                                            <item name="actionName" xsi:type="string">save</item>
+                                        </item>
+                                        <item name="1" xsi:type="string">closeModal</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+                <insertListing name="mageworx_socialproofbase_campaign_form_product_listing">
+                    <settings>
+                        <autoRender>false</autoRender>
+                        <dataScope>mageworx_socialproofbase_campaign_form_product_listing</dataScope>
+                        <ns>mageworx_socialproofbase_campaign_form_product_listing</ns>
+                        <externalProvider>mageworx_socialproofbase_campaign_form_product_listing.mageworx_socialproofbase_campaign_form_product_listing_data_source</externalProvider>
+                        <selectionsProvider>mageworx_socialproofbase_campaign_form_product_listing.mageworx_socialproofbase_campaign_form_product_listing.product_columns.ids</selectionsProvider>
+                        <dataLinks>
+                            <imports>false</imports>
+                            <exports>true</exports>
+                        </dataLinks>
+                        <externalFilterMode>true</externalFilterMode>
+                        <realTimeLink>true</realTimeLink>
+                        <behaviourType>simple</behaviourType>
+                    </settings>
+                </insertListing>
+            </modal>
+            <dynamicRows name="product_ids" component="Magento_Ui/js/dynamic-rows/dynamic-rows-grid" sortOrder="30">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="additionalClasses" xsi:type="string">admin__field-wide</item>
+                        <item name="columnsHeader" xsi:type="boolean">false</item>
+                        <item name="columnsHeaderAfterRender" xsi:type="boolean">true</item>
+                        <item name="renderDefaultRecord" xsi:type="boolean">false</item>
+                        <item name="template" xsi:type="string">ui/dynamic-rows/templates/grid</item>
+                        <item name="deleteButtonLabel" xsi:type="string" translate="true">Remove</item>
+                        <item name="dataScope" xsi:type="string"/>
+                        <item name="dataProvider" xsi:type="string">data.specific-products.add_products_modal.mageworx_socialproofbase_campaign_form_product_listing</item>
+                        <item name="map" xsi:type="array">
+                            <item name="id" xsi:type="string">entity_id</item>
+                            <item name="name" xsi:type="string">name</item>
+                            <item name="status" xsi:type="string">status_text</item>
+                            <item name="attribute_set" xsi:type="string">attribute_set_text</item>
+                            <item name="sku" xsi:type="string">sku</item>
+                            <item name="price" xsi:type="string">price</item>
+                            <item name="thumbnail" xsi:type="string">thumbnail_src</item>
+                        </item>
+                    </item>
+                </argument>
+                <settings>
+                    <addButton>false</addButton>
+                    <recordTemplate>record</recordTemplate>
+                    <links>
+                        <link name="insertData">${ $.provider }:${ $.dataProvider }</link>
+                    </links>
+                </settings>
+                <container name="record" component="Magento_Ui/js/dynamic-rows/record">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="isTemplate" xsi:type="boolean">true</item>
+                            <item name="is_collection" xsi:type="boolean">true</item>
+                            <item name="dataScope" xsi:type="string"/>
+                        </item>
+                    </argument>
+                    <field name="id" formElement="input" sortOrder="0">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="elementTmpl" xsi:type="string">ui/dynamic-rows/cells/text</item>
+                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/text</item>
+                                <item name="fit" xsi:type="boolean">false</item>
+                            </item>
+                        </argument>
+                        <settings>
+                            <dataType>text</dataType>
+                            <dataScope>id</dataScope>
+                            <label translate="true">ID</label>
+                        </settings>
+                    </field>
+                    <field name="thumbnail" formElement="input" sortOrder="10">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="elementTmpl" xsi:type="string">ui/dynamic-rows/cells/thumbnail</item>
+                                <item name="fit" xsi:type="boolean">true</item>
+                            </item>
+                        </argument>
+                        <settings>
+                            <dataType>text</dataType>
+                            <dataScope>thumbnail</dataScope>
+                            <label translate="true">Thumbnail</label>
+                        </settings>
+                    </field>
+                    <field name="name" formElement="input" sortOrder="20">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="elementTmpl" xsi:type="string">ui/dynamic-rows/cells/text</item>
+                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/text</item>
+                                <item name="fit" xsi:type="boolean">false</item>
+                            </item>
+                        </argument>
+                        <settings>
+                            <dataType>text</dataType>
+                            <dataScope>name</dataScope>
+                            <label translate="true">Name</label>
+                        </settings>
+                    </field>
+                    <field name="status" formElement="input" sortOrder="30">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="elementTmpl" xsi:type="string">ui/dynamic-rows/cells/text</item>
+                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/text</item>
+                                <item name="fit" xsi:type="boolean">true</item>
+                            </item>
+                        </argument>
+                        <settings>
+                            <dataType>text</dataType>
+                            <dataScope>status</dataScope>
+                            <label translate="true">Status</label>
+                        </settings>
+                    </field>
+                    <field name="attribute_set" formElement="input" sortOrder="40">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="elementTmpl" xsi:type="string">ui/dynamic-rows/cells/text</item>
+                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/text</item>
+                                <item name="fit" xsi:type="boolean">false</item>
+                            </item>
+                        </argument>
+                        <settings>
+                            <dataType>text</dataType>
+                            <dataScope>attribute_set</dataScope>
+                            <label translate="true">Attribute Set</label>
+                        </settings>
+                    </field>
+                    <field name="sku" formElement="input" sortOrder="50">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="elementTmpl" xsi:type="string">ui/dynamic-rows/cells/text</item>
+                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/text</item>
+                                <item name="fit" xsi:type="boolean">true</item>
+                            </item>
+                        </argument>
+                        <settings>
+                            <dataType>text</dataType>
+                            <dataScope>sku</dataScope>
+                            <label translate="true">SKU</label>
+                        </settings>
+                    </field>
+                    <field name="price" formElement="input" sortOrder="60">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="elementTmpl" xsi:type="string">ui/dynamic-rows/cells/text</item>
+                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/text</item>
+                                <item name="fit" xsi:type="boolean">true</item>
+                            </item>
+                        </argument>
+                        <settings>
+                            <dataType>text</dataType>
+                            <dataScope>price</dataScope>
+                            <label translate="true">Price</label>
+                        </settings>
+                    </field>
+                    <field name="actionDelete" formElement="actionDelete" sortOrder="70">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="additionalClasses" xsi:type="string">data-grid-actions-cell</item>
+                                <item name="fit" xsi:type="boolean">true</item>
+                            </item>
+                        </argument>
+                        <settings>
+                            <dataType>text</dataType>
+                            <dataScope>actionDelete</dataScope>
+                            <label translate="true">Actions</label>
+                        </settings>
+                    </field>
+                </container>
+            </dynamicRows>
+        </fieldset>
+        <htmlContent name="display_on_products_conditions_wrapper" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">MageWorx_SocialProofBase/js/campaign/form/element/html-with-changing-visibility</item>
+                </item>
+            </argument>
+            <block class="MageWorx\SocialProofBase\Block\Adminhtml\Campaign\DisplayOnProducts\Conditions" name="display_on_products_conditions_block"/>
+        </htmlContent>
+    </fieldset>
+    <fieldset name="display-on-categories" sortOrder="30">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="visibleValue" xsi:type="string">category-pages</item>
+            </item>
+        </argument>
+        <settings>
+            <label translate="true">Display On (Categories)</label>
+            <dataScope>data</dataScope>
+        </settings>
+        <field name="categories_assign_type" formElement="select" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">campaign</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Assign Type</label>
+                <dataScope>categories_assign_type</dataScope>
+                <switcherConfig>
+                    <rules>
+                        <rule name="0">
+                            <value>1</value>
+                            <actions>
+                                <action name="0">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.display-on-categories.display-on-categories.category_ids</target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="1">
+                            <value>2</value>
+                            <actions>
+                                <action name="0">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.display-on-categories.display-on-categories.category_ids</target>
+                                    <callback>show</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                    </rules>
+                    <enabled>true</enabled>
+                </switcherConfig>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="MageWorx\SocialProofBase\Model\Source\Campaign\Categories\AssignType"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="category_ids" formElement="select" sortOrder="20">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">campaign</item>
+                    <item name="component" xsi:type="string">Magento_Catalog/js/components/new-category</item>
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="chipsEnabled" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="levelsVisibility" xsi:type="string">1</item>
+                    <item name="elementTmpl" xsi:type="string">ui/grid/filters/elements/ui-select</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Categories</label>
+                <dataScope>category_ids</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="MageWorx\SocialProofBase\Model\Source\CategoriesTree"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="display-on-cms-pages" sortOrder="40">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="visibleValue" xsi:type="string">cms-pages</item>
+            </item>
+        </argument>
+        <settings>
+            <label translate="true">Display On (CMS Pages)</label>
+            <dataScope>data</dataScope>
+        </settings>
+        <field name="cms_pages_assign_type" formElement="select" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">campaign</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Assign Type</label>
+                <dataScope>cms_pages_assign_type</dataScope>
+                <switcherConfig>
+                    <rules>
+                        <rule name="0">
+                            <value>1</value>
+                            <actions>
+                                <action name="0">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.display-on-cms-pages.display-on-cms-pages.specific-cms-pages</target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="1">
+                            <value>2</value>
+                            <actions>
+                                <action name="0">
+                                    <target>mageworx_socialproofbase_campaign_form.areas.display-on-cms-pages.display-on-cms-pages.specific-cms-pages</target>
+                                    <callback>show</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                    </rules>
+                    <enabled>true</enabled>
+                </switcherConfig>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="MageWorx\SocialProofBase\Model\Source\Campaign\CmsPages\AssignType"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <fieldset name="specific-cms-pages" sortOrder="20">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">MageWorx_SocialProofBase/js/campaign/form/element/fieldset-with-changing-visibility</item>
+                </item>
+            </argument>
+            <settings>
+                <collapsible>false</collapsible>
+                <label translate="true">Specific pages</label>
+            </settings>
+            <container name="button_set" sortOrder="10">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="boolean">false</item>
+                        <item name="template" xsi:type="string">ui/form/components/complex</item>
+                    </item>
+                </argument>
+                <container name="add_cms_pages_button" component="Magento_Ui/js/form/components/button">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="formElement" xsi:type="string">container</item>
+                            <item name="title" xsi:type="string" translate="true">Add Pages</item>
+                            <item name="provider" xsi:type="string">null</item>
+                            <item name="actions" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">mageworx_socialproofbase_campaign_form.areas.display-on-cms-pages.display-on-cms-pages.specific-cms-pages.add_cms_pages_modal</item>
+                                    <item name="actionName" xsi:type="string">toggleModal</item>
+                                </item>
+                                <item name="1" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">mageworx_socialproofbase_campaign_form.areas.display-on-cms-pages.display-on-cms-pages.specific-cms-pages.add_cms_pages_modal.mageworx_socialproofbase_campaign_form_cms_page_listing</item>
+                                    <item name="actionName" xsi:type="string">render</item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </container>
+            </container>
+            <modal name="add_cms_pages_modal" sortOrder="20">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="options" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Add Pages</item>
+                            <item name="buttons" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="text" xsi:type="string" translate="true">Cancel</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="string">closeModal</item>
+                                    </item>
+                                </item>
+                                <item name="1" xsi:type="array">
+                                    <item name="text" xsi:type="string" translate="true">Add Selected Pages</item>
+                                    <item name="class" xsi:type="string">action-primary</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="array">
+                                            <item name="targetName" xsi:type="string">index = mageworx_socialproofbase_campaign_form_cms_page_listing</item>
+                                            <item name="actionName" xsi:type="string">save</item>
+                                        </item>
+                                        <item name="1" xsi:type="string">closeModal</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+                <insertListing name="mageworx_socialproofbase_campaign_form_cms_page_listing">
+                    <settings>
+                        <autoRender>false</autoRender>
+                        <dataScope>mageworx_socialproofbase_campaign_form_cms_page_listing</dataScope>
+                        <ns>mageworx_socialproofbase_campaign_form_cms_page_listing</ns>
+                        <externalProvider>mageworx_socialproofbase_campaign_form_cms_page_listing.mageworx_socialproofbase_campaign_form_cms_page_listing_data_source</externalProvider>
+                        <selectionsProvider>mageworx_socialproofbase_campaign_form_cms_page_listing.mageworx_socialproofbase_campaign_form_cms_page_listing.cms_page_columns.ids</selectionsProvider>
+                        <dataLinks>
+                            <imports>false</imports>
+                            <exports>true</exports>
+                        </dataLinks>
+                        <externalFilterMode>true</externalFilterMode>
+                        <realTimeLink>true</realTimeLink>
+                        <behaviourType>simple</behaviourType>
+                    </settings>
+                </insertListing>
+            </modal>
+            <dynamicRows name="cms_page_ids" component="Magento_Ui/js/dynamic-rows/dynamic-rows-grid" sortOrder="30">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="additionalClasses" xsi:type="string">admin__field-wide</item>
+                        <item name="columnsHeader" xsi:type="boolean">false</item>
+                        <item name="columnsHeaderAfterRender" xsi:type="boolean">true</item>
+                        <item name="renderDefaultRecord" xsi:type="boolean">false</item>
+                        <item name="template" xsi:type="string">ui/dynamic-rows/templates/grid</item>
+                        <item name="deleteButtonLabel" xsi:type="string" translate="true">Remove</item>
+                        <item name="dataScope" xsi:type="string"/>
+                        <item name="dataProvider" xsi:type="string">data.specific-cms-pages.add_cms_pages_modal.mageworx_socialproofbase_campaign_form_cms_page_listing</item>
+                        <item name="map" xsi:type="array">
+                            <item name="id" xsi:type="string">page_id</item>
+                            <item name="title" xsi:type="string">title</item>
+                            <item name="identifier" xsi:type="string">identifier</item>
+                            <item name="is_active" xsi:type="string">is_active</item>
+                            <item name="creation_time" xsi:type="string">creation_time</item>
+                            <item name="update_time" xsi:type="string">update_time</item>
+                        </item>
+                    </item>
+                </argument>
+                <settings>
+                    <addButton>false</addButton>
+                    <recordTemplate>record</recordTemplate>
+                    <links>
+                        <link name="insertData">${ $.provider }:${ $.dataProvider }</link>
+                    </links>
+                </settings>
+                <container name="record" component="Magento_Ui/js/dynamic-rows/record">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="isTemplate" xsi:type="boolean">true</item>
+                            <item name="is_collection" xsi:type="boolean">true</item>
+                            <item name="dataScope" xsi:type="string"/>
+                        </item>
+                    </argument>
+                    <field name="id" formElement="input" sortOrder="0">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="elementTmpl" xsi:type="string">ui/dynamic-rows/cells/text</item>
+                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/text</item>
+                                <item name="fit" xsi:type="boolean">false</item>
+                            </item>
+                        </argument>
+                        <settings>
+                            <dataType>text</dataType>
+                            <dataScope>id</dataScope>
+                            <label translate="true">ID</label>
+                        </settings>
+                    </field>
+                    <field name="title" formElement="input" sortOrder="10">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="elementTmpl" xsi:type="string">ui/dynamic-rows/cells/text</item>
+                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/text</item>
+                                <item name="fit" xsi:type="boolean">false</item>
+                            </item>
+                        </argument>
+                        <settings>
+                            <dataType>text</dataType>
+                            <dataScope>title</dataScope>
+                            <label translate="true">Title</label>
+                        </settings>
+                    </field>
+                    <field name="identifier" formElement="input" sortOrder="20">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="elementTmpl" xsi:type="string">ui/dynamic-rows/cells/text</item>
+                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/text</item>
+                                <item name="fit" xsi:type="boolean">false</item>
+                            </item>
+                        </argument>
+                        <settings>
+                            <dataType>text</dataType>
+                            <dataScope>identifier</dataScope>
+                            <label translate="true">URL Key</label>
+                        </settings>
+                    </field>
+                    <field name="is_active" formElement="input" sortOrder="30">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="elementTmpl" xsi:type="string">ui/dynamic-rows/cells/text</item>
+                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/text</item>
+                                <item name="fit" xsi:type="boolean">true</item>
+                            </item>
+                        </argument>
+                        <settings>
+                            <dataType>text</dataType>
+                            <dataScope>is_active</dataScope>
+                            <label translate="true">Status</label>
+                        </settings>
+                    </field>
+                    <field name="creation_time" formElement="input" sortOrder="40">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="elementTmpl" xsi:type="string">ui/dynamic-rows/cells/text</item>
+                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/text</item>
+                                <item name="fit" xsi:type="boolean">false</item>
+                            </item>
+                        </argument>
+                        <settings>
+                            <dataType>text</dataType>
+                            <dataScope>creation_time</dataScope>
+                            <label translate="true">Created</label>
+                        </settings>
+                    </field>
+                    <field name="update_time" formElement="input" sortOrder="50">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="elementTmpl" xsi:type="string">ui/dynamic-rows/cells/text</item>
+                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/text</item>
+                                <item name="fit" xsi:type="boolean">false</item>
+                            </item>
+                        </argument>
+                        <settings>
+                            <dataType>text</dataType>
+                            <dataScope>update_time</dataScope>
+                            <label translate="true">Modified</label>
+                        </settings>
+                    </field>
+                    <field name="actionDelete" formElement="actionDelete" sortOrder="60">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="additionalClasses" xsi:type="string">data-grid-actions-cell</item>
+                                <item name="fit" xsi:type="boolean">true</item>
+                            </item>
+                        </argument>
+                        <settings>
+                            <dataType>text</dataType>
+                            <dataScope>actionDelete</dataScope>
+                            <label translate="true">Actions</label>
+                        </settings>
+                    </field>
+                </container>
+            </dynamicRows>
+        </fieldset>
+    </fieldset>
+    <fieldset name="restrictions" sortOrder="50">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="visibleValue" xsi:type="string">0</item>
+            </item>
+        </argument>
+        <settings>
+            <label translate="true">Restrictions</label>
+            <dataScope>data</dataScope>
+        </settings>
+        <htmlContent name="restriction_conditions_wrapper" sortOrder="10">
+            <block class="MageWorx\SocialProofBase\Block\Adminhtml\Campaign\Restriction\Conditions" name="restriction_conditions_block"/>
+        </htmlContent>
+    </fieldset>
+    <fieldset name="design-position" sortOrder="60">
+        <settings>
+            <label translate="true"><![CDATA[Design & Position]]></label>
+            <dataScope>data</dataScope>
+            <additionalClasses>
+                <class name="design-position">true</class>
+            </additionalClasses>
+        </settings>
+        <fieldset name="position-wrapper" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">MageWorx_SocialProofBase/js/campaign/form/element/fieldset-with-changing-visibility</item>
+                </item>
+            </argument>
+            <settings>
+                <collapsible>true</collapsible>
+                <label translate="true">Position</label>
+                <additionalClasses>
+                    <class name="position-wrapper">true</class>
+                </additionalClasses>
+            </settings>
+            <field name="position" sortOrder="10">
+                <argument name="data" xsi:type="array">
+                    <item name="options" xsi:type="object">MageWorx\SocialProofBase\Model\Source\Campaign\Position</item>
+                    <item name="config" xsi:type="array">
+                        <item name="sortOrder" xsi:type="number">10</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">radioset</item>
+                        <item name="label" xsi:type="string"/>
+                        <item name="source" xsi:type="string">campaign</item>
+                        <item name="value" xsi:type="string">bottom-left</item>
+                    </item>
+                </argument>
+            </field>
+        </fieldset>
+        <fieldset name="templates" sortOrder="20">
+            <settings>
+                <collapsible>true</collapsible>
+                <label translate="true">Templates</label>
+                <additionalClasses>
+                    <class name="templates">true</class>
+                </additionalClasses>
+            </settings>
+            <container name="button_set" sortOrder="10">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="boolean">false</item>
+                        <item name="template" xsi:type="string">ui/form/components/complex</item>
+                    </item>
+                </argument>
+                <container name="load_template_button" component="Magento_Ui/js/form/components/button">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="formElement" xsi:type="string">container</item>
+                            <item name="title" xsi:type="string" translate="true">Templates</item>
+                            <item name="provider" xsi:type="string">null</item>
+                            <item name="actions" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">mageworx_socialproofbase_campaign_form.areas.design-position.design-position.templates.load_template_modal</item>
+                                    <item name="actionName" xsi:type="string">toggleModal</item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </container>
+            </container>
+            <modal name="load_template_modal" sortOrder="20">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="component" xsi:type="string">MageWorx_SocialProofBase/js/campaign/modal/load-template-modal</item>
+                        <item name="indexies" xsi:type="array">
+                            <item name="template" xsi:type="string">template</item>
+                            <item name="content" xsi:type="string">content</item>
+                        </item>
+                        <item name="getTemplateHtmlUrl" xsi:type="url" path="mageworx_socialproofbase/campaign/getTemplateHtml">
+                            <param name="_nosid">1</param>
+                        </item>
+                        <item name="options" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Templates</item>
+                            <item name="modalClass" xsi:type="string" translate="true">load-template-modal</item>
+                            <item name="buttons" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="text" xsi:type="string" translate="true">Cancel</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="string">closeModal</item>
+                                    </item>
+                                </item>
+                                <item name="1" xsi:type="array">
+                                    <item name="text" xsi:type="string" translate="true">Load Template</item>
+                                    <item name="class" xsi:type="string">action-primary</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="string">loadTemplate</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+                <fieldset name="template_wrapper" sortOrder="10">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="label" xsi:type="string"/>
+                        </item>
+                    </argument>
+                    <settings>
+                        <additionalClasses>
+                            <class name="template-wrapper">true</class>
+                        </additionalClasses>
+                    </settings>
+                    <field name="template" sortOrder="10">
+                        <argument name="data" xsi:type="array">
+                            <item name="options" xsi:type="object">MageWorx\SocialProofBase\Model\Source\Campaign\Template</item>
+                            <item name="config" xsi:type="array">
+                                <item name="component" xsi:type="string">MageWorx_SocialProofBase/js/campaign/form/element/template-radioset</item>
+                                <item name="template" xsi:type="string">MageWorx_SocialProofBase/form/element/template-radioset</item>
+                                <item name="indexies" xsi:type="array">
+                                    <item name="display_mode" xsi:type="string">display_mode</item>
+                                    <item name="event_type" xsi:type="string">event_type</item>
+                                </item>
+                                <item name="sortOrder" xsi:type="number">10</item>
+                                <item name="dataType" xsi:type="string">text</item>
+                                <item name="formElement" xsi:type="string">radioset</item>
+                                <item name="label" xsi:type="string"/>
+                                <item name="source" xsi:type="string">campaign</item>
+                            </item>
+                        </argument>
+                    </field>
+                </fieldset>
+            </modal>
+            <field name="content" sortOrder="30">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="formElement" xsi:type="string">wysiwyg</item>
+                        <item name="source" xsi:type="string">campaign</item>
+                        <item name="label" xsi:type="string">Content</item>
+                        <item name="template" xsi:type="string">ui/form/field</item>
+                        <item name="wysiwyg" xsi:type="boolean">true</item>
+                        <item name="wysiwygConfigData" xsi:type="array">
+                            <item name="is_pagebuilder_enabled" xsi:type="boolean">false</item>
+                            <item name="height" xsi:type="string">300px</item>
+                            <item name="hidden" xsi:type="boolean">true</item>
+                            <item name="add_variables" xsi:type="boolean">false</item>
+                            <item name="add_widgets" xsi:type="boolean">false</item>
+                            <item name="add_images" xsi:type="boolean">false</item>
+                            <item name="add_directives" xsi:type="boolean">false</item>
+                            <item name="settings" xsi:type="array">
+                                <item name="custom_elements" xsi:type="string">svg,path,button,span,div,polygon</item>
+                                <item name="extended_valid_elements" xsi:type="string">svg[*],path[*],button[*],span[*],div[*],polygon[*]</item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>text</dataType>
+                    <visible>true</visible>
+                    <dataScope>content</dataScope>
+                    <additionalClasses>
+                        <class name="content">true</class>
+                    </additionalClasses>
+                </settings>
+            </field>
+        </fieldset>
+    </fieldset>
+</form>

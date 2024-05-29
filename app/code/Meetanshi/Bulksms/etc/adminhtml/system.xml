@@ -1,0 +1,127 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <system>
+        <tab id="meetanshi" translate="label" sortOrder="50">
+            <label>
+                <![CDATA[<img src="https://meetanshi.com/media/logo.png" alt="Meetanshi" height="20" style="vertical-align:middle;"/>]]></label>
+        </tab>
+        <section id="bulksms" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <label>Bulk SMS Marketing</label>
+            <tab>meetanshi</tab>
+            <resource>Meetanshi_Bulksms::bulksms</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Configuration</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Bulk SMS Marketing</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+            </group>
+
+            <group id="apisetting" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <depends>
+                    <field id="bulksms/general/enabled">1</field>
+                </depends>
+                <label>API Settings</label>
+                <field id="apiprovider" translate="label" type="select" sortOrder="1" showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>API Provider</label>
+                    <source_model>Meetanshi\Bulksms\Model\Config\Source\Apiprovider</source_model>
+                    <depends>
+                        <field id="bulksms/general/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="senderid" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Sender ID</label>
+                    <depends>
+                        <field id="apiprovider" separator=",">msg91,textlocal</field>
+                    </depends>
+                </field>
+                <field id="messagetype" translate="label" type="select" sortOrder="12" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Message Type</label>
+                    <source_model>Meetanshi\Bulksms\Model\Config\Source\Messagetype</source_model>
+                    <depends>
+                        <field id="apiprovider">msg91</field>
+                    </depends>
+                </field>
+                <field id="apiurl" translate="label" type="text" sortOrder="14" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>API URL</label>
+                    <depends>
+                        <field id="apiprovider" separator=",">msg91,textlocal</field>
+                    </depends>
+                    <comment> <![CDATA[Msg91 URL is http://api.msg91.com/api/sendhttp.php. <br> Text Local URL is https://api.textlocal.in/send/.]]> </comment>
+                </field>
+                <field id="apikey" translate="label" type="text" sortOrder="16" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Authorization Key</label>
+                    <depends>
+                        <field id="apiprovider" separator=",">msg91,textlocal</field>
+                    </depends>
+                </field>
+                <field id="sid" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>SID</label>
+                    <depends>
+                        <field id="apiprovider">twilio</field>
+                    </depends>
+                </field>
+                <field id="token" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Token</label>
+                    <depends>
+                        <field id="apiprovider">twilio</field>
+                    </depends>
+                </field>
+                <field id="frommobilenumber" translate="label" type="text" sortOrder="24" showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Admin Mobile Number</label>
+                    <depends>
+                        <field id="apiprovider">twilio</field>
+                    </depends>
+                </field>
+            </group>
+
+            <group id="developer" translate="label" type="text" sortOrder="95" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <depends>
+                    <field id="bulksms/general/enabled">1</field>
+                </depends>
+                <label>API Testing</label>
+                <field id="adminmobile" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Mobile Number With Country Code</label>
+                </field>
+                <field id="send" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1"
+                       showInStore="0">
+                    <label></label>
+                    <frontend_model>Meetanshi\Bulksms\Block\System\Config\Button</frontend_model>
+                    <comment>
+                        <![CDATA[After adding the  Mobile Number , save the configuration and than click SEND button. ]]></comment>
+                </field>
+            </group>
+
+            <group id="importcustomer" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <depends>
+                    <field id="bulksms/general/enabled">1</field>
+                </depends>
+                <label>Import Phonebook Contacts</label>
+                <field id="importfile" translate="label" type="Magento\Config\Block\System\Config\Form\Field\File" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Import</label>
+                    <backend_model>Meetanshi\Bulksms\Model\Config\Backend\Import</backend_model>
+                    <upload_dir config="system" scope_info="1">bulksms</upload_dir>
+                    <comment model="Meetanshi\Bulksms\Block\Adminhtml\System\Config\Form\Field\Link" />
+                </field>
+            </group>
+
+        </section>
+    </system>
+</config>

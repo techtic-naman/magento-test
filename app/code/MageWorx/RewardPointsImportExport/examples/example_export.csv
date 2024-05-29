@@ -1,0 +1,4 @@
+"Website Code","Customer Email","Points","Action","Expiration Period","Comment for Customer (not required)"
+"base","rewrite_balance@example.com","20","replace","unlimited","Hello! Your balance now is 20 points (unlimited expiration period)"
+"base","add_to_balance@example.com","10","add","unchanged","Hello! 10 points were added to your balance (expiration date wasn't changed)"
+"base","deduct_from_balance@example.com","5","deduct","3","Hello! 5 points were deducted from your balance (expiration period is 3 days)"

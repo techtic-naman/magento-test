@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="catalog_entity_attribute_delete_after">
+        <observer name="mageworx_socialproofbase_update_campaign_on_attribute_delete"
+                  instance="MageWorx\SocialProofBase\Observer\UpdateCampaignAfterDeleteAttributeObserver"/>
+    </event>
+    <event name="catalog_entity_attribute_save_after">
+        <observer name="mageworx_socialproofbase_update_campaign_on_attribute_update"
+                  instance="MageWorx\SocialProofBase\Observer\UpdateCampaignAfterSaveAttributeObserver"/>
+    </event>
+</config>

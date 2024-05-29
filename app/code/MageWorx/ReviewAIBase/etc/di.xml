@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="MageWorx\ReviewAIBase\Api\ReviewSummaryRepositoryInterface"
+                type="MageWorx\ReviewAIBase\Model\ReviewSummaryRepository"/>
+    <preference for="MageWorx\ReviewAIBase\Api\Data\ReviewSummaryInterface"
+                type="MageWorx\ReviewAIBase\Model\ReviewSummary"/>
+    <preference for="MageWorx\ReviewAIBase\Api\Data\ReviewSummarySearchResultsInterface"
+                type="MageWorx\ReviewAIBase\Model\Repository\ReviewSummarySearchResults"/>
+    <preference for="MageWorx\ReviewAIBase\Api\ReviewSummaryGeneratorInterface"
+                type="MageWorx\ReviewAIBase\Model\ReviewSummaryGenerator"/>
+    <preference for="MageWorx\ReviewAIBase\Api\ReviewSummarySaverInterface"
+                type="MageWorx\ReviewAIBase\Model\ReviewSummarySaver"/>
+    <preference for="MageWorx\ReviewAIBase\Api\ReviewSummaryLoaderInterface"
+                type="MageWorx\ReviewAIBase\Model\ReviewSummaryLoader"/>
+    <preference for="MageWorx\ReviewAIBase\Api\InvalidateFullPageCacheByProductIdInterface"
+                type="MageWorx\ReviewAIBase\Model\Cache\InvalidateFullPageCacheByProductId"/>
+    <preference for="MageWorx\ReviewAIBase\Api\DisplayReviewSummaryValidatorInterface"
+                type="MageWorx\ReviewAIBase\Model\DisplayReviewSummaryValidator"/>
+    <preference for="MageWorx\ReviewAIBase\Api\ReviewAnswerGeneratorInterface"
+                type="MageWorx\ReviewAIBase\Model\ReviewAnswer\Generator"/>
+    <preference for="MageWorx\ReviewAIBase\Api\VariableStorageInterface"
+                type="MageWorx\ReviewAIBase\Model\VariableStorage"/>
+    <!-- Plugins -->
+    <type name="Magento\Catalog\Model\ProductRepository">
+        <plugin name="mageworx_reviewai_after_save" type="MageWorx\ReviewAIBase\Plugin\ProductSaveAfter" sortOrder="10" />
+    </type>
+    <!-- Change arguments -->
+    <type name="MageWorx\ReviewAIBase\Api\Data\ReviewSummaryInterfaceFactory">
+        <arguments>
+            <argument name="instanceName" xsi:type="string">MageWorx\ReviewAIBase\Model\ReviewSummary</argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\ReviewAIBase\Api\Data\ReviewSummarySearchResultsInterfaceFactory">
+        <arguments>
+            <argument name="resultsDataFactory" xsi:type="object">MageWorx\ReviewAIBase\Model\Repository\ReviewSummarySearchResultsFactory</argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\ReviewAIBase\Ui\Component\DataProvider">
+        <arguments>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">entity_id</argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\ReviewAIBase\Model\Config\Source\ReviewAIModels">
+        <arguments>
+            <argument name="allowedModels" xsi:type="array">
+                <item name="gpt-4" xsi:type="string">gpt-4</item>
+                <item name="gpt-3.5-turbo" xsi:type="string">gpt-3.5-turbo</item>
+                <item name="gpt-4-1106-preview" xsi:type="string">gpt-4-1106-preview</item>
+                <item name="gpt-4o" xsi:type="string">gpt-4o</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\ReviewAIBase\Model\ReviewSummaryGenerator">
+        <arguments>
+            <argument name="additionalDataProcessors" xsi:type="array">
+                <item name="location_country" xsi:type="object">MageWorx\ReviewAIBase\Model\AdditionalDataProcessor\LocationCountry</item>
+                <item name="location_state" xsi:type="object">MageWorx\ReviewAIBase\Model\AdditionalDataProcessor\LocationState</item>
+                <item name="verified_customer" xsi:type="object">MageWorx\ReviewAIBase\Model\AdditionalDataProcessor\IsVerifiedCustomer</item>
+                <item name="helpful" xsi:type="object">MageWorx\ReviewAIBase\Model\AdditionalDataProcessor\IsHelpful</item>
+                <item name="recommended" xsi:type="object">MageWorx\ReviewAIBase\Model\AdditionalDataProcessor\IsRecommended</item>
+                <item name="pros" xsi:type="object">MageWorx\ReviewAIBase\Model\AdditionalDataProcessor\Pros</item>
+                <item name="cons" xsi:type="object">MageWorx\ReviewAIBase\Model\AdditionalDataProcessor\Cons</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- Register callback class -->
+    <type name="MageWorx\OpenAI\Model\Queue\Callback\CallbackFactory">
+        <arguments>
+            <argument name="callbacks" xsi:type="array">
+                <item name="review_ai_summary" xsi:type="string">MageWorx\ReviewAIBase\Model\Queue\QueueSaver\Callback</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- Register preprocessor for review summary from other summary -->
+    <type name="MageWorx\OpenAI\Api\QueueItemPreprocessorPoolInterface">
+        <arguments>
+            <argument name="preprocessors" xsi:type="array">
+                <item name="review_ai_summary_from_summary" xsi:type="object">MageWorx\ReviewAIBase\Model\Queue\QueueItemPreprocessor\SummaryFromSummaryPreprocessor</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- Error handler pool -->
+    <type name="MageWorx\OpenAI\Api\QueueItemErrorHandlerPoolInterface">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="review_ai_summary" xsi:type="array">
+                    <item name="context_length_exceeded" xsi:type="object">MageWorx\ReviewAIBase\Model\Queue\QueueItemErrorHandler\ContextLengthExceededHandler</item>
+                    <item name="rate_limit_exceeded" xsi:type="object">MageWorx\OpenAI\Model\Queue\QueueItemErrorHandler\RequestLimitReachedHandler</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="MageWorx\OpenAI\Model\Source\AllGenerationStatuses">
+        <arguments>
+            <argument name="pool" xsi:type="array">
+                <item name="review_ai_review_summary" xsi:type="object">\MageWorx\ReviewAIBase\Model\Config\Source\ReviewSummaryGenerationsStatuses</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

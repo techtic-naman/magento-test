@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="review_save_after">
+        <observer name="mageworx_review_ai_update_queue" instance="MageWorx\ReviewAIBase\Observer\UpdateQueue" />
+    </event>
+    <event name="magento_catalog_api_data_productinterface_save_after">
+        <observer name="mageworx_reviewai_product_save_after" instance="MageWorx\ReviewAIBase\Observer\UpdateReviewSummaryOnProductSaveAfter" />
+    </event>
+</config>

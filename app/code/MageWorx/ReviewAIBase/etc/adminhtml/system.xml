@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="mageworx">
+            <label>MageWorx</label>
+        </tab>
+        <section id="review_ai"
+                 translate="label"
+                 sortOrder="10"
+                 showInDefault="1"
+                 showInWebsite="1"
+                 showInStore="1">
+            <label>Review AI</label>
+            <tab>mageworx</tab>
+            <resource>MageWorx_ReviewAIBase::review_summary_settings</resource>
+            <group id="main" translate="label comment" type="text" sortOrder="10"
+                   advanced="true"
+                   canRestore="1"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>Review AI Settings</label>
+                <field id="is_enabled" translate="label comment" type="select" sortOrder="10"
+                       canRestore="1"
+                       showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label comment" type="text" sortOrder="20"
+                       canRestore="1"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Title</label>
+                </field>
+                <field id="description" translate="label comment" type="textarea" sortOrder="30"
+                       canRestore="1"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Description</label>
+                    <comment><![CDATA[
+                    The following HTML tags are allowed: a, b, br, em, i, strong
+                    ]]></comment>
+                </field>
+                <field id="attributes" translate="label comment" type="multiselect" sortOrder="40"
+                       canRestore="1"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Additional attributes that will be used to generate the review summary</label>
+                    <source_model>MageWorx\ReviewAIBase\Model\Config\Source\Attributes</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="limit_min_reviews" translate="label comment" type="text" sortOrder="50"
+                       canRestore="1"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Min number of reviews to show a summary on a product page</label>
+                </field>
+                <field id="limit_min_rating" translate="label comment" type="text" sortOrder="60"
+                       canRestore="1"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Min average rating to show a summary on a product page</label>
+                </field>
+                <field id="content" translate="label comment" type="textarea" sortOrder="100"
+                       canRestore="1"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Content</label>
+                    <frontend_model>MageWorx\ReviewAIBase\Block\Adminhtml\Config\Frontend\TextareaWithPresets</frontend_model>
+                </field>
+                <field id="summary_length" translate="label comment" type="text" sortOrder="110"
+                       canRestore="1"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Chat response length limit (in tokens per 1 summary)</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+                <field id="max_length" translate="label" sortOrder="115" type="text"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Max length of a summary</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+                <field id="add_product_name_to_request" translate="label comment" type="select" sortOrder="120"
+                       canRestore="1"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Add product name to the request</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="content_answer_on_review" translate="label comment" type="textarea" sortOrder="200"
+                       canRestore="1"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Content of "Vendor's Answer" request</label>
+                </field>
+            </group>
+            <group id="ai_configuration" translate="label comment" type="text" sortOrder="10"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>Open AI configuration</label>
+                <field id="openai_model" translate="label comment" type="select" sortOrder="10"
+                       showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0"
+                       canRestore="1">
+                    <label>Open AI Model</label>
+                    <source_model>MageWorx\ReviewAIBase\Model\Config\Source\ReviewAIModels</source_model>
+                    <comment><![CDATA[
+                    <b>GPT-4</b> More capable than any GPT-3.5 model, able to do more complex tasks, and optimized for chat. Availability depends on your pricing plan. For many basic tasks, the difference between GPT-4 and GPT-3.5 models is not significant.<br>
+                    <b>GPT-3.5 turbo</b> (recommended) - Most capable GPT-3.5 model and optimized for chat at 1/10th the cost of text-davinci-003. Will be updated with our latest model iteration 2 weeks after it is released.<br>
+                    ]]></comment>
+                </field>
+                <field id="temperature" translate="label comment" type="text" sortOrder="20"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Temperature</label>
+                    <validate>validate-number validate-digits-range digits-range-0-2</validate>
+                    <comment>By OpenAI docs: What sampling temperature to use, between 0 and 2. Higher values like 0.8
+                        will make the output more random, while lower values like 0.2 will make it more focused and
+                        deterministic.
+                    </comment>
+                </field>
+            </group>
+            <group id="style_settings" translate="label comment" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Style Settings</label>
+                <field id="review_summary_text_color" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Review Summary Text Color</label>
+                    <comment>Set the text color for the review summary block. Use hex color code (e.g., #ffffff for white).</comment>
+                    <validate>validate-hex-color</validate>
+                    <frontend_model>MageWorx\ReviewAIBase\Block\Adminhtml\Config\Frontend\ColorPicker</frontend_model>
+                </field>
+                <field id="review_summary_bg_color" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Review Summary Background Color</label>
+                    <comment>Set the background color for the review summary block. Use hex color code (e.g., #000000 for black).</comment>
+                    <validate>validate-hex-color</validate>
+                    <frontend_model>MageWorx\ReviewAIBase\Block\Adminhtml\Config\Frontend\ColorPicker</frontend_model>
+                </field>
+                <field id="review_summary_text_size" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Review Summary Text Size (px)</label>
+                    <comment>Set the text size for the review summary block in pixels (e.g., 14).</comment>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="review_summary_header_color" translate="label comment" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Review Summary Header Color</label>
+                    <comment>Set the text color for the review summary header block. Use hex color code (e.g., #ffffff for white).</comment>
+                    <validate>validate-hex-color</validate>
+                    <frontend_model>MageWorx\ReviewAIBase\Block\Adminhtml\Config\Frontend\ColorPicker</frontend_model>
+                </field>
+                <field id="review_summary_header_bg_color" translate="label comment" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Review Summary Header Background Color</label>
+                    <comment>Set the background color for the review summary header block. Use hex color code (e.g., #000000 for black).</comment>
+                    <validate>validate-hex-color</validate>
+                    <frontend_model>MageWorx\ReviewAIBase\Block\Adminhtml\Config\Frontend\ColorPicker</frontend_model>
+                </field>
+                <field id="review_summary_header_size" translate="label comment" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Review Summary Header Size (px)</label>
+                    <comment>Set the header size for the review summary block in pixels (e.g., 14).</comment>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="review_summary_main_container_bg_color" translate="label comment" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Review Summary Main Container Background Color</label>
+                    <comment>Set the background color for the review summary main container block. Use hex color code (e.g., #000000 for black).</comment>
+                    <validate>validate-hex-color</validate>
+                    <frontend_model>MageWorx\ReviewAIBase\Block\Adminhtml\Config\Frontend\ColorPicker</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

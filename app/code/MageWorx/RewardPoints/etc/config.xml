@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <mageworx_rewardpoints>
+            <main>
+                <enable>0</enable>
+                <is_return_points_on_refund>1</is_return_points_on_refund>
+                <birthday_time_notification>06,00,00</birthday_time_notification>
+            </main>
+            <marketing>
+                <product_reward_promise_message>Earn [p] points.</product_reward_promise_message>
+                <category_reward_promise_message>Earn [p] points.</category_reward_promise_message>
+                <rss_enable>0</rss_enable>
+                <display_upcoming_points_message>0</display_upcoming_points_message>
+                <allow_custom_amount>0</allow_custom_amount>
+                <custom_amount_input_placeholder>Enter amount of reward points you want to use in this order</custom_amount_input_placeholder>
+                <upcoming_points_message>Complete this cart and earn [p] points for a discount on your future purchases.</upcoming_points_message>
+                <display_cart_upcoming_points_message>0</display_cart_upcoming_points_message>
+                <cart_upcoming_points_message>Complete the purchase and earn [p] points for a discount on your future purchases.</cart_upcoming_points_message>
+                <display_checkout_upcoming_points_message>0</display_checkout_upcoming_points_message>
+                <checkout_upcoming_points_message>Complete the purchase and earn [p] points for a discount on your future purchases.</checkout_upcoming_points_message>
+                <display_minicart_point_balance_message>0</display_minicart_point_balance_message>
+                <minicart_point_balance_message>Your current reward points balance is [c].</minicart_point_balance_message>
+                <minicart_empty_point_balance_message>Order now and get reward points for your future purchases.</minicart_empty_point_balance_message>
+                <use_comment_wrapper>1</use_comment_wrapper>
+            </marketing>
+            <expiration_date>
+                <enable>0</enable>
+                <update_dates_condition>1</update_dates_condition>
+                <default_period_in_days>30</default_period_in_days>
+                <enable_notification>0</enable_notification>
+                <days_before_notification>2</days_before_notification>
+            </expiration_date>
+        </mageworx_rewardpoints>
+    </default>
+</config>

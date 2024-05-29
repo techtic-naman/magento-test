@@ -1,0 +1,48 @@
+{
+    "mt_bulksms": {
+        "column": {
+            "id": true,
+            "mobilenumber": true,
+            "name": true
+        },
+        "index": {
+            "MT_BULKSMS_MOBILENUMBER_NAME": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "mt_smslog": {
+        "column": {
+            "id": true,
+            "msg_sid": true,
+            "api_provider": true,
+            "mobilenumber": true,
+            "msg_status": true,
+            "sms_text": true
+        },
+        "index": {
+            "MT_SMSLOG_MSG_SID_API_PROVIDER_MOBILENUMBER_MSG_STATUS_SMS_TEXT": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "mt_campaign": {
+        "column": {
+            "id": true,
+            "name": true,
+            "phonebook_id": true,
+            "message": true,
+            "startdate": true,
+            "status": true,
+            "hour": true
+        },
+        "index": {
+            "MT_CAMPAIGN_NAME_MESSAGE": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

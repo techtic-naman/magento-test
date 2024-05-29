@@ -1,0 +1,31 @@
+Website Code,Websitecode
+Customer Email,Klant E-mail
+Points,Punten
+Expiration Date,Vervaldatum
+Reward Points Customer Balance,Klant Beloningspuntensaldo
+Import and Export Reward Points Balance,Beloningspunten Importeren en Exporteren Saldo
+The reward points balance has been imported.,Het beloningspuntensaldo is geïmporteerd.
+Invalid file upload attempt,Ongeldige poging tot bestandsupload
+Invalid file upload attempt.,Ongeldige poging tot bestandsupload.
+Data for import not found,Gegevens voor import niet gevonden
+Missed website code in line %1,Missende websitecode in regel %1
+Missed Email in line %1,Missende e-mail in regel %1
+Invalid email format in line %1,Ongeldige e-mailindeling in regel %1
+Invalid points format in line %1,Ongeldige puntenindeling in regel %1
+"Invalid action in line %1 (The action must be one of ""replace"", ""add"", ""deduct"")","Ongeldige actie in regel %1 (De actie moet een van de volgende zijn: ""vervangen"", ""toevoegen"", ""aftrekken"")"
+"Invalid expiration period in line %line. The expiration period must be one of ""%default"", ""%unchanged"", ""%unlimited"" or be numeric.","Ongeldige vervaldatum in regel %line. De vervaldatum moet een van de volgende zijn: ""%default"", ""%unchanged"", ""%unlimited"" of numeriek zijn."
+Duplicate row (email and website code combination) was found in line %1,Dubbele rij (combinatie van e-mail en websitecode) werd gevonden in regel %1
+The requested website code(s) is not found: %1.,De gevraagde websitecode(s) zijn niet gevonden: %1.
+The requested customer email(s) not found: %1.,De gevraagde klant e-mail(s) is/zijn niet gevonden: %1.
+Customer with not correct email(s) and website code(s): %1,Klant met niet-correcte e-mail(s) en websitecode(s): %1
+Reset balance for import of the new one.,Balans resetten voor import van de nieuwe.
+Reset balance.,Balans resetten.
+Updated by admin %1,Bijgewerkt door beheerder %1
+Updated by admin.,Bijgewerkt door beheerder.
+"Comment: ""%1""","Opmerking: ""%1"""
+Import Reward Points Balance,Beloningspunten Saldo Importeren
+Export Reward Points Balance,Beloningspunten Saldo Exporteren
+Download example CSV file,Voorbeeld CSV-bestand downloaden
+Download,Downloaden
+Please select a file to import!,Selecteer een bestand om te importeren!
+Customer Points,Klant Punten

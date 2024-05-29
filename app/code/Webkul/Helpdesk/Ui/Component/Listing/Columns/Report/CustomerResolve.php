@@ -1,0 +1,101 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_Helpdesk
+ * @author    Webkul Software Private Limited
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+
+namespace Webkul\Helpdesk\Ui\Component\Listing\Columns\Report;
+
+use Magento\Framework\View\Element\UiComponent\ContextInterface;
+use Magento\Framework\View\Element\UiComponentFactory;
+use Magento\Ui\Component\Listing\Columns\Column;
+use Magento\Framework\UrlInterface;
+use \Webkul\Helpdesk\Model\TicketsFactory;
+use \Webkul\Helpdesk\Helper\Data as HelperData;
+use \Webkul\Helpdesk\Model\ThreadFactory;
+
+/**
+ * Class Helpdesk Actions.
+ */
+class CustomerResolve extends Column
+{
+    /**
+     * @var UrlInterface
+     */
+    protected $_urlBuilder;
+
+    /**
+     * @var TicketsFactory
+     */
+    protected $_ticketsFactory;
+
+    /**
+     * @var ThreadFactory
+     */
+    protected $_threadFactory;
+
+    /**
+     * @var HelperData
+     */
+    protected $_helperData;
+
+    /**
+     * @param ContextInterface   $context
+     * @param UiComponentFactory $uiComponentFactory
+     * @param UrlInterface       $urlBuilder
+     * @param TicketsFactory     $ticketsFactory
+     * @param HelperData         $helperData
+     * @param ThreadFactory      $threadFactory
+     * @param array              $components
+     * @param array              $data
+     */
+    public function __construct(
+        ContextInterface $context,
+        UiComponentFactory $uiComponentFactory,
+        UrlInterface $urlBuilder,
+        TicketsFactory $ticketsFactory,
+        HelperData $helperData,
+        ThreadFactory $threadFactory,
+        array $components = [],
+        array $data = []
+    ) {
+        $this->_urlBuilder = $urlBuilder;
+        $this->_ticketsFactory = $ticketsFactory;
+        $this->_threadFactory = $threadFactory;
+        $this->_helperData = $helperData;
+        parent::__construct($context, $uiComponentFactory, $components, $data);
+    }
+
+    /**
+     * Prepare Data Source.
+     *
+     * @param array $dataSource
+     *
+     * @return array
+     */
+    public function prepareDataSource(array $dataSource)
+    {
+        if (isset($dataSource['data']['items'])) {
+            foreach ($dataSource['data']['items'] as &$item) {
+                $indexName = $this->getData('name');
+                switch ($indexName) {
+                
+                    case 'resolve_ticket':
+                        $resolveStatus = $this->_helperData->getConfigResolveStatus();
+                        $collection = $this->_ticketsFactory->create()
+                        ->getCollection()
+                        ->addFieldToFilter("customer_id", ["eq"=>$item['entity_id']])
+                        ->addFieldToFilter("status", ["eq"=>$resolveStatus]);
+                        $item[$this->getData('name')] = count($collection);
+                        break;
+                }
+            }
+        }
+        return $dataSource;
+    }
+}

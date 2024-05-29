@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="MageWorx_RewardPoints::menu"
+             title="MageWorx Reward Points"
+             translate="title"
+             module="MageWorx_RewardPoints"
+             sortOrder="50" parent="Magento_Backend::marketing"
+             resource="MageWorx_RewardPoints::menu"
+        />
+        <add id="MageWorx_RewardPoints::rule"
+             title="Rules"
+             translate="title"
+             module="MageWorx_RewardPoints"
+             sortOrder="75"
+             parent="MageWorx_RewardPoints::menu"
+             action="mageworx_rewardpoints/reward_rule/"
+             resource="MageWorx_RewardPoints::rule"
+        />
+        <add id="MageWorx_RewardPoints::transaction"
+             title="Point Transactions"
+             translate="title"
+             module="MageWorx_RewardPoints"
+             sortOrder="90"
+             parent="MageWorx_RewardPoints::menu"
+             action="mageworx_rewardpoints/point_transaction/"
+             resource="MageWorx_RewardPoints::transaction"
+        />
+    </menu>
+</config>

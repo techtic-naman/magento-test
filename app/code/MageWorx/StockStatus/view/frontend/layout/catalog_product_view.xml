@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="MageWorx_StockStatus::styles.css"/>
+    </head>
+    <body>
+        <referenceContainer name="product.info.form.content">
+            <block class="MageWorx\StockStatus\Block\StockStatus"
+                   name="mageworx.stock_status.block"
+                   ifconfig="mageworx_marketing_suite/stock_status/enable"
+                   after="-"
+            />
+        </referenceContainer>
+        <referenceBlock name="product.info.options.wrapper.bottom">
+            <block class="MageWorx\StockStatus\Block\StockStatus"
+                   name="mageworx.stock_status.block.additional"
+                   ifconfig="mageworx_marketing_suite/stock_status/enable"
+                   after="-"
+            />
+        </referenceBlock>
+    </body>
+</page>

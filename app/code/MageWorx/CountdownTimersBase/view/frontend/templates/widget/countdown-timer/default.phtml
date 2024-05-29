@@ -1,0 +1,14 @@
+<?php
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+/* @var $block \MageWorx\CountdownTimersBase\Block\Widget\CountdownTimer */
+?>
+
+<?php if ($block->canBeDisplayed()): ?>
+    <div class="widget block block-countdown-timer" role="dialog" tabindex="-1" style="display: none"
+         data-mage-init='{ "countdown-timer-widget": <?= /* @noEscape */ $block->getJsonConfig() ?> }'>
+    </div>
+<?php endif; ?>

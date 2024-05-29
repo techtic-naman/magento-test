@@ -1,0 +1,54 @@
+<?php /** * Copyright © MageWorx. All rights reserved. * See LICENSE.txt for license details. */ /* @var $block \MageWorx\RewardPoints\Block\ProductList\RewardPromise */ ?> <?php if ($block->canBeDisplayed()): ?> <script>
+        require([
+            'jquery',
+            'mage/translate',
+            'mage/storage',
+            'Magento_Customer/js/model/customer'
+        ], function ($, $t, storage, customer) {
+            $(function () {
+
+                var ids = [];
+
+                $('.products.list.items.product-items .product.details [data-role="priceBox"]').each(
+                    function () {
+                        ids.push($(this).attr('data-product-id'));
+                    }
+                );
+
+                if (ids) {
+                    let serviceUrl = '<?= $block->escapeUrl($block->getServiceUrl()); ?>';
+
+                    storage.post(
+                        serviceUrl,
+                        JSON.stringify({
+                            "product_ids": ids
+                        }),
+                        false
+                    ).done(function (result) {
+
+                        for (let key in result) {
+                            let rewardPromise = result[key];
+
+                            if (rewardPromise.amount > 0) {
+                                let rewardPromiseId = 'mw-reward-promise-' + rewardPromise.product_id;
+                                let message = '<?= /** @noEscape */ $block->getMessage() ?>';
+                                let selector = '.products.list.items.product-items .product.details [data-product-id="' + rewardPromise.product_id + '"]';
+                                let timerElement = $(
+                                    '<div id="' + rewardPromiseId +'" class="mwrp-banner mw-reward-promise-product-list">' +
+                                        '<div class="mwrp-banner__content">' +
+                                            message.replace('[p]', '<strong>' + rewardPromise.amount + '</strong>') +
+                                        '</div>' +
+                                    '</div>'
+                                );
+
+                                $(selector).after(timerElement);
+                            }
+                        }
+                    }).fail(function (response) {
+
+                    }).always(function () {
+
+                    });
+                }
+            });
+        });</script><?php endif; ?>

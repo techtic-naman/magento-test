@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">mageworx_socialproofbase_campaign_steps_wizard.campaign_form_data_source</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <namespace>mageworx_socialproofbase_campaign_steps_wizard</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>mageworx_socialproofbase_campaign_steps_wizard.campaign_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="campaign_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <dataProvider class="MageWorx\SocialProofBase\Ui\DataProvider\Campaign\Form\CampaignDataProvider" name="campaign_form_data_source">
+            <settings>
+                <requestFieldName>campaign_id</requestFieldName>
+                <primaryFieldName>campaign_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <htmlContent name="steps-wizard-content">
+        <argument name="data" xsi:type="array">
+            <item name="wrapper" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="label" xsi:type="string"/>
+            </item>
+        </argument>
+        <settings>
+            <wrapper>
+                <canShow>true</canShow>
+                <componentType>fieldset</componentType>
+            </wrapper>
+        </settings>
+        <block class="MageWorx\SocialProofBase\Block\Adminhtml\Campaign\StepsWizard\Wrapper" name="steps-wizard-wrapper"
+               template="MageWorx_SocialProofBase::campaign/steps-wizard/wrapper.phtml">
+            <arguments>
+                <argument name="config" xsi:type="array">
+                    <item name="stepsWizardName" xsi:type="string">steps-wizard</item>
+                </argument>
+            </arguments>
+            <block class="Magento\Ui\Block\Component\StepsWizard" name="steps-wizard"
+                   template="MageWorx_SocialProofBase::campaign/steps-wizard.phtml">
+                <block class="MageWorx\SocialProofBase\Block\Adminhtml\Campaign\StepsWizard\Steps\DisplayMode" name="step1"
+                       template="MageWorx_SocialProofBase::campaign/steps-wizard/steps/display-mode.phtml">
+                    <arguments>
+                        <argument name="config" xsi:type="array">
+                            <item name="form" xsi:type="string">mageworx_socialproofbase_campaign_form.areas</item>
+                            <item name="fieldset" xsi:type="string">display-mode</item>
+                        </argument>
+                    </arguments>
+                </block>
+                <block class="MageWorx\SocialProofBase\Block\Adminhtml\Campaign\StepsWizard\Steps\EventType" name="step2"
+                       template="MageWorx_SocialProofBase::campaign/steps-wizard/steps/event-type.phtml">
+                    <arguments>
+                        <argument name="config" xsi:type="array">
+                            <item name="form" xsi:type="string">mageworx_socialproofbase_campaign_form.areas</item>
+                            <item name="fieldset" xsi:type="string">event-type</item>
+                        </argument>
+                    </arguments>
+                </block>
+                <block class="MageWorx\SocialProofBase\Block\Adminhtml\Campaign\StepsWizard\Steps\CampaignInformation" name="step3"
+                       template="MageWorx_SocialProofBase::campaign/steps-wizard/steps/campaign-information.phtml">
+                    <arguments>
+                        <argument name="config" xsi:type="array">
+                            <item name="form" xsi:type="string">mageworx_socialproofbase_campaign_form.areas</item>
+                            <item name="fieldset" xsi:type="string">general</item>
+                        </argument>
+                    </arguments>
+                </block>
+            </block>
+        </block>
+    </htmlContent>
+</form>

@@ -1,0 +1,12 @@
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+.product-list-timer {
+    margin: 10px 0 25px;
+    word-wrap: break-word;
+}
+
+.mw-cd__title, .mw-cd__suffix {
+    text-align: left;
+}

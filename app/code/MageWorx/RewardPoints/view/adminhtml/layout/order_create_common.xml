@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="billing_method">
+            <block class="MageWorx\RewardPoints\Block\Adminhtml\Order\Create\RewardPoints" template="MageWorx_RewardPoints::order/create/rewardpoints.phtml" name="mageworx_rewardpoints_payment"/>
+        </referenceBlock>
+    </body>
+</page>

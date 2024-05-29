@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="MageWorx\SocialProofBase\Api\Data\CampaignInterface" type="MageWorx\SocialProofBase\Model\Campaign"/>
+    <preference for="MageWorx\SocialProofBase\Api\Data\CampaignSearchResultInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="MageWorx\SocialProofBase\Api\CampaignRepositoryInterface" type="MageWorx\SocialProofBase\Model\CampaignRepository"/>
+    <preference for="MageWorx\SocialProofBase\Api\MobileDetectorAdapterInterface" type="MageWorx\SocialProofBase\Model\MobileDetectorAdapter"/>
+    <preference for="MageWorx\SocialProofBase\Model\CampaignConfigReaderInterface" type="MageWorx\SocialProofBase\Model\CampaignConfigReader"/>
+    <preference for="MageWorx\SocialProofBase\Api\FrontendCampaignResolverInterface" type="MageWorx\SocialProofBase\Model\FrontendCampaignResolver"/>
+    <type name="MageWorx\SocialProofBase\Model\ResourceModel\Campaign\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mageworx_socialproofbase_campaign</argument>
+            <argument name="eventPrefix" xsi:type="string">mageworx_socialproofbase_campaign_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">campaign_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">MageWorx\SocialProofBase\Model\ResourceModel\Campaign</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="mageworx_socialproofbase_campaign_listing_data_source" xsi:type="string">MageWorx\SocialProofBase\Model\ResourceModel\Campaign\Grid\Collection</item>
+                <item name="mageworx_socialproofbase_campaign_form_cms_page_listing_data_source" xsi:type="string">Magento\Cms\Model\ResourceModel\Page\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Layout\Pool">
+        <arguments>
+            <argument name="types" xsi:type="array">
+                <item name="mageworx-socialproofbase-hidden-tabs" xsi:type="array">
+                    <item name="class" xsi:type="string">MageWorx\SocialProofBase\Component\Layout\HiddenTabs</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>
