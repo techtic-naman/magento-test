@@ -1,12 +1,12 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 ?>
 
@@ -28,8 +28,8 @@ if ($bankcounter > 5) {
             'jquery'
             ], function ($) {
                 $( document ).ready(function() {
-                    var image = '<?=$escaper->escapeHtml($image);?>';
-                    var payeeNotification = '<?=$escaper->escapeHtml($payeeNotification); ?>';
+                    var image = '<?=$block->escapeHtml($image);?>';
+                    var payeeNotification = '<?=$block->escapeHtml($payeeNotification); ?>';
                     $('.item-walletpayee a').append("<span><img class='wk-wallet-notification-image' src = '" 
                     + image + "'><span class='wk-wallet-counter'>" + payeeNotification + "</span></span>");
                 });
@@ -42,8 +42,8 @@ if ($bankcounter > 5) {
             'jquery'
             ], function ($) {
                 $( document ).ready(function() {
-                    var image = '<?=$escaper->escapeHtml($image);?>';
-                    var bankcounter = '<?=$escaper->escapeHtml($bankcounter); ?>';
+                    var image = '<?=$block->escapeHtml($image);?>';
+                    var bankcounter = '<?=$block->escapeHtml($bankcounter); ?>';
                     $('.item-banktransfer a').append("<span><img class='wk-wallet-notification-image' src = '"
                     +  image + "'><span class='wk-wallet-counter'>" + bankcounter + "</span></span>");
                 });

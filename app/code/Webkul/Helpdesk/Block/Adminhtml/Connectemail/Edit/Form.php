@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Block\Adminhtml\Connectemail\Edit;
 
@@ -23,8 +22,8 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
     public function _prepareForm()
     {
         /**
-        * @var \Magento\Framework\Data\Form $form
-        */
+ * @var \Magento\Framework\Data\Form $form
+*/
         $form = $this->_formFactory->create(
             ['data' => [
                    'id' => 'edit_form',

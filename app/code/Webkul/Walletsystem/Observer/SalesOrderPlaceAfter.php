@@ -1,12 +1,12 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 
 namespace Webkul\Walletsystem\Observer;
@@ -398,10 +398,8 @@ class SalesOrderPlaceAfter implements ObserverInterface
             $this->helper->getBaseCurrencyCode(),
             -$order->getWalletAmount()
         );
-       
         $totalGrandTotal = $order->getGrandTotal() + $order->getTaxAmount() + $order->getWalletAmount();
-        $totalBaseGrandTotal = $baseGrandTotal + $order->getBaseTaxAmount() + $order->getBaseWalletAmount();
-
+        $totalBaseGrandTotal = $baseGrandTotal + $order->getBaseTaxAmount();
         $order->setBaseGrandTotal($totalBaseGrandTotal);
         $order->setGrandTotal($totalGrandTotal);
         $order->save();

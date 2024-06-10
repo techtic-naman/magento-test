@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Webkul Software.
- *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
- */
+* Webkul Software.
+*
+* @category  Webkul
+* @package   Webkul_Helpdesk
+* @author    Webkul
+* @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+* @license   https://store.webkul.com/license.html
+*/
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
@@ -37,7 +37,7 @@
         
         <add id="Webkul_Helpdesk::customerorganization" title="Manage Organization" module="Webkul_Helpdesk" sortOrder="132" parent="Webkul_Helpdesk::customermanagement" action="helpdesk/customer_organization/index" resource="Webkul_Helpdesk::customerorganization" translate="title"/>
 
-        <add id="Webkul_Helpdesk::supportcontent" title="Support Content" module="Webkul_Helpdesk" sortOrder="11" parent="Webkul_Helpdesk::manager" resource="Webkul_Helpdesk::supportcontent" translate="title"/>
+        <add id="Webkul_Helpdesk::supportcontent" title="Connect Email(s)" module="Webkul_Helpdesk" sortOrder="11" parent="Webkul_Helpdesk::manager" resource="Webkul_Helpdesk::supportcontent" translate="title"/>
 
         <add id="Webkul_Helpdesk::sla" title="Manage SLA Policies" module="Webkul_Helpdesk" sortOrder="171" parent="Webkul_Helpdesk::supportcontent" action="helpdesk/slapolicy/index" resource="Webkul_Helpdesk::sla" translate="title"/>
 

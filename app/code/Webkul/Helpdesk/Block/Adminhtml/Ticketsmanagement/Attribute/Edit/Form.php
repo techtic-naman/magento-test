@@ -4,8 +4,8 @@
  *
  * @category  Webkul
  * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
  * @license   https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Block\Adminhtml\Ticketsmanagement\Attribute\Edit;
@@ -21,8 +21,8 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
     protected function _prepareForm()
     {
         /**
-        * @var DataForm $form
-        */
+ * @var DataForm $form
+*/
         $form = $this->_formFactory->create(
             ['data' => ['id' => 'edit_form', 'action' =>$this->getData('action'), 'method' => 'post']]
         );

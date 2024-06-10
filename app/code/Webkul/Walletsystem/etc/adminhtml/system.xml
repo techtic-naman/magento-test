@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
@@ -38,11 +38,6 @@
                     <label>Allow To use Discount while adding amount in wallet</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Allow customer to apply discount when customer adding wallet amount in his wallet</comment>
-                </field>
-                <field id="allowpaymentmethod" translate="label" type="multiselect" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="0">
-                    <label>Allow Payment methods to add amount in wallet</label>
-                    <source_model>Webkul\Walletsystem\Model\Config\Source\Paymentmethod</source_model>
-                    <validate>required-entry</validate>
                 </field>
             </group>
             <group id="message_after_request" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -293,6 +288,14 @@
                     <label>Payment from Specific Countries</label>
                     <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
                     <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="allowpaymentmethod" translate="label" type="multiselect" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Allow Payment methods to add amount in wallet</label>
+                    <source_model>Webkul\Walletsystem\Model\Config\Source\Paymentmethod</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <validate>required-entry</validate>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort Order</label>

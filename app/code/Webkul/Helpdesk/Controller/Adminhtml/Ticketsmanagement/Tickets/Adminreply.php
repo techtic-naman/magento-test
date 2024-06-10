@@ -2,14 +2,14 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\Ticketsmanagement\Tickets;
 
+use Magento\Framework\Exception\AuthenticationException;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 
@@ -18,7 +18,7 @@ class Adminreply extends \Magento\Backend\App\Action
     /**
      * @var PageFactory
      */
-    protected $resultPageFactory;
+    protected $_resultPageFactory;
 
     /**
      * @var \Webkul\Helpdesk\Model\TicketsRepository
@@ -49,41 +49,6 @@ class Adminreply extends \Magento\Backend\App\Action
      * @var \Webkul\Helpdesk\Model\TicketsFactory
      */
     protected $ticketFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ThreadRepository
-     */
-    protected $_threadRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\EventsRepository
-     */
-    protected $_eventsRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\AttachmentRepository
-     */
-    protected $_attachmentRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketdraftFactory
-     */
-    protected $_ticketdraftFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ThreadFactory
-     */
-    protected $_threadFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\SlaRepository
-     */
-    protected $_slaRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Data
-     */
-    protected $helper;
 
     /**
      * @param Context                                     $context
@@ -148,7 +113,7 @@ class Adminreply extends \Magento\Backend\App\Action
             $ticketId = (int)$this->getRequest()->getParam('ticket_id');
             if (!$wholedata) {
                 $this->resultRedirectFactory->create()->setPath('*/*/viewreply', ["id"=>$ticketId]);
-                $this->messageManager->addErrorMessage(__('Nothing Found To Send!!'));
+                $this->messageManager->addError(__('Nothing Found To Send!!'));
                 return;
             }
             $agentId = $this->_authSession->getUser()->getId();
@@ -215,7 +180,7 @@ class Adminreply extends \Magento\Backend\App\Action
             } else {
                 $this->_eventsRepo->checkTicketEvent("note", $ticketId, $wholedata["thread_type"]);
             }
-            $this->messageManager->addSuccessMessage(__("Message Sent Successfully"));
+            $this->messageManager->addSuccess(__("Message Sent Successfully"));
             $files = $this->getRequest()->getFiles();
             if (isset($files["fupld"]["tmp_name"][0])) {
                 $this->_attachmentRepo->saveAttachment($ticketId, $threadId);
@@ -224,10 +189,10 @@ class Adminreply extends \Magento\Backend\App\Action
             }
         } catch (\Magento\Framework\Exception\LocalizedException $e) {
             $this->_helpdeskLogger->info($e->getMessage());
-            $this->messageManager->addErrorMessage($e->getMessage());
+            $this->messageManager->addError($e->getMessage());
         } catch (\Exception $e) {
             $this->_helpdeskLogger->info($e->getMessage());
-            $this->messageManager->addErrorMessage($e->getMessage());
+            $this->messageManager->addError($e->getMessage());
         }
         return $this->resultRedirectFactory->create()->setPath('helpdesk/*/viewreply', ["id"=>$ticketId]);
     }

@@ -4,8 +4,7 @@
  *
  * @category  Webkul
  * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @author    Webkul
  * @license   https://store.webkul.com/license.html
  */
 
@@ -20,7 +19,6 @@ $statusEnable = $helper->getConfigTicketCreationStatus();
 $groupEnable = $helper->getConfigTicketCreationGroup();
 $persistorData = $helper->getPersistentData();
 $draftContent = $ticketsHelper->getDraftContentForNewForm();
-
 ?>
 <form action="<?= $block->escapeHtml($block->getUrl('helpdesk/ticket/submit/')) ?>"
 enctype="multipart/form-data" method="post" id="create_ticket_form"
@@ -30,12 +28,6 @@ data-mage-init='{"validation":{}}'>
         <div style="width:98%;padding:1%;float:left;box-sizing: content-box;">
             <div class="page-title" style="clear:both">
                 <h1><?= $block->escapeHtml(__("Create New Ticket")); ?></h1>
-                <span id="draft_msg_box" 
-                    style="color: #75a74d;font-size:13px;float:left;width:100%;font-style: italic;">
-                    <?php if (!empty($draftContent)): ?>
-                        <?= $block->escapeHtml(__("Draft Saved")); ?>
-                    <?php endif; ?>
-                </span>
             </div>
             <?= $block->getBlockHtml('formkey')?>
             <ul class="form-list" id="wk_bodymain">
@@ -72,12 +64,12 @@ data-mage-init='{"validation":{}}'>
                                 $selected = '';
                                 if (!empty($draftContent['type']) &&
                                     $type['value'] == $draftContent['type']
-                                ) {
-                                    $optionValue = $block->escapeHtml($draftContent['type']);
-                                    $selected = $selected= "selected=='selected'";
+                                ) { 
+                                $optionValue = $block->escapeHtml($draftContent['type']);
+                                $selected = $selected= "selected=='selected'";
                                 }?>
                                 <option <?= $block->escapeHtml($selected); ?>
-                                value="<?= /* @noEscape */ $optionValue;?>"><?=
+                                value="<?= $optionValue;?>"><?=
                                     $block->escapeHtml($type['label']) ?></option>
                             <?php endforeach; ?>
                         </select>
@@ -98,12 +90,12 @@ data-mage-init='{"validation":{}}'>
                                     $selected = '';
                                     if (!empty($draftContent['priority']) &&
                                         $priority['value'] == $draftContent['priority']
-                                    ) {
-                                        $optionValue = $block->escapeHtml($draftContent['priority']);
-                                        $selected = $selected= "selected=='selected'";
+                                    ) { 
+                                    $optionValue = $block->escapeHtml($draftContent['priority']);
+                                    $selected = $selected= "selected=='selected'";
                                     }?>
                                     <option <?= $block->escapeHtml($selected); ?>
-                                    value="<?= /* @noEscape */ $optionValue
+                                    value="<?= $optionValue
                                     ?>"><?= $block->escapeHtml($priority['label']) ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -125,12 +117,12 @@ data-mage-init='{"validation":{}}'>
                                     $selected = '';
                                     if (!empty($draftContent['to_group']) &&
                                         $group['value'] == $draftContent['to_group']
-                                    ) {
-                                        $optionValue = $block->escapeHtml($draftContent['to_group']);
-                                        $selected = $selected= "selected=='selected'";
+                                    ) { 
+                                    $optionValue = $block->escapeHtml($draftContent['to_group']);
+                                    $selected = $selected= "selected=='selected'";
                                     }?>
                                     <option <?= $block->escapeHtml($selected); ?>
-                                    value="<?= /* @noEscape */ $optionValue?>">
+                                    value="<?= $optionValue?>">
                                     <?= $block->escapeHtml($group['label']) ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -152,12 +144,12 @@ data-mage-init='{"validation":{}}'>
                                     $selected = '';
                                     if (!empty($draftContent['status']) &&
                                         $status['value'] == $draftContent['status']
-                                    ) {
-                                        $optionValue = $block->escapeHtml($draftContent['status']);
-                                        $selected = $selected= "selected=='selected'";
+                                    ) { 
+                                    $optionValue = $block->escapeHtml($draftContent['status']);
+                                    $selected = $selected= "selected=='selected'";
                                     }?>
                                     <option <?= $block->escapeHtml($selected); ?>
-                                    value="<?= /* @noEscape */ $optionValue ?>">
+                                    value="<?= $optionValue ?>">
                                     <?= $block->escapeHtml($status['label']) ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -171,11 +163,11 @@ data-mage-init='{"validation":{}}'>
                         <?php
                         $subjectValue = $block->escapeHtml($persistorData['subject']);
                         if (!empty($draftContent['subject'])
-                        ) {
+                        ) { 
                             $subjectValue = $block->escapeHtml($draftContent['subject']);
                         }?>
                         <input type="text" class="required-entry input-text" name="subject"  
-                        maxlength="40" value="<?= /* @noEscape */ $subjectValue?>"/>
+                        maxlength="40" value="<?=  $subjectValue?>"/>
                     </div>
                 </li>
                 <?php $attrColl = $block->getTicketcustomAttributeCollection() ?>
@@ -210,31 +202,26 @@ data-mage-init='{"validation":{}}'>
                                                    ; } ?>" name="<?= $block->escapeHtml($attribute
                                                ['attribute_code'].$fix);?>" <?=
                                                $block->escapeHtml($multiselect);?>>
-                                        <?php $attributeOptions = $block->getSelectSourceModel($attribute)
-                                                            ->getAllOptions();
+                                        <?php $attributeOptions = $attribute->getSource()
+                                        ->getAllOptions();
                                         foreach ($attributeOptions as $each) {  ?>
-                                            <?php if ($each["value"] == "") {?>
+                                                        <?php if ($each["value"] == "") {?>
                                         <option value=""><?= $block->escapeHtml(__("Please
-                                        select")); ?>
-                                        </option>
-                                        <?php } else {
-                                                $optionValue = $block->escapeHtml($each["value"]);
-                                                $customAttrName = $block->escapeHtml($attribute['attribute_code'].$fix);
-                                                $selected = '';
-                                                if (!$multiselect && !empty($draftContent) &&
-                                                    isset($draftContent[$customAttrName]) &&
-                                                    $each['value'] == $draftContent[$customAttrName]
-                                                ) {
-                                                    $optionValue = $block->escapeHtml($draftContent[$customAttrName]);
-                                                    $selected = "selected=='selected'";
-                                                } elseif (!empty($draftContent[$customAttrName]) && $multiselect
-                                                    && in_array($each['value'], $draftContent[$customAttrName])
-                                                ) {
-                                                    $selected = "selected=='selected'";
-                                                } ?>
+                                        select")); ?></option>
+                                        <?php } else { ?>
+                                            <?php
+                                            $optionValue = $block->escapeHtml($each["value"]);
+                                            $customAttrName = $block->escapeHtml($attribute['attribute_code'].$fix);
+                                            $selected = '';
+                                            if (!empty($draftContent[$customAttrName]) &&
+                                                $each['value'] == $draftContent[$customAttrName]
+                                            ) { 
+                                            $optionValue = $block->escapeHtml($draftContent[$customAttrName]);
+                                            $selected = $selected= "selected=='selected'";
+                                            }?>
                                       <option <?= $block->escapeHtml($selected); ?>
-                                      value="<?= /* @noEscape */ $optionValue; ?>">
-                                                <?= $block->escapeHtml($each["label"]); ?>
+                                      value="<?= $optionValue; ?>">
+                                      <?= $block->escapeHtml($each["label"]); ?>
                                       </option>
                                         <?php } ?>
                                             <?php } ?>
@@ -246,10 +233,10 @@ data-mage-init='{"validation":{}}'>
                                 } } else { echo $block->escapeHtml('hide_attribute'); } ?>
                                         input-text <?= $block->escapeHtml($attribute
                                         ['frontend_class']);?>"
-                                        data-hide-validation="<?php if ($attribute['is_required']) {
-                                            echo 'required-entry'; } ?>"
-                                        for="<?php if ($ticketattr->getFieldDependency()> 0) {
-                                            echo $block->escapeHtml($ticketattr->getFieldDependency());}?>"
+                                        data-hide-validation="<?php if ($attribute['is_required'])
+                                         {echo 'required-entry'; } ?>"
+                                        for="<?php if ($ticketattr->getFieldDependency()> 0)
+                                         {echo $block->escapeHtml($ticketattr->getFieldDependency());}?>"
                                         type="text" name="<?=$block->escapeHtml($attribute['attribute_code']);?>"
                                         <?php
                                         $customAttrValue = "";
@@ -257,7 +244,7 @@ data-mage-init='{"validation":{}}'>
                                             $customAttrValue = $draftContent[$attribute['attribute_code']];
                                         }
                                         ?>
-                                        value="<?= /* @noEscape */ $customAttrValue; ?>"/>
+                                        value="<?= $customAttrValue; ?>"/>
                             <?php } ?>
                             <?php if ($attribute['frontend_input'] == 'date' ||
                             $attribute['frontend_input'] == 'datetime') { ?>
@@ -267,8 +254,8 @@ data-mage-init='{"validation":{}}'>
                                         input-text validate-date" 
                                         data-hide-validation="<?php if ($attribute
                                         ['is_required']) {echo 'required-entry'; } ?>"
-                                        for="<?php if ($ticketattr->getFieldDependency() > 0) {
-                                            echo $block->escapeHtml($ticketattr->getFieldDependency());}?>"
+                                        for="<?php if ($ticketattr->getFieldDependency() > 0)
+                                        {echo $block->escapeHtml($ticketattr->getFieldDependency());}?>"
                                         type="<?= $attribute['frontend_input'] =='date' ? 'date' : 'datetime-local'?>"
                                         name="<?= $block->escapeHtml($attribute['attribute_code']);?>"
                                         <?php
@@ -277,7 +264,7 @@ data-mage-init='{"validation":{}}'>
                                             $customAttrValue = $draftContent[$attribute['attribute_code']];
                                         }
                                         ?>
-                                        value="<?= /* @noEscape */ $customAttrValue; ?>"/>
+                                        value="<?= $customAttrValue; ?>"/>
                             <?php } ?>
                             <?php if ($attribute['frontend_input'] == 'textarea') { ?>
                                 <textarea class="<?php  if ($ticketattr->getFieldDependency()
@@ -286,19 +273,19 @@ data-mage-init='{"validation":{}}'>
                                 } } else { echo 'hide_attribute'; } ?>
                                         input-text <?= $block->escapeHtml($attribute
                                         ['frontend_class']); ?>"
-                                        data-hide-validation="<?php if ($attribute['is_required']) {
-                                            echo 'required-entry'; }?>"
+                                        data-hide-validation="<?php if ($attribute['is_required'])
+                                        {echo 'required-entry'; }?>"
                                         for="<?php if ($ticketattr->getFieldDependency() > 0) {
                                                 echo $block->escapeHtml($ticketattr->getFieldDependency());}?>"
                                         rows="5" cols="75" id="textar" name="<?=$block->escapeHtml($attribute
                                                 ['attribute_code']);?>">
                                     <?php
                                         $customAttrValue = "";
-                                    if (!empty($draftContent[$attribute['attribute_code']])) {
-                                        $customAttrValue = $draftContent[$attribute['attribute_code']];
-                                    }
+                                        if (!empty($draftContent[$attribute['attribute_code']])) {
+                                            $customAttrValue = $draftContent[$attribute['attribute_code']];
+                                        }
                                     ?>
-                                    <?= /* @noEscape */ $customAttrValue; ?>
+                                    <?= $customAttrValue; ?>
                                     </textarea>
                             <?php } ?>
                             <?php if ($attribute['frontend_input'] == 'texteditor') { ?>
@@ -307,8 +294,8 @@ data-mage-init='{"validation":{}}'>
                                     $block->escapeHtml('required-entry');
                                 } } else { echo 'hide_attribute'; } ?>
                                         input-text <?= $block->escapeHtml($attribute['frontend_class']); ?>"
-                                        data-hide-validation="<?php if ($attribute['is_required']) {
-                                            echo 'required-entry'; }?>"
+                                        data-hide-validation="<?php if ($attribute['is_required'])
+                                        {echo 'required-entry'; }?>"
                                         for="<?php if ($ticketattr->getFieldDependency() > 0) {
                                             echo $block->escapeHtml($ticketattr->getFieldDependency());}?>"
                                         id="customFieldEditor" name="<?=
@@ -316,11 +303,11 @@ data-mage-init='{"validation":{}}'>
                                             ['attribute_code']);?>">
                                     <?php
                                         $customAttrValue = "";
-                                    if (!empty($draftContent[$attribute['attribute_code']])) {
-                                        $customAttrValue = $draftContent[$attribute['attribute_code']];
-                                    }
+                                        if (!empty($draftContent[$attribute['attribute_code']])) {
+                                            $customAttrValue = $draftContent[$attribute['attribute_code']];
+                                        }
                                     ?>
-                                    <?= /* @noEscape */ $customAttrValue; ?>
+                                    <?= $customAttrValue; ?>
                                     </textarea>
                             <?php } ?>
                             <?php if ($attribute['frontend_input'] == 'image') { ?>
@@ -365,11 +352,11 @@ data-mage-init='{"validation":{}}'>
                         id="query">
                         <?php
                             $query = $persistorData['query'];
-                        if (!empty($draftContent["query"])) {
-                            $query = $draftContent["query"];
-                        }
+                            if (!empty($draftContent["query"])) {
+                                $query = $draftContent["query"];
+                            }
                         ?>
-                        <?= /* @noEscape */ $query; ?>
+                        <?= $query; ?>
                         </textarea>
                     </div>
                 </li>
@@ -391,11 +378,6 @@ data-mage-init='{"validation":{}}'>
             </div>
         </div>
     </div>
-    <div class="ajax-draft-save-msg">
-    <i class="fa fa-exclamation-circle"></i>
-    <?= $block->escapeHtml(__("Success !  message has been save in draft.")) ?>
-    <label class="wk_close_msg">X</label>
-</div>
 </form>
 <?php
 $formData = [

@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Block\Adminhtml\Ticketsmanagement\Status\Edit;
 
@@ -19,11 +18,6 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
      * @var \Magento\Store\Model\System\Store
      */
     protected $_systemStore;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TypeFactory
-     */
-    protected $_typeFactory;
 
     /**
      * @param \Magento\Backend\Block\Template\Context $context

@@ -1,23 +1,23 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 
 namespace Webkul\Walletsystem\Ui\Component\MassAction\Status;
 
 use Magento\Framework\UrlInterface;
-use Laminas\Stdlib\JsonSerializable;
+//use Zend\Stdlib\JsonSerializable;
 
 /**
  * Class Options
  */
-class CreditStatus implements JsonSerializable
+class CreditStatus implements \JsonSerializable
 {
     /**
      * @var array

@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Model;
 
@@ -53,35 +52,11 @@ class TicketslaRepository implements \Webkul\Helpdesk\Api\TicketslaRepositoryInt
      * @var \Webkul\Helpdesk\Model\ResponsesRepository
      */
     protected $_responseRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\SlapolicyFactory
-     */
     protected $_slapolicyFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\GroupFactory
-     */
     protected $_groupFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\BusinesshoursFactory
-     */
     protected $_businesshoursFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketslaFactory
-     */
     protected $_ticketslaFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ThreadFactory
-     */
     protected $_threadFactory;
-
-    /**
-     * @var \Magento\Framework\Serialize\SerializerInterface
-     */
     protected $serializer;
 
     /**
@@ -224,11 +199,7 @@ class TicketslaRepository implements \Webkul\Helpdesk\Api\TicketslaRepositoryInt
             $data = ['is_working_day' => 1, "day"=>$today, "business_hours"=>$businessHours,
             "sla_targets"=>$slaTarget, "type"=>'response'];
             $responedTime = $this->calculateTime($data);
-            $data["type"] = "resolve";
             $resolveTime = $this->calculateTime($data);
-            if ($responedTime == null || $resolveTime == null) {
-                return;
-            }
             $ticketSla->setTicketId($ticketId);
             $ticketSla->setRespondTime($responedTime);
             $ticketSla->setResolveTime($resolveTime);
@@ -268,14 +239,7 @@ class TicketslaRepository implements \Webkul\Helpdesk\Api\TicketslaRepositoryInt
                     if (in_array($datetime->format('m-d'), $holidays)) {
                         $flag = 1;
                     }
-                    list($flag, $returnTime, $data) = $this->checkFlag(
-                        $flag,
-                        $data,
-                        $helpdesk_hours,
-                        $day,
-                        $type,
-                        $slaTargets
-                    );
+                    list($flag, $returnTime, $data) = $this->checkFlag($flag, $data, $helpdesk_hours, $day, $type, $slaTargets);
                 } else {
                     $flag = 1;
                 }
@@ -293,7 +257,7 @@ class TicketslaRepository implements \Webkul\Helpdesk\Api\TicketslaRepositoryInt
         }
     }
 
-    /**
+        /**
      * Check flag to calcuate remaining time for resolve and respond ticket
      *
      * @param boolean $flag
@@ -308,12 +272,12 @@ class TicketslaRepository implements \Webkul\Helpdesk\Api\TicketslaRepositoryInt
         $returnTime = "";
         if (!$flag) {
             $currentTime = $data['day'];
-            $helpdesk_hours_day = $helpdesk_hours[$day];
-            $startTime = date('Y-m-d', strtotime($data['day']))." ".$helpdesk_hours_day
-            ['morning_'.$day]." ".$helpdesk_hours_day['morning_cycle_'.$day];
+            $helpdesk_hours = $helpdesk_hours[$day];
+            $startTime = date('Y-m-d', strtotime($data['day']))." ".$helpdesk_hours
+            ['morning_'.$day]." ".$helpdesk_hours['morning_cycle_'.$day];
             $startTime = date('Y-m-d H:i:s', strtotime($startTime));
-            $endTime = date('Y-m-d', strtotime($data['day']))." ".$helpdesk_hours_day
-            ['evening_'.$day]." ".$helpdesk_hours_day['evening_cycle_'.$day];
+            $endTime = date('Y-m-d', strtotime($data['day']))." ".$helpdesk_hours
+            ['evening_'.$day]." ".$helpdesk_hours['evening_cycle_'.$day];
             $endTime = date('Y-m-d H:i:s', strtotime($endTime));
             if (isset($data['remaining_time']) && $data['remaining_time'] > 0) {
                 $responedTime = date(
@@ -383,13 +347,12 @@ class TicketslaRepository implements \Webkul\Helpdesk\Api\TicketslaRepositoryInt
                 } else {
                     $day = date("l", strtotime($data['day']."+1 days"));
                     if (isset($helpdesk_hours[$day])) {
-                        $helpdesk_hours_day = $helpdesk_hours[$day];
-                        $startTime = date('Y-m-d', strtotime($day))." 
-                        ".$helpdesk_hours_day['morning_'.$day]." ".$helpdesk_hours_day
+                        $startTime = date('Y-m-d', strtotime($data['day']))." 
+                        ".$helpdesk_hours['morning_'.$day]." ".$helpdesk_hours
                         ['morning_cycle_'.$day];
                         $startTime = date('Y-m-d H:i:s', strtotime($startTime));
-                        $endTime = date('Y-m-d', strtotime($day))." 
-                        ".$helpdesk_hours_day['evening_'.$day]." ".$helpdesk_hours_day
+                        $endTime = date('Y-m-d', strtotime($data['day']))." 
+                        ".$helpdesk_hours['evening_'.$day]." ".$helpdesk_hours
                         ['evening_cycle_'.$day];
                         $endTime = date('Y-m-d H:i:s', strtotime($endTime));
                         $responedTime = date(
@@ -399,14 +362,8 @@ class TicketslaRepository implements \Webkul\Helpdesk\Api\TicketslaRepositoryInt
                                 [$type.'-time-type']
                             )
                         );
-                        if (strtotime($endTime) - strtotime($responedTime) < 0) {
-                            $remainingTime = abs(strtotime($endTime) - strtotime($responedTime));
-                            $data['remaining_time'] = $remainingTime;
-                            $flag = 1;
-                        } else {
-                            $returnTime = $responedTime;
-                        }
-                    } else {
+                        $remainingTime = abs(strtotime($endTime) - strtotime($responedTime));
+                        $data['remaining_time'] = $remainingTime;
                         $flag = 1;
                     }
                 }

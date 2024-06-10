@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\EmailTemplate;
 
@@ -23,16 +22,6 @@ class Edit extends Action
      * @var \Magento\Framework\View\Result\PageFactory
      */
     protected $_resultPageFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\EmailTemplateFactory
-     */
-    protected $_emailtemplateFactory;
-
-    /**
-     * @var \Magento\Email\Model\BackendTemplate
-     */
-    protected $_emailbackendTemp;
 
     /**
      * @param Action\Context                              $context
@@ -89,7 +78,7 @@ class Edit extends Action
         if ($emailTempId) {
             $emailtemplatemodel = $this->_emailbackendTemp->load($emailTempId);
             if (!$emailtemplatemodel->getId()) {
-                $this->messageManager->addErrorMessage(__('This Email Template no longer exists.'));
+                $this->messageManager->addError(__('This Email Template no longer exists.'));
                 return $this->resultRedirectFactory->create()->setPath('helpdesk/*/');
             }
         }

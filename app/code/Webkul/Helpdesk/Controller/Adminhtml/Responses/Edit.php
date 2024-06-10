@@ -4,31 +4,17 @@
  *
  * @category  Webkul
  * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
  * @license   https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\Responses;
 
+use Magento\Framework\Locale\Resolver;
 use Magento\Backend\App\Action;
 
 class Edit extends Action
 {
-    /**
-     * @var \Magento\Framework\View\Result\PageFactory
-     */
-    protected $_resultPageFactory;
-
-    /**
-     * @var \Magento\Framework\Registry
-     */
-    protected $_coreRegistry;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ResponsesFactory
-     */
-    protected $_responsesFactory;
-
     /**
      * @param Action\Context                             $context
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
@@ -56,8 +42,8 @@ class Edit extends Action
     {
         // load layout, set active menu and breadcrumbs
         /**
-        * @var \Magento\Backend\Model\View\Result\Page $resultPage
-        */
+ * @var \Magento\Backend\Model\View\Result\Page $resultPage
+*/
         $resultPage = $this->_resultPageFactory->create();
         $resultPage->setActiveMenu('Webkul_Helpdesk::responses')
             ->addBreadcrumb(__('Add Responses'), __('Add Responses'))
@@ -78,7 +64,7 @@ class Edit extends Action
         if ($responseId) {
             $model->load($responseId);
             if (!$model->getId()) {
-                $this->messageManager->addErrorMessage(__('This response no longer exists.'));
+                $this->messageManager->addError(__('This response no longer exists.'));
                 return $this->resultRedirectFactory->create()->setPath('helpdesk/*/');
             }
         }

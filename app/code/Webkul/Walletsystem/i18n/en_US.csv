@@ -271,7 +271,7 @@ Bank Details,Bank Details
 Your Wallet Balance,Your Wallet Balance
 Credited Amount,Credited Amount
 %1's Wallet,%1's Wallet
-If you placed this order from your wallet then total amount %1 will be credited in your wallet.,If you placed this order from your wallet then total amount %1 will be credited in your wallet.
+If you placed this order then total amount %1 will be credited in your wallet.,If you placed this order then total amount %1 will be credited in your wallet.
 Wallet System Payee Details,Wallet System Payee Details
 Payee is added in your list,Payee is added in your list
 Payee is successfully deleted,Payee is successfully deleted

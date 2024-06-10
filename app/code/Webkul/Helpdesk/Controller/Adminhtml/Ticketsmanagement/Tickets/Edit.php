@@ -4,8 +4,8 @@
  *
  * @category  Webkul
  * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
  * @license   https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\Ticketsmanagement\Tickets;
@@ -64,8 +64,8 @@ class Edit extends Action
     {
         // load layout, set active menu and breadcrumbs
         /**
-        * @var \Magento\Backend\Model\View\Result\Page $resultPage
-        */
+ * @var \Magento\Backend\Model\View\Result\Page $resultPage
+*/
         $resultPage = $this->_resultPageFactory->create();
         $resultPage->setActiveMenu('Webkul_Helpdesk::tickets')
             ->addBreadcrumb(__('Ticket'), __('Ticket'))

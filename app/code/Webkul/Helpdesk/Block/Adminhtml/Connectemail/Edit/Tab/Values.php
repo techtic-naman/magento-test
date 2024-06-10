@@ -2,31 +2,15 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Block\Adminhtml\Connectemail\Edit\Tab;
 
 class Values extends \Magento\Backend\Block\Widget\Form\Generic
 {
-    /**
-     * @var \Webkul\Helpdesk\Model\TypeFactory
-     */
-    protected $_typeFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\GroupFactory
-     */
-    protected $_groupFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsPriorityFactory
-     */
-    protected $_priorityFactory;
-
     /**
      * @param \Magento\Backend\Block\Template\Context $context
      * @param \Magento\Framework\Registry             $registry
@@ -59,8 +43,8 @@ class Values extends \Magento\Backend\Block\Widget\Form\Generic
     public function _prepareForm()
     {
         /**
-        * @var \Magento\Framework\Data\Form $form
-        */
+ * @var \Magento\Framework\Data\Form $form
+*/
         $form = $this->_formFactory->create();
         $form->setHtmlIdPrefix('connect_email_');
         $cEmailModel = $this->_coreRegistry->registry('helpdesk_connectemail');

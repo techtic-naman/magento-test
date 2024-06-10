@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 
 namespace Webkul\Helpdesk\Ui\Component\Listing\Columns\Report;
@@ -28,21 +27,6 @@ class Agent extends Column
      * @var UrlInterface
      */
     protected $_urlBuilder;
-
-    /**
-     * @var TicketsFactory
-     */
-    protected $_ticketsFactory;
-
-    /**
-     * @var ThreadFactory
-     */
-    protected $_threadFactory;
-
-    /**
-     * @var HelperData
-     */
-    protected $_helperData;
 
     /**
      * @param ContextInterface   $context

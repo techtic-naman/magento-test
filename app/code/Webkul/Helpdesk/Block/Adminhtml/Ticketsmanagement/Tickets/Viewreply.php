@@ -4,8 +4,8 @@
  *
  * @category  Webkul
  * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
  * @license   https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Block\Adminhtml\Ticketsmanagement\Tickets;
@@ -16,75 +16,31 @@ class Viewreply extends \Webkul\Helpdesk\Block\Adminhtml\Edit\Tab\AbstractAction
      * @var \Magento\Framework\View\Asset\Repository
      */
     protected $assetRepo;
-
     /**
-     * @var \Webkul\Helpdesk\Model\TicketsFactory
-     */
-    protected $_ticketsFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketnotesFactory
-     */
-    protected $_ticketnotesFactory;
-
-    /**
-     * @var \Magento\Catalog\Model\ResourceModel\Eav\Attribute
-     */
-    protected $_eavAttribute;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ThreadFactory
-     */
-    protected $_threadFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Data
-     */
-    protected $dataHelper;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Tickets
-     */
-    protected $ticketHelper;
-
-    /**
-     * @var \Magento\Framework\Filesystem\Driver\File
-     */
-    protected $filesystemFile;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsCustomAttributesFactory
-     */
-    protected $_ticketsCusAttrFactory;
-
-    /**
-     * Constructor
-     *
-     * @param \Magento\Backend\Block\Template\Context               $context
-     * @param \Webkul\Helpdesk\Model\TicketsPriorityFactory         $ticketsPriorityFactory
-     * @param \Webkul\Helpdesk\Model\TypeFactory                    $typeFactory
-     * @param \Webkul\Helpdesk\Model\GroupFactory                   $groupFactory
-     * @param \Webkul\Helpdesk\Model\AgentFactory                   $agentFactory
-     * @param \Webkul\Helpdesk\Model\TicketsStatusFactory           $ticketsStatusFactory
-     * @param \Webkul\Helpdesk\Model\EmailTemplateFactory           $emailTemplateFactory
-     * @param \Webkul\Helpdesk\Model\TagFactory                     $tagFactory
-     * @param \Webkul\Helpdesk\Model\ResponsesFactory               $responsesFactory
-     * @param \Webkul\Helpdesk\Model\EventsFactory                  $eventsFactory
-     * @param \Magento\Cms\Model\Wysiwyg\Config                     $wysiwygConfig
-     * @param \Webkul\Helpdesk\Model\SlapolicyFactory               $slapolicyFactory
-     * @param \Magento\User\Model\UserFactory                       $userFactory
-     * @param \Webkul\Helpdesk\Model\TicketsFactory                 $ticketsFactory
-     * @param \Webkul\Helpdesk\Model\TicketnotesFactory             $ticketnotesFactory
-     * @param \Magento\Catalog\Model\ResourceModel\Eav\Attribute    $eavAttribute
-     * @param \Webkul\Helpdesk\Model\ThreadFactory                  $threadFactory
-     * @param \Magento\Framework\View\Asset\Repository              $assetRepo
-     * @param \Webkul\Helpdesk\Helper\Data                          $dataHelper
-     * @param \Webkul\Helpdesk\Helper\Tickets                       $ticketHelper
-     * @param \Magento\Framework\Json\Helper\Data                   $jsonHelper
-     * @param \Magento\Framework\Serialize\SerializerInterface      $serializer
-     * @param \Magento\Framework\Filesystem\Driver\File             $filesystemFile
-     * @param \Webkul\Helpdesk\Model\TicketsCustomAttributesFactory $ticketsCusAttrFactory
-     * @param array                                                 $data
+     * @param \Magento\Backend\Block\Template\Context            $context
+     * @param \Webkul\Helpdesk\Model\TicketsPriorityFactory      $ticketsPriorityFactory
+     * @param \Webkul\Helpdesk\Model\TypeFactory                 $typeFactory
+     * @param \Webkul\Helpdesk\Model\GroupFactory                $groupFactory
+     * @param \Webkul\Helpdesk\Model\AgentFactory                $agentFactory
+     * @param \Webkul\Helpdesk\Model\TicketsStatusFactory        $ticketsStatusFactory
+     * @param \Webkul\Helpdesk\Model\EmailTemplateFactory        $emailTemplateFactory
+     * @param \Webkul\Helpdesk\Model\TagFactory                  $tagFactory
+     * @param \Webkul\Helpdesk\Model\ResponsesFactory            $responsesFactory
+     * @param \Webkul\Helpdesk\Model\EventsFactory               $eventsFactory
+     * @param \Magento\Cms\Model\Wysiwyg\Config                  $wysiwygConfig
+     * @param \Webkul\Helpdesk\Model\SlapolicyFactory            $slapolicyFactory
+     * @param \Magento\User\Model\UserFactory                    $userFactory
+     * @param \Webkul\Helpdesk\Model\TicketsFactory              $ticketsFactory
+     * @param \Webkul\Helpdesk\Model\TicketnotesFactory          $ticketnotesFactory
+     * @param \Magento\Catalog\Model\ResourceModel\Eav\Attribute $eavAttribute
+     * @param \Webkul\Helpdesk\Model\ThreadFactory               $threadFactory
+     * @param \Magento\Framework\View\Asset\Repository           $assetRepo
+     * @param \Webkul\Helpdesk\Helper\Data                       $dataHelper
+     * @param \Webkul\Helpdesk\Helper\Tickets                    $ticketHelper
+     * @param \Magento\Framework\Json\Helper\Data                $jsonHelper
+     * @param \Magento\Framework\Serialize\SerializerInterface   $serializer
+     * @param \Magento\Framework\Filesystem\Driver\File          $filesystemFile
+     * @param array                                              $data
      */
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
@@ -110,7 +66,6 @@ class Viewreply extends \Webkul\Helpdesk\Block\Adminhtml\Edit\Tab\AbstractAction
         \Magento\Framework\Json\Helper\Data $jsonHelper,
         \Magento\Framework\Serialize\SerializerInterface $serializer,
         \Magento\Framework\Filesystem\Driver\File $filesystemFile,
-        \Webkul\Helpdesk\Model\TicketsCustomAttributesFactory $ticketsCusAttrFactory,
         array $data = []
     ) {
         $this->_ticketsFactory = $ticketsFactory;
@@ -121,7 +76,6 @@ class Viewreply extends \Webkul\Helpdesk\Block\Adminhtml\Edit\Tab\AbstractAction
         $this->dataHelper = $dataHelper;
         $this->ticketHelper = $ticketHelper;
         $this->filesystemFile = $filesystemFile;
-        $this->_ticketsCusAttrFactory = $ticketsCusAttrFactory;
         parent::__construct(
             $context,
             $ticketsPriorityFactory,
@@ -155,11 +109,13 @@ class Viewreply extends \Webkul\Helpdesk\Block\Adminhtml\Edit\Tab\AbstractAction
     /**
      * Get note collection
      *
+     * @param int $agentId
      * @param int $ticketId
      */
-    public function getNoteCollection($ticketId)
+    public function getNoteCollection($agentId, $ticketId)
     {
         return $this->_ticketnotesFactory->create()->getCollection()
+            ->addFieldToFilter("agent_id", ["eq"=>$agentId])
             ->addFieldToFilter("ticket_id", ["eq"=>$ticketId]);
     }
 
@@ -255,17 +211,6 @@ class Viewreply extends \Webkul\Helpdesk\Block\Adminhtml\Edit\Tab\AbstractAction
     public function getTicketUrl($Id)
     {
         $path = 'helpdesk/ticketsmanagement_tickets/viewreply';
-        return $this->_urlBuilder->getUrl($path, ['id' => $Id]);
-    }
-
-    /**
-     * GetCustomFieldAttributes
-     *
-     * @param int $type
-     */
-    public function getCustomFieldAttributes($type)
-    {
-        return $this->_ticketsCusAttrFactory->create()
-            ->getAllowedTicketCustomerAttributes($type);
+        return $this->_urlBuilder->getUrl($path,['id' => $Id]);
     }
 }

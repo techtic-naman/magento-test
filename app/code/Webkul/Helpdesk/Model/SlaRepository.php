@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Model;
 
@@ -53,21 +52,6 @@ class SlaRepository implements \Webkul\Helpdesk\Api\SlaRepositoryInterface
      * @var \Webkul\Helpdesk\Model\ResponsesRepository
      */
     protected $_responseRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\SlapolicyFactory
-     */
-    protected $_slapolicyFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketslaRepository
-     */
-    protected $_ticketslaRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Tickets
-     */
-    protected $_ticketHelper;
 
     /**
      * TicketsRepository constructor.
@@ -122,22 +106,18 @@ class SlaRepository implements \Webkul\Helpdesk\Api\SlaRepositoryInterface
             foreach ($collection as $sla) {
                 $oneCondition = json_decode($sla->getOneConditionCheck(), true);
                 $flag = false;
-                $flag = $this->checkOneCondition($oneCondition, $flag, $ticket);
-                if ($flag) {
+                $count = 0;
+                $this->checkOneCondition($oneCondition, $flag, $ticket, $type, $ticketId, $sla);
+                $this->checkFlag($sla, $flag, $ticket);
+                
+                if ($count == 0) {
                     if ($type == "reply") {
-                        $this->_ticketslaRepo->applyReplySLAToTicket(
-                            $ticketId,
-                            $sla->getId()
-                        );
+                        $this->_ticketslaRepo->applyReplySLAToTicket($ticketId, $sla->getId());
                     } else {
-                        $this->_ticketslaRepo->applySLAToTicket(
-                            $ticketId,
-                            $sla->getId()
-                        );
+                        $this->_ticketslaRepo->applySLAToTicket($ticketId, $sla->getId());
                     }
-                } else {
-                    $this->checkFlag($sla, $flag, $ticket);
-                }   
+                    break;
+                }
             }
         } catch (\Exception $e) {
             $this->_helpdeskLogger->info($e->getMessage());
@@ -234,12 +214,16 @@ class SlaRepository implements \Webkul\Helpdesk\Api\SlaRepositoryInterface
      * @param  string $oneCondition
      * @param  string $flag
      * @param  object $ticket
+     * @param  string $type
+     * @param  int    $ticketId
+     * @param  object $sla
      * @return boolean
      */
-    public function checkOneCondition($oneCondition, $flag, $ticket)
+    public function checkOneCondition($oneCondition, $flag, $ticket, $type, $ticketId, $sla)
     {
         if (isset($oneCondition['action-type'])) {
             foreach ($oneCondition['action-type'] as $actionType) {
+                $count = 1;
                 switch ($actionType) {
                     case 'from':
                         $flag = $this->checkCondition(
@@ -293,15 +277,6 @@ class SlaRepository implements \Webkul\Helpdesk\Api\SlaRepositoryInterface
                             $ticket->getPriority(),
                             $oneCondition
                             ['priority']['match']
-                        );
-                        break;
-                    case 'status':
-                        $flag = $this->checkCondition(
-                            $oneCondition['status']
-                            ['match_condition'],
-                            $ticket->getPriority(),
-                            $oneCondition
-                            ['status']['match']
                         );
                         break;
                     case 'source':
@@ -397,7 +372,19 @@ class SlaRepository implements \Webkul\Helpdesk\Api\SlaRepositoryInterface
                         break;
                 }
                 if ($flag) {
-                    return $flag;     
+                    if ($type == "reply") {
+                        $this->_ticketslaRepo->applyReplySLAToTicket(
+                            $ticketId,
+                            $sla->getId()
+                        );
+                    } else {
+                        $this->_ticketslaRepo->applySLAToTicket(
+                            $ticketId,
+                            $sla->getId(
+                            )
+                        );
+                    }
+                    break;
                 }
             }
         }
@@ -409,16 +396,14 @@ class SlaRepository implements \Webkul\Helpdesk\Api\SlaRepositoryInterface
      * @param  object $sla
      * @param  string $flag
      * @param  object $ticket
-     * @param  string|null $type
      */
-    public function checkFlag($sla, $flag, $ticket, $type = null)
+    public function checkFlag($sla, $flag, $ticket)
     {
         if (!$flag) {
             $allCondition = json_decode($sla->getAllConditionCheck(), true);
             $flag = false;
-            $flag = $this->checkCon($allCondition, $flag, $ticket);
+            $this->checkCon($allCondition, $sla, $flag, $ticket);
             if ($flag) {
-                $ticketId = $ticket->getId();
                 if ($type == "reply") {
                     $this->_ticketslaRepo->applyReplySLAToTicket(
                         $ticketId,
@@ -430,18 +415,19 @@ class SlaRepository implements \Webkul\Helpdesk\Api\SlaRepositoryInterface
             }
         }
     }
-
     /**
      * Check condition for flag
      *
-     * @param  array $allCondition
+     * @param  string $allCondition
+     * @param  object $sla
      * @param  string $flag
      * @param  object $ticket
      */
-    public function checkCon($allCondition, $flag, $ticket)
+    public function checkCon($allCondition, $sla, $flag, $ticket)
     {
         if (isset($allCondition['action-type'])) {
             foreach ($allCondition['action-type'] as $actionType) {
+                $count = 1;
 
                 switch ($actionType) {
                     case 'from':
@@ -572,10 +558,10 @@ class SlaRepository implements \Webkul\Helpdesk\Api\SlaRepositoryInterface
 
                         if ($orgName!="") {
                             $flag = $this->checkCondition(
-                                $allCondition
+                                $oneCondition
                                 ['organization_name']['match_condition'],
                                 $orgName,
-                                $allCondition['organization_name']['match']
+                                $oneCondition['organization_name']['match']
                             );
                         }
                         break;
@@ -593,10 +579,10 @@ class SlaRepository implements \Webkul\Helpdesk\Api\SlaRepositoryInterface
                         }
                         if ($orgDomain!="") {
                             $flag = $this->checkCondition(
-                                $allCondition
+                                $oneCondition
                                 ['organization_domain']['match_condition'],
                                 $orgDomain,
-                                $allCondition['organization_domain']
+                                $oneCondition['organization_domain']
                                 ['match']
                             );
                         }
@@ -606,7 +592,6 @@ class SlaRepository implements \Webkul\Helpdesk\Api\SlaRepositoryInterface
                     break;
                 }
             }
-            return $flag;
         }
     }
 }

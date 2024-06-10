@@ -4,8 +4,8 @@
  *
  * @category  Webkul
  * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
  * @license   https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Block\Adminhtml\Agentsmanagement\Group\Edit;
@@ -19,11 +19,6 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
      * @var \Magento\Store\Model\System\Store
      */
     protected $_systemStore;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\BusinesshoursFactory
-     */
-    protected $_businesshoursFactory;
 
     /**
      * @param \Magento\Backend\Block\Template\Context     $context

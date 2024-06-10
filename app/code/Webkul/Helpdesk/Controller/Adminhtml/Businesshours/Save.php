@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\Businesshours;
 
@@ -18,7 +17,7 @@ class Save extends \Magento\Backend\App\Action
     /**
      * @var PageFactory
      */
-    protected $resultPageFactory;
+    protected $_resultPageFactory;
 
     /**
      * @var \Webkul\Helpdesk\Model\CustomerFactory
@@ -34,26 +33,6 @@ class Save extends \Magento\Backend\App\Action
      * @var \Magento\Backend\Model\Session
      */
     protected $_modelSession;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\BusinesshoursFactory
-     */
-    protected $_businesshourFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ActivityRepository
-     */
-    protected $_activityRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\Source\Days
-     */
-    protected $_daysOpt;
-
-    /**
-     * @var \Magento\Framework\Serialize\SerializerInterface
-     */
-    protected $serialize;
 
     /**
      * @param Context                                          $context

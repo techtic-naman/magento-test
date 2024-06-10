@@ -1,12 +1,12 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 
 namespace Webkul\Walletsystem\Block\Adminhtml\Wallet\Renderer;
@@ -44,7 +44,7 @@ class TotalAmountRenderer extends \Magento\Backend\Block\Widget\Grid\Column\Rend
     public function render(\Magento\Framework\DataObject $row)
     {
         $currency = $this->storeManager->getStore()->getBaseCurrency()->getCurrencySymbol();
-        $totalAmount = !empty($row->getTotalAmount())?$row->getTotalAmount():"0.0000";
+        $totalAmount = !empty($row->getTotalAmount())?$row->getTotalAmount():0;
         return $currency.$totalAmount;
     }
 }

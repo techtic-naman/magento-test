@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Block\Adminhtml\Emailtemplate\Edit\Tab;
 
@@ -19,21 +18,6 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic
      * @var \Magento\Store\Model\System\Store
      */
     protected $_systemStore;
-
-    /**
-     * @var \Magento\Variable\Model\VariableFactory
-     */
-    protected $_variableFactory;
-
-    /**
-     * @var \Magento\Variable\Model\Source\Variables
-     */
-    protected $_variables;
-
-    /**
-     * @var \Magento\Framework\Serialize\Serializer\Json
-     */
-    protected $serializer;
 
     /**
      * @param  \Magento\Backend\Block\Template\Context           $context

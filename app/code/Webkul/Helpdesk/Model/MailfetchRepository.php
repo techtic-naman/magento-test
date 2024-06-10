@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Model;
 
@@ -24,46 +23,6 @@ class MailfetchRepository implements \Webkul\Helpdesk\Api\MailfetchRepositoryInt
      */
     protected $_helpdeskLogger;
     public const TABLENAME = "helpdesk_ticket_mail_details";
-
-    /**
-     * @var \Webkul\Helpdesk\Model\MailfetchFactory
-     */
-    protected $_mailfetchFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ThreadRepository
-     */
-    protected $_threadRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsRepository
-     */
-    protected $_ticketsRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\EventsRepository
-     */
-    protected $_eventsRepo;
-
-    /**
-     * @var \Magento\Framework\DB\Adapter\AdapterInterface
-     */
-    protected $connection;
-
-    /**
-     * @var \Magento\Framework\App\ResourceConnection
-     */
-    protected $resource;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Tickets
-     */
-    protected $_ticketsHelper;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsFactory
-     */
-    protected $_ticketsFactory;
 
     /**
      * TicketsRepository constructor.
@@ -118,11 +77,15 @@ class MailfetchRepository implements \Webkul\Helpdesk\Api\MailfetchRepositoryInt
             $server = new \Fetch\Server($host, $port);
             $server->setAuthentication($userName, $password);
             $server->setFlag($connectEmail->getProtocol());
-            $server->setMailBox($connectEmail->getMailbox());
-
-            $limit = $connectEmail->getCount() + $connectEmail->getFetchEmailLimit();
-            $messages = array_reverse($server->getMessages($limit));
-            if ($limit > $connectEmail->getFetchEmailLimit() && !empty($messages)) {
+            $server->setMailBox($connectEmail->getMailboxFolder());
+            $count = 0;
+            if ($connectEmail->getCount() != $connectEmail->getFetchEmailLimit()) {
+                $count = $connectEmail->getCount();
+            }
+            $limit = $count;
+             $messages = array_reverse($server->getMessages($limit));
+            
+            if ($connectEmail->getCount() != $connectEmail->getFetchEmailLimit()) {
                 $messages = array_chunk($messages, $connectEmail->getFetchEmailLimit());
                 $messages = $messages[0];
             }
@@ -143,7 +106,7 @@ class MailfetchRepository implements \Webkul\Helpdesk\Api\MailfetchRepositoryInt
                     }
                 }
             }
-            $connectEmail->setCount($connectEmail->getCount()+$count);
+            $connectEmail->setCount($connectEmail->getCount()+$connectEmail->getFetchEmailLimit());
             $connectEmail->save();
             return $count;
         } catch (\RuntimeException $e) {
@@ -206,11 +169,7 @@ class MailfetchRepository implements \Webkul\Helpdesk\Api\MailfetchRepositoryInt
                 $data['thread_type'] = "create";
 
                 $threadId = $this->_threadRepo->createThread($ticketId, $data);
-                try {
-                    $this->_eventsRepo->checkTicketEvent("ticket", $ticketId, "created");
-                } catch (\Exception $e) {
-                    $this->_helpdeskLogger->info(__FILE__.__LINE__." :".$e->getMessage());
-                }
+                $this->_eventsRepo->checkTicketEvent("ticket", $ticketId, "created");
                 if (isset($header->message_id)) {
                     $mailFetchData[$header->message_id]['thread_id'] = $threadId;
                     $mailFetchData[$header->message_id]['message_id'] = $header->message_id;

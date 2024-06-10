@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\Ticketsmanagement\Tickets;
 
@@ -18,52 +17,12 @@ class Splitthread extends \Magento\Backend\App\Action
     /**
      * @var PageFactory
      */
-    protected $resultPageFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ThreadFactory
-     */
-    protected $_threadFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsFactory
-     */
-    protected $_ticketsFactory;
-
-    /**
-     * @var \Magento\Backend\Model\Auth\Session
-     */
-    protected $_authSession;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ActivityRepository
-     */
-    protected $_activityRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\EventsRepository
-     */
-    protected $_eventsRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsRepository
-     */
-    protected $_ticketsRepo;
+    protected $_resultPageFactory;
 
     /**
      * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
      */
     protected $_helpdeskLogger;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Data
-     */
-    protected $_helper;
-
-    /**
-     * @var \Magento\Framework\Serialize\SerializerInterface
-     */
-    protected $serializer;
 
     /**
      * @param Context                                          $context
@@ -160,6 +119,6 @@ class Splitthread extends \Magento\Backend\App\Action
     private function getTicketUrl($Id)
     {
         $path = 'helpdesk/ticketsmanagement_tickets/viewreply';
-        return $this->_backendUrl->getUrl($path, ['id' => $Id]);
+        return $this->_backendUrl->getUrl($path,['id' => $Id]);
     }
 }

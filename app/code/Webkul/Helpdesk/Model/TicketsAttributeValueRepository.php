@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Model;
 
@@ -45,16 +44,6 @@ class TicketsAttributeValueRepository implements \Webkul\Helpdesk\Api\TicketsAtt
     protected $_fileUploaderFactory;
 
     /**
-     * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
-     */
-    protected $_helpdeskLogger;
-
-    /**
-     * @var \Magento\Framework\Message\ManagerInterface
-     */
-    protected $messageManager;
-
-    /**
      * TicketsAttributeValueRepository constructor.
      *
      * @param \Webkul\Helpdesk\Model\TicketsCustomAttributesFactory $ticketsCustomAttributesFactory
@@ -64,7 +53,6 @@ class TicketsAttributeValueRepository implements \Webkul\Helpdesk\Api\TicketsAtt
      * @param File                                                  $file
      * @param \Magento\MediaStorage\Model\File\UploaderFactory      $fileUploaderFactory
      * @param \Webkul\Helpdesk\Logger\HelpdeskLogger                $helpdeskLogger
-     * @param \Magento\Framework\Message\ManagerInterface           $messageManager
      */
     public function __construct(
         \Webkul\Helpdesk\Model\TicketsCustomAttributesFactory $ticketsCustomAttributesFactory,
@@ -73,8 +61,7 @@ class TicketsAttributeValueRepository implements \Webkul\Helpdesk\Api\TicketsAtt
         \Webkul\Helpdesk\Helper\Data $helper,
         File $file,
         \Magento\MediaStorage\Model\File\UploaderFactory $fileUploaderFactory,
-        \Webkul\Helpdesk\Logger\HelpdeskLogger $helpdeskLogger,
-        \Magento\Framework\Message\ManagerInterface $messageManager
+        \Webkul\Helpdesk\Logger\HelpdeskLogger $helpdeskLogger
     ) {
         $this->_ticketsCustomAttributesFactory = $ticketsCustomAttributesFactory;
         $this->_eavAttribute = $eavAttribute;
@@ -83,7 +70,6 @@ class TicketsAttributeValueRepository implements \Webkul\Helpdesk\Api\TicketsAtt
         $this->_file = $file;
         $this->_fileUploaderFactory = $fileUploaderFactory;
         $this->_helpdeskLogger = $helpdeskLogger;
-        $this->messageManager = $messageManager;
     }
 
     /**
@@ -111,20 +97,11 @@ class TicketsAttributeValueRepository implements \Webkul\Helpdesk\Api\TicketsAtt
                     } else {
                         $ticketAttributeModel->setValue($wholedata[$attribute['attribute_code']]);
                     }
-                    if (($attribute['frontend_input'] == 'image' || $attribute['frontend_input'] == 'file') &&
-                        !empty($wholedata[$attribute['attribute_code']])) {
-
+                    if ($attribute['frontend_input'] == 'image' || $attribute['frontend_input'] == 'file') {
                         $uploader = $this->_fileUploaderFactory->create(['fileId' => $attribute['attribute_code']]);
-                        $fileExt = $uploader->getFileExtension();
-                        $allowedExtensions = ['jpg','jpeg','gif','png','doc','pdf'];
+                        $allowedExtensions = ['jpg', 'jpeg', 'gif', 'png', 'doc', 'pdf'];
                         if ($attribute['note']) {
-                            $allowedConfigExt = str_replace(" ", "", $attribute['note']);
-                            $allowedExtensions = explode(',', $allowedConfigExt);
-                        }
-                        if (!in_array($fileExt, $allowedExtensions)) {
-                            $fileName = $wholedata[$attribute['attribute_code']];
-                            $this->messageManager->addNoticeMessage(__('File %1 extention not allowed.', $fileName));
-                            continue;
+                            $allowedExtensions = explode(',', $attribute['note']);
                         }
                         $uploader->setAllowedExtensions($allowedExtensions);
                         $mediaPath = $this->_helper->getMediaPath();

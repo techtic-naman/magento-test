@@ -1,12 +1,10 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Helpdesk Tickets Edit Tabs
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul Software Private Limited
  */
 
 namespace Webkul\Helpdesk\Block\Adminhtml\Businesshours\Edit;

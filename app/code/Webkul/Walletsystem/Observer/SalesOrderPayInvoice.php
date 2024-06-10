@@ -1,12 +1,12 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 
 namespace Webkul\Walletsystem\Observer;
@@ -45,13 +45,10 @@ class SalesOrderPayInvoice implements ObserverInterface
         $order = $invoice->getOrder();
         $orderTotalPaid = $order->getTotalPaid();
         $orderBaseTotalPaid = $order->getBaseTotalPaid();
-        $walletAmount = (-1) *  ($invoice->getWalletAmount());
+        $walletAmount = (-1) * ($invoice->getWalletAmount());
         $baseWalletAmount = (-1) * ($this->helper->baseCurrencyAmount($invoice->getWalletAmount()));
-        $invoice->setWalletAmount($walletAmount);
         $order->setBaseTotalPaid($orderBaseTotalPaid + $baseWalletAmount);
         $order->setTotalPaid($orderTotalPaid + $walletAmount);
-        $invoice->setGrandTotal($order->getGrandTotal());
-
         return $this;
     }
 }

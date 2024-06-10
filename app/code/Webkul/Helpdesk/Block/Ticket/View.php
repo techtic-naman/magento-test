@@ -4,8 +4,8 @@
  *
  * @category  Webkul
  * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
  * @license   https://store.webkul.com/license.html
  */
 
@@ -15,53 +15,6 @@ class View extends Navigation
 {
 
     /**
-     * @var \Webkul\Helpdesk\Helper\Data
-     */
-    protected $dataHelper;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Tickets
-     */
-    protected $_ticketsHelper;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsFactory
-     */
-    protected $_ticketsFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ThreadFactory
-     */
-    protected $_threadFactory;
-
-    /**
-     * @var \Magento\Catalog\Model\ResourceModel\Eav\Attribute
-     */
-    protected $_eavAttribute;
-
-    /**
-     * @var \Magento\Framework\View\Asset\Repository
-     */
-    protected $assetRepo;
-
-    /**
-     * @var \Magento\Framework\Json\Helper\Data
-     */
-    protected $jsonHelper;
-
-    /**
-     * @var \Magento\Framework\Filesystem\Driver\File
-     */
-    protected $filesystemFile;
-
-    /**
-     * @var \Magento\Framework\Escaper
-     */
-    protected $escaper;
-
-    /**
-     * Constructor
-     *
      * @param \Magento\Framework\View\Element\Template\Context      $context
      * @param \Webkul\Helpdesk\Model\SupportCenterFactory           $supportcenterFactory
      * @param \Magento\Cms\Model\PageFactory                        $cmspageFactory
@@ -79,8 +32,6 @@ class View extends Navigation
      * @param \Magento\Framework\Json\Helper\Data                   $jsonHelper
      * @param \Magento\Framework\Filesystem\Driver\File             $filesystemFile
      * @param \Magento\Framework\App\ResourceConnection             $resource
-     * @param \Magento\Framework\Escaper                            $escaper
-     * @param \Magento\Eav\Model\Entity\Attribute\Source\Table      $sorceTable
      * @param array                                                 $data
      */
     public function __construct(
@@ -102,7 +53,6 @@ class View extends Navigation
         \Magento\Framework\Filesystem\Driver\File $filesystemFile,
         \Magento\Framework\App\ResourceConnection $resource,
         \Magento\Framework\Escaper $escaper,
-        \Magento\Eav\Model\Entity\Attribute\Source\Table $sorceTable,
         array $data = []
     ) {
         $this->dataHelper = $dataHelper;
@@ -128,7 +78,6 @@ class View extends Navigation
             $dataHelper,
             $jsonHelper,
             $resource,
-            $sorceTable,
             $data
         );
     }
@@ -257,18 +206,7 @@ class View extends Navigation
     public function getTicketUrl($Id)
     {
         $path = 'helpdesk/ticket/view';
-        $url = $this->_urlBuilder->getUrl($path, ['id' => $Id]);
+        $url = $this->_urlBuilder->getUrl($path,['id' => $Id]);
         return $this->escaper->escapeUrl((string)$url);
-    }
-
-    /**
-     * GetCustomFieldAttributes
-     *
-     * @param int $type
-     */
-    public function getCustomFieldAttributes($type)
-    {
-        return $this->_ticketsCusAttrFactory->create()
-            ->getAllowedTicketCustomerAttributes($type);
     }
 }

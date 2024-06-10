@@ -1,12 +1,12 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 
 namespace Webkul\Walletsystem\Model\Total;
@@ -78,22 +78,23 @@ class Invoicetotal extends \Magento\Sales\Model\Order\Invoice\Total\AbstractTota
                 return $this;
             }
         }
-        $balance = (-1) * $balance;
+        $balance = -1 * $balance;
         $invoiceAmount = $this->getInvoiceAmount($order->getAllItems(), $invoiceParams);
         $finalAmount =  $invoiceAmount +
                         ($order->getShippingAmount() - $shippingAmount) +
                         ($order->getTaxAmount() - $taxAmount);
-
-        $finalWalletAmount = $balance - ($walletAmount);
+        $finalWalletAmount = $balance - (-$walletAmount);
         $balance = $finalWalletAmount;
         $walletHelper = $this->walletHelper;
         $baseCurrency = $walletHelper->getBaseCurrencyCode();
         $orderCurrency = $order->getOrderCurrencyCode();
+        
         $baseBalance = $walletHelper->getwkconvertCurrency($orderCurrency, $baseCurrency, $balance);
+        $balance = -1 * $balance;
+        $baseBalance = -1 * $baseBalance;
         $invoice->setWalletAmount($balance);
         $invoice->setGrandTotal($invoice->getGrandTotal() + $balance);
         $invoice->setBaseGrandTotal($invoice->getBaseGrandTotal() + $baseBalance);
-        
         return $this;
     }
 

@@ -2,21 +2,20 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Ui\Component\Ticket\MassAction;
 
 use Magento\Framework\UrlInterface;
-use JsonSerializable;
+//use Zend\Stdlib\JsonSerializable;
 
 /**
  * Class Options
  */
-class Type implements JsonSerializable
+class Type implements \JsonSerializable
 {
     /**
      * @var array
@@ -42,11 +41,6 @@ class Type implements JsonSerializable
      * @var string
      */
     protected $_paramName;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\Type
-     */
-    protected $_type;
 
     /**
      * @var array

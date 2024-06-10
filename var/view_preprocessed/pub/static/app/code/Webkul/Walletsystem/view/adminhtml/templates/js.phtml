@@ -1,20 +1,10 @@
-<?php /** * Webkul Software. * * @category Webkul * @package Webkul_Walletsystem * @author Webkul * @copyright Webkul Software Private Limited (https://webkul.com) * @license https://store.webkul.com/license.html */ ?> <?php $userHasWallet = $block->getUserHasWallet(); $paymentMethod = $block->getPaymentMethod(); $paymentMethod = $block->getHelper()->jsonEncode($paymentMethod); $formData = [ 'userHasWallet' => $userHasWallet, 'requestUrl' => $block->getUrl('walletsystem/wallet/refund/') ]; $serializedFormData = $block->getHelper()->jsonEncode($formData); ?> <script>
+<?php /** * Webkul Software * * @category Webkul * @package Webkul_Walletsystem * @author Webkul * @copyright Webkul Software Private Limited (https://webkul.com) * @license https://store.webkul.com/license.html */ ?> <?php $userHasWallet = $block->getUserHasWallet(); $formData = [ 'userHasWallet' => $userHasWallet, 'requestUrl' => $block->getUrl('walletsystem/wallet/refund/') ]; $serializedFormData = $block->getHelper()->jsonEncode($formData); ?> <script>
     require([
         "jquery",
         "mage/mage",
         'domReady!'
     ], function($){
         $('body').trigger('contentUpdated');
-     
-        if( <?= /*@noEscape*/ $paymentMethod?> == "walletsystem"){
-            $('.submit-button').each( function () {
-                if($(this).prop('id') != "wk-wallet-refund-button")
-                {
-                    $(this).hide();
-
-                }})
-        }
-
         var input = document.createElement("INPUT");
         input.setAttribute("name", "creditmemo[wallet_refund]");
         input.setAttribute("type", "hidden");

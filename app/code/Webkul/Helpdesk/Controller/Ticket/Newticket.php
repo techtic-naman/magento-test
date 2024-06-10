@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Ticket;
 
@@ -29,31 +28,6 @@ class Newticket extends Action
      * @var UrlInterface
      */
     protected $urlInterface;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Data
-     */
-    protected $_dataHelper;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Tickets
-     */
-    protected $_ticketHelper;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\CustomerFactory
-     */
-    protected $_helpdeskCustomerFactory;
-
-    /**
-     * @var \Magento\Framework\Url\EncoderInterface
-     */
-    protected $urlEncoder;
-
-    /**
-     * @var \Magento\Customer\Model\Session
-     */
-    protected $_mageCustomerSession;
 
     /**
      * @param Context                                  $context

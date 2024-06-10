@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 
 namespace Webkul\Helpdesk\Controller\Ticket;
@@ -24,26 +23,6 @@ class Loginpost extends Action
      * @var \Magento\Framework\Data\Form\FormKey\Validator
      */
     protected $_formKeyValidator;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Tickets
-     */
-    protected $_ticketsHelper;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsFactory
-     */
-    protected $_ticketsFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
-     */
-    protected $_helpdeskLogger;
-
-    /**
-     * @var \Magento\Framework\Session\SessionManager
-     */
-    protected $_coreSession;
 
     /**
      * @param Context                                   $context
@@ -81,7 +60,7 @@ class Loginpost extends Action
         try {
             if ($this->getRequest()->isPost()) {
                 if (!$this->_formKeyValidator->validate($this->getRequest())) {
-                    $this->messageManager->addErrorMessage(__("Form key is not valid!!"));
+                    $this->messageManager->addError(__("Form key is not valid!!"));
                     return $this->resultRedirectFactory->create()->setPath(
                         '*/*/login',
                         ['_secure' => $this->getRequest()->isSecure()]
@@ -99,18 +78,16 @@ class Loginpost extends Action
                     return $this->resultRedirectFactory->create()
                     ->setPath("helpdesk/ticket/view/", ["id"=>$ticketColl->getEntityId()]);
                 } else {
-                    $this->messageManager->addErrorMessage(
-                        __("You entered incorrect data. Please enter correct data!! ")
-                    );
+                    $this->messageManager->addError(__("You entered incorrect data. Please enter correct data!! "));
                 }
             } else {
-                $this->messageManager->addErrorMessage(__("Unauthorised User!!"));
+                $this->messageManager->addError(__("Unauthorised User!!"));
             }
         } catch (\Magento\Framework\Exception\LocalizedException $e) {
-            $this->messageManager->addErrorMessage($e->getMessage());
+            $this->messageManager->addError($e->getMessage());
             $this->_helpdeskLogger->info($e->getMessage());
         } catch (\Exception $e) {
-            $this->messageManager->addErrorMessage(__("Unable to login!!"));
+            $this->messageManager->addError(__("Unable to login!!"));
             $this->_helpdeskLogger->info($e->getMessage());
         }
         return $this->resultRedirectFactory->create()->setPath(

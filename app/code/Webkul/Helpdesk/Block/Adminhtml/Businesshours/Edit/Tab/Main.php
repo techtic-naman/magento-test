@@ -2,21 +2,15 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Block\Adminhtml\Businesshours\Edit\Tab;
 
 class Main extends \Magento\Backend\Block\Widget\Form\Generic
 {
-    /**
-     * @var \Magento\Config\Model\Config\Source\Locale\Timezone
-     */
-    protected $_timezone;
-
     /**
      * @param \Magento\Backend\Block\Template\Context             $context
      * @param \Magento\Framework\Registry                         $registry

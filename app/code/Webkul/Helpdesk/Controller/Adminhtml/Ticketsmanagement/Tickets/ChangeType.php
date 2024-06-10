@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\Ticketsmanagement\Tickets;
 
@@ -28,16 +27,6 @@ class ChangeType extends \Magento\Backend\App\Action
      * @var CollectionFactory
      */
     private $collectionFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
-     */
-    private $_logger;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\EventsRepository
-     */
-    private $_eventsRepository;
 
     /**
      * @param Context                                 $context
@@ -78,9 +67,9 @@ class ChangeType extends \Magento\Backend\App\Action
                 $this->_eventsRepository->checkTicketEvent("type", $ticket->getId(), $from, $type);
                 $recordUpdated++;
             }
-            $this->messageManager->addSuccessMessage(__('A total of %1 record(s) were updated.', $recordUpdated));
+            $this->messageManager->addSuccess(__('A total of %1 record(s) were updated.', $recordUpdated));
         } catch (\Exception $e) {
-            $this->messageManager->addErrorMessage(__('There are some error during this action.'));
+            $this->messageManager->addError(__('There are some error during this action.'));
             $this->_logger->info($e->getMessage());
         }
         return $this->resultFactory->create(ResultFactory::TYPE_REDIRECT)->setPath('*/*/index');

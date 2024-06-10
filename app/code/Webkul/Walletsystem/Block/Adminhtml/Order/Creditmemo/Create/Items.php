@@ -2,13 +2,12 @@
 /**
  * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
-
 namespace Webkul\Walletsystem\Block\Adminhtml\Order\Creditmemo\Create;
 
 /**
@@ -62,7 +61,7 @@ class Items extends \Magento\Sales\Block\Adminhtml\Order\Creditmemo\Create\Items
     protected function _prepareLayout()
     {
         $paymentMethod = $this->getOrder()->getPayment()->getMethod();
-        if ($this->helper->getWalletenabled()) {
+        if ($this->helper->getWalletenabled() && $paymentMethod != "walletsystem") {
             $this->addChild(
                 'submit_after',
                 \Magento\Backend\Block\Widget\Button::class,

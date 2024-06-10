@@ -1,0 +1,503 @@
+a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1718021309;s:6:"expire";i:1749557309;s:4:"tags";s:37:"726_LAYOUT_GENERAL_CACHE_TAG,726_MAGE";}
+<?xml version="1.0"?>
+<layouts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><layout id="1column"><update handle="empty"/>
+<referenceContainer name="page.wrapper">
+   <container name="header.container" as="header_container" label="Page Header Container" htmlTag="header" htmlClass="page-header" before="main.content"/>
+   <container name="page.top" as="page_top" label="After Page Header" after="header.container"/>
+   <container name="footer-container" as="footer" before="before.body.end" label="Page Footer Container" htmlTag="footer" htmlClass="page-footer"/>
+</referenceContainer>
+</layout><layout id="2columns-left"><update handle="1column"/>
+<referenceContainer name="columns">
+   <container name="div.sidebar.main" htmlTag="div" htmlClass="sidebar sidebar-main" after="main">
+      <container name="sidebar.main" as="sidebar_main" label="Sidebar Main"/>
+   </container>
+   <container name="div.sidebar.additional" htmlTag="div" htmlClass="sidebar sidebar-additional" after="div.sidebar.main">
+      <container name="sidebar.additional" as="sidebar_additional" label="Sidebar Additional"/>
+   </container>
+</referenceContainer>
+</layout><layout id="2columns-right"><update handle="2columns-left"/>
+</layout><layout id="3columns"><update handle="2columns-left"/>
+</layout><layout id="empty"><container name="root">
+   <container name="after.body.start" as="after.body.start" before="-" label="Page Top"/>
+   <container name="page.wrapper" as="page_wrapper" htmlTag="div" htmlClass="page-wrapper">
+      <container name="global.notices" as="global_notices" before="-"/>
+      <container name="main.content" htmlTag="main" htmlId="maincontent" htmlClass="page-main">
+         <container name="columns.top" label="Before Main Columns"/>
+         <container name="columns" htmlTag="div" htmlClass="columns">
+            <container name="main" label="Main Content Container" htmlTag="div" htmlClass="column main"/>
+         </container>
+      </container>
+      <container name="page.bottom.container" as="page_bottom_container" label="Before Page Footer Container" after="main.content" htmlTag="div" htmlClass="page-bottom"/>
+      <container name="before.body.end" as="before_body_end" after="-" label="Page Bottom"/>
+   </container>
+</container>
+</layout><layout id="checkout"><update handle="empty"/>
+<referenceContainer name="page.wrapper">
+   <container name="checkout.header.container" as="checkout_header_container" label="Checkout Page Header Container" htmlTag="header" htmlClass="page-header" before="main.content">
+      <container name="checkout.header.wrapper" label="Checkout Page Header" as="checkout_header_wrapper" htmlTag="div" htmlClass="header content"/>
+   </container>
+</referenceContainer>
+<move element="logo" destination="checkout.header.wrapper"/>
+</layout><layout id="robots"><container name="root"/>
+</layout><layout id="1column"><move element="catalog.leftnav" destination="content.top" after="-"/>
+</layout><layout id="2columns-left"><move element="catalog.leftnav" destination="sidebar.main" before="-"/>
+</layout><layout id="2columns-right"><move element="catalog.leftnav" destination="sidebar.main" before="-"/>
+</layout><layout id="3columns"><move element="catalog.leftnav" destination="sidebar.main" before="-"/>
+</layout><layout id="empty"><move element="catalog.leftnav" destination="category.product.list.additional" before="-"/>
+</layout><handle id="catalog_category_view" layout="2columns-left"><body>
+   <referenceContainer name="category.view.container">
+      <referenceBlock name="category.description" template="Magento_PageBuilder::catalog/category/view/description.phtml"/>
+   </referenceContainer>
+</body>
+</handle><layout id="category-full-width"><update handle="2columns-left"/>
+<container name="columns.top.wrapper" htmlTag="div" htmlClass="page-main"/>
+<move element="columns.top" destination="columns.top.wrapper"/>
+<move element="columns.top.wrapper" destination="page.wrapper" after="page.top"/>
+<move element="category.view.container" destination="page.wrapper" after="columns.top.wrapper"/>
+<container name="category.image.wrapper" htmlTag="div" htmlClass="page-main"/>
+<move element="category.image" destination="category.image.wrapper"/>
+<move element="category.image.wrapper" destination="category.view.container"/>
+<container name="category.description.wrapper" htmlTag="div"/>
+<move element="category.description" destination="category.description.wrapper"/>
+<move element="category.description.wrapper" destination="category.view.container" after="category.image.wrapper"/>
+<container name="category.cms.wrapper" htmlTag="div" htmlClass="page-main"/>
+<move element="category.cms" destination="category.cms.wrapper"/>
+<move element="category.cms.wrapper" destination="category.view.container" after="category.description.wrapper"/>
+</layout><layout id="cms-full-width"><update handle="1column"/>
+<referenceContainer name="main.content" htmlTag="main" htmlClass="page-main-full-width"/>
+</layout><layout id="product-full-width"><update handle="1column"/>
+<referenceContainer name="product.info.details">
+   <referenceBlock name="product.attributes" remove="true"/>
+</referenceContainer>
+<referenceContainer name="page.wrapper">
+   <container name="product.info.details.wrapper" after="main.content" htmlTag="div" htmlClass="page-main page-main-details">
+      <container name="product.info.details.wrapper.columns" htmlTag="div" htmlClass="columns">
+         <container name="product.info.details.wrapper.main" label="Product Details Main Content Container" htmlTag="div" htmlClass="column main"/>
+      </container>
+   </container>
+   <container name="product.info.description.wrapper" after="main.content" before="product.info.details.after.wrapper" htmlTag="div" htmlClass="page-main-description product-full-width-section" htmlId="description"/>
+   <container name="product.attributes.pagebuilder.wrapper" after="product.info.description.wrapper" before="product.info.details.after.wrapper" htmlTag="div" htmlClass="page-main-pagebuilder-attributes">
+      <block class="Magento\PageBuilder\Block\Catalog\Block\Product\View\Attributes" name="product.attributes.only.pagebuilder" as="additional.pagebuilder" template="Magento_PageBuilder::catalog/product/view/attribute_list.phtml">
+         <arguments>
+            <argument name="display_attributes" xsi:type="string">pagebuilder_only</argument>
+         </arguments>
+      </block>
+   </container>
+   <container name="product.info.details.after.wrapper" after="product.attributes.pagebuilder.wrapper" before="product.info.details.wrapper" htmlTag="div" htmlClass="page-main page-main-details">
+      <container name="product.info.details.after.wrapper.columns" htmlTag="div" htmlClass="columns">
+         <container name="product.info.details.after.wrapper.main" label="Product Details Main Content Container" htmlTag="div" htmlClass="column main">
+            <block class="Magento\Framework\View\Element\Template" name="product.attributes.wrapper" template="Magento_PageBuilder::catalog/product/view/section_wrapper.phtml">
+               <arguments>
+                  <argument name="title" translate="true" xsi:type="string">More Information</argument>
+                  <argument name="section_id" xsi:type="string">additional</argument>
+               </arguments>
+               <block class="Magento\PageBuilder\Block\Catalog\Block\Product\View\Attributes" name="product.attributes.exclude.pagebuilder" as="additional" template="Magento_Catalog::product/view/attributes.phtml">
+                  <arguments>
+                     <argument name="display_attributes" xsi:type="string">non_pagebuilder</argument>
+                  </arguments>
+               </block>
+            </block>
+            <block class="Magento\Framework\View\Element\Template" name="product.reviews.wrapper" after="product.attributes.wrapper" template="Magento_PageBuilder::catalog/product/view/section_wrapper.phtml">
+               <arguments>
+                  <argument name="title" translate="true" xsi:type="string">Reviews</argument>
+                  <argument name="section_id" xsi:type="string">reviews</argument>
+               </arguments>
+               <block class="Magento\Review\Block\Product\View\ListView" name="product.info.product_additional_data.wrapper" template="Magento_Review::product/view/list.phtml" ifconfig="catalog/review/active">
+                  <arguments>
+                     <argument name="hide_title" xsi:type="boolean">true</argument>
+                  </arguments>
+               </block>
+            </block>
+         </container>
+      </container>
+   </container>
+</referenceContainer>
+<move element="product.info.details" destination="product.info.details.wrapper.main"/>
+<move element="product.info.description" destination="product.info.description.wrapper"/>
+<move element="reviews.tab" destination="product.reviews.wrapper"/>
+<move element="content.aside" destination="product.info.details.after.wrapper.main" after="product.reviews.wrapper"/>
+</layout><layout id="1column"><move element="layer.catalog.leftnav" destination="content.top" before="-"/>
+</layout><layout id="2columns-left"><move element="layer.catalog.leftnav" destination="sidebar.main" after="category_leftnav"/>
+</layout><layout id="seller-1column"><update handle="1column"/>
+</layout><layout id="seller-2columns-left"><container name="root">
+   <container name="seller.menu.wrapper" before="-" htmlTag="div" htmlClass="wk-mp-menu-wrapper"/>
+   <container name="after.body.start" as="after.body.start" before="-" label="Page Top"/>
+   <container name="seller.page.wrapper" as="seller_page_wrapper" htmlTag="div" htmlClass="wk-mp-page-wrapper">
+      <container name="seller.global.notices" as="seller_global_notices" before="-"/>
+      <container name="seller.header.before.container" before="-" htmlTag="div" htmlClass="wk-mp-page-header-before page-header"/>
+      <container name="seller.header" after="seller.notifications" htmlTag="header" htmlClass="wk-mp-page-header"/>
+      <container name="seller.page.menu" as="seller.page.menu" after="header"/>
+      <container name="seller.main.content" htmlTag="main" htmlId="wk-mp-maincontent" htmlClass="wk-mp-page-main">
+         <container name="seller.columns.top" label="Before Main Columns"/>
+         <container name="seller.columns" htmlTag="div" htmlClass="wk-mp-columns">
+            <container name="seller.main" label="Main Content Container" htmlTag="div" htmlClass="wk-mp-column wk-mp-main"/>
+         </container>
+      </container>
+      <container name="seller.page.bottom.container" as="seller_page_bottom_container" label="Before Page Footer Container" after="seller.main.content" htmlTag="div" htmlClass="wk-mp-page-bottom"/>
+      <container name="before.body.end" as="before_body_end" after="-" label="Page Bottom"/>
+   </container>
+</container>
+<referenceContainer name="seller.main.content">
+   <block class="Magento\Framework\View\Element\Template" name="skip_to_content.target" before="-" template="Magento_Theme::html/skiptarget.phtml">
+      <arguments>
+         <argument name="target_id" xsi:type="string">contentarea</argument>
+      </arguments>
+   </block>
+</referenceContainer>
+<referenceContainer name="seller.columns.top">
+   <block class="Magento\Theme\Block\Html\Title" name="seller.page.main.title" template="Magento_Theme::html/title.phtml"/>
+   <container name="seller.page.messages" htmlTag="div" htmlClass="page messages">
+      <block class="Magento\Framework\View\Element\Template" name="seller.ajax.message.placeholder" template="Magento_Theme::html/messages.phtml"/>
+      <block class="Magento\Framework\View\Element\Messages" name="seller.messages" as="seller_messages" template="Magento_Theme::messages.phtml"/>
+   </container>
+</referenceContainer>
+<referenceContainer name="seller.main">
+   <container name="seller.content.top" label="Main Content Top"/>
+   <container name="seller.content" label="Main Content Area"/>
+   <container name="seller.content.aside" label="Main Content Aside"/>
+   <container name="seller.content.bottom" label="Main Content Bottom"/>
+</referenceContainer>
+<referenceContainer name="seller.page.bottom.container">
+   <container name="seller.page.bottom" label="Before Page Footer" htmlTag="div" htmlClass="content"/>
+</referenceContainer>
+<referenceContainer name="seller.content">
+   <block class="Magento\Framework\View\Element\FormKey" name="seller.formkey"/>
+   <block class="Magento\PageCache\Block\Javascript" template="Magento_PageCache::javascript.phtml" name="seller.pageCache" as="seller.pageCache"/>
+   <block name="seller.customer.section.config" class="Magento\Customer\Block\SectionConfig" template="Magento_Customer::js/section-config.phtml">
+      <arguments>
+         <argument name="sectionNamesProvider" xsi:type="object">Magento\Customer\Block\SectionNamesProvider</argument>
+      </arguments>
+   </block>
+   <block name="seller.customer.customer.data" class="Magento\Customer\Block\CustomerData" template="Magento_Customer::js/customer-data.phtml"/>
+</referenceContainer>
+<referenceContainer name="seller.header.before.container">
+   <block class="Webkul\Marketplace\Block\Page\Switcher" name="seller.top.header.block" template="Webkul_Marketplace::/layout2/page/switcher.phtml"/>
+</referenceContainer>
+<referenceContainer name="seller.top.header.block">
+   <block class="Magento\Store\Block\Switcher" name="seller_store_language" as="seller_store_language" template="Magento_Store::switch/languages.phtml">
+      <arguments>
+         <argument name="view_model" xsi:type="object">Magento\Store\ViewModel\SwitcherUrlProvider</argument>
+      </arguments>
+   </block>
+   <block class="Magento\Store\Block\Switcher" name="seller_store_switcher" as="seller_store_switcher" template="Magento_Store::switch/stores.phtml"/>
+   <block class="Magento\Directory\Block\Currency" name="seller_store_settings_currency" as="seller_store_settings_currency" template="Magento_Directory::currency.phtml"/>
+</referenceContainer>
+<referenceContainer name="seller.header">
+   <block class="Webkul\Marketplace\Block\Page\Header" name="seller.logo" before="-">
+      <arguments>
+         <argument name="show_part" xsi:type="string">logo</argument>
+      </arguments>
+   </block>
+   <block class="Webkul\Marketplace\Block\Page\Header" name="seller.user" after="-">
+      <arguments>
+         <argument name="show_part" xsi:type="string">user</argument>
+      </arguments>
+   </block>
+   <block class="Webkul\Marketplace\Block\Page\Notifications" name="seller.notifications" after="-">
+      <arguments>
+         <argument name="show_part" xsi:type="string">seller.notifications</argument>
+      </arguments>
+   </block>
+   <block class="Webkul\Marketplace\Block\Page\Header" name="seller.home" after="-">
+      <arguments>
+         <argument name="show_part" xsi:type="string">seller.home</argument>
+      </arguments>
+   </block>
+</referenceContainer>
+<referenceContainer name="seller.page.menu">
+   <block class="Webkul\Marketplace\Block\Account\Navigation" name="layout2_seller_account_navigation_main" before="-" template="Webkul_Marketplace::/layout2/account/navigation.phtml">
+      <block class="Magento\Framework\View\Element\Template" name="layout2_seller_account_navigation" template="Webkul_Marketplace::/layout2/account/navigation/child_menu.phtml"/>
+      <block class="Webkul\Marketplace\Block\Account\Navigation" name="layout2_seller_account_navigation_settings_menu" template="Webkul_Marketplace::/layout2/account/navigation/settings_menu.phtml">
+         <block class="Webkul\Marketplace\Block\Account\Navigation\ShippingMenu" name="layout2_seller_account_navigation_shipping_menu" template="Webkul_Marketplace::/layout2/account/navigation/shipping_menu.phtml"/>
+         <block class="Webkul\Marketplace\Block\Account\Navigation\PaymentMenu" name="layout2_seller_account_navigation_payment_menu" template="Webkul_Marketplace::/layout2/account/navigation/payment_menu.phtml"/>
+      </block>
+   </block>
+</referenceContainer>
+<referenceContainer name="seller.header" htmlClass="wk-mp-page-header wk-mp-row">
+   <container name="seller.header.inner.left" before="-" htmlTag="div" htmlClass="wk-mp-page-header-hgroup col-l-8 col-m-6"/>
+   <container name="seller.header.inner.right" after="seller.header.inner.left" htmlTag="div" htmlClass="wk-mp-page-header-actions col-l-4 col-m-6"/>
+</referenceContainer>
+<move element="seller.page.menu" destination="seller.menu.wrapper"/>
+<move element="seller.logo" before="-" destination="seller.menu.wrapper"/>
+<move element="seller.page.main.title" before="-" destination="seller.header.inner.left"/>
+<move element="seller.user" before="-" destination="seller.header.inner.right"/>
+<move element="seller.notifications" after="seller.user" destination="seller.header.inner.right"/>
+<move element="seller.home" after="seller.notifications" destination="seller.header.inner.right"/>
+<remove name="page.main.title"/>
+</layout><layout id="seller-login"><container name="root" htmlTag="section" htmlClass="wk-mp-page-wrapper">
+   <container name="after.body.start" as="after.body.start" label="Page Top" before="-"/>
+   <container name="seller.login.header" htmlTag="header" htmlClass="wk-mp-login-header"/>
+   <container name="seller.login.content" htmlTag="div" htmlClass="wk-mp-login-content"/>
+   <container name="seller.login.footer" htmlTag="footer" htmlClass="wk-mp-login-footer"/>
+</container>
+</layout><layout id="2columns-left"><update handle="1column"/>
+<referenceContainer name="columns">
+   <container name="div.sidebar.main" htmlTag="div" htmlClass="sidebar sidebar-main mobile-sidebar" after="main">
+      <container name="div.sidebar.content" htmlTag="div" htmlClass="sidebar-content">
+         <container name="sidebar.main" as="sidebar_main" label="Sidebar Main"/>
+         <container name="div.sidebar.additional" htmlTag="div" htmlClass="sidebar sidebar-additional" after="-">
+            <container name="sidebar.additional" as="sidebar_additional" label="Sidebar Additional"/>
+         </container>
+      </container>
+   </container>
+</referenceContainer>
+</layout><layout id="3columns"><update handle="2columns-left"/>
+<referenceContainer name="sidebar.second">
+   <block class="Smartwave\Porto\Block\Template" name="sidebar_second_block" after="-" template="Smartwave_Porto::custom_block.phtml" ifconfig="porto_settings/general/sidebar_second_block"/>
+</referenceContainer>
+<referenceContainer name="columns">
+   <container name="div.sidebar.second" htmlTag="div" htmlClass="sidebar sidebar-second" after="div.sidebar.main">
+      <container name="sidebar.second" as="sidebar_second" label="Sidebar Secondary"/>
+   </container>
+</referenceContainer>
+</layout><layout id="1column"><update handle="empty"/>
+<referenceContainer name="page.wrapper">
+   <container name="header.container" as="header_container" label="Page Header Container" htmlTag="header" htmlClass="page-header" before="main.content"/>
+   <container name="page.top" as="page_top" label="After Page Header" after="header.container"/>
+   <container name="footer-container" as="footer" before="before.body.end" label="Page Footer Container" htmlTag="footer" htmlClass="page-footer"/>
+</referenceContainer>
+</layout><layout id="2columns-left"><update handle="1column"/>
+<referenceContainer name="columns">
+   <container name="div.sidebar.main" htmlTag="div" htmlClass="sidebar sidebar-main" after="main">
+      <container name="sidebar.main" as="sidebar_main" label="Sidebar Main"/>
+   </container>
+   <container name="div.sidebar.additional" htmlTag="div" htmlClass="sidebar sidebar-additional" after="div.sidebar.main">
+      <container name="sidebar.additional" as="sidebar_additional" label="Sidebar Additional"/>
+   </container>
+</referenceContainer>
+</layout><layout id="2columns-right"><update handle="2columns-left"/>
+</layout><layout id="3columns"><update handle="2columns-left"/>
+</layout><layout id="empty"><container name="root">
+   <container name="after.body.start" as="after.body.start" before="-" label="Page Top"/>
+   <container name="page.wrapper" as="page_wrapper" htmlTag="div" htmlClass="page-wrapper">
+      <container name="global.notices" as="global_notices" before="-"/>
+      <container name="main.content" htmlTag="main" htmlId="maincontent" htmlClass="page-main">
+         <container name="columns.top" label="Before Main Columns"/>
+         <container name="columns" htmlTag="div" htmlClass="columns">
+            <container name="main" label="Main Content Container" htmlTag="div" htmlClass="column main"/>
+         </container>
+      </container>
+      <container name="page.bottom.container" as="page_bottom_container" label="Before Page Footer Container" after="main.content" htmlTag="div" htmlClass="page-bottom"/>
+      <container name="before.body.end" as="before_body_end" after="-" label="Page Bottom"/>
+   </container>
+</container>
+</layout><layout id="checkout"><update handle="empty"/>
+<referenceContainer name="page.wrapper">
+   <container name="checkout.header.container" as="checkout_header_container" label="Checkout Page Header Container" htmlTag="header" htmlClass="page-header" before="main.content">
+      <container name="checkout.header.wrapper" label="Checkout Page Header" as="checkout_header_wrapper" htmlTag="div" htmlClass="header content"/>
+   </container>
+</referenceContainer>
+<move element="logo" destination="checkout.header.wrapper"/>
+</layout><layout id="robots"><container name="root"/>
+</layout><layout id="1column"><move element="catalog.leftnav" destination="content.top" after="-"/>
+</layout><layout id="2columns-left"><move element="catalog.leftnav" destination="sidebar.main" before="-"/>
+</layout><layout id="2columns-right"><move element="catalog.leftnav" destination="sidebar.main" before="-"/>
+</layout><layout id="3columns"><move element="catalog.leftnav" destination="sidebar.main" before="-"/>
+</layout><layout id="empty"><move element="catalog.leftnav" destination="category.product.list.additional" before="-"/>
+</layout><handle id="catalog_category_view" layout="2columns-left"><body>
+   <referenceContainer name="category.view.container">
+      <referenceBlock name="category.description" template="Magento_PageBuilder::catalog/category/view/description.phtml"/>
+   </referenceContainer>
+</body>
+</handle><layout id="category-full-width"><update handle="2columns-left"/>
+<container name="columns.top.wrapper" htmlTag="div" htmlClass="page-main"/>
+<move element="columns.top" destination="columns.top.wrapper"/>
+<move element="columns.top.wrapper" destination="page.wrapper" after="page.top"/>
+<move element="category.view.container" destination="page.wrapper" after="columns.top.wrapper"/>
+<container name="category.image.wrapper" htmlTag="div" htmlClass="page-main"/>
+<move element="category.image" destination="category.image.wrapper"/>
+<move element="category.image.wrapper" destination="category.view.container"/>
+<container name="category.description.wrapper" htmlTag="div"/>
+<move element="category.description" destination="category.description.wrapper"/>
+<move element="category.description.wrapper" destination="category.view.container" after="category.image.wrapper"/>
+<container name="category.cms.wrapper" htmlTag="div" htmlClass="page-main"/>
+<move element="category.cms" destination="category.cms.wrapper"/>
+<move element="category.cms.wrapper" destination="category.view.container" after="category.description.wrapper"/>
+</layout><layout id="cms-full-width"><update handle="1column"/>
+<referenceContainer name="main.content" htmlTag="main" htmlClass="page-main-full-width"/>
+</layout><layout id="product-full-width"><update handle="1column"/>
+<referenceContainer name="product.info.details">
+   <referenceBlock name="product.attributes" remove="true"/>
+</referenceContainer>
+<referenceContainer name="page.wrapper">
+   <container name="product.info.details.wrapper" after="main.content" htmlTag="div" htmlClass="page-main page-main-details">
+      <container name="product.info.details.wrapper.columns" htmlTag="div" htmlClass="columns">
+         <container name="product.info.details.wrapper.main" label="Product Details Main Content Container" htmlTag="div" htmlClass="column main"/>
+      </container>
+   </container>
+   <container name="product.info.description.wrapper" after="main.content" before="product.info.details.after.wrapper" htmlTag="div" htmlClass="page-main-description product-full-width-section" htmlId="description"/>
+   <container name="product.attributes.pagebuilder.wrapper" after="product.info.description.wrapper" before="product.info.details.after.wrapper" htmlTag="div" htmlClass="page-main-pagebuilder-attributes">
+      <block class="Magento\PageBuilder\Block\Catalog\Block\Product\View\Attributes" name="product.attributes.only.pagebuilder" as="additional.pagebuilder" template="Magento_PageBuilder::catalog/product/view/attribute_list.phtml">
+         <arguments>
+            <argument name="display_attributes" xsi:type="string">pagebuilder_only</argument>
+         </arguments>
+      </block>
+   </container>
+   <container name="product.info.details.after.wrapper" after="product.attributes.pagebuilder.wrapper" before="product.info.details.wrapper" htmlTag="div" htmlClass="page-main page-main-details">
+      <container name="product.info.details.after.wrapper.columns" htmlTag="div" htmlClass="columns">
+         <container name="product.info.details.after.wrapper.main" label="Product Details Main Content Container" htmlTag="div" htmlClass="column main">
+            <block class="Magento\Framework\View\Element\Template" name="product.attributes.wrapper" template="Magento_PageBuilder::catalog/product/view/section_wrapper.phtml">
+               <arguments>
+                  <argument name="title" translate="true" xsi:type="string">More Information</argument>
+                  <argument name="section_id" xsi:type="string">additional</argument>
+               </arguments>
+               <block class="Magento\PageBuilder\Block\Catalog\Block\Product\View\Attributes" name="product.attributes.exclude.pagebuilder" as="additional" template="Magento_Catalog::product/view/attributes.phtml">
+                  <arguments>
+                     <argument name="display_attributes" xsi:type="string">non_pagebuilder</argument>
+                  </arguments>
+               </block>
+            </block>
+            <block class="Magento\Framework\View\Element\Template" name="product.reviews.wrapper" after="product.attributes.wrapper" template="Magento_PageBuilder::catalog/product/view/section_wrapper.phtml">
+               <arguments>
+                  <argument name="title" translate="true" xsi:type="string">Reviews</argument>
+                  <argument name="section_id" xsi:type="string">reviews</argument>
+               </arguments>
+               <block class="Magento\Review\Block\Product\View\ListView" name="product.info.product_additional_data.wrapper" template="Magento_Review::product/view/list.phtml" ifconfig="catalog/review/active">
+                  <arguments>
+                     <argument name="hide_title" xsi:type="boolean">true</argument>
+                  </arguments>
+               </block>
+            </block>
+         </container>
+      </container>
+   </container>
+</referenceContainer>
+<move element="product.info.details" destination="product.info.details.wrapper.main"/>
+<move element="product.info.description" destination="product.info.description.wrapper"/>
+<move element="reviews.tab" destination="product.reviews.wrapper"/>
+<move element="content.aside" destination="product.info.details.after.wrapper.main" after="product.reviews.wrapper"/>
+</layout><layout id="1column"><move element="layer.catalog.leftnav" destination="content.top" before="-"/>
+</layout><layout id="2columns-left"><move element="layer.catalog.leftnav" destination="sidebar.main" after="category_leftnav"/>
+</layout><layout id="seller-1column"><update handle="1column"/>
+</layout><layout id="seller-2columns-left"><container name="root">
+   <container name="seller.menu.wrapper" before="-" htmlTag="div" htmlClass="wk-mp-menu-wrapper"/>
+   <container name="after.body.start" as="after.body.start" before="-" label="Page Top"/>
+   <container name="seller.page.wrapper" as="seller_page_wrapper" htmlTag="div" htmlClass="wk-mp-page-wrapper">
+      <container name="seller.global.notices" as="seller_global_notices" before="-"/>
+      <container name="seller.header.before.container" before="-" htmlTag="div" htmlClass="wk-mp-page-header-before page-header"/>
+      <container name="seller.header" after="seller.notifications" htmlTag="header" htmlClass="wk-mp-page-header"/>
+      <container name="seller.page.menu" as="seller.page.menu" after="header"/>
+      <container name="seller.main.content" htmlTag="main" htmlId="wk-mp-maincontent" htmlClass="wk-mp-page-main">
+         <container name="seller.columns.top" label="Before Main Columns"/>
+         <container name="seller.columns" htmlTag="div" htmlClass="wk-mp-columns">
+            <container name="seller.main" label="Main Content Container" htmlTag="div" htmlClass="wk-mp-column wk-mp-main"/>
+         </container>
+      </container>
+      <container name="seller.page.bottom.container" as="seller_page_bottom_container" label="Before Page Footer Container" after="seller.main.content" htmlTag="div" htmlClass="wk-mp-page-bottom"/>
+      <container name="before.body.end" as="before_body_end" after="-" label="Page Bottom"/>
+   </container>
+</container>
+<referenceContainer name="seller.main.content">
+   <block class="Magento\Framework\View\Element\Template" name="skip_to_content.target" before="-" template="Magento_Theme::html/skiptarget.phtml">
+      <arguments>
+         <argument name="target_id" xsi:type="string">contentarea</argument>
+      </arguments>
+   </block>
+</referenceContainer>
+<referenceContainer name="seller.columns.top">
+   <block class="Magento\Theme\Block\Html\Title" name="seller.page.main.title" template="Magento_Theme::html/title.phtml"/>
+   <container name="seller.page.messages" htmlTag="div" htmlClass="page messages">
+      <block class="Magento\Framework\View\Element\Template" name="seller.ajax.message.placeholder" template="Magento_Theme::html/messages.phtml"/>
+      <block class="Magento\Framework\View\Element\Messages" name="seller.messages" as="seller_messages" template="Magento_Theme::messages.phtml"/>
+   </container>
+</referenceContainer>
+<referenceContainer name="seller.main">
+   <container name="seller.content.top" label="Main Content Top"/>
+   <container name="seller.content" label="Main Content Area"/>
+   <container name="seller.content.aside" label="Main Content Aside"/>
+   <container name="seller.content.bottom" label="Main Content Bottom"/>
+</referenceContainer>
+<referenceContainer name="seller.page.bottom.container">
+   <container name="seller.page.bottom" label="Before Page Footer" htmlTag="div" htmlClass="content"/>
+</referenceContainer>
+<referenceContainer name="seller.content">
+   <block class="Magento\Framework\View\Element\FormKey" name="seller.formkey"/>
+   <block class="Magento\PageCache\Block\Javascript" template="Magento_PageCache::javascript.phtml" name="seller.pageCache" as="seller.pageCache"/>
+   <block name="seller.customer.section.config" class="Magento\Customer\Block\SectionConfig" template="Magento_Customer::js/section-config.phtml">
+      <arguments>
+         <argument name="sectionNamesProvider" xsi:type="object">Magento\Customer\Block\SectionNamesProvider</argument>
+      </arguments>
+   </block>
+   <block name="seller.customer.customer.data" class="Magento\Customer\Block\CustomerData" template="Magento_Customer::js/customer-data.phtml"/>
+</referenceContainer>
+<referenceContainer name="seller.header.before.container">
+   <block class="Webkul\Marketplace\Block\Page\Switcher" name="seller.top.header.block" template="Webkul_Marketplace::/layout2/page/switcher.phtml"/>
+</referenceContainer>
+<referenceContainer name="seller.top.header.block">
+   <block class="Magento\Store\Block\Switcher" name="seller_store_language" as="seller_store_language" template="Magento_Store::switch/languages.phtml">
+      <arguments>
+         <argument name="view_model" xsi:type="object">Magento\Store\ViewModel\SwitcherUrlProvider</argument>
+      </arguments>
+   </block>
+   <block class="Magento\Store\Block\Switcher" name="seller_store_switcher" as="seller_store_switcher" template="Magento_Store::switch/stores.phtml"/>
+   <block class="Magento\Directory\Block\Currency" name="seller_store_settings_currency" as="seller_store_settings_currency" template="Magento_Directory::currency.phtml"/>
+</referenceContainer>
+<referenceContainer name="seller.header">
+   <block class="Webkul\Marketplace\Block\Page\Header" name="seller.logo" before="-">
+      <arguments>
+         <argument name="show_part" xsi:type="string">logo</argument>
+      </arguments>
+   </block>
+   <block class="Webkul\Marketplace\Block\Page\Header" name="seller.user" after="-">
+      <arguments>
+         <argument name="show_part" xsi:type="string">user</argument>
+      </arguments>
+   </block>
+   <block class="Webkul\Marketplace\Block\Page\Notifications" name="seller.notifications" after="-">
+      <arguments>
+         <argument name="show_part" xsi:type="string">seller.notifications</argument>
+      </arguments>
+   </block>
+   <block class="Webkul\Marketplace\Block\Page\Header" name="seller.home" after="-">
+      <arguments>
+         <argument name="show_part" xsi:type="string">seller.home</argument>
+      </arguments>
+   </block>
+</referenceContainer>
+<referenceContainer name="seller.page.menu">
+   <block class="Webkul\Marketplace\Block\Account\Navigation" name="layout2_seller_account_navigation_main" before="-" template="Webkul_Marketplace::/layout2/account/navigation.phtml">
+      <block class="Magento\Framework\View\Element\Template" name="layout2_seller_account_navigation" template="Webkul_Marketplace::/layout2/account/navigation/child_menu.phtml"/>
+      <block class="Webkul\Marketplace\Block\Account\Navigation" name="layout2_seller_account_navigation_settings_menu" template="Webkul_Marketplace::/layout2/account/navigation/settings_menu.phtml">
+         <block class="Webkul\Marketplace\Block\Account\Navigation\ShippingMenu" name="layout2_seller_account_navigation_shipping_menu" template="Webkul_Marketplace::/layout2/account/navigation/shipping_menu.phtml"/>
+         <block class="Webkul\Marketplace\Block\Account\Navigation\PaymentMenu" name="layout2_seller_account_navigation_payment_menu" template="Webkul_Marketplace::/layout2/account/navigation/payment_menu.phtml"/>
+      </block>
+   </block>
+</referenceContainer>
+<referenceContainer name="seller.header" htmlClass="wk-mp-page-header wk-mp-row">
+   <container name="seller.header.inner.left" before="-" htmlTag="div" htmlClass="wk-mp-page-header-hgroup col-l-8 col-m-6"/>
+   <container name="seller.header.inner.right" after="seller.header.inner.left" htmlTag="div" htmlClass="wk-mp-page-header-actions col-l-4 col-m-6"/>
+</referenceContainer>
+<move element="seller.page.menu" destination="seller.menu.wrapper"/>
+<move element="seller.logo" before="-" destination="seller.menu.wrapper"/>
+<move element="seller.page.main.title" before="-" destination="seller.header.inner.left"/>
+<move element="seller.user" before="-" destination="seller.header.inner.right"/>
+<move element="seller.notifications" after="seller.user" destination="seller.header.inner.right"/>
+<move element="seller.home" after="seller.notifications" destination="seller.header.inner.right"/>
+<remove name="page.main.title"/>
+</layout><layout id="seller-login"><container name="root" htmlTag="section" htmlClass="wk-mp-page-wrapper">
+   <container name="after.body.start" as="after.body.start" label="Page Top" before="-"/>
+   <container name="seller.login.header" htmlTag="header" htmlClass="wk-mp-login-header"/>
+   <container name="seller.login.content" htmlTag="div" htmlClass="wk-mp-login-content"/>
+   <container name="seller.login.footer" htmlTag="footer" htmlClass="wk-mp-login-footer"/>
+</container>
+</layout><layout id="2columns-left"><update handle="1column"/>
+<referenceContainer name="columns">
+   <container name="div.sidebar.main" htmlTag="div" htmlClass="sidebar sidebar-main mobile-sidebar" after="main">
+      <container name="div.sidebar.content" htmlTag="div" htmlClass="sidebar-content">
+         <container name="sidebar.main" as="sidebar_main" label="Sidebar Main"/>
+         <container name="div.sidebar.additional" htmlTag="div" htmlClass="sidebar sidebar-additional" after="-">
+            <container name="sidebar.additional" as="sidebar_additional" label="Sidebar Additional"/>
+         </container>
+      </container>
+   </container>
+</referenceContainer>
+</layout><layout id="3columns"><update handle="2columns-left"/>
+<referenceContainer name="sidebar.second">
+   <block class="Smartwave\Porto\Block\Template" name="sidebar_second_block" after="-" template="Smartwave_Porto::custom_block.phtml" ifconfig="porto_settings/general/sidebar_second_block"/>
+</referenceContainer>
+<referenceContainer name="columns">
+   <container name="div.sidebar.second" htmlTag="div" htmlClass="sidebar sidebar-second" after="div.sidebar.main">
+      <container name="sidebar.second" as="sidebar_second" label="Sidebar Secondary"/>
+   </container>
+</referenceContainer>
+</layout></layouts>

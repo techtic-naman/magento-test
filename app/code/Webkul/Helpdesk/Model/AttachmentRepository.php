@@ -2,14 +2,14 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Model;
 
+use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Filesystem;
 use Magento\Framework\Exception\LocalizedException;
@@ -51,16 +51,6 @@ class AttachmentRepository implements \Webkul\Helpdesk\Api\AttachmentRepositoryI
      * @var File
      */
     protected $_file;
-
-    /**
-     * @var \Magento\Framework\Filesystem\Driver\File
-     */
-    protected $_fileDriver;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ThreadFactory
-     */
-    protected $_threadFactory;
 
     /**
      * TicketsRepository constructor.
@@ -106,8 +96,10 @@ class AttachmentRepository implements \Webkul\Helpdesk\Api\AttachmentRepositoryI
         if (!$this->_fileDriver->isExists($path)) {
             $this->_file->createDirectory($path);
         }
+        $error = 0;
         $maxSize = $this->_helper->getUploadFileSize();
         $allowedExt = $this->_helper->getConfigAllowedextensions();
+        $directory = $this->_filesystem->getDirectoryRead(DirectoryList::SYS_TMP);
         $allowedExt = explode(",", $allowedExt);
         $fileUploader = $this->_fileUploader->create(['fileId' => 'fupld']);
         if ($maxSize > 0 && $fileUploader->getFileSize()/(1000000) > $maxSize

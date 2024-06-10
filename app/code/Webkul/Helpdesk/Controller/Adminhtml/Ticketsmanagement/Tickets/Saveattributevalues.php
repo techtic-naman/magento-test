@@ -2,23 +2,24 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\Ticketsmanagement\Tickets;
  
+use Magento\Framework\Exception\AuthenticationException;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
+use Magento\Framework\Controller\ResultFactory;
 
 class Saveattributevalues extends \Magento\Backend\App\Action
 {
     /**
      * @var PageFactory
      */
-    protected $resultPageFactory;
+    protected $_resultPageFactory;
 
     /**
      * @var \Webkul\Helpdesk\Model\TicketsAttributeValueRepository
@@ -72,18 +73,18 @@ class Saveattributevalues extends \Magento\Backend\App\Action
             $ticketId = $wholedata['id'];
             if ($this->getRequest()->getPost()) {
                 $this->_ticketsAttrValRepo->editTicketAttributeValues($wholedata);
-                $this->messageManager->addSuccessMessage(__("Success ! you have been successfully modified Tickets."));
+                $this->messageManager->addSuccess(__("Success ! you have been successfully modified Tickets."));
             } else {
-                $this->messageManager->addErrorMessage(__("Sorry Nothing Found To Save!!"));
+                $this->messageManager->addError(__("Sorry Nothing Found To Save!!"));
             }
             return $this->resultRedirectFactory->create()->setPath("*/*/viewreply", ['id'=>$ticketId]);
 
         } catch (\Magento\Framework\Exception\LocalizedException $e) {
             $this->_helpdeskLogger->info($e->getMessage());
-            $this->messageManager->addErrorMessage($e->getMessage());
+            $this->messageManager->addError($e->getMessage());
         } catch (\Exception $e) {
             $this->_helpdeskLogger->info($e->getMessage());
-            $this->messageManager->addErrorMessage("There are some error occurring during this action");
+            $this->messageManager->addError("There are some error occurring during this action");
         }
         return $this->resultRedirectFactory->create()->setPath("*/*/viewreply", ['id'=>$ticketId]);
     }

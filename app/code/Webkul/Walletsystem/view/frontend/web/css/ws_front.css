@@ -1,11 +1,11 @@
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 .wk_ws_outer{
     margin: 10px;
@@ -310,9 +310,6 @@
     display: inline-block;
     float: right;
     cursor: pointer;
-}
-.wk_ws_restamount{
-    color:#298CCF;
 }
 #walletsystem_trasfer_amount .fieldset *, #walletsystem_add_payee .fieldset *
 {

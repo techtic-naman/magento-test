@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\Ticketsmanagement\Status;
 
@@ -28,11 +27,6 @@ class Edit extends Action
      * @var \Webkul\Helpdesk\Model\Tickets
      */
     protected $_ticketStatusModel;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsStatusFactory
-     */
-    protected $_ticketStatusFactory;
 
     /**
      * @param Action\Context                              $context
@@ -69,8 +63,8 @@ class Edit extends Action
     {
         // load layout, set active menu and breadcrumbs
         /**
-        * @var \Magento\Backend\Model\View\Result\Page $resultPage
-        */
+ * @var \Magento\Backend\Model\View\Result\Page $resultPage
+*/
         $resultPage = $this->_resultPageFactory->create();
         $resultPage->setActiveMenu('Webkul_Helpdesk::status')
             ->addBreadcrumb(__('Ticket Status'), __('Ticket Status'))
@@ -88,12 +82,18 @@ class Edit extends Action
         if ($statusId) {
             $statusmodel->load($statusId);
             if (!$statusmodel->getId()) {
-                $this->messageManager->addErrorMessage(__('This status no longer exists.'));
+                $this->messageManager->addError(__('This status no longer exists.'));
                 return $this->resultRedirectFactory->create()->setPath('helpdesk/*/');
             }
         }
 
         $this->_coreRegistry->register('helpdesk_ticket_status', $statusmodel);
+
+        if (isset($statusId)) {
+            $breadcrumb = __('Edit Status');
+        } else {
+            $breadcrumb = __('New Status');
+        }
 
         $resultPage = $this->_initAction();
         $resultPage->getConfig()->getTitle()->prepend(__('Status'));

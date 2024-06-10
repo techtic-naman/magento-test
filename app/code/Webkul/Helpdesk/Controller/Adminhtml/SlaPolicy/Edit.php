@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\SlaPolicy;
 
@@ -23,11 +22,6 @@ class Edit extends Action
      * @var \Magento\Framework\View\Result\PageFactory
      */
     protected $_resultPageFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\SlapolicyFactory
-     */
-    protected $_slapolicyFactory;
 
     /**
      * @param Action\Context                             $context
@@ -56,6 +50,20 @@ class Edit extends Action
     }
 
     /**
+     * Init actions
+     *
+     * @return \Magento\Backend\Model\View\Result\Page
+     */
+    protected function _initAction()
+    {
+        $resultPage = $this->_resultPageFactory->create();
+        $resultPage->setActiveMenu('Webkul_Helpdesk::sla')
+            ->addBreadcrumb(__('SLA Policy'), __('SLA Policy'))
+            ->addBreadcrumb(__('Manage SLA Policy'), __('Manage SLA Policy'));
+        return $resultPage;
+    }
+
+    /**
      * Edit Slapolicy
      *
      * @return \Magento\Backend\Model\View\Result\Page|\Magento\Backend\Model\View\Result\Redirect
@@ -74,13 +82,16 @@ class Edit extends Action
 
         $this->_coreRegistry->register('helpdesk_slapolicy', $slamodel);
         $resultPage = $this->_resultPageFactory->create();
-        $resultPage->setActiveMenu('Webkul_Helpdesk::sla');
         if ($slaId) {
+            $breadcrumb = __('Edit SLA Policy');
             $resultPage->getConfig()->getTitle()->prepend(__('Edit SLA Policy'));
 
         } else {
+            $breadcrumb = __('New SLA Policy');
             $resultPage->getConfig()->getTitle()->prepend(__('New SLA Policy'));
         }
+        
+        $this->_initAction()->addBreadcrumb($breadcrumb, $breadcrumb);
         return $resultPage;
     }
 }

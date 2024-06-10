@@ -1,12 +1,12 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 ?>
 <?php
@@ -28,15 +28,15 @@ if ($isModuleEnable) {
 <?=/*@noEscape*/ $block->getChildHtml('form_before') ?>
 <?php if (!$walletHelper->getCartStatus()) { ?>
     <div class="page-title title-buttons">
-        <h2><?=$escaper->escapeHtml(__('Adding To Wallet')) ?></h2>
+        <h2><?=$block->escapeHtml(__('Adding To Wallet')) ?></h2>
     </div>
-    <form action="<?=$escaper->escapeUrl($block->getUrl('checkout/cart/updatePost')) ?>"
+    <form action="<?=$block->escapeUrl($block->getUrl('checkout/cart/updatePost')) ?>"
             method="post"
             id="form-validate"
             data-mage-init='{"validation":{}}'
             class="form form-cart">
     <?=/*@noEscape*/ $block->getBlockHtml('formkey'); ?>
-    <div class="cart table-wrapper<?=$escaper->escapeHtml($mergedCells == 2 ? ' detailed' : ''); ?>">
+    <div class="cart table-wrapper<?=$block->escapeHtml($mergedCells == 2 ? ' detailed' : ''); ?>">
     <table id="shopping-cart-table" class="wk_ws_cart_table">
         <thead>
             <tr>
@@ -44,21 +44,21 @@ if ($isModuleEnable) {
                 class="a-center">
                     <span
                     class="nobr">
-                        <?=$escaper->escapeHtml(__("Wallet Holder's Name"))?>
+                        <?=$block->escapeHtml(__("Wallet Holder's Name"))?>
                     </span>
                 </th>
                 <th
                 class="a-center">
                     <span
                     class="nobr">
-                        <?=$escaper->escapeHtml(__('Current Amount')) ?>
+                        <?=$block->escapeHtml(__('Current Amount')) ?>
                     </span>
                 </th>
                 <th class="a-center">
-                    <?=$escaper->escapeHtml(__('Credited Amount')) ?>
+                    <?=$block->escapeHtml(__('Credited Amount')) ?>
                 </th>
                 <th class="a-center">
-                    <?=$escaper->escapeHtml(__('Subtotal')) ?>
+                    <?=$block->escapeHtml(__('Subtotal')) ?>
                 </th>
                 <th></th>
             </tr>
@@ -80,7 +80,7 @@ if ($isModuleEnable) {
                             __("%1's Wallet", $returnData['customer_name']);
                             ?>
                         </td>
-                        <td class="a-center"><?=$escaper->escapeHtml($currency_symbol.$currentWalletamount);?></td>
+                        <td class="a-center"><?=$block->escapeHtml($currency_symbol.$currentWalletamount);?></td>
                         <td
                         class="a-center">
                             <?= /* @noEscape */
@@ -98,11 +98,11 @@ if ($isModuleEnable) {
                         <td colspan="100">
                             <div class='actions-toolbar'>
                                 <a href="#"
-                                    title="<?=$escaper->escapeHtml(__('Remove item')); ?>"
+                                    title="<?=$block->escapeHtml(__('Remove item')); ?>"
                                     class="action action-delete wkProductDelete"
-                                    data-post='<?=$escaper->escapeHtml($walletBlock->getDeletePostJson($_item)); ?>'>
+                                    data-post='<?=$block->escapeHtml($walletBlock->getDeletePostJson($_item)); ?>'>
                                     <span>
-                                    <?=$escaper->escapeHtml(__('Remove item'))?>
+                                    <?=$block->escapeHtml(__('Remove item'))?>
                                     </span>
                                 </a>
                             </div>
@@ -288,13 +288,13 @@ if ($isModuleEnable) {
         <?php
     } ?>
 <?php } else { ?>
-    <form action="<?=$escaper->escapeUrl($block->getUrl('checkout/cart/updatePost')) ?>"
+    <form action="<?=$block->escapeUrl($block->getUrl('checkout/cart/updatePost')) ?>"
             method="post"
             id="form-validate"
             data-mage-init='{"validation":{}}'
             class="form form-cart">
         <?= $block->getBlockHtml('formkey'); ?>
-        <div class="cart table-wrapper<?=$escaper->escapeHtml($mergedCells == 2 ? ' detailed' : ''); ?>">
+        <div class="cart table-wrapper<?=$block->escapeHtml($mergedCells == 2 ? ' detailed' : ''); ?>">
             <table id="shopping-cart-table"
                 class="cart items data table"
                 data-mage-init='{"shoppingCart":{"emptyCartButton": "action.clear",
@@ -303,18 +303,14 @@ if ($isModuleEnable) {
                 role="heading"
                 aria-level="2"
                 class="table-caption">
-                    <?=$escaper->escapeHtml(__('Shopping Cart Items')) ?>
+                    <?=$block->escapeHtml(__('Shopping Cart Items')) ?>
                 </caption>
                 <thead>
                     <tr>
-                        <th class="col item" scope="col"><span><?=$escaper->escapeHtml(__('Item')) ?></span></th>
-                        <th class="col price" scope="col"><span><?=$escaper->escapeHtml(__('Price')) ?></span></th>
-                        <th class="col qty" scope="col"><span><?=$escaper->escapeHtml(__('Qty')) ?></span></th>
-                        <th class="col subtotal" scope="col">
-                            <span>
-                                <?=$escaper->escapeHtml(__('Subtotal')) ?>
-                            </span>
-                        </th>
+                        <th class="col item" scope="col"><span><?=$block->escapeHtml(__('Item')) ?></span></th>
+                        <th class="col price" scope="col"><span><?=$block->escapeHtml(__('Price')) ?></span></th>
+                        <th class="col qty" scope="col"><span><?=$block->escapeHtml(__('Qty')) ?></span></th>
+                        <th class="col subtotal" scope="col"><span><?=$block->escapeHtml(__('Subtotal')) ?></span></th>
                     </tr>
                 </thead>
                 <?php foreach ($block->getItems() as $_item): ?>
@@ -325,26 +321,26 @@ if ($isModuleEnable) {
         <div class="cart main actions">
             <?php if ($block->getContinueShoppingUrl()): ?>
                 <a class="action continue"
-                href="<?= $escaper->escapeUrl($block->getContinueShoppingUrl()) ?>"
-                title="<?= $escaper->escapeHtmlAttr(__('Continue Shopping')); ?>">
-                    <span><?=$escaper->escapeHtml(__('Continue Shopping')) ?></span>
+                href="<?= $block->escapeUrl($block->getContinueShoppingUrl()) ?>"
+                title="<?= $block->escapeHtmlAttr(__('Continue Shopping')); ?>">
+                    <span><?=$block->escapeHtml(__('Continue Shopping')) ?></span>
                 </a>
             <?php endif; ?>
             <button type="submit"
                     name="update_cart_action"
                     data-cart-empty=""
                     value="empty_cart"
-                    title="<?= $escaper->escapeHtmlAttr(__('Clear Shopping Cart')); ?>"
+                    title="<?= $block->escapeHtmlAttr(__('Clear Shopping Cart')); ?>"
                     class="action clear" id="empty_cart_button">
-                <span><?=$escaper->escapeHtml(__('Clear Shopping Cart')); ?></span>
+                <span><?=$block->escapeHtml(__('Clear Shopping Cart')); ?></span>
             </button>
             <button type="submit"
                     name="update_cart_action"
                     data-cart-item-update=""
                     value="update_qty"
-                    title="<?= $escaper->escapeHtmlAttr(__('Update Shopping Cart')); ?>"
+                    title="<?= $block->escapeHtmlAttr(__('Update Shopping Cart')); ?>"
                     class="action update">
-                <span><?=$escaper->escapeHtml(__('Update Shopping Cart')); ?></span>
+                <span><?=$block->escapeHtml(__('Update Shopping Cart')); ?></span>
             </button>
             <input type="hidden" value="" id="update_cart_action_container" data-cart-item-update=""/>
         </div>

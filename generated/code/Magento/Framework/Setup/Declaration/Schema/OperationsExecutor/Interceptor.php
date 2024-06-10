@@ -17,6 +17,15 @@ class Interceptor extends \Magento\Framework\Setup\Declaration\Schema\Operations
     /**
      * {@inheritdoc}
      */
+    public function getDestructiveOperations()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getDestructiveOperations');
+        return $pluginInfo ? $this->___callPlugins('getDestructiveOperations', func_get_args(), $pluginInfo) : parent::getDestructiveOperations();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function execute(\Magento\Framework\Setup\Declaration\Schema\Diff\DiffInterface $diff, array $requestData)
     {
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'execute');

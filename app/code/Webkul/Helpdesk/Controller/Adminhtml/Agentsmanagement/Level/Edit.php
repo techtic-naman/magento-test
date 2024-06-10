@@ -2,33 +2,18 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\Agentsmanagement\Level;
 
+use Magento\Framework\Locale\Resolver;
 use Magento\Backend\App\Action;
 
 class Edit extends Action
 {
-    /**
-     * @var \Magento\Framework\View\Result\PageFactory
-     */
-    protected $_resultPageFactory;
-
-    /**
-     * @var \Magento\Framework\Registry
-     */
-    protected $_coreRegistry;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\AgentLevelFactory
-     */
-    protected $_agentLevelFactory;
-
     /**
      * @param Action\Context                             $context
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
@@ -56,8 +41,8 @@ class Edit extends Action
     {
         // load layout, set active menu and breadcrumbs
         /**
-        * @var \Magento\Backend\Model\View\Result\Page $resultPage
-        */
+ * @var \Magento\Backend\Model\View\Result\Page $resultPage
+*/
         $resultPage = $this->_resultPageFactory->create();
         $resultPage->setActiveMenu('Webkul_Helpdesk::level')
             ->addBreadcrumb(__('Add Level'), __('Add Level'))
@@ -77,7 +62,7 @@ class Edit extends Action
         if ($levelId) {
             $model->load($levelId);
             if (!$model->getId()) {
-                $this->messageManager->addErrorMessage(__('This level no longer exists.'));
+                $this->messageManager->addError(__('This level no longer exists.'));
                 $this->resultRedirectFactory->create()->setPath('adminhtml/*/');
                 return;
             }
@@ -89,6 +74,12 @@ class Edit extends Action
         }
 
         $this->_coreRegistry->register('agent_level', $model);
+
+        if (isset($agentId)) {
+            $breadcrumb = __('Edit Level');
+        } else {
+            $breadcrumb = __('New Level');
+        }
 
         $resultPage = $this->_initAction();
         $resultPage->getConfig()->getTitle()->prepend(__('Level'));

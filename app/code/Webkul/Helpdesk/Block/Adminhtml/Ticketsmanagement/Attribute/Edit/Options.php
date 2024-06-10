@@ -2,13 +2,14 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Block\Adminhtml\Ticketsmanagement\Attribute\Edit;
+
+use Magento\Store\Model\ResourceModel\Store\Collection;
 
 class Options extends \Magento\Eav\Block\Adminhtml\Attribute\Edit\Options\Options
 {
@@ -16,11 +17,6 @@ class Options extends \Magento\Eav\Block\Adminhtml\Attribute\Edit\Options\Option
      * @var string
      */
     protected $_template = 'Webkul_Helpdesk::customattribute/options.phtml';
-
-    /**
-     * @var \Magento\Eav\Model\Entity\Attribute
-     */
-    protected $_eavAttr;
 
     /**
      * @param \Magento\Backend\Block\Template\Context                                    $context

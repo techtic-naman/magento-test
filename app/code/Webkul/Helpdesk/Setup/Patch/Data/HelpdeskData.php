@@ -1,17 +1,14 @@
 <?php
 /**
- * Webkul Software.
- *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
  */
 
 namespace Webkul\Helpdesk\Setup\Patch\Data;
 
 use Magento\Framework\Setup\Patch\DataPatchInterface;
+use Magento\Framework\Setup\Patch\SchemaPatchInterface;
+use Magento\Framework\Setup\Patch\PatchRevertableInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Authorization\Model\Acl\Role\Group as RoleGroup;
 use Magento\Authorization\Model\UserContextInterface;
@@ -24,69 +21,9 @@ class HelpdeskData implements
     DataPatchInterface
 {
     /**
-     * @var ModuleDataSetupInterface
+     * @var ModuleDataSetupInterface $moduleDataSetup
      */
     private $moduleDataSetup;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\AgentLevelFactory
-     */
-    private $agentLevelFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\GroupFactory
-     */
-    private $groupFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\BusinesshoursFactory
-     */
-    private $businesshoursFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\EventsFactory
-     */
-    private $eventsFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsPriorityFactory
-     */
-    private $ticketsPriorityFactory;
-
-    /**
-     * @var \Magento\Eav\Setup\EavSetupFactory
-     */
-    private $_eavSetupFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TypeFactory
-     */
-    private $typeFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsStatusFactory
-     */
-    private $ticketsStatusFactory;
-
-    /**
-     * @var \Magento\Authorization\Model\RulesFactory
-     */
-    private $rulesFactory;
-
-    /**
-     * @var \Magento\Authorization\Model\RoleFactory
-     */
-    private $roleFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\SupportCenterFactory
-     */
-    private $supportCenterFactory;
-
-    /**
-     * @var DateTime
-     */
-    private $_date;
 
     /**
      * @param ModuleDataSetupInterface                      $moduleDataSetup

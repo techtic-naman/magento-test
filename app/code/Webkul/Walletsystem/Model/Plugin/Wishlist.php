@@ -1,12 +1,12 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 
 namespace Webkul\Walletsystem\Model\Plugin;
@@ -19,36 +19,6 @@ use Magento\Framework\Controller\ResultFactory;
  */
 class Wishlist
 {
-    /**
-     * @var \Webkul\Walletsystem\Helper\Data
-     */
-    public $walletHelper;
-
-    /**
-     * @var \Magento\Framework\Message\ManagerInterface
-     */
-    public $messageManager;
-
-    /**
-     * @var \Magento\Checkout\Model\Session
-     */
-    public $quote;
-
-    /**
-     * @var \Magento\Framework\App\Request\Http
-     */
-    public $request;
-
-    /**
-     * @var \Magento\Framework\Controller\ResultFactory
-     */
-    public $resultFactory;
-
-    /**
-     * @var \Magento\Framework\Registry
-     */
-    public $orderRegistry;
-
     /**
      * Initialize dependencies
      *

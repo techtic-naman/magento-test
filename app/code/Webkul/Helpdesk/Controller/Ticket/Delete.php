@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 
 namespace Webkul\Helpdesk\Controller\Ticket;
@@ -29,36 +28,6 @@ class Delete extends Action
      * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
      */
     protected $_helpdeskLogger;
-
-    /**
-     * @var \Magento\Framework\View\Result\PageFactory
-     */
-    protected $resultPageFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ActivityRepository
-     */
-    protected $_activityRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\EventsRepository
-     */
-    protected $_eventsRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsFactory
-     */
-    protected $_ticketsFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ThreadRepository
-     */
-    protected $_threadRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Tickets
-     */
-    protected $_ticketsHelper;
 
     /**
      * @param Context                                    $context

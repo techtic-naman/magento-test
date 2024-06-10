@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\ConnectEmail;
 
@@ -23,11 +22,6 @@ class Edit extends Action
      * @var \Magento\Framework\View\Result\PageFactory
      */
     protected $_resultPageFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ConnectEmailFactory
-     */
-    protected $_connectEmailFactory;
 
     /**
      * @param Action\Context                             $context
@@ -64,8 +58,8 @@ class Edit extends Action
     {
         // load layout, set active menu and breadcrumbs
         /**
-        * @var \Magento\Backend\Model\View\Result\Page $resultPage
-        */
+ * @var \Magento\Backend\Model\View\Result\Page $resultPage
+*/
         $resultPage = $this->_resultPageFactory->create();
         $resultPage->setActiveMenu('Webkul_Helpdesk::connectemail')
             ->addBreadcrumb(__('Connect Email'), __('Connect Email'))
@@ -85,7 +79,7 @@ class Edit extends Action
         if ($cemailId) {
             $cemailIdmodel->load($cemailId);
             if (!$cemailIdmodel->getId()) {
-                $this->messageManager->addErrorMessage(__('This Event no longer exists.'));
+                $this->messageManager->addError(__('This Event no longer exists.'));
                 return $this->resultRedirectFactory->create()->setPath('helpdesk/*/');
             }
         }

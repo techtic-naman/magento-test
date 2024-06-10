@@ -2,7 +2,7 @@
 
 Magento2 Helpdesk module installation is very easy, please follow the steps for installation-
 
-1. Unzip the respective extension zip and create Webkul(vendor) and Helpdesk(module) name folder inside your magento/app/code/ directory and then move all module's files into magento root directory Magento2/app/code/Webkul/Helpdesk/ folder.
+1. Unzip the respective extension zip and then move "app" folder (inside "src" folder) into magento root directory.
 
 Run Following Command via terminal
 -----------------------------------

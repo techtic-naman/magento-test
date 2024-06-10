@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 
 namespace Webkul\Helpdesk\Controller\Ticket;
@@ -33,81 +32,6 @@ class Submit extends Action implements \Magento\Framework\App\CsrfAwareActionInt
      * @var \Magento\Framework\Data\Form\FormKey\Validator
      */
     protected $_formKeyValidator;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Tickets
-     */
-    protected $_ticketsHelper;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Data
-     */
-    protected $_helper;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsRepository
-     */
-    protected $_ticketsRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsFactory
-     */
-    protected $_ticketsFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\CustomerFactory
-     */
-    protected $_customerFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ActivityRepository
-     */
-    protected $_activityRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ThreadRepository
-     */
-    protected $_threadRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\AttachmentRepository
-     */
-    protected $_attachmentRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ThreadFactory
-     */
-    protected $_threadFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
-     */
-    protected $_helpdeskLogger;
-
-    /**
-     * @var \Magento\Customer\Model\CustomerFactory
-     */
-    protected $customerDataFactory;
-
-    /**
-     * @var DataPersistorInterface
-     */
-    protected $dataPersistor;
-
-    /**
-     * @var \Magento\Framework\Escaper
-     */
-    protected $_escaper;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\EventsRepository
-     */
-    protected $_eventsRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ResourceModel\Ticketdraft\CollectionFactory
-     */
-    protected $_draftCollFactory;
 
     /**
      * @param Context                                                            $context
@@ -149,7 +73,7 @@ class Submit extends Action implements \Magento\Framework\App\CsrfAwareActionInt
         DataPersistorInterface $dataPersistor,
         \Magento\Framework\Escaper $_escaper,
         \Webkul\Helpdesk\Model\EventsRepository $eventsRepo,
-        \Webkul\Helpdesk\Model\ResourceModel\Ticketdraft\CollectionFactory $draftCollFactory
+        \Webkul\Helpdesk\Model\ResourceModel\Ticketdraft\CollectionFactory $draftCollFactory 
     ) {
         $this->_customerSession = $customerSession;
         $this->_formKeyValidator = $formKeyValidator;

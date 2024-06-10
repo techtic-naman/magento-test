@@ -1,11 +1,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 /*jshint jquery:true*/
 
@@ -214,12 +213,6 @@ define(
                                         dataType : 'json',
                                         success : function (content) {
                                             self.hideSpinner();
-                                            console.log("content=",content);
-                                            let progressTmpl = mageTemplate($(".wk_ts_sla_msg_conatiner_tmp").html()), tmp;
-                                                tmp = progressTmpl({
-                                                    data: content
-                                                });
-                                            $('.wk_ts_sla_msg_conatiner').html(tmp);
                                             $(".ajax-success-msg").hide();
                                             $(".ajax-success-msg .msg").text($t("Success ! you have been successfully modified Tickets."));
                                             $(".ajax-success-msg").show();

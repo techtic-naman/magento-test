@@ -1,6 +1,6 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
  * @category  Webkul
  * @package   Webkul_Walletsystem
@@ -18,22 +18,13 @@ namespace Webkul\Walletsystem\Plugin\Paypal\Model\Api;
  */
 class Nvp
 {
-    /**
-     * @var \Webkul\Walletsystem\Helper\Data
-     */
-    protected $helper;
 
-    /**
-     * @var \Magento\Checkout\Model\Session
-     */
-    protected $checkoutSession;
-
-    /**
-     *
-     * @param \Webkul\Walletsystem\Helper\Data $helper
-     * @param \Magento\Checkout\Model\Session $checkoutSession
-     * Constructor
-     */
+   /**
+    * Constructor
+    *
+    * @param \Webkul\Walletsystem\Helper\Data $helper
+    * @param \Magento\Checkout\Model\Session $checkoutSession
+    */
     public function __construct(
         \Webkul\Walletsystem\Helper\Data $helper,
         \Magento\Checkout\Model\Session $checkoutSession
@@ -55,8 +46,7 @@ class Nvp
         $methodName,
         array $request
     ) {
-        if ($this->checkoutSession->getWalletDiscount()) {
-
+        if ($this->checkoutSession->getWalletDiscount() && !$this->checkoutSession->getPaypalAmountForWallet()) {
             if (isset($request["AMT"]) && isset($request["ITEMAMT"])) {
                 $walletData = $this->checkoutSession->getWalletDiscount();
                 $baseCurrencyCode = $this->helper->getBaseCurrencyCode();
@@ -66,23 +56,11 @@ class Nvp
                     $baseCurrencyCode,
                     $walletData["amount"]
                 );
-                $baseOrderGrandAmt = $this->helper->getwkconvertCurrency(
-                    $currrentCurrencyCode,
-                    $baseCurrencyCode,
-                    $walletData["grand_total"]
-                );
-                $requestAmt = round($request["AMT"], 2);
-                $baseOrderGrandAmt = round($baseOrderGrandAmt, 2);
-
-                if ($requestAmt == $baseOrderGrandAmt) {
-                    $amount = $request["AMT"] - round($baseWalletAmt, 2);
-
-                    if ($amount > 0) {
-                        $request["AMT"] = $amount;
-
-                    }
-
+                $amount = $request["AMT"] - round($baseWalletAmt, 2);
+                if ($amount > 0.00) {
+                    $request["AMT"] -= round($baseWalletAmt, 2);
                 }
+                $this->checkoutSession->setPaypalAmountForWallet(true);
             }
         }
         return [$methodName,$request];

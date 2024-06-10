@@ -2,14 +2,14 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\ConnectEmail;
 
+use Magento\Framework\Exception\AuthenticationException;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 
@@ -18,7 +18,7 @@ class Fetchmails extends \Magento\Backend\App\Action
     /**
      * @var PageFactory
      */
-    protected $resultPageFactory;
+    protected $_resultPageFactory;
 
     /**
      * @var \Magento\Backend\Model\Session
@@ -34,16 +34,6 @@ class Fetchmails extends \Magento\Backend\App\Action
      * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
      */
     protected $_helpdeskLogger;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ConnectEmailFactory
-     */
-    protected $_connectEmailFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\MailfetchRepository
-     */
-    protected $_mailfetchRepo;
 
     /**
      * @param Context                                    $context
@@ -83,15 +73,15 @@ class Fetchmails extends \Magento\Backend\App\Action
             $cEmailId = $this->getRequest()->getParam('id');
             if ($cEmailId) {
                 $count = $this->_mailfetchRepo->fetchMail($cEmailId);
-                $this->messageManager->addSuccessMessage(__("%1 email was successfully fetched.", $count));
+                $this->messageManager->addSuccess(__("%1 email was successfully fetched.", $count));
                 return  $this->resultRedirectFactory->create()->setPath("*/*/edit", ["id" => $cEmailId]);
                
             } else {
-                $this->messageManager->addErrorMessage(__("Item does not exist"));
+                $this->messageManager->addError(__("Item does not exist"));
                 return $this->resultRedirectFactory->create()->setPath('*/*/');
             }
         } catch (\Exception $e) {
-            $this->messageManager->addErrorMessage(__($e->getMessage()));
+            $this->messageManager->addError(__($e->getMessage()));
             return $this->resultRedirectFactory->create()->setPath("*/*/edit", ["id" => $cEmailId]);
         }
     }

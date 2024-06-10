@@ -4,8 +4,7 @@
  *
  * @category  Webkul
  * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @author    Webkul
  * @license   https://store.webkul.com/license.html
  */
 
@@ -28,6 +27,11 @@ $wysiwygConfig = $block->getWysiwygConfig();
                 <?= $block->escapeHtml(__("You can select multiple Action and then 
                 'Prepared Responses with Action' will work on them. ")) ?>
                 </label>
+                <button type="button" id="import-variables" style="float: right; margin: 5px;">
+                <span><span><span>
+                <?= $block->escapeHtml(__("Insert Variable...")) ?>
+                </span></span></span>
+                </button>
                 <table cellspacing="0" cellpadding="0" class="border response-action-details">
                     <tbody class="body_content">
                         <?php $actionDefaultType = $block->getActionType(); ?>
@@ -548,12 +552,8 @@ $wysiwygConfig = $block->getWysiwygConfig();
 <script class="note" type="text/x-jquery-tmpl">
     <textarea name="action[note][]"></textarea>
 </script>
+
 <script class="mail_agent" type="text/x-jquery-tmpl">
-    <button type="button" class="import-variables" style="float: right; margin: 5px;">
-        <span><span><span class="import-variables-btn">
-            <?= $block->escapeHtml(__("Insert Variable...")) ?>
-        </span></span></span>
-    </button>
     <div class="mail_conatiner">
         <div class="mail_row">
             <select id="assign-agent" name="action[mail_agent][agent][]" class="select">
@@ -589,11 +589,6 @@ $wysiwygConfig = $block->getWysiwygConfig();
     </div>
 </script>
 <script class="mail_group" type="text/x-jquery-tmpl">
-    <button type="button" class="import-variables" style="float: right; margin: 5px;">
-        <span><span><span class="import-variables-btn">
-            <?= $block->escapeHtml(__("Insert Variable...")) ?>
-        </span></span></span>
-    </button>
     <div class="mail_conatiner">
         <div class="mail_row">
             <select id="assign-group"  name="action[mail_group][group][]">
@@ -630,11 +625,6 @@ $wysiwygConfig = $block->getWysiwygConfig();
     </div>
 </script>
 <script class="mail_customer" type="text/x-jquery-tmpl">
-    <button type="button" class="import-variables" style="float: right; margin: 5px;">
-        <span><span><span class="import-variables-btn">
-            <?= $block->escapeHtml(__("Insert Variable...")) ?>
-        </span></span></span>
-    </button>
     <div class="mail_conatiner">
         <div class="mail_row">
             <select id="email-template" name="action[mail_customer][template_id]" 

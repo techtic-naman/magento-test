@@ -4,8 +4,7 @@
  *
  * @category  Webkul
  * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @author    Webkul
  * @license   https://store.webkul.com/license.html
  */
 $helper = $block->helperData();
@@ -24,18 +23,10 @@ $threadLimit = $helper->getThreadLimit();
 $totalThread = $ticketsHelper->getTotalThreads($ticketId);
 $imgExtensions = explode(",", $helper->getConfigAllowedextensions());
 $agentId = $ticketsHelper->getCurrentAgentId();
-$agentRole = $ticketsHelper->getCurrentAgent()->getRole()->getRoleName();
-$noteCollection = $block->getNoteCollection($ticketId);
-if ($agentRole == "Agent") {
-    $noteCollection->addFieldToFilter("agent_id", ["eq" => $agentId]);
-}
+$noteCollection = $block->getNoteCollection($agentId, $ticketId);
 $mediaUrl = $helper->getMediaUrl();
 $mediaDirpath = $helper->getMediaPath();
 $extensions = ['doc','docx','xls','xlsx'];
-$customFieldAttrIds = $block->getCustomFieldAttributes($ticket->getType());
-$ticketCustomAttrIds = $ticketsHelper->getTicketAttributeDetails($ticketId)
-                            ->getColumnValues('attribute_id');
-$customFieldAttrIds = array_diff($customFieldAttrIds, $ticketCustomAttrIds);
 ?>
 <input type="hidden" name="agent_id" id="agent_id" value="<?= $block->escapeHtml($agentId); ?>"/>
 <div class="wk_ts_thread_wrapper">
@@ -292,7 +283,7 @@ $customFieldAttrIds = array_diff($customFieldAttrIds, $ticketCustomAttrIds);
                                     if ($ticketIds) {
                                         if (!in_array($ticketId, $ticketIds)) { echo "hide";
                                         }
-                                    } else { echo "hide"; } ?>" 
+                                    } else { echo "show"; } ?>" 
                                                           style="position:absolute;right:15px;"></i>
                                 </li>
                             <?php endforeach; ?>
@@ -326,7 +317,7 @@ $customFieldAttrIds = array_diff($customFieldAttrIds, $ticketCustomAttrIds);
                     </div>
                 <?php endforeach; ?>
             </div>
-            <?php if (count($customFieldAttrIds) || count($ticketsHelper->getTicketAttributeDetails($ticketId))): ?>
+            <?php if (count($ticketsHelper->getTicketAttributeDetails($ticketId))): ?>
                 <form 
                 action="<?= /** @noEscape */
                 $block->getUrl('helpdesk/ticketsmanagement_tickets/saveattributevalues/', ["id"=>$ticketId]);
@@ -356,8 +347,8 @@ $customFieldAttrIds = array_diff($customFieldAttrIds, $ticketCustomAttrIds);
                                     if ($attribute['is_required']) {
                                         echo 'required-entry';
                                     } ?> input-text validate-data" name="custom[<?=
-                                    $block->escapeHtml($attribute['attribute_code'])?>]
-                                    <?= $block->escapeHtml($fix) ?>" 
+                                    $block->escapeHtml($attribute['attribute_code'])
+?>]<?= $block->escapeHtml($fix) ?>" 
                                     <?= $block->escapeHtml($multiselect);?>>
                                         <?php $attributeOptions = $attribute->getSource()->getAllOptions();
                                         foreach ($attributeOptions as $each) {
@@ -380,7 +371,7 @@ $customFieldAttrIds = array_diff($customFieldAttrIds, $ticketCustomAttrIds);
                                         echo 'required-entry';
                                     } ?> input-text validate-data" 
                                         type="text" 
-                                        value="<?= /** @noEscape */ $block->escapeHtml($attributeValue['value']) ?>" 
+                                        value="<?= /** @noEscape */ $attributeValue['value'] ?>" 
                                         name="custom[<?= /** @noEscape */ $attribute['attribute_code'];?>]" />
                                 <?php } ?>
                                 <?php if ($attribute['frontend_input'] == 'date'
@@ -393,7 +384,7 @@ $customFieldAttrIds = array_diff($customFieldAttrIds, $ticketCustomAttrIds);
                                     } ?> input-text datetype validate-date"
                                     type="<?= $attribute['frontend_input'] ==
                                                     'date' ? 'date' : 'datetime-local'?>"
-                                    value="<?= /** @noEscape */ $block->escapeHtml($attributeValue['value']) ?>" 
+                                    value="<?= /** @noEscape */ $attributeValue['value'] ?>" 
                                     name="custom[<?= /** @noEscape */ $attribute['attribute_code'];?>]" />
                                 <?php } ?>
                                 <?php if ($attribute['frontend_input'] == 'textarea') { ?>
@@ -403,7 +394,7 @@ $customFieldAttrIds = array_diff($customFieldAttrIds, $ticketCustomAttrIds);
                                     } ?> input-text" 
                                         rows="5" cols="75" id="textar" 
                                         name="custom[<?= /** @noEscape */ $attribute['attribute_code'];?>]" >
-                                        <?= /** @noEscape */ $block->escapeHtml($attributeValue['value']) ?>
+                                        <?= /** @noEscape */ $attributeValue['value'] ?>
                                     </textarea>
                                 <?php } ?>
                                 <?php if ($attribute['frontend_input'] == 'texteditor') { ?>
@@ -500,93 +491,6 @@ $customFieldAttrIds = array_diff($customFieldAttrIds, $ticketCustomAttrIds);
                                     <?php endif; ?>
                                 <?php } ?>
                             </div>
-                        </div>
-                    <?php endforeach; ?>
-                    <?php foreach ($customFieldAttrIds as $attrId): ?>
-                        <?php $attribute = $block->getAttributeData($attrId); ?>
-                        <div class="form-group">
-                            <h4><?= /** @noEscape */ $attribute['frontend_label'];  ?></h4>
-                            <div class="form-col">
-                                <?php
-                                if ($attribute['frontend_input'] == 'select' ||
-                                $attribute['frontend_input']=='multiselect' ||
-                                $attribute['frontend_input']=='boolean') {
-                                    $fix = "";
-                                    $multiselect = "";
-                                    if ($attribute['frontend_input'] == 'multiselect') {
-                                        $fix = "[]";
-                                        $multiselect = "multiple";
-                                    }
-
-                                    ?>
-                                    <select class="myinput-text 
-                                    <?php
-                                    if ($attribute['is_required']) {
-                                        echo 'required-entry';
-                                    } ?> input-text validate-data" name="custom[<?=
-                                    $block->escapeHtml($attribute['attribute_code'])?>]
-                                    <?= $block->escapeHtml($fix) ?>" 
-                                    <?= $block->escapeHtml($multiselect);?>>
-                                        <?php $attributeOptions = $attribute->getSource()->getAllOptions();
-                                        foreach ($attributeOptions as $each) {
-                                            if ($each["value"] == "") { ?>
-                                                <option value="">Please select</option>
-                                        <?php } else {?>
-                                          <option value="<?=/** @noEscape */ $each["value"]; ?>">
-                                                <?= /** @noEscape */ $each["label"];  ?>
-                                        </option>
-                                        <?php }
-                                        } ?>
-                                    </select>
-                                <?php } ?>
-                                <?php if ($attribute['frontend_input'] == 'text') { ?>
-                                    <input class="<?php
-                                    if ($attribute['is_required']) {
-                                        echo 'required-entry';
-                                    } ?> input-text validate-data" type="text"
-                                        name="custom[<?= /** @noEscape */ $attribute['attribute_code'];?>]" />
-                                <?php } ?>
-                                <?php if ($attribute['frontend_input'] == 'date'
-                                || $attribute['frontend_input'] == 'datetime'
-                                ) { ?>
-                                    <input 
-                                    class="<?php
-                                    if ($attribute['is_required']) {
-                                        echo 'required-entry';
-                                    } ?> input-text datetype validate-date"
-                                    type="<?= $attribute['frontend_input'] ==
-                                                    'date' ? 'date' : 'datetime-local'?>" 
-                                    name="custom[<?= /** @noEscape */ $attribute['attribute_code'];?>]" />
-                                <?php } ?>
-                                <?php if ($attribute['frontend_input'] == 'textarea') { ?>
-                                    <textarea class="<?php
-                                    if ($attribute['is_required']) {
-                                        echo 'required-entry';
-                                    } ?> input-text" 
-                                        rows="5" cols="75" id="textar" 
-                                        name="custom[<?= /** @noEscape */ $attribute['attribute_code'];?>]" >
-                                    </textarea>
-                                <?php } ?>
-                                <?php if ($attribute['frontend_input'] == 'texteditor') { ?>
-                                    <textarea class="<?php
-                                    if ($attribute['is_required']) {
-                                        echo 'required-entry';
-                                    } ?> input-text" 
-                                         id="wk_customattribute_text_field" 
-                                        name="custom[<?= /** @noEscape */ $attribute['attribute_code'];?>]" >
-                                    </textarea>
-                                <?php } ?>
-                                <?php if ($attribute['frontend_input'] == 'image' ||
-                                $attribute['frontend_input'] == 'file') { ?>
-                                    <input 
-                                        class="<?php
-                                        if ($attribute['is_required']) {
-                                            echo 'required-entry';
-                                        } ?> input-text" 
-                                        type="file" 
-                                        name="<?= $block->escapeHtml($attribute['attribute_code']);?>"/>
-                                <?php } ?>
-                            </div>   
                         </div>
                     <?php endforeach; ?>
                     <button class="save_attribute_btn" type="submit" title="Save Attributes">
@@ -873,15 +777,13 @@ $customFieldAttrIds = array_diff($customFieldAttrIds, $ticketCustomAttrIds);
                             && $thread['who_is'] != 'customer'
                             && $thread['thread_type'] == "reply"): ?>
                                 <button class="splitthread" style="margin-left:3px" 
-                                <?php if ($thread['split_ticket']): ?>
+                                <?php if ($thread['split_ticket']) : ?>
                                 data-split="<?= /** @noEscape */ $thread['split_ticket'] ?>"
-                                onclick="window.open('<?= /** @noEscape */
-                                $block->getTicketUrl($thread['split_ticket']) ?>')"
-                                <?php else: ?> 
+                                onclick="window.open('<?= $block->getTicketUrl($thread['split_ticket']) ?>')"
+                                <?php else : ?> 
                                 data-id="<?= /** @noEscape */ $thread['entity_id'] ?>"
                                 <?php endif; ?>>
-                                    <i class="fa <?= /** @noEscape */
-                                    $thread['split_ticket']? ' fa-location-arrow': ' fa-chain-broken' ?>"></i>
+                                    <i class="fa <?= $thread['split_ticket']? ' fa-location-arrow': ' fa-chain-broken' ?>"></i>
                                 </button>
                             <?php endif; ?>
                             <?php
@@ -1506,35 +1408,6 @@ $customFieldAttrIds = array_diff($customFieldAttrIds, $ticketCustomAttrIds);
         </span>
         <i style="position:absolute;right:15px;" class="fa fa-check show"></i>
     </li>
-</script>
-
-<script class="wk_ts_sla_msg_conatiner_tmp" type="text/x-jquery-tmpl">
-<% if (data.resolveTime.msg) { %>
-    <button class="sla_msg_box <% if (data.resolveTime.error) { %><%- 'wk_success'%>
-            <% } else { %><%- 'wk_faliure'%><% } %>" 
-            style="float: right; margin-top: 15px;margin-left: 5px;" 
-            title="" type="button">
-        <%- data.resolveTime.msg %>
-        <div class="down_arrow_box" style="bottom: 27px;">
-            <span class="names">
-                <?= $block->escapeHtml(__("Resolve Time")) ?>
-            </span>
-        </div>
-    </button>
-<% } %>
-<% if (data.responseTime.msg && data.responseTime.flag) { %>
-    <button class="sla_msg_box <% if (data.responseTime.error) { %><%- 'wk_success'%>
-                <% } else { %><%- 'wk_faliure' %><% } %>" 
-            style="float: right; margin-top: 15px;" 
-            title="" type="button">
-        <%- data.responseTime.msg %>
-        <div class="down_arrow_box" style="bottom: 27px;">
-            <span class="names">
-                <?= $block->escapeHtml(__("Response Time")) ?>
-            </span>
-        </div>
-    </button>
-<% } %>
 </script>
 <?php
 $formData = [

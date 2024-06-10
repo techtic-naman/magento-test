@@ -2,14 +2,14 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\Events;
 
+use Magento\Framework\Exception\AuthenticationException;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 
@@ -18,7 +18,7 @@ class Save extends \Magento\Backend\App\Action
     /**
      * @var PageFactory
      */
-    protected $resultPageFactory;
+    protected $_resultPageFactory;
 
     /**
      * @var \Magento\Backend\Model\Auth\Session
@@ -54,16 +54,6 @@ class Save extends \Magento\Backend\App\Action
      * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
      */
     protected $_helpdeskLogger;
-
-    /**
-     * @var \Magento\Email\Model\BackendTemplateFactory
-     */
-    protected $emailbackendTemp;
-
-    /**
-     * @var \Magento\Framework\Stdlib\DateTime\DateTime
-     */
-    protected $date;
 
     /**
      * @param Context                                     $context
@@ -113,7 +103,7 @@ class Save extends \Magento\Backend\App\Action
             $eventId = isset($data['id'])?$data['id']:0;
             if (!$data) {
                 $this->resultRedirectFactory->create()->setPath('helpdesk/*/');
-                $this->messageManager->addErrorMessage(__('Unable to find events to save'));
+                $this->messageManager->addError(__('Unable to find events to save'));
                 return;
             }
             $data['event'] = $this->_jsonHelper->jsonEncode(isset($data['event'])?$data['event']:null);
@@ -167,11 +157,11 @@ class Save extends \Magento\Backend\App\Action
                 $model->save();
                 $this->_activityRepo->saveActivity($model->getId(), $model->getName(), "add", "eventsandtrigger");
             }
-            $this->messageManager->addSuccessMessage(__("Event successfully saved"));
+            $this->messageManager->addSuccess(__("Event successfully saved"));
             $this->_modelSession->setFormData(false);
             return $this->resultRedirectFactory->create()->setPath('*/*/');
         } catch (\Exception $e) {
-            $this->messageManager->addErrorMessage(__($e->getMessage()));
+            $this->messageManager->addError(__($e->getMessage()));
             $this->_helpdeskLogger->info($e->getMessage());
             $this->_modelSession->setFormData($data);
             return $this->resultRedirectFactory->create()->setPath("*/*/edit", ["id" => $eventId]);

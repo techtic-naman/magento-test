@@ -2,14 +2,14 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\Tag;
 
+use Magento\Framework\Exception\AuthenticationException;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 
@@ -18,12 +18,7 @@ class Savetag extends \Magento\Backend\App\Action
     /**
      * @var PageFactory
      */
-    protected $resultPageFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TagFactory
-     */
-    protected $_tagFactory;
+    protected $_resultPageFactory;
 
     /**
      * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
@@ -76,6 +71,7 @@ class Savetag extends \Magento\Backend\App\Action
         } catch (\Exception $e) {
             $this->_helpdeskLogger->info($e->getMessage());
         }
+        
     }
 
     /**

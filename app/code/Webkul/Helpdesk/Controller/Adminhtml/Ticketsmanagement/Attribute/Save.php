@@ -2,14 +2,14 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\Ticketsmanagement\Attribute;
 
+use Magento\Framework\Exception\AuthenticationException;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 
@@ -18,37 +18,12 @@ class Save extends \Magento\Backend\App\Action
     /**
      * @var PageFactory
      */
-    protected $resultPageFactory;
+    protected $_resultPageFactory;
 
     /**
      * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
      */
     protected $_helpdeskLogger;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\Eav\CustomAttributeFactory
-     */
-    protected $_eavCustomAttrFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ActivityRepository
-     */
-    protected $_activityRepository;
-
-    /**
-     * @var \Magento\Eav\Model\Entity
-     */
-    protected $_eavEntity;
-
-    /**
-     * @var \Magento\Eav\Model\Entity\Attribute
-     */
-    protected $_eavEntityAttr;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsCustomAttributesFactory
-     */
-    protected $_ticketCustomAttrFactory;
 
     /**
      * @param Context                                               $context
@@ -91,7 +66,7 @@ class Save extends \Magento\Backend\App\Action
             $data = $this->getRequest()->getPostValue();
             $attrId = isset($data['attribute_id'])?$data['attribute_id']:0;
             if (empty($data)) {
-                $this->messageManager->addErrorMessage(__('Unable to find attribute to save'));
+                $this->messageManager->addError(__('Unable to find attribute to save'));
                 return $this->resultRedirectFactory->create()->setPath('helpdesk/*/');
             }
             if ($attrId) {
@@ -143,10 +118,10 @@ class Save extends \Magento\Backend\App\Action
                     $ticketAttribute->save();
                 }
             }
-            $this->messageManager->addSuccessMessage(__("Custom attribute successfully saved"));
+            $this->messageManager->addSuccess(__("Custom attribute successfully saved"));
         } catch (\Exception $e) {
             
-            $this->messageManager->addErrorMessage(__("There are some error to save type"));
+            $this->messageManager->addError(__("There are some error to save type"));
             $this->_helpdeskLogger->info($e->getMessage());
         }
         return $this->resultRedirectFactory->create()->setPath('*/*/');

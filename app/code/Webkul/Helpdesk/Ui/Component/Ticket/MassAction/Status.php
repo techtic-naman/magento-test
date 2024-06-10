@@ -4,20 +4,20 @@
  *
  * @category  Webkul
  * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
  * @license   https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Ui\Component\Ticket\MassAction;
 
 use Magento\Framework\UrlInterface;
-use JsonSerializable;
+//use Zend\Stdlib\JsonSerializable;
 use Webkul\Helpdesk\Model\TicketsStatus;
 
 /**
  * Class Options
  */
-class Status implements JsonSerializable
+class Status implements \JsonSerializable
 {
     /**
      * @var array
@@ -43,11 +43,6 @@ class Status implements JsonSerializable
      * @var string
      */
     protected $_paramName;
-
-    /**
-     * @var TicketsStatus
-     */
-    protected $_ticketsStatus;
 
     /**
      * @var array

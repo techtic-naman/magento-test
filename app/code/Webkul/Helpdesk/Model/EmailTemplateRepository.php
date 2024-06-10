@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Model;
 
@@ -28,60 +27,16 @@ class EmailTemplateRepository implements \Webkul\Helpdesk\Api\EmailTemplateRepos
      * @var \Magento\Backend\Model\Auth\Session
      */
     protected $_authSession;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsFactory
-     */
     protected $_ticketsFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ThreadFactory
-     */
     protected $_threadFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TagFactory
-     */
     protected $_tagFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\GroupFactory
-     */
     protected $_groupFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsPriorityFactory
-     */
     protected $_ticketpriorityFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TypeFactory
-     */
     protected $_typeFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsStatusFactory
-     */
     protected $_ticketstatusFactory;
-
-    /**
-     * @var \Magento\User\Model\UserFactory
-     */
     protected $_userFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\CustomerOrganizationFactory
-     */
     protected $_custOrgFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
-     */
     protected $_helpdeskLogger;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Data
-     */
     protected $_helper;
 
     /**

@@ -1,12 +1,12 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 
 namespace Webkul\Walletsystem\Controller\Adminhtml\Creditrules;
@@ -14,8 +14,6 @@ namespace Webkul\Walletsystem\Controller\Adminhtml\Creditrules;
 use Webkul\Walletsystem\Controller\Adminhtml\Creditrules as CreditrulesController;
 use Magento\Backend\App\Action;
 use Webkul\Walletsystem\Model\WalletcreditrulesFactory;
-use Webkul\Walletsystem\Model\Walletcreditrules;
-use Webkul\Walletsystem\Helper\Data;
 
 /**
  * Webkul Walletsystem Class
@@ -33,27 +31,19 @@ class Save extends CreditrulesController
     private $date;
 
     /**
-     * @var Data
-     */
-    protected $helper;
-
-    /**
      * Constructor
      *
      * @param Action\Context $context
      * @param WalletcreditrulesFactory $walletcreditrulesFactory
      * @param \Magento\Framework\Stdlib\DateTime\DateTime $date
-     * @param Data $helper
      */
     public function __construct(
         Action\Context $context,
         WalletcreditrulesFactory $walletcreditrulesFactory,
-        \Magento\Framework\Stdlib\DateTime\DateTime $date,
-        Data $helper
+        \Magento\Framework\Stdlib\DateTime\DateTime $date
     ) {
         $this->walletcreditrulesFactory = $walletcreditrulesFactory;
         $this->date = $date;
-        $this->helper = $helper;
         parent::__construct($context);
     }
 
@@ -155,19 +145,6 @@ class Save extends CreditrulesController
         if ($data['start_date']>$data['end_date']) {
             $error[] = __("End date can not be lesser then start From date.");
         }
-
-        if ($this->helper->getPriceType() == Walletcreditrules::WALLET_CREDIT_CONFIG_AMOUNT_TYPE_FIXED) {
-            if ($data['amount']> $data['minimum_amount']) {
-                $error[] = __("Cashback Amount must be less than or equal to product amount.");
-            }
-
-        } else {
-            if (100 < (int)$data['amount']) {
-                $error[] = __("Cashback Amount Percentage must be less than or equal to 100.");
-            }
-
-        }
-
         return $error;
     }
 }

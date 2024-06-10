@@ -1,12 +1,12 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 
 namespace Webkul\Walletsystem\Observer;
@@ -113,9 +113,7 @@ class SalesOrderInvoiceSaveAfterObserver implements ObserverInterface
         $order->setWalletInvoiced(1);
         $order->save();
         $this->checkAndProcessWalletInvoice($invoice, $order);
-        if (floatval($order->getWalletAmount())) {
-            $this->createTransaction($order);
-        }
+        $this->createTransaction($order);
     }
 
     /**
@@ -127,7 +125,7 @@ class SalesOrderInvoiceSaveAfterObserver implements ObserverInterface
     public function checkAndProcessWalletInvoice($invoice, $order)
     {
         try {
-            $walletAmount = $order->getWalletAmount();
+            $walletAmount = -$order->getWalletAmount();
             $invoiceTotal = $invoice->getGrandTotal();
             $invoice->setGrandTotal($invoiceTotal + $walletAmount);
             $invoice->save();
@@ -147,7 +145,7 @@ class SalesOrderInvoiceSaveAfterObserver implements ObserverInterface
         $transId = 'wk_wallet_system'.$order->getId().'-'.rand();
         $transArray = [
             'id' => $transId,
-            'amount' =>  (int) $order->getWalletAmount()
+            'amount' => - (int) $order->getWalletAmount()
         ];
 
         $payment = $order->getPayment();

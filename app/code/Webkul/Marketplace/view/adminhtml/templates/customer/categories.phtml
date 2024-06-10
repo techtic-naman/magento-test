@@ -1,0 +1,54 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_Marketplace
+ * @author    Webkul Software Private Limited
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+
+?>
+<div class="admin__fieldset-wrapper opened" id="seller-category-tree">
+    <div class="admin__fieldset-wrapper-content">
+        <fieldset class="admin__fieldset">
+            <div class="field">
+            <?php $_divId = "tree-div_" . time() ?>
+            <div id="<?= $escaper->escapeHtml($_divId) ?>" class="tree"></div>
+            <input type="hidden" name="seller_category_ids" id="category_id" data-form-part="customer_form" value=""/>
+            <style type="text/css">
+                .admin__scope-old input[type="radio"], .admin__scope-old input[type="checkbox"] {
+                    margin: 0 5px 3px 3px !important;
+                }
+            </style>
+            <script type="text/x-magento-init">
+                {
+                    "#seller-category-tree": {
+                        "sellerCheckboxTree" : {},
+                        "sellerCheckboxCategoryTree" : {
+                            "fromDb": "<?= $escaper->escapeHtml($block->getSellerAllowedCategory()); ?>",
+                            "dataUrl": "<?= $escaper->escapeUrl($block->getLoadTreeUrl(false)) ?>",
+                            "divId": "<?= $escaper->escapeHtml($_divId) ?>",
+                            "rootVisible": "<?= $escaper->escapeHtml($block->getIsRootCatToShow()) ?>",
+                            "useAjax":          <?= $escaper->escapeHtml($block->getUseAjax()) ?>,
+                            "currentNodeId":    <?= (int) $block->getCategoryId() ?>,
+                            "text":        "<?= $escaper->escapeHtml(($block->getRoot()->getName())) ?>",
+                            "checked":     "<?= $escaper->escapeHtml($block->getRoot()->getChecked()) ?>",
+                            "allowDrop":   <?php if ($block->getRoot()->getIsVisible()): ?>true<?php else:
+                                ?>false<?php endif; ?>,
+                            "id":          <?= $escaper->escapeHtml((int) $block->getRoot()->getId()) ?>,
+                            "expanded":    <?= $escaper->escapeHtml((int) $block->getIsWasExpanded()) ?>,
+                            "category_id": <?= $escaper->escapeHtml((int) $block->getCategoryId()) ?>,
+                            "treeJson": <?= /*@noEscape*/ $block->getTreeJson() ?>
+                        }
+                    }
+                }
+            </script>
+            <script>
+                require('mage/apply/main').apply();
+            </script>
+            </div>
+        </fieldset>
+    </div>
+</div>

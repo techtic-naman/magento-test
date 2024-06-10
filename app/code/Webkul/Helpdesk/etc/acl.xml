@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Webkul Software.
- *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
- */
+* Webkul Software.
+*
+* @category  Webkul
+* @package   Webkul_Helpdesk
+* @author    Webkul
+* @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+* @license   https://store.webkul.com/license.html
+*/
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
     <acl>
@@ -60,14 +60,6 @@
                     <resource id="Webkul_Helpdesk::reporting" title="Reporting" sortOrder="10">
                         <resource id="Webkul_Helpdesk::reportcustomer" title="Customer Report Summary" sortOrder="20" />
                         <resource id="Webkul_Helpdesk::reportagent" title="Agent Report Summary" sortOrder="21" />
-                    </resource>
-
-                    <resource id="Webkul_Helpdesk::helpdeskinformation" title="Helpdesk Information" sortOrder="10">
-                        <resource id="Webkul_Helpdesk::helpdesk_userguide" title="User Guide" sortOrder="20" />
-                        <resource id="Webkul_Helpdesk::helpdesk_extension" title="Store Extension" sortOrder="21" />
-                        <resource id="Webkul_Helpdesk::helpdesk_uvdesk" title="Ticket/Customisations" sortOrder="22" />
-                        <resource id="Webkul_Helpdesk::helpdesk_services" title="Services" sortOrder="23" />
-                        <resource id="Webkul_Helpdesk::helpdesk_reviews" title="Reviews" sortOrder="24" />
                     </resource>
                 </resource>
                 <resource id="Magento_Backend::stores">

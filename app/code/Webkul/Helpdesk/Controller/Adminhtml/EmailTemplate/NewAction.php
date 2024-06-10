@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\EmailTemplate;
 
@@ -47,8 +46,8 @@ class NewAction extends Action
     public function execute()
     {
         /**
-        * @var \Magento\Backend\Model\View\Result\Forward $resultForward
-        */
+ * @var \Magento\Backend\Model\View\Result\Forward $resultForward
+*/
         $resultForward = $this->_resultForwardFactory->create();
         return $resultForward->forward('edit');
     }

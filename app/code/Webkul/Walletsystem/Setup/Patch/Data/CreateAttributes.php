@@ -1,14 +1,13 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
-
 namespace Webkul\Walletsystem\Setup\Patch\Data;
 
 use Magento\Framework\Setup;
@@ -256,13 +255,12 @@ class CreateAttributes implements DataPatchInterface, PatchRevertableInterface
                     'unique' => false,
                     'is_configurable' => false,
                     'used_for_promo_rules' => true,
-                    'backend' => \Webkul\Walletsystem\Model\Attribute\Backend\WalletCashBack::class,
+                    'backend' => '',
                     'default' => 0,
                     'frontend' => '',
                     'frontend_class'=>'validate-zero-or-greater',
                     'label' =>  'Wallet Cash Back',
-                    'note' => 'Product wise credit amount.
-                     (Note: Cashback Amount must be less than or equal to product amount.)',
+                    'note' => 'Product wise credit amount.',
                     'apply_to' => 'simple,downloadable,virtual,bundle,configurable'
                 ]
             );

@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\SlaPolicy;
 
@@ -28,11 +27,6 @@ class MassDelete extends \Magento\Backend\App\Action
      * @var CollectionFactory
      */
     private $collectionFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
-     */
-    private $_logger;
 
     /**
      * @param Context                                $context

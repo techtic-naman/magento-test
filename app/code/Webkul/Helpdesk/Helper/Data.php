@@ -4,13 +4,15 @@
  *
  * @category  Webkul
  * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
  * @license   https://store.webkul.com/license.html
  */
 
 namespace Webkul\Helpdesk\Helper;
 
+use Magento\Framework\App\Http\Context as HttpContext;
+use Magento\Customer\Model\Context as CustomerContext;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\App\Area;
 use Magento\Framework\App\Request\DataPersistorInterface;
@@ -35,45 +37,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     protected $cacheManager;
 
-    /**
-     * @var \Magento\Store\Model\StoreManagerInterface
-     */
     protected $_storeManager;
-
-    /**
-     * @var \Magento\Framework\App\State
-     */
     protected $_appState;
-
-    /**
-     * @var \Magento\Framework\Translate\Inline\StateInterface
-     */
     protected $inlineTranslation;
-
-    /**
-     * @var \Magento\Framework\Mail\Template\TransportBuilder
-     */
     protected $transportBuilder;
-
-    /**
-     * @var DataPersistorInterface
-     */
     protected $dataPersistor;
-
-    /**
-     * @var string
-     */
-    protected $temp_id;
-
-    /**
-     * @var \Magento\Framework\Message\ManagerInterface
-     */
-    protected $messageManager;
-
-    /**
-     * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
-     */
-    protected $helpdeskLogger;
 
     /**
      * @param \Magento\Framework\App\Helper\Context               $context
@@ -85,8 +53,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * @param \Magento\Framework\Translate\Inline\StateInterface  $inlineTranslation
      * @param DataPersistorInterface                              $dataPersistor
      * @param \Magento\Framework\App\Cache\ManagerFactory         $cacheManagerFactory
-     * @param \Magento\Framework\Message\ManagerInterface         $messageManager
-     * @param \Webkul\Helpdesk\Logger\HelpdeskLogger              $helpdeskLogger
      */
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,
@@ -97,9 +63,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder,
         \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation,
         DataPersistorInterface $dataPersistor,
-        \Magento\Framework\App\Cache\ManagerFactory $cacheManagerFactory,
-        \Magento\Framework\Message\ManagerInterface $messageManager,
-        \Webkul\Helpdesk\Logger\HelpdeskLogger $helpdeskLogger
+        \Magento\Framework\App\Cache\ManagerFactory $cacheManagerFactory
     ) {
         parent::__construct($context);
         $this->_filesystem = $filesystem;
@@ -110,8 +74,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $this->transportBuilder = $transportBuilder;
         $this->dataPersistor = $dataPersistor;
         $this->cacheManager = $cacheManagerFactory;
-        $this->messageManager = $messageManager;
-        $this->helpdeskLogger = $helpdeskLogger;
     }
 
     /**
@@ -684,17 +646,13 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $senderInfo,
         $receiverInfo
     ) {
-        try {
-            $this->temp_id = $this->getTemplateId($template_name);
-            $this->inlineTranslation->suspend();
-            $this->generateTemplate($emailTempVariables, $senderInfo, $receiverInfo);
-            $transport = $this->transportBuilder->getTransport();
-            $transport->sendMessage();
-            $this->inlineTranslation->resume();
-        } catch (\Exception $e) {
-            $this->helpdeskLogger->info($e->getMessage());
-            $this->messageManager->addErrorMessage(__($e->getMessage()));
-        }
+    
+        $this->temp_id = $this->getTemplateId($template_name);
+        $this->inlineTranslation->suspend();
+        $this->generateTemplate($emailTempVariables, $senderInfo, $receiverInfo);
+        $transport = $this->transportBuilder->getTransport();
+        $transport->sendMessage();
+        $this->inlineTranslation->resume();
     }
 
     /**

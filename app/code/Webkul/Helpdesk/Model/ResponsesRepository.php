@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Model;
 
@@ -98,25 +97,9 @@ class ResponsesRepository implements \Webkul\Helpdesk\Api\ResponsesRepositoryInt
      * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
      */
     protected $_helpdeskLogger;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\EmailTemplateFactory
-     */
     protected $_emailFactory;
-
-    /**
-     * @var \Magento\Framework\Filesystem\Driver\File
-     */
     protected $_fileDriver;
-
-    /**
-     * @var \Magento\Email\Model\BackendTemplateFactory
-     */
     protected $emailbackendTemp;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\EventsRepositoryFactory
-     */
     protected $_eventsRepoFactory;
 
     /**
@@ -286,10 +269,10 @@ class ResponsesRepository implements \Webkul\Helpdesk\Api\ResponsesRepositoryInt
                         }
                         if ($fileInfo->isFile()) {
                             $content = $this->_fileDriver->fileGetContents($fileInfo->getPathname());
-                            $attachment = new \Zend_Mime_Part($content);
+                            $attachment = new \Laminas\Mime\Part($content);
                             $attachment->type = $this->_transportBuilder->getMimeContentType($fileInfo);
-                            $attachment->disposition = \Zend_Mime::DISPOSITION_ATTACHMENT;
-                            $attachment->encoding = \Zend_Mime::ENCODING_BASE64;
+                            $attachment->disposition = \Laminas\Mime\Mime::DISPOSITION_ATTACHMENT;
+                            $attachment->encoding = \Laminas\Mime\Mime::ENCODING_BASE64;
                             $attachment->filename = $fileInfo;
                             $mail->addAttachment($content, $attachment);
                         }
@@ -390,10 +373,10 @@ class ResponsesRepository implements \Webkul\Helpdesk\Api\ResponsesRepositoryInt
                         }
                         if ($fileInfo->isFile()) {
                             $content = $this->_fileDriver->fileGetContents($fileInfo->getPathname());
-                            $attachment = new \Zend_Mime_Part($content);
+                            $attachment = new \Laminas\Mime\Part($content);
                             $attachment->type = $this->_transportBuilder->getMimeContentType($fileInfo);
-                            $attachment->disposition = \Zend_Mime::DISPOSITION_ATTACHMENT;
-                            $attachment->encoding = \Zend_Mime::ENCODING_BASE64;
+                            $attachment->disposition = \Laminas\Mime\Mime::DISPOSITION_ATTACHMENT;
+                            $attachment->encoding = \Laminas\Mime\Mime::ENCODING_BASE64;
                             $attachment->filename = $fileInfo;
                             $mail->addAttachment($content, $attachment);
                         }

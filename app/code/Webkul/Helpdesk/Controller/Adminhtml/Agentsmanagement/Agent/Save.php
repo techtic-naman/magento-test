@@ -2,16 +2,17 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\Agentsmanagement\Agent;
 
 use Magento\Framework\Exception\AuthenticationException;
 use Magento\Backend\App\Action\Context;
+use Magento\Framework\View\Result\PageFactory;
+use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 
 class Save extends \Magento\User\Controller\Adminhtml\User
 {
@@ -19,21 +20,6 @@ class Save extends \Magento\User\Controller\Adminhtml\User
      * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
      */
     protected $_helpdeskLogger;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\AgentFactory
-     */
-    protected $_agentFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ActivityRepository
-     */
-    protected $_activityRepo;
-
-    /**
-     * @var \Magento\Backend\Model\Auth\Session
-     */
-    protected $_authSession;
 
     /**
      * @param Context                                   $context

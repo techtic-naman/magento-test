@@ -1,12 +1,12 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 
 namespace Webkul\Walletsystem\Block\Adminhtml\Wallet\Renderer;
@@ -43,7 +43,7 @@ class PriceFormatter extends \Magento\Backend\Block\Widget\Grid\Column\Renderer\
     {
       
         $currency = $this->storeManager->getStore()->getBaseCurrency()->getCurrencySymbol();
-        $amount = !empty($row->getRemainingAmount())?$row->getRemainingAmount():"0.0000";
+        $amount = !empty($row->getRemainingAmount())?$row->getRemainingAmount():0.00;
         return $currency.$amount;
     }
 }

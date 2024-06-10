@@ -1,12 +1,12 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 
 namespace Webkul\Walletsystem\Plugin\Model;
@@ -49,7 +49,7 @@ class Order
         && $subject->getPayment()
         && ($subject->getPayment()->getMethod() != 'walletsystem')
         && (int)$subject->getWalletAmount()) {
-            return $amount = $result - $subject->getWalletAmount();
+            return $amount = $result + $subject->getWalletAmount();
         }
         return $result;
     }

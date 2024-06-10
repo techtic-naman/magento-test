@@ -1,12 +1,12 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 
 namespace Webkul\Walletsystem\Controller\Transfer;
@@ -130,7 +130,7 @@ class Addpayee extends \Magento\Framework\App\Action\Action
         }
         $params = $this->getRequest()->getParams();
         $result = $this->validateParams($params);
-        if (!$this->getRequest()->isPost()) {
+        if (!$this->getRequest()->isAjax()) {
             return $this->resultRedirectFactory->create()->setPath(
                 'walletsystem/transfer/index',
                 ['_secure' => $this->getRequest()->isSecure()]
@@ -145,7 +145,7 @@ class Addpayee extends \Magento\Framework\App\Action\Action
      * Validate params
      *
      * @param array $params
-     * @return array $result
+     * @return bool
      */
     protected function validateParams($params)
     {
@@ -153,15 +153,14 @@ class Addpayee extends \Magento\Framework\App\Action\Action
         $result = [
             'error' => 0
         ];
-        $errors = 0;
+        $error = 0;
         if (isset($params) && is_array($params) && !empty($params)
         && !preg_match('#<script(.*?)>(.*?)</script>#is', $params['nickname'])
         ) {
             $errors = $this->validateParamArray($params);
-            if ($errors==1) {
+            if ($error==1) {
                 $result['error'] = 1;
                 $result['error_msg'] = __("Please try again later");
-                return $result;
             }
             $customer = $this->customerModel->create();
             $websiteId = $this->storeManager->getStore()->getWebsiteId();

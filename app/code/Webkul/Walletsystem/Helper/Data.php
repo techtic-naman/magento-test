@@ -1,12 +1,12 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 
 namespace Webkul\Walletsystem\Helper;
@@ -26,8 +26,6 @@ use Magento\Framework\Exception\LocalizedException;
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
     public const  WALLET_PRODUCT_SKU = 'wk_wallet_amount';
-
-    protected const WALLET_PAYMENT_CODE = "walletsystem";
 
     /**
      * @var \Magento\Checkout\Model\Session
@@ -202,11 +200,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * @var \Magento\Framework\ObjectManagerInterface
      */
     protected $objectManager;
-
-    /**
-     * @var \Magento\Sales\Model\OrderRepository
-     */
-    protected $order;
     
     /**
      * Initialize dependencies
@@ -246,7 +239,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * @param \Magento\Framework\Json\Helper\Data $jsonHelper
      * @param \Magento\Tax\Helper\Data $taxData
      * @param \Magento\Framework\ObjectManagerInterface $objectManager
-     * @param \Magento\Sales\Model\OrderRepository $order
      */
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,
@@ -283,8 +275,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         \Magento\Framework\Serialize\Serializer\Json $json,
         \Magento\Framework\Json\Helper\Data $jsonHelper,
         \Magento\Tax\Helper\Data $taxData,
-        \Magento\Framework\ObjectManagerInterface $objectManager,
-        \Magento\Sales\Model\OrderRepository $order
+        \Magento\Framework\ObjectManagerInterface $objectManager
     ) {
         parent::__construct($context);
         $this->logger = $logger;
@@ -321,7 +312,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $this->jsonHelper = $jsonHelper;
         $this->taxData = $taxData;
         $this->objectManager = $objectManager;
-        $this->order = $order;
     }
 
     /**
@@ -407,7 +397,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function getPaymentMethods()
     {
         return  $this->scopeConfig->getValue(
-            'walletsystem/addingwallet_settings/allowpaymentmethod',
+            'payment/walletsystem/allowpaymentmethod',
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
     }
@@ -1939,44 +1929,5 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     {
         
         return $this->json->serialize($data);
-    }
-
-    /**
-     * Check Amount and Method from order data
-     *
-     * @param int $orderId
-     * @return bool
-     */
-    public function isPartialPay($orderId)
-    {
-        $order = $this->order->get($orderId);
-
-        if ($order->getWalletAmount() > 0) {
-            $method = $order->getPayment()->getMethod();
-            if ($method != self::WALLET_PAYMENT_CODE) {
-                return true;
-            }
-        }
-    }
-
-    /**
-     * Calculate how much amount
-     *
-     * @return int
-     */
-    public function getLeftWallet()
-    {
-        $leftinWallet = $this->getWalletTotalAmount($this->getCustomerId());
-        if ($this->checkoutSession->getWalletDiscount()) {
-            $walletSession = $this->checkoutSession->getWalletDiscount();
-            if (is_array($walletSession) &&
-                array_key_exists('grand_total', $walletSession) &&
-                array_key_exists('type', $walletSession) &&
-                $walletSession['type'] == 'set' && $walletSession['grand_total']) {
-                $leftinWallet = $leftinWallet - $walletSession['grand_total'];
-            }
-        }
-
-        return $leftinWallet;
     }
 }

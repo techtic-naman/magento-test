@@ -1,12 +1,12 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 
 namespace Webkul\Walletsystem\Block\Sales\Order;
@@ -152,15 +152,5 @@ class WalletsystemInvoice extends \Magento\Framework\View\Element\Template
     public function getValueProperties()
     {
         return $this->getParentBlock()->getValueProperties();
-    }
-
-    /**
-     * Get helper
-     *
-     * @return object
-     */
-    public function getWkHelper()
-    {
-        return $this->walletHelper;
     }
 }

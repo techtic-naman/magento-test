@@ -21,4 +21,13 @@ class Interceptor extends \Magento\Sales\Model\ResourceModel\Order\Handler\State
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'check');
         return $pluginInfo ? $this->___callPlugins('check', func_get_args(), $pluginInfo) : parent::check($order);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isPartiallyRefundedOrderShipped(\Magento\Sales\Model\Order $order) : bool
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'isPartiallyRefundedOrderShipped');
+        return $pluginInfo ? $this->___callPlugins('isPartiallyRefundedOrderShipped', func_get_args(), $pluginInfo) : parent::isPartiallyRefundedOrderShipped($order);
+    }
 }

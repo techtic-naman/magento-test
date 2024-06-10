@@ -1,12 +1,12 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 
 namespace Webkul\Walletsystem\Plugin\Adminhtml;
@@ -73,7 +73,7 @@ class Info
         $order = $this->salesOrder->load($orderId);
         $payment = $order->getPayment();
        
-        if ($order->getWalletAmount() > 0) {
+        if (-$order->getWalletAmount() > 0) {
             if ($payment->getMethod() != self::WALLET_PAYMENT_CODE) {
                 return $result.' + Webkul Wallet System';
             }

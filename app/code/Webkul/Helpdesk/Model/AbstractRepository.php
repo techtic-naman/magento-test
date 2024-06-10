@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Model;
 
@@ -64,141 +63,6 @@ abstract class AbstractRepository
      * @var \Webkul\Helpdesk\Model\EventsRepository
      */
     protected $_eventsRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
-     */
-    protected $_helpdeskLogger;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ActivityFactory
-     */
-    protected $_activityFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ActivityFactory
-     */
-    protected $_ticketsFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TagFactory
-     */
-    protected $_tagFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\GroupFactory
-     */
-    protected $_groupFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsPriorityFactory
-     */
-    protected $_ticketpriorityFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TypeFactory
-     */
-    protected $_typeFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsStatusFactory
-     */
-    protected $_ticketstatusFactory;
-
-    /**
-     * @var \Magento\User\Model\UserFactory
-     */
-    protected $_userFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\CustomerOrganizationFactory
-     */
-    protected $_custOrgFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\EventsFactory
-     */
-    protected $_eventsFactory;
-
-    /**
-     * @var \Magento\Framework\Json\Helper\Data
-     */
-    protected $_jsonHelper;
-
-    /**
-     * @var \Magento\Framework\Stdlib\DateTime\DateTime
-     */
-    protected $_date;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ResponsesRepository
-     */
-    protected $_responseRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\EmailTemplateRepository
-     */
-    protected $_emailTemplateRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ThreadRepository
-     */
-    protected $_threadRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\MailfetchFactory
-     */
-    protected $_mailfetchFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\Mail\TransportBuilder
-     */
-    protected $_transportBuilder;
-
-    /**
-     * @var \Magento\Store\Model\StoreManagerInterface
-     */
-    protected $_storeManager;
-
-    /**
-     * @var \Magento\Email\Model\TemplateFactory
-     */
-    protected $_emailTemplateFactory;
-
-    /**
-     * @var \Magento\Framework\Translate\Inline\StateInterface
-     */
-    protected $_inlineTranslation;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\AgentFactory
-     */
-    protected $_agentFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsCustomAttributesFactory
-     */
-    protected $_ticketsCustomAttributesFactory;
-
-    /**
-     * @var \Magento\Catalog\Model\ResourceModel\Eav\Attribute
-     */
-    protected $_eavAttribute;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsAttributeValueFactory
-     */
-    protected $_ticketsAttributeValueFactory;
-
-    /**
-     * @var File
-     */
-    protected $_file;
-
-    /**
-     * @var \Magento\MediaStorage\Model\File\UploaderFactory
-     */
-    protected $_fileUploaderFactory;
 
     /**
      * TicketsRepository constructor.

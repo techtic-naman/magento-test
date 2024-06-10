@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Ticket;
 
@@ -23,16 +22,6 @@ class View extends Action
      * @var PageFactory
      */
     protected $_resultPageFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Tickets
-     */
-    protected $_ticketHelper;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsFactory
-     */
-    protected $_ticketsFactory;
 
     /**
      * @param Context                               $context
@@ -75,11 +64,11 @@ class View extends Action
                     $resultPage->getConfig()->getTitle()->set(__("View Ticket"));
                     return $resultPage;
                 } else {
-                    $this->messageManager->addErrorMessage(__("You are not authorized user!!"));
+                    $this->messageManager->addError(__("You are not authorized user!!"));
                     return $this->resultRedirectFactory->create()->setPath('helpdesk/ticket/mytickets');
                 }
             } else {
-                $this->messageManager->addErrorMessage(__("You are not authorized user!!"));
+                $this->messageManager->addError(__("You are not authorized user!!"));
                 return $this->resultRedirectFactory->create()->setPath('helpdesk/ticket/mytickets');
             }
         } else {
@@ -89,7 +78,7 @@ class View extends Action
                 $resultPage->getConfig()->getTitle()->set(__("View Ticket"));
                 return $resultPage;
             } else {
-                $this->messageManager->addErrorMessage(__("You are not authorized user!!"));
+                $this->messageManager->addError(__("You are not authorized user!!"));
                 return $this->resultRedirectFactory->create()->setPath('helpdesk/ticket/login');
             }
         }

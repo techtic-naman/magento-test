@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Ticket;
 
@@ -23,11 +22,6 @@ class Logout extends Action
      * @var PageFactory
      */
     protected $_resultPageFactory;
-
-    /**
-     * @var \Magento\Framework\Session\SessionManager
-     */
-    protected $_coreSession;
 
     /**
      * @param Context                                   $context
@@ -52,7 +46,7 @@ class Logout extends Action
     public function execute()
     {
         $this->_coreSession->unsTsCustomer();
-        $this->messageManager->addSuccessMessage(__("You are successfully Logged Out"));
+        $this->messageManager->addSuccess(__("You are successfully Logged Out"));
         return $this->resultRedirectFactory->create()->setPath('helpdesk/ticket/');
     }
 }

@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 
 namespace Webkul\Helpdesk\Controller\Ticket;
@@ -29,61 +28,6 @@ class Userreply extends Action
      * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
      */
     protected $_helpdeskLogger;
-
-    /**
-     * @var \Magento\Framework\View\Result\PageFactory
-     */
-    protected $resultPageFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ActivityRepository
-     */
-    protected $_activityRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\EventsRepository
-     */
-    protected $_eventsRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsFactory
-     */
-    protected $_ticketsFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ThreadRepository
-     */
-    protected $_threadRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Tickets
-     */
-    protected $_ticketsHelper;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketdraftFactory
-     */
-    protected $_ticketdraftFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\AttachmentRepository
-     */
-    protected $_attachmentRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ThreadFactory
-     */
-    protected $_threadFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Data
-     */
-    protected $helper;
-
-    /**
-     * @var \Magento\User\Model\UserFactory
-     */
-    protected $userFactory;
 
     /**
      * @param Context                                     $context
@@ -149,7 +93,7 @@ class Userreply extends Action
             } else {
                 if ($this->getRequest()->isPost()) {
                     if (!$this->_formKeyValidator->validate($this->getRequest())) {
-                        $this->messageManager->addErrorMessage(__("Form key is not valid!!"));
+                        $this->messageManager->addError(__("Form key is not valid!!"));
                         return $this->resultRedirectFactory->create()->setPath(
                             '*/*/',
                             ['_secure' => $this->getRequest()->isSecure()]
@@ -165,6 +109,7 @@ class Userreply extends Action
                         $threadId = $this->_threadRepo->createThread($ticketId, $wholedata);
                         $adminEmail = $this->helper->getConfigHelpdeskEmail();
                         $cc = [];
+                        $bcc = [];
                         if (isset($wholedata['cc'])) {
                             $cc = explode(",", $wholedata['cc']);
                             $cc = array_filter($cc);
@@ -185,7 +130,7 @@ class Userreply extends Action
                                 'email'=>$email,
                                 'cc'=>$cc
                             ];
-                        $senderInfo = ['name' => $tickets_data['fullname'], 'email' => $tickets_data['email']];
+                        $senderInfo = ['name'=>$tickets_data['fullname'],'email'=>$tickets_data['email']];
 
                         $emailTempVariables['name'] = $receiverInfo['name'];
                         $emailTempVariables['ticket_id'] = $ticketId;
@@ -203,6 +148,7 @@ class Userreply extends Action
                             "add",
                             "ticket"
                         );
+                        $error = 0;
                         if ($threadId) {
                             $this->_ticketsFactory->create()->load($ticketId)
                                 ->setAnswered(0)
@@ -226,17 +172,17 @@ class Userreply extends Action
                         }
 
                         $this->_eventsRepo->checkTicketEvent("reply", $ticketId, "customer");
-                        $this->messageManager->addSuccessMessage(__("Message Sent Successfully"));
+                        $this->messageManager->addSuccess(__("Message Sent Successfully"));
                     } else {
-                        $this->messageManager->addErrorMessage(__('Ticket does not exist!!'));
+                        $this->messageManager->addError(__('Ticket does not exist!!'));
                     }
                 } else {
-                    $this->messageManager->addErrorMessage(__('Nothing Found To Send!!'));
+                    $this->messageManager->addError(__('Nothing Found To Send!!'));
                 }
             }
         } catch (\Exception $e) {
             $this->_helpdeskLogger->info($e->getMessage());
-            $this->messageManager->addErrorMessage(__($e->getMessage()));
+            $this->messageManager->addError(__($e->getMessage()));
         }
         return $this->resultRedirectFactory->create()->setPath("*/*/view", ["id"=>$ticketId]);
     }

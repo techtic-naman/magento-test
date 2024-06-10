@@ -4,8 +4,8 @@
  *
  * @category  Webkul
  * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
  * @license   https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Block\Adminhtml\Connectemail\Edit\Tab;
@@ -21,13 +21,13 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic
     public function _prepareForm()
     {
         /**
-        * @var $model \Magento\User\Model\User
-        */
+ * @var $model \Magento\User\Model\User
+*/
         $cEmailModel = $this->_coreRegistry->registry('helpdesk_connectemail');
 
         /**
-        * @var \Magento\Framework\Data\Form $form
-        */
+ * @var \Magento\Framework\Data\Form $form
+*/
         $form = $this->_formFactory->create();
         $form->setHtmlIdPrefix('connect_email_');
 

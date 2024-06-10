@@ -2,15 +2,6 @@ Legend
 
 + Features
 - Bugs
-------------------------------- Version 4.0.2-p2 --------------------------------------
-
-	- Bugs fixed.
-
-------------------------------- Version 4.0.2-p1 --------------------------------------
-
-	+ Add Wallet payment For Multishipping
-	- Bugs fixed.
-
 ------------------------------- Version 4.0.2 --------------------------------------
 
 	+ Compatible With Magento 2.4.6 and above

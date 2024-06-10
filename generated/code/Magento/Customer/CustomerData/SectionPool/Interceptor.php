@@ -22,4 +22,13 @@ class Interceptor extends \Magento\Customer\CustomerData\SectionPool implements 
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getSectionsData');
         return $pluginInfo ? $this->___callPlugins('getSectionsData', func_get_args(), $pluginInfo) : parent::getSectionsData($sectionNames, $forceNewTimestamp);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSectionNames()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getSectionNames');
+        return $pluginInfo ? $this->___callPlugins('getSectionNames', func_get_args(), $pluginInfo) : parent::getSectionNames();
+    }
 }

@@ -4,8 +4,8 @@
  *
  * @category  Webkul
  * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
  * @license   https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Block\Adminhtml\Customer\Customer\Edit;
@@ -19,16 +19,6 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
      * @var \Magento\Store\Model\System\Store
      */
     protected $_systemStore;
-
-    /**
-     * @var \Magento\Customer\Model\CustomerFactory
-     */
-    protected $_customerFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\CustomerOrganizationFactory
-     */
-    protected $_customerOrganizationFactory;
 
     /**
      * @param \Magento\Backend\Block\Template\Context            $context
@@ -83,10 +73,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
         );
 
         $helpdeskCustomerModel = $this->_coreRegistry->registry('helpdesk_customer');
-        $disable = '';
-        if ($helpdeskCustomerModel->getId()) {
-            $disable = "disabled";
-        }
+
         $form->setHtmlIdPrefix('helpdesk_customer_');
 
         $fieldset = $form->addFieldset(
@@ -114,8 +101,8 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
                 'name'  => 'email',
                 'label' => __('Email'),
                 'title' => __('Email'),
-                'class'     => 'required-entry validate-email '.$disable,
-                'required' => true,
+                'class'     => 'required-entry validate-email',
+                'required' => true
             ]
         );
 

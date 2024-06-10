@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 
 namespace Webkul\Helpdesk\Controller\Ticket;
@@ -24,36 +23,6 @@ class Massdelete extends Action
      * @var \Magento\Framework\Data\Form\FormKey\Validator
      */
     protected $_formKeyValidator;
-
-    /**
-     * @var \Magento\Framework\View\Result\PageFactory
-     */
-    protected $resultPageFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ActivityRepository
-     */
-    protected $_activityRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\EventsRepository
-     */
-    protected $_eventsRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsFactory
-     */
-    protected $_ticketsFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ThreadRepository
-     */
-    protected $_threadRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Tickets
-     */
-    protected $_ticketsHelper;
 
     /**
      * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
@@ -108,7 +77,7 @@ class Massdelete extends Action
                 $unauth_ids = [];
                 if ($this->getRequest()->isPost()) {
                     if (!$this->_formKeyValidator->validate($this->getRequest())) {
-                        $this->messageManager->addErrorMessage(__("Form key is not valid!!"));
+                        $this->messageManager->addError(__("Form key is not valid!!"));
                         return $this->resultRedirectFactory->create()->setPath(
                             '*/*/',
                             ['_secure' => $this->getRequest()->isSecure()]
@@ -145,9 +114,7 @@ class Massdelete extends Action
                         );
                     }
                 } else {
-                    $this->messageManager->addSuccessMessage(
-                        __('Tickets has been successfully deleted from your account')
-                    );
+                    $this->messageManager->addSuccessMessage(__('Tickets has been successfully deleted from your account'));
                 }
             }
             return $this->resultRedirectFactory->create()->setPath('helpdesk/ticket/mytickets');

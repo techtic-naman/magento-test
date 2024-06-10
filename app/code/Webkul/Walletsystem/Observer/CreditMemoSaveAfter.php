@@ -1,12 +1,12 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 
 namespace Webkul\Walletsystem\Observer;
@@ -16,7 +16,6 @@ use Magento\Sales\Model\OrderFactory;
 use Webkul\Walletsystem\Model\WallettransactionFactory;
 use Webkul\Walletsystem\Model\WalletrecordFactory;
 use Webkul\Walletsystem\Model\WalletUpdateData;
-use Magento\Sales\Model\Order\Payment\Transaction;
 
 /**
  * Webkul Walletsystem Class
@@ -84,11 +83,6 @@ class CreditMemoSaveAfter implements ObserverInterface
     protected $logger;
 
     /**
-     * @var  Transaction\BuilderInterface
-     */
-    protected $transactionBuilder;
-
-    /**
      * Initialize dependencies
      *
      * @param OrderFactory $orderFactory
@@ -103,7 +97,6 @@ class CreditMemoSaveAfter implements ObserverInterface
      * @param \Magento\Framework\App\Request\Http $request
      * @param \Webkul\Walletsystem\Model\WalletcreditamountFactory $walletcreditAmountFactory
      * @param WalletUpdateData $walletUpdateData
-     * @param Transaction\BuilderInterface $transactionBuilder
      */
     public function __construct(
         OrderFactory $orderFactory,
@@ -117,8 +110,7 @@ class CreditMemoSaveAfter implements ObserverInterface
         \Magento\Framework\Message\ManagerInterface $messageManager,
         \Magento\Framework\App\Request\Http $request,
         \Webkul\Walletsystem\Model\WalletcreditamountFactory $walletcreditAmountFactory,
-        WalletUpdateData $walletUpdateData,
-        Transaction\BuilderInterface $transactionBuilder
+        WalletUpdateData $walletUpdateData
     ) {
         $this->sessionManager = $sessionManager;
         $this->logger = $logger;
@@ -132,7 +124,6 @@ class CreditMemoSaveAfter implements ObserverInterface
         $this->request = $request;
         $this->walletcreditAmountFactory = $walletcreditAmountFactory;
         $this->walletUpdateData = $walletUpdateData;
-        $this->transactionBuilder = $transactionBuilder;
     }
 
     /**
@@ -177,30 +168,17 @@ class CreditMemoSaveAfter implements ObserverInterface
             $creditmemo = $observer->getEvent()->getCreditmemo();
             $baserefundTotalAmount = $creditmemo->getBaseGrandTotal();
             $refundTotalAmount = $creditmemo->getGrandTotal();
-            $baseToOrderRate = $creditmemo->getBaseToOrderRate();
-
-            if ($order->getPayment()->getMethod() == 'walletsystem' && $order->hasShipments()) {
-
-                $refundTotalAmount = $this->getDeductCashBackRefundAmount(
-                    $baserefundTotalAmount,
-                    $orderId,
-                    $baseToOrderRate
-                );
-            }
-            
+            $baserefundTotalAmount = $this->getDeductCashBackRefundAmount($baserefundTotalAmount, $orderId);
             $flag = 0;
             $walletProductId = $this->helper->getWalletProductId();
             $currencyCode = $order->getOrderCurrencyCode();
             $baseCurrencyCode = $this->helper->getBaseCurrencyCode();
+            $refundTotalAmount = $this->helper->getwkconvertCurrency(
+                $currencyCode,
+                $baseCurrencyCode,
+                $baserefundTotalAmount
+            );
 
-            if ($refundTotalAmount != 0) {
-                $baserefundTotalAmount = $this->helper->getwkconvertCurrency(
-                    $currencyCode,
-                    $baseCurrencyCode,
-                    $refundTotalAmount
-                );
-            }
-            
             $incrementId = $order->getIncrementId();
             $orderItem = $order->getAllItems();
             $productIdArray = [];
@@ -208,7 +186,6 @@ class CreditMemoSaveAfter implements ObserverInterface
                 $productIdArray[] = $value->getProductId();
             }
             if (!in_array($walletProductId, $productIdArray)) {
-                $this->createTransaction($order, $orderId);
                 $this->updateWalletAmount(
                     $baserefundTotalAmount,
                     $refundTotalAmount,
@@ -282,9 +259,8 @@ class CreditMemoSaveAfter implements ObserverInterface
      *
      * @param int $refundOrderAmount
      * @param int $orderId
-     * @param int $baseToOrderRate
      */
-    public function getDeductCashBackRefundAmount($refundOrderAmount, $orderId, $baseToOrderRate)
+    public function getDeductCashBackRefundAmount($refundOrderAmount, $orderId)
     {
         $creditAmountModelClass = $this->walletcreditAmountFactory->create();
         $creditAmountModelCollection = $this->walletcreditAmountFactory->create()
@@ -304,7 +280,6 @@ class CreditMemoSaveAfter implements ObserverInterface
         } else {
             $refundAmount = 0;
             $amount = 0;
-            $refundOrderAmount = $refundOrderAmount * $baseToOrderRate;
             $creditAmountModel = $this->walletcreditAmountFactory->create()
                 ->getCollection()
                 ->addFieldToFilter('order_id', $orderId)
@@ -316,7 +291,6 @@ class CreditMemoSaveAfter implements ObserverInterface
                     $amount = $creditamount->getAmount();
                 }
             }
-
             if ($amount == $refundAmount) {
                 return $refundOrderAmount;
             } else {
@@ -373,6 +347,26 @@ class CreditMemoSaveAfter implements ObserverInterface
     }
 
     /**
+     * Calculate and deduct wallet cashback for order
+     *
+     * @param int $orderId
+     */
+    public function calculateAndDeductWalletCashbackForOrder($orderId)
+    {
+        try {
+            $baserefundTotalAmount = $this->getDeductCashBackRefundAmount(0, $orderId);
+            $order = $this->loadObject($this->orderFactory->create(), $orderId);
+            $baserefundTotalAmount = $baserefundTotalAmount - $order->getDiscountAmount();
+            if ((int)$order->getDiscountAmount()) {
+                $this->deductWalletAmountProduct($baserefundTotalAmount, 0, $order);
+            }
+            return;
+        } catch (\Exception $e) {
+            $this->logger->addError($e->getMessage());
+        }
+    }
+
+    /**
      * Performs load operation on object
      *
      * @param object $object
@@ -392,50 +386,5 @@ class CreditMemoSaveAfter implements ObserverInterface
     public function saveObject($object)
     {
         $object->save();
-    }
-
-    /**
-     * Create Transaction
-     *
-     * @param object $order
-     * @param int $orderId
-     */
-    public function createTransaction($order, $orderId)
-    {
-        $transId = 'wk_wallet_system'.$orderId.'-'.rand();
-        $transArray = [
-            'id' => $transId,
-            'amount' =>  (int) $order->getWalletAmount()
-        ];
-        
-        $payment = $order->getPayment();
-        $payment->setLastTransId($payment['last_trans_id']);
-        $payment->setTransactionId($transArray['id']);
-        $payment->setAdditionalInformation(
-            [\Magento\Sales\Model\Order\Payment\Transaction::RAW_DETAILS => (array) $transArray]
-        );
-        $formatedPrice = $order->getBaseCurrency()->formatTxt(
-            $order->getWalletAmount()
-        );
-
-        $message = __('The authorized amount is %1.', $formatedPrice);
-
-        $trans = $this->transactionBuilder;
-        $transaction = $trans->setPayment($payment)
-            ->setOrder($order)
-            ->setTransactionId($transArray['id'])
-            ->setAdditionalInformation(
-                [\Magento\Sales\Model\Order\Payment\Transaction::RAW_DETAILS => (array) $transArray]
-            )
-            ->setFailSafe(true)
-            ->build(\Magento\Sales\Model\Order\Payment\Transaction::TYPE_CAPTURE);
-
-        $payment->addTransactionCommentsToOrder(
-            $transaction,
-            $message
-        );
-        $payment->setParentTransactionId(null);
-        $payment->save();
-        $order->save();
     }
 }

@@ -1,11 +1,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 /*jshint jquery:true*/
 define(
@@ -97,35 +96,23 @@ define(
                             fields.each(function () {
                                 if ($(this).find('select').length) {
                                     let select = $(this).find('select');
-                                    if (select.val() != "") {
-                                        formData[select.attr('name')] = select.val();
-                                    }
+                                    formData[select.attr('name')] = select.val();
                                 } else if($(this).find("input[type='text']").length) {
                                     let typeText = $(this).find("input[type='text']");
-                                    if (typeText.val() != "") {
-                                        formData[typeText.attr('name')] = typeText.val();
-                                    }
+                                    formData[typeText.attr('name')] = typeText.val();
                                 } else if($(this).find("input[type='datetime-local']").length) {
                                     let typeDateTime = $(this).find("input[type='datetime-local']");
-                                    if (typeDateTime.val() != "") {
-                                        formData[typeDateTime.attr('name')] = typeDateTime.val();
-                                    }
+                                    formData[typeDateTime.attr('name')] = typeDateTime.val();
                                 } else if($(this).find("input[type='date']").length) {
                                     let typeDate = $(this).find("input[type='date']");
-                                    if (typeDate.val() != "") {
-                                        formData[typeDate.attr('name')] = typeDate.val();
-                                    }
+                                    formData[typeDate.attr('name')] = typeDate.val();
                                 }
                                 else if($(this).find("textarea").length) {
                                     let typeTextArea = $(this).find("textarea");
-                                    if (parseInt(self.options.alloweditor) && !typeTextArea.is(':visible')) {
-                                        if (tinymce.get(typeTextArea.attr('id')).getContent() != "") {
-                                            formData[typeTextArea.attr('name')] = tinymce.get(typeTextArea.attr('id')).getContent();
-                                        }
+                                    if (parseInt(self.options.alloweditor)) {
+                                        formData[typeTextArea.attr('name')] = tinymce.get(typeTextArea.attr('id')).getContent();
                                     } else {
-                                        if (typeTextArea.val() != "") {
-                                            formData[typeTextArea.attr('name')] = typeTextArea.val();
-                                        }
+                                        formData[typeTextArea.attr('name')] = typeTextArea.val();
                                     }
                                 }
                             });
@@ -138,26 +125,16 @@ define(
                                         data : {form_key: self.options.formkey,create_form: true,content:JSON.stringify(formData)},
                                         dataType : 'json',
                                         success : function (content) {
-                                            $(".ajax-draft-save-msg").show();
-                                            setTimeout(
-                                                function () {
-                                                    $(".ajax-draft-save-msg").fadeOut();
-                                                }, 3000
-                                            );
-                                            $("#draft_msg_box").text($t('Draft Saved'));
+                                           console.log('content== ',content);
                                         }
                                     }
                                 );
+                                console.log('formData ==> ',formData);
                             }
                         } catch (e) {
                             console.log('saveInDraft : Error => ',e);
                         }
                     }
-                    $(".wk_close_msg").on(
-                        "click",function () {
-                            $(this).parent().fadeOut();
-                        }
-                    );
 
                     $('#reset_ticket_form').click(function (e) {
                         $.ajax(

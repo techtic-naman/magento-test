@@ -2,14 +2,14 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\Agentsmanagement\Group;
 
+use Magento\Framework\Exception\AuthenticationException;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 
@@ -18,7 +18,7 @@ class Save extends \Magento\Backend\App\Action
     /**
      * @var PageFactory
      */
-    protected $resultPageFactory;
+    protected $_resultPageFactory;
 
     /**
      * @var \Webkul\Helpdesk\Model\GroupFactory
@@ -59,7 +59,7 @@ class Save extends \Magento\Backend\App\Action
             $data = $this->getRequest()->getPostValue();
             $groupId = isset($data['entity_id'])?$data['entity_id']:0;
             if (empty($data)) {
-                $this->messageManager->addErrorMessage(__('Unable to find group to save'));
+                $this->messageManager->addError(__('Unable to find group to save'));
                 return $this->resultRedirectFactory->create()->setPath('helpdesk/*/');
             }
             if ($groupId) {
@@ -73,10 +73,10 @@ class Save extends \Magento\Backend\App\Action
                 $model->setIsActive($data["is_active"]);
                 $model->save();
             }
-            $this->messageManager->addSuccessMessage(__("Group successfully saved"));
+            $this->messageManager->addSuccess(__("Group successfully saved"));
             return $this->resultRedirectFactory->create()->setPath('*/*/');
         } catch (\Exception $e) {
-            $this->messageManager->addErrorMessage(__("There are some error to save type"));
+            $this->messageManager->addError(__("There are some error to save type"));
             $this->_helpdeskLogger->info($e->getMessage());
             return $this->resultRedirectFactory->create()->setPath("*/*/edit", ["entity_id" => $groupId]);
         }

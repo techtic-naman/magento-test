@@ -1,12 +1,13 @@
 <?php
+
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 
 ?>
@@ -24,15 +25,15 @@ $accountDataColection = $block->getUserAccountData();
      data-role="walletsystem_add_payee" data-mage-init='{"validation":{}}'>
         <fieldset class="fieldset info wk-mp-fieldset">
             <input type="hidden" name="customer_id"
-             value="<?= $escaper->escapeHtmlAttr($helper->getCustomerId()); ?>">
+             value="<?= $block->escapeHtmlAttr($helper->getCustomerId()); ?>">
             <div class="wk_msg_notification">
-                <h4><?= $escaper->escapeHtml(__('Add New Account Details')) ?></h4>
+                <h4><?= $block->escapeHtml(__('Add New Account Details')) ?></h4>
             </div>
             <?= $block->getBlockHtml('formkey') ?>
             <div class="field required">
                 <label class="label" for="ac_holder_name">
                     <span>
-                    <?=$escaper->escapeHtml(__("A/c Holder Name"))?>
+                    <?=$block->escapeHtml(__("A/c Holder Name"))?>
                     </span>
                 </label>
             
@@ -70,7 +71,7 @@ $accountDataColection = $block->getUserAccountData();
                 </div>
             </div>
             <div class="field additional">
-                <label for="additional"><?=$escaper->escapeHtml(__('Additional Information'));?></label>
+                <label for="additional"><?=$block->escapeHtml(__('Additional Information'));?></label>
                 <textarea
                 id="additional"
                 name="additional"
@@ -88,40 +89,40 @@ $accountDataColection = $block->getUserAccountData();
     <div class="info">
         <div class="fieldset">
             <div class="wk_msg_notification">
-                <h4><?= $escaper->escapeHtml(__('Saved Account Details')) ?></h4>
+                <h4><?= $block->escapeHtml(__('Saved Account Details')) ?></h4>
             </div>
             <?php if ($accountDataColection->getSize()): ?>
                 <?php foreach ($accountDataColection as $accountData): ?>
                     <div class="wk-mp-row">
                         <div>
-                            <strong><?= $escaper->escapeHtml(__('A/c Holder Name')); ?>: </strong>
-                            <span><?= $escaper->escapeHtml($accountData->getHoldername()); ?></span>
+                            <strong><?= $block->escapeHtml(__('A/c Holder Name')); ?>: </strong>
+                            <span><?= $block->escapeHtml($accountData->getHoldername()); ?></span>
                         </div>
                         <div>
-                            <strong><?= $escaper->escapeHtml(__('A/c Number')); ?>: </strong>
-                            <span><?= $escaper->escapeHtml($accountData->getAccountno()); ?></span>
+                            <strong><?= $block->escapeHtml(__('A/c Number')); ?>: </strong>
+                            <span><?= $block->escapeHtml($accountData->getAccountno()); ?></span>
                         </div>
                         <div>
-                            <strong><?= $escaper->escapeHtml(__('Bank Name')); ?>: </strong>
-                            <span><?= $escaper->escapeHtml($accountData->getBankname()); ?></span>
+                            <strong><?= $block->escapeHtml(__('Bank Name')); ?>: </strong>
+                            <span><?= $block->escapeHtml($accountData->getBankname()); ?></span>
                         </div>
                         <div>
-                            <strong><?= $escaper->escapeHtml(__('Bank Code')); ?>: </strong>
-                            <span><?= $escaper->escapeHtml($accountData->getBankcode()); ?></span>
+                            <strong><?= $block->escapeHtml(__('Bank Code')); ?>: </strong>
+                            <span><?= $block->escapeHtml($accountData->getBankcode()); ?></span>
                         </div>
                         <div>
-                            <strong><?= $escaper->escapeHtml(__('Additional Information')); ?>: </strong>
-                            <span><?= $escaper->escapeHtml($accountData->getAdditional()); ?></span>
+                            <strong><?= $block->escapeHtml(__('Additional Information')); ?>: </strong>
+                            <span><?= $block->escapeHtml($accountData->getAdditional()); ?></span>
                         </div>
-                        <a href="<?= $escaper->escapeUrl($block->getUrl(
+                        <a href="<?= $block->escapeUrl($block->getUrl(
                             'walletsystem/transfer/requestdelete'
-                        )); ?>id/<?= $escaper->escapeHtml($accountData->getEntityId()); ?>">
+                        )); ?>id/<?= $block->escapeHtml($accountData->getEntityId()); ?>">
                             Request delete</a>
                     </div>
                     <hr />
                 <?php endforeach; ?>
             <?php else: ?>
-                <p><?= $escaper->escapeHtml(__('No Data Found')); ?></p>
+                <p><?= $block->escapeHtml(__('No Data Found')); ?></p>
             <?php endif; ?>
         </div>
     </div>

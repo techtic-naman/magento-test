@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\Agentsmanagement\Agent;
 
@@ -15,21 +14,6 @@ use Magento\Framework\View\Result\PageFactory;
 
 class Grid extends \Magento\Backend\App\Action
 {
-
-    /**
-     * @var PageFactory
-     */
-    protected $resultPageFactory;
-
-    /**
-     * @var \Magento\User\Model\UserFactory
-     */
-    protected $_userFactory;
-
-    /**
-     * @var \Magento\Framework\Registry
-     */
-    protected $_coreRegistry;
 
     /**
      * @param Context                         $context

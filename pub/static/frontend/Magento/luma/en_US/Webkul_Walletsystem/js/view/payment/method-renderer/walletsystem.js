@@ -1,11 +1,11 @@
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 define(
     [
@@ -89,11 +89,11 @@ define(
                 return walletconfig.ajaxurl;
             },
             getData: function () {
-                var data = this._super();
-                data['method'] = this.myValue()?'walletsystem':null;
-                data['po_number'] = null;
-                data['additional_data'] = null;
-                return data;
+                return {
+                    "method": this.myValue()?'walletsystem':null,
+                    "po_number": null,
+                    "additional_data": null
+                };
             },
             getPaymentData: function () {
                 return {

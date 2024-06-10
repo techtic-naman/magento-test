@@ -2,32 +2,16 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Block\Adminhtml\Businesshours\Edit\Tab;
 
 class HolidaysTemplate extends \Magento\Config\Block\System\Config\Form\Field
 {
     public const TEMPLATE = 'Webkul_Helpdesk::businesshours/edit/tab/holidays.phtml';
-
-    /**
-     * @var \Webkul\Helpdesk\Model\BusinesshoursFactory
-     */
-    protected $_businesshoursFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\Source\Months
-     */
-    protected $_monthsModel;
-
-    /**
-     * @var \Magento\Framework\Serialize\SerializerInterface
-     */
-    protected $serializer;
 
     /**
      * @param \Magento\Backend\Block\Template\Context          $context

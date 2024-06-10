@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\EmailTemplate;
 
@@ -28,26 +27,6 @@ class Delete extends \Magento\Backend\App\Action
      * @var CollectionFactory
      */
     private $collectionFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
-     */
-    private $_logger;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ActivityRepository
-     */
-    private $_activityRepo;
-
-    /**
-     * @var \Magento\Email\Model\BackendTemplate
-     */
-    private $_emailbackendTemp;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\EmailTemplateFactory
-     */
-    private $_emailtemplateFactory;
 
     /**
      * @param Context                                     $context
@@ -97,14 +76,14 @@ class Delete extends \Magento\Backend\App\Action
                 }
                 $this->_activityRepo->saveActivity($template->getId(), $template->getTemplateCode(), "delete", "email");
                 $template->delete();
-                $this->messageManager->addSuccessMessage(__('The email template has been deleted.'));
+                $this->messageManager->addSuccess(__('The email template has been deleted.'));
                 return $this->resultRedirectFactory->create()->setPath('*/*/');
             }
-            $this->messageManager->addErrorMessage(__('Unable to find a Email Template to delete.'));
+            $this->messageManager->addError(__('Unable to find a Email Template to delete.'));
             return $this->resultRedirectFactory->create()->setPath('*/*/');
             
         } catch (\Exception $e) {
-            $this->messageManager->addErrorMessage(__('There are some error during this action.'));
+            $this->messageManager->addError(__('There are some error during this action.'));
             $this->_logger->info($e->getMessage());
         }
         return $this->resultFactory->create(ResultFactory::TYPE_REDIRECT)->setPath('*/*/index');

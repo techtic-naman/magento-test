@@ -1,14 +1,13 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
-
 namespace Webkul\Walletsystem\Block\Adminhtml;
 
 /**
@@ -70,21 +69,5 @@ class JsCallForPage extends \Magento\Backend\Block\Template
     public function getHelper()
     {
         return $this->helper;
-    }
-    
-    /**
-     * Get Payment Method
-     *
-     * @return string
-     */
-    public function getPaymentMethod()
-    {
-        $orderId = $this->getRequest()->getParam('order_id');
-        $order = $this->order->load($orderId);
-        
-        if ($order->getPayment()) {
-            return $order->getPayment()->getMethod();
-        }
-        return false;
     }
 }

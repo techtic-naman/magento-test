@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 
 namespace Webkul\Helpdesk\Observer;
@@ -17,26 +16,6 @@ use Magento\Framework\Message\ManagerInterface;
 
 class CustomerLoginAfter implements ObserverInterface
 {
-    /**
-     * @var SessionManager
-     */
-    protected $_coreSession;
-
-    /**
-     * @var \Magento\Customer\Model\SessionFactory
-     */
-    protected $session;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\CustomerFactory
-     */
-    protected $customerFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsFactory
-     */
-    protected $tickets;
-
     /**
      * @param SessionManager                         $coreSession
      * @param \Magento\Customer\Model\SessionFactory $session

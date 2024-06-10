@@ -1,12 +1,12 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 
 namespace Webkul\Walletsystem\Block;
@@ -163,15 +163,5 @@ class Cart extends \Magento\Checkout\Block\Cart
         $current = $this->helper->getCurrentCurrencyCode();
         $returnamount = $this->helper->getwkconvertCurrency($base, $current, $amount);
         return $returnamount;
-    }
-
-    /**
-     * Get currency Symbol
-     */
-    public function getCurrSymbol()
-    {
-        return $this->helper->getCurrencySymbol(
-            $this->helper->getCurrentCurrencyCode()
-        );
     }
 }

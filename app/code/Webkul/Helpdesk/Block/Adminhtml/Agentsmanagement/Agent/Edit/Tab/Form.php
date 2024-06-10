@@ -4,8 +4,8 @@
  *
  * @category  Webkul
  * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
  * @license   https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Block\Adminhtml\Agentsmanagement\Agent\Edit\Tab;
@@ -16,26 +16,6 @@ namespace Webkul\Helpdesk\Block\Adminhtml\Agentsmanagement\Agent\Edit\Tab;
 class Form extends \Magento\Backend\Block\Widget\Form\Generic
 {
     public const CURRENT_USER_PASSWORD_FIELD = 'current_password';
-
-    /**
-     * @var \Magento\Backend\Model\Auth\Session
-     */
-    private $_adminSession;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\AgentLevelFactory
-     */
-    private $_agentLevelFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\GroupFactory
-     */
-    private $_groupFactory;
-
-    /**
-     * @var \Magento\Config\Model\Config\Source\Locale\Timezone
-     */
-    private $_timezone;
 
     /**
      * @param \Magento\Backend\Block\Template\Context             $context

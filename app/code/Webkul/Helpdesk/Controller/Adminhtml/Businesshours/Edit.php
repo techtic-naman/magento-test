@@ -4,31 +4,17 @@
  *
  * @category  Webkul
  * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
  * @license   https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\Businesshours;
 
+use Magento\Framework\Locale\Resolver;
 use Magento\Backend\App\Action;
 
 class Edit extends Action
 {
-    /**
-     * @var \Magento\Framework\View\Result\PageFactory
-     */
-    protected $_resultPageFactory;
-
-    /**
-     * @var \Magento\Framework\Registry
-     */
-    protected $_coreRegistry;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\BusinesshoursFactory
-     */
-    protected $_businesshoursFactory;
-
     /**
      * @param Action\Context                               $context
      * @param \Magento\Framework\View\Result\PageFactory   $resultPageFactory

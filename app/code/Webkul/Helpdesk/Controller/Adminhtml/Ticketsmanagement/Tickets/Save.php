@@ -4,12 +4,13 @@
  *
  * @category  Webkul
  * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
  * @license   https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\Ticketsmanagement\Tickets;
 
+use Magento\Framework\Exception\AuthenticationException;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 
@@ -18,7 +19,7 @@ class Save extends \Magento\Backend\App\Action
     /**
      * @var PageFactory
      */
-    protected $resultPageFactory;
+    protected $_resultPageFactory;
 
     /**
      * @var \Webkul\Helpdesk\Model\TicketsRepository
@@ -44,26 +45,6 @@ class Save extends \Magento\Backend\App\Action
      * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
      */
     protected $_helpdeskLogger;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ThreadRepository
-     */
-    protected $_threadRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\EventsRepository
-     */
-    protected $_eventsRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\AttachmentRepository
-     */
-    protected $_attachmentRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ThreadFactory
-     */
-    protected $_threadFactory;
 
     /**
      * @param Context                                     $context
@@ -114,7 +95,7 @@ class Save extends \Magento\Backend\App\Action
         try {
             $data = $this->getRequest()->getPostValue();
             if (!$data) {
-                $this->messageManager->addErrorMessage(__('Unable to find ticket to save'));
+                $this->messageManager->addError(__('Unable to find ticket to save'));
                 return $this->resultRedirectFactory->create()->setPath('helpdesk/*/');
             }
             $data['source'] = "website";
@@ -137,13 +118,13 @@ class Save extends \Magento\Backend\App\Action
             }
             $this->_eventsRepo->checkTicketEvent("ticket", $ticketId, "created");
             $this->_authSession->setFormData(false);
-            $this->messageManager->addSuccessMessage(__('Ticket has been successfully created'));
+            $this->messageManager->addSuccess(__('Ticket has been successfully created'));
         } catch (\Magento\Framework\Exception\LocalizedException $e) {
             $this->_helpdeskLogger->info($e->getMessage());
-            $this->messageManager->addErrorMessage($e->getMessage());
+            $this->messageManager->addError($e->getMessage());
         } catch (\Exception $e) {
             $this->_helpdeskLogger->info($e->getMessage());
-            $this->messageManager->addErrorMessage("There are some error occurring during this action");
+            $this->messageManager->addError("There are some error occurring during this action");
         }
         return $this->resultRedirectFactory->create()->setPath('helpdesk/*/');
     }

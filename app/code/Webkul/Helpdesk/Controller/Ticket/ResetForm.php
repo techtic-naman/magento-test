@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Ticket;
 
@@ -28,32 +27,9 @@ class ResetForm extends Action
     protected $_resultPageFactory;
 
     /**
-     * @var DataPersistorInterface
-     */
-    protected $dataPersistor;
-
-    /**
-     * @var CollectionFactory
-     */
-    protected $_draftCollFactory;
-
-    /**
-     * @var Session
-     */
-    protected $_customerSession;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Tickets
-     */
-    protected $_ticketsHelper;
-
-    /**
-     * @param Context                         $context
-     * @param PageFactory                     $resultPageFactory
-     * @param DataPersistorInterface          $dataPersistor
-     * @param CollectionFactory               $draftCollFactory
-     * @param Session                         $customerSession
-     * @param \Webkul\Helpdesk\Helper\Tickets $ticketsHelper
+     * @param Context                $context
+     * @param PageFactory            $resultPageFactory
+     * @param DataPersistorInterface $dataPersistor
      */
     public function __construct(
         Context $context,

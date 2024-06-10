@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
@@ -17,7 +17,6 @@
     <preference for="Magento\Quote\Model\Quote\Item" type="Webkul\Walletsystem\Model\Quote\Item"/>
     <!-- repository -->
     <preference for="Webkul\Walletsystem\Api\WalletCreditRepositoryInterface" type="Webkul\Walletsystem\Model\CreditRepository" />
-
     <!-- Plugin to hide wallet amount product in admin -->
     <type name="Magento\Catalog\Model\ResourceModel\Product\Collection">
         <plugin name="Webkul_Walletsystem::arroundProductCollection" type="Webkul\Walletsystem\Model\Plugin\Product" sortOrder="1" />
@@ -132,9 +131,8 @@
         </arguments>
     </type>
     <preference for="Magento\Sales\Block\Adminhtml\Order\Creditmemo\Create\Items" type="Webkul\Walletsystem\Block\Adminhtml\Order\Creditmemo\Create\Items" />
-    <preference for="Magento\Sales\Model\Order\Payment" type="Webkul\Walletsystem\Model\Order\Payment" />
     <!--set remaining amount for paypal-->
     <type name="Magento\Paypal\Model\Api\Nvp">
         <plugin name="Webkul_WalletSystem::beforeCall" type="Webkul\Walletsystem\Plugin\Paypal\Model\Api\Nvp"/>
-    </type> 
+    </type>
 </config>

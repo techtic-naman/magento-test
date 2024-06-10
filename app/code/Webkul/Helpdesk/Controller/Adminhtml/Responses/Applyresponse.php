@@ -2,14 +2,14 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\Responses;
 
+use Magento\Framework\Exception\AuthenticationException;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 
@@ -18,22 +18,12 @@ class Applyresponse extends \Magento\Backend\App\Action
     /**
      * @var PageFactory
      */
-    protected $resultPageFactory;
+    protected $_resultPageFactory;
 
     /**
      * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
      */
     protected $_helpdeskLogger;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ResponsesFactory
-     */
-    protected $responsesFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ResponsesFactory
-     */
-    protected $responsesRepo;
 
     /**
      * @param Context                                    $context
@@ -64,7 +54,7 @@ class Applyresponse extends \Magento\Backend\App\Action
         $responseId = (int)$this->getRequest()->getParam("responseid");
         $responseModel = $this->responsesFactory->create()->load($responseId);
         $this->responsesRepo->applyResponseToTicket($ticketId, $responseModel->getActions());
-        $this->messageManager->addSuccessMessage(__("Response has been successfully applied."));
+        $this->messageManager->addSuccess(__("Response has been successfully applied."));
         return $this->resultRedirectFactory
         ->create()
         ->setPath('helpdesk/ticketsmanagement_tickets/viewreply', ["id"=>$ticketId]);

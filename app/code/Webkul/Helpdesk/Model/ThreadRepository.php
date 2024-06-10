@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Model;
 
@@ -43,10 +42,6 @@ class ThreadRepository implements \Webkul\Helpdesk\Api\ThreadRepositoryInterface
      * @var \Magento\User\Model\UserFactory
      */
     protected $_userFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ResourceModel\ThreadFactory
-     */
     protected $_resThreadFactory;
 
     /**

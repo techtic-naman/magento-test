@@ -1,12 +1,12 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 
 namespace Webkul\Walletsystem\Observer;
@@ -59,11 +59,7 @@ class Paymentmethodisactive implements ObserverInterface
     {
         $walletProductId = $this->helper->getWalletProductId();
         $paymentMethods = $this->helper->getPaymentMethods();
-
-        if ($paymentMethods) {
-            $paymentMethodArray = explode(',', $paymentMethods);
-        }
-        
+        $paymentMethodArray = explode(',', $paymentMethods);
         $event = $observer->getEvent();
         $method = $event->getMethodInstance();
         $cardonly = false;

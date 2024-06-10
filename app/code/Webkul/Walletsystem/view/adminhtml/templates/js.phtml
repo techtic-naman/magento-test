@@ -1,18 +1,16 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 ?>
 <?php
 $userHasWallet = $block->getUserHasWallet();
-$paymentMethod = $block->getPaymentMethod();
-$paymentMethod = $block->getHelper()->jsonEncode($paymentMethod);
 
 $formData = [
     'userHasWallet' => $userHasWallet,
@@ -27,16 +25,6 @@ $serializedFormData = $block->getHelper()->jsonEncode($formData);
         'domReady!'
     ], function($){
         $('body').trigger('contentUpdated');
-     
-        if( <?= /*@noEscape*/ $paymentMethod?> == "walletsystem"){
-            $('.submit-button').each( function () {
-                if($(this).prop('id') != "wk-wallet-refund-button")
-                {
-                    $(this).hide();
-
-                }})
-        }
-
         var input = document.createElement("INPUT");
         input.setAttribute("name", "creditmemo[wallet_refund]");
         input.setAttribute("type", "hidden");

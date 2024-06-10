@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Model\ResourceModel;
 
@@ -16,11 +15,6 @@ class Ticketsla extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      * @var null|\Magento\Store\Model\Store
      */
     protected $_store = null;
-
-    /**
-     * @var \Magento\Store\Model\StoreManagerInterface
-     */
-    protected $_storeManager;
 
     /**
      * Initialize resource model

@@ -1,12 +1,12 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 
 namespace Webkul\Walletsystem\Observer;
@@ -34,8 +34,13 @@ class Quotesubmitbefore implements ObserverInterface
             $baseWalletAmount =  $observer->getEvent()->getQuote()->getBillingAddress()->getBaseWalletAmount();
         }
         $order = $observer->getEvent()->getOrder();
-        $order->setWalletAmount(-$walletAmount);
-        $order->setBaseWalletAmount(-$baseWalletAmount);
+
+        //braintree does not support partial payment in magento2
+        //todo
+        if ($order->getPayment()->getMethod()!="braintree_cc_vault") {
+            $order->setWalletAmount($walletAmount);
+            $order->setBaseWalletAmount($baseWalletAmount);
+        }
         return $this;
     }
 }

@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Ticket;
 
@@ -19,7 +18,7 @@ class Saveattributevalue extends Action
     /**
      * @var PageFactory
      */
-    protected $resultPageFactory;
+    protected $_resultPageFactory;
 
     /**
      * @var \Webkul\Helpdesk\Model\TicketsAttributeValueRepository
@@ -76,17 +75,17 @@ class Saveattributevalue extends Action
             $ticketId = $wholedata['id'];
             if ($this->getRequest()->getPost()) {
                 $this->_ticketsAttrValRepo->editTicketAttributeValues($wholedata);
-                $this->messageManager->addSuccessMessage(__("Success ! you have been successfully modified Tickets."));
+                $this->messageManager->addSuccess(__("Success ! you have been successfully modified Tickets."));
             } else {
-                $this->messageManager->addErrorMessage(__("Sorry Nothing Found To Save!!"));
+                $this->messageManager->addError(__("Sorry Nothing Found To Save!!"));
             }
             return $this->resultRedirectFactory->create()->setPath("*/*/view", ['id'=>$ticketId]);
         } catch (\Magento\Framework\Exception\LocalizedException $e) {
             $this->_helpdeskLogger->info($e->getMessage());
-            $this->messageManager->addErrorMessage($e->getMessage());
+            $this->messageManager->addError($e->getMessage());
         } catch (\Exception $e) {
             $this->_helpdeskLogger->info($e->getMessage());
-            $this->messageManager->addErrorMessage("There are some error occurring during this action");
+            $this->messageManager->addError("There are some error occurring during this action");
         }
         return $this->resultRedirectFactory->create()->setPath("*/*/view", ['id'=>$ticketId]);
     }

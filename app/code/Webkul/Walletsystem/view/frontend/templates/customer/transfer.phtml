@@ -1,12 +1,12 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 
 ?>
@@ -22,7 +22,7 @@ if ($helper->getWalletenabled()) {
     <div class="wk_ws_main">
         <div class='wk_ws_main_head'>
             <div class="wk_ws_sub_head1">
-                <img src='<?= $escaper->escapeUrl($block->getViewFileUrl(
+                <img src='<?= $block->escapeUrl($block->getViewFileUrl(
                     'Webkul_Walletsystem::images/wallet.png'
                 ));?>'
                 width="70px"
@@ -30,29 +30,29 @@ if ($helper->getWalletenabled()) {
             </div>
             <div class="wk_ws_sub_head2">
                 <div class="wk_ws_sub_head_details">
-                    <h2><?=$escaper->escapeHtml(__('Wallet Details'));?></h2>
+                    <h2><?=$block->escapeHtml(__('Wallet Details'));?></h2>
                     <h3>
                         <span class="wk_ws_price">
-                            <?=$escaper->escapeHtml($block->getWalletRemainingTotal($customerId))?>
+                            <?=$block->escapeHtml($block->getWalletRemainingTotal($customerId))?>
                         </span>
-                        <?= $escaper->escapeHtml("(".$currency_code.")")?>
+                        <?= $block->escapeHtml("(".$currency_code.")")?>
                     </h3>
-                    <span><?=$escaper->escapeHtml(__("Your Wallet Balance"))?></span>
+                    <span><?=$block->escapeHtml(__("Your Wallet Balance"))?></span>
                 </div>
                 <div class="wk_ws_sub_add_payee button action primary">
-                    <span><?=$escaper->escapeHtml(__("Add Payee"))?></span>
+                    <span><?=$block->escapeHtml(__("Add Payee"))?></span>
                 </div>
             </div>
         </div>
         <div class='wk_ws_body'>
             <?php if ($transferPayee->getSize()) { ?>
                 <form 
-                action="<?=$escaper->escapeUrl($block->getUrl('walletsystem/transfer/sendCode/'))?>"
+                action="<?=$block->escapeUrl($block->getUrl('walletsystem/transfer/sendCode/'))?>"
                 enctype="multipart/form-data"
                 method="post"
                 id="transfer-form-data"
                 class="form">
-                    <input type="hidden" name="sender_id" value="<?= $escaper->escapeHtmlAttr($customerId)?>"/>
+                    <input type="hidden" name="sender_id" value="<?= $block->escapeHtmlAttr($customerId)?>"/>
                     <fieldset class='wk_ws_fieldset fieldset'>
                         <label class="error"></label>
                         <?=/*@noEscape*/ $block->getBlockHtml('formkey')?>
@@ -60,17 +60,17 @@ if ($helper->getWalletenabled()) {
                             <label class="label required"
                             for="reciever_id">
                                 <span>
-                                    <?=$escaper->escapeHtml(__('Select Payee To Whom You want to transfer Amount')); ?>
+                                    <?=$block->escapeHtml(__('Select Payee To Whom You want to transfer Amount')); ?>
                                 </span>
                             </label>
                             <select name="reciever_id" id="reciever_id" class="required">
-                                <option value=""><?=$escaper->escapeHtml(__("Please Select a payee"))?></option>
+                                <option value=""><?=$block->escapeHtml(__("Please Select a payee"))?></option>
                                 <?php foreach ($transferPayee as $payee) {
                                     $customerData = $block->getCustomerDataById($payee->getPayeeCustomerId());
                                     ?>
                                     <option 
-                                    value="<?= $escaper->escapeHtmlAttr($payee->getPayeeCustomerId())?>"> 
-                                    <?=$escaper->escapeHtml($payee->getNickName().
+                                    value="<?= $block->escapeHtmlAttr($payee->getPayeeCustomerId())?>"> 
+                                    <?=$block->escapeHtml($payee->getNickName().
                                     " (".$customerData->getEmail().")")?>
                                     </option>
                                 <?php } ?>
@@ -81,8 +81,8 @@ if ($helper->getWalletenabled()) {
                             class="label required"
                             for="amount">
                                 <span>
-                                    <?=$escaper->escapeHtml(__("Amount"))?>
-                                    <?= $escaper->escapeHtml("(".$currency_code.")")?>
+                                    <?=$block->escapeHtml(__("Amount"))?>
+                                    <?= $block->escapeHtml("(".$currency_code.")")?>
                                 </span>
                             </label>
                             <div class="control">
@@ -96,7 +96,7 @@ if ($helper->getWalletenabled()) {
                         <div class="field">
                             <label class="label" for="amount">
                                 <span>
-                                    <?=$escaper->escapeHtml(__("Note"))?>
+                                    <?=$block->escapeHtml(__("Note"))?>
                                 </span>
                             </label>
                             <div class="control">
@@ -106,19 +106,19 @@ if ($helper->getWalletenabled()) {
                         <div>
                             <button
                             type="submit"
-                            title="<?=$escaper->escapeHtml(__("Transfer Money to Customer"))?>"
+                            title="<?=$block->escapeHtml(__("Transfer Money to Customer"))?>"
                             class="button wk_ws_add_payment action primary">
-                                <span><span><?=$escaper->escapeHtml(__("Transfer Money to Customer"))?></span></span>
+                                <span><span><?=$block->escapeHtml(__("Transfer Money to Customer"))?></span></span>
                             </button>
                         </div>
                     </fieldset>
                 </form>
             <?php } else { ?>
-                <span><?=$escaper->escapeHtml(__("No Payee is available"))?></span>
+                <span><?=$block->escapeHtml(__("No Payee is available"))?></span>
                 <?php }?>
         </div>
         <div class='wk_ws_table'>
-            <h3><?=$escaper->escapeHtml(__('Added Payees'))?></h3>
+            <h3><?=$block->escapeHtml(__('Added Payees'))?></h3>
             <?php $walletPayeeCollection = $block->getWalletPayeeCollection();
             if (count($walletPayeeCollection)): ?>
                 <div class='table-wrapper'>
@@ -126,22 +126,22 @@ if ($helper->getWalletenabled()) {
                         <thead>
                             <tr>
                                 <th scope="col" class="col nickname">
-                                    <?=$escaper->escapeHtml(__('Nick name'))?>
+                                    <?=$block->escapeHtml(__('Nick name'))?>
                                 </th>
                                 <th
                                 scope="col"
                                 class="col email">
-                                    <?=$escaper->escapeHtml(__('Email address'))?>
+                                    <?=$block->escapeHtml(__('Email address'))?>
                                 </th>
                                 <th
                                 scope="col"
                                 class="col status">
-                                    <?=$escaper->escapeHtml(__('Status'))?>
+                                    <?=$block->escapeHtml(__('Status'))?>
                                 </th>
                                 <th
                                 scope="col"
                                 class="col action">
-                                <?=$escaper->escapeHtml(__('Action'))?>
+                                <?=$block->escapeHtml(__('Action'))?>
                                 </th>
                             </tr>
                         </thead>
@@ -150,37 +150,37 @@ if ($helper->getWalletenabled()) {
                                 $customerEmail = $block->getCustomerDataById($payee->getPayeeCustomerId())->getEmail();
                                 ?>
                                 <tr>
-                                    <td data-th="<?=$escaper->escapeHtml(__("Nick name"))?>" class="col nickname">
-                                        <?=$escaper->escapeHtml($payee->getNickName())?>
+                                    <td data-th="<?=$block->escapeHtml(__("Nick name"))?>" class="col nickname">
+                                        <?=$block->escapeHtml($payee->getNickName())?>
                                     </td>
-                                    <td data-th="<?=$escaper->escapeHtml(__("Email"))?>" class="col email">
-                                        <?=$escaper->escapeHtml($customerEmail)?>
+                                    <td data-th="<?=$block->escapeHtml(__("Email"))?>" class="col email">
+                                        <?=$block->escapeHtml($customerEmail)?>
                                     </td>
-                                    <td data-th="<?=$escaper->escapeHtml(__("Status"))?>" class="col status">
-                                        <?=$escaper->escapeHtml($payee->getStatus()?__('Approved'):__('Pending'))?>
+                                    <td data-th="<?=$block->escapeHtml(__("Status"))?>" class="col status">
+                                        <?=$block->escapeHtml($payee->getStatus()?__('Approved'):__('Pending'))?>
                                     </td>
                                     <td data-th="Action" class="col action">
                                         <span class="label wk_action">
                                             <span>
                                                 <i class="fa fa-pencil-square-o payee_edit" aria-hidden="true"
-                                                data-id="<?= $escaper->escapeHtmlAttr($payee->getEntityId());?>"
+                                                data-id="<?= $block->escapeHtmlAttr($payee->getEntityId());?>"
                                                 data-url = "
-                                                <?=$escaper->escapeUrl($block->getUrl(
+                                                <?=$block->escapeUrl($block->getUrl(
                                                     'walletsystem/transfer/payeeedit/',
                                                     [
                                                         'id'=>$payee->getEntityId(),
                                                         '_secure' => $block->getIsSecure()
                                                     ]
                                                 )) ?>"
-                                                title="<?=$escaper->escapeHtml(__('Edit'))?>"></i>
+                                                title="<?=$block->escapeHtml(__('Edit'))?>"></i>
                                                 <i 
                                                 class="fa fa-check payee_update"
                                                 aria-hidden="true"
                                                 style="display:none"
-                                                data-id="<?= $escaper->
+                                                data-id="<?= $block->
                                                 escapeHtmlAttr($payee->getEntityId());?>"
                                                 data-url = "
-                                                <?= $escaper->escapeUrl(
+                                                <?= $block->escapeUrl(
                                                     $block->getUrl(
                                                         'walletsystem/transfer/payeeupdate/',
                                                         [
@@ -189,14 +189,14 @@ if ($helper->getWalletenabled()) {
                                                         ]
                                                     )
                                                 ) ?>"
-                                                title="<?=$escaper->escapeHtml(__('Update'))?>"></i>
+                                                title="<?=$block->escapeHtml(__('Update'))?>"></i>
                                             </span>
                                             <span>
                                                 <i class="fa fa-trash payee_delete"
                                                     aria-hidden="true"
-                                                    title="<?=$escaper->escapeHtml(__('Delete'))?>"
+                                                    title="<?=$block->escapeHtml(__('Delete'))?>"
                                                     data-url = "
-                                                    <?= $escaper->escapeUrl(
+                                                    <?= $block->escapeUrl(
                                                         $block->getUrl(
                                                             'walletsystem/transfer/payeedelete/',
                                                             [
@@ -206,19 +206,19 @@ if ($helper->getWalletenabled()) {
                                                         )
                                                     ) ?>"
                                                     login-url="
-                                                    <?= $escaper->escapeUrl(
+                                                    <?= $block->escapeUrl(
                                                         $block->getUrl(
                                                             'customer/account/login'
                                                         )
                                                     );?>"
                                                     data-id="
-                                                    <?= $escaper->escapeHtmlAttr(
+                                                    <?= $block->escapeHtmlAttr(
                                                         $payee->getEntityId()
                                                     );?>">
                                                     </i>    
                                                 <i class="fa fa-remove payee_cancel"
                                                     aria-hidden="true" style="display:none"
-                                                    title="<?=$escaper->escapeHtml(__('Cancel'))?>">
+                                                    title="<?=$block->escapeHtml(__('Cancel'))?>">
                                                     </i>
                                             </span>
                                         </span>
@@ -232,27 +232,27 @@ if ($helper->getWalletenabled()) {
                     <div class="order-transaction-toolbar toolbar bottom"><?= $block->getPagerHtml(); ?></div>
                 <?php endif ?>
             <?php else: ?>
-                <h5><?=$escaper->escapeHtml(__('No records found!'));?></h5>
+                <h5><?=$block->escapeHtml(__('No records found!'));?></h5>
             <?php endif; ?>
         </div>
     </div>
     <div class="wk_ws_add_payee_modal" style="display:none">
         <form id="walletsystem_add_payee" method="post" action="
-        <?=$escaper->escapeUrl($block->getUrl(
+        <?=$block->escapeUrl($block->getUrl(
             'walletsystem/transfer/addpayee',
             ['_secure' => $block->getIsSecure()]
         ))?>">
-            <input type="hidden" name="customer_id" value="<?= $escaper->escapeHtmlAttr($customerId)?>" />
+            <input type="hidden" name="customer_id" value="<?= $block->escapeHtmlAttr($customerId)?>" />
             <div class="fieldset" >
                 <div class="wk_msg_notification">
                     <h4></h4>
                 </div>
                 <div class="field required">
-                <label class="label" for="nickname"><?=$escaper->escapeHtml(__("Nick name")); ?></label>
+                <label class="label" for="nickname"><?=$block->escapeHtml(__("Nick name")); ?></label>
                     <input type="text" id="nickname" name="nickname" class="nickname" data-validate="{required:true}"/>
                 </div>
                 <div class="field required">
-                <label class="label" for="customer_email"><?=$escaper->escapeHtml(__("Email Address")); ?></label>
+                <label class="label" for="customer_email"><?=$block->escapeHtml(__("Email Address")); ?></label>
                     <input
                     type="text"
                     id="customer_email"
@@ -261,9 +261,7 @@ if ($helper->getWalletenabled()) {
                     data-validate="{required:true, 'validate-email':true}"/>
                 </div>
                 <div class="field required">
-                <label class="label" for="confirm-email">
-                        <?=$escaper->escapeHtml(__("Confirm Email Address")); ?>
-                </label>
+                <label class="label" for="confirm-email"><?=$block->escapeHtml(__("Confirm Email Address")); ?></label>
                     <input
                     type="text"
                     id="confirm-email"

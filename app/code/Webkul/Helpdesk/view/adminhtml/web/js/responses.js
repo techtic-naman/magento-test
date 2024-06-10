@@ -1,11 +1,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 /*jshint jquery:true*/
 define(
@@ -20,15 +19,14 @@ define(
             'mage.responses', {
                 _create: function () {
                     var self = this;
-                    var wyEditors = {};
                     var config = self.options.wysiwygConfig,
                     editor,
                     currentEditor,
                     position,
                     textareaId;
                     var editor = "";
-                    var editorMailAgent = new wysiwygSetup(
-                        "mail_agent", {
+                    var editorMailGroup = new wysiwygSetup(
+                        "mail_group", {
                             "width":"99%",  // defined width of editor
                             "height":"200px", // height of editor
                             "tinymce":{
@@ -44,7 +42,7 @@ define(
                         }
                     );
 
-                    editorMailAgent.setup("exact");
+                    editorMailGroup.setup("exact");
 
                     var editorMailGroup = new wysiwygSetup(
                         "mail_group", {
@@ -65,8 +63,8 @@ define(
 
                     editorMailGroup.setup("exact");
            
-                    var editorMailCustomer = new wysiwygSetup(
-                        "mail_customer", {
+                    var editorMailGroup = new wysiwygSetup(
+                        "mail_group", {
                             "width":"99%",  // defined width of editor
                             "height":"200px", // height of editor
                             "tinymce":{
@@ -82,28 +80,7 @@ define(
                         }
                     );
 
-                    editorMailCustomer.setup("exact");
-
-                    const container = document.querySelector(".response-action-details .body_content");
-                    container.addEventListener("click", function(e){
-                        let target = $(e.target);
-                        if (target.hasClass('import-variables-btn')) {
-                            let wYEditorId = target.parents('.import-variables').siblings('.mail_conatiner').find('textarea').attr('id');
-                            if (wYEditorId) {
-                                editor = wyEditors[wYEditorId];
-                            }
-                            $("#overlay_modal").show();
-                            $("#variables-chooser").show();
-                            $('#variables-chooser').draggable(
-                                {
-                                    cursor: "move",
-                                    handle: '#variables-chooser_top'
-                                }
-                            );
-                            var winW = $(window).width();
-                            $("#variables-chooser").css('left', winW / 2 - $("#variables-chooser").width() / 2);
-                        }  
-                    })
+                    editorMailGroup.setup("exact");
 
                     $(document).ready(
                         function () {
@@ -127,10 +104,6 @@ define(
 
                     $(".response-action-container").delegate(
                         ".delete-select-row","click",function () {
-                            let wYEditorId = $(this).parents('tr').find('.mail_conatiner textarea').attr('id');
-                            if (wYEditorId) {
-                                delete wyEditors[wYEditorId];
-                            }
                             $(this).parents('tr').remove();
                         }
                     );
@@ -155,6 +128,7 @@ define(
                                     $(this).parent().next().html("");
                                 }
                                 if ($(this).val() == "mail_agent" || $(this).val() == "mail_group" || $(this).val() == "mail_customer") {
+                                    $("#import-variables").css('display','block');
                                     textareaId = $(this).val();
                                     editor = new wysiwygSetup(
                                         `${textareaId}`, {
@@ -173,7 +147,7 @@ define(
                                         }
                                     );
                                     editor.setup("exact");
-                                    wyEditors[editor.wysiwygInstance.id] = editor;
+
                                     currentEditor = editor.id;
                                 }
                             } else {
@@ -183,7 +157,7 @@ define(
                     );
 
                     $(".response-action-container").delegate(
-                        ".mail_row input","keydown keypress click",function (ed) {
+                        ".mail_row input ","keydown keypress click",function (ed) {
                             currentEditor = $(this).attr("id");
                             position = 0;
                             if ('selectionStart' in $(this)) {
@@ -195,6 +169,23 @@ define(
                                 Sel.moveStart('character', -$(this).value.length);
                                 position = Sel.text.length - SelLength;
                             }
+                        }
+                    );
+
+                    $("#import-variables").on(
+                        "click",function () {
+                            var self = this;
+                            $("#overlay_modal").show();
+                            $("#variables-chooser").show();
+                            $('#variables-chooser').draggable(
+                                {
+                                    cursor: "move",
+                                    handle: '#variables-chooser_top'
+                                }
+                            );
+                            var winH = $(window).height();
+                            var winW = $(window).width();
+                            $("#variables-chooser").css('left', winW / 2 - $("#variables-chooser").width() / 2);
                         }
                     );
 
@@ -212,7 +203,6 @@ define(
                                 var content = $("#"+currentEditor).val();
                                 var output = [content.slice(0, position), $(this).attr("href"), content.slice(position)].join('');
                                 $("#"+currentEditor).val(output);
-                                currentEditor = currentEditor.replace('_subject',"");
                             } else {
                                 var content = "";
                                 if(editor.wysiwygInstance.getContent()) {

@@ -4,19 +4,19 @@
  *
  * @category  Webkul
  * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
  * @license   https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Ui\Component\Ticket\MassAction;
 
 use Magento\Framework\UrlInterface;
-use JsonSerializable;
+//use Zend\Stdlib\JsonSerializable;
 
 /**
  * Class Options
  */
-class Group implements JsonSerializable
+class Group implements \JsonSerializable
 {
     /**
      * @var array
@@ -42,11 +42,6 @@ class Group implements JsonSerializable
      * @var string
      */
     protected $_paramName;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\Group
-     */
-    protected $_group;
 
     /**
      * @var array

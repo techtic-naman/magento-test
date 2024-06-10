@@ -2,14 +2,14 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\SupportCenter;
 
+use Magento\Framework\Exception\AuthenticationException;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 
@@ -18,7 +18,7 @@ class Save extends \Magento\Backend\App\Action
     /**
      * @var PageFactory
      */
-    protected $resultPageFactory;
+    protected $_resultPageFactory;
 
     /**
      * @var \Webkul\Helpdesk\Model\SupportCenterFactory
@@ -29,11 +29,6 @@ class Save extends \Magento\Backend\App\Action
      * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
      */
     protected $_helpdeskLogger;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ActivityRepository
-     */
-    protected $_activityRepo;
 
     /**
      * @param Context                                     $context
@@ -82,12 +77,12 @@ class Save extends \Magento\Backend\App\Action
                     $this->_activityRepo->saveActivity($model->getId(), $model->getName(), "add", "supportcenter");
                 }
                 $this->_helper->clearCache();
-                $this->messageManager->addSuccessMessage(__("Support Center successfully saved"));
+                $this->messageManager->addSuccess(__("Support Center successfully saved"));
             } else {
-                $this->messageManager->addErrorMessage(__('Unable to find Support Center to save'));
+                $this->messageManager->addError(__('Unable to find Support Center to save'));
             }
         } catch (\Exception $e) {
-            $this->messageManager->addErrorMessage(__("There are some error to save Support Center"));
+            $this->messageManager->addError(__("There are some error to save Support Center"));
             $this->_helpdeskLogger->info($e->getMessage());
         }
         return $this->resultRedirectFactory->create()->setPath('*/*/');

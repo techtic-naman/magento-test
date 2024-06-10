@@ -1,12 +1,12 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 
 namespace Webkul\Walletsystem\Block\Form;
@@ -32,18 +32,12 @@ class Walletsystem extends \Magento\OfflinePayments\Block\Form\AbstractInstructi
     protected $configProvider;
 
     /**
-     * @var \Magento\Multishipping\Model\Checkout\Type\Multishipping
-     */
-    protected $checkoutModel;
-
-    /**
      * Constructor
      *
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param \Webkul\Walletsystem\Model\WalletPaymentConfigProvider $configProvider
      * @param \Magento\Framework\Serialize\Serializer\Json $serializeJson
      * @param \Magento\Framework\Serialize\SerializerInterface|null $serializerInterface
-     * @param \Magento\Multishipping\Model\Checkout\Type\Multishipping $checkoutModel
      * @param array $data
      */
     public function __construct(
@@ -51,7 +45,6 @@ class Walletsystem extends \Magento\OfflinePayments\Block\Form\AbstractInstructi
         \Webkul\Walletsystem\Model\WalletPaymentConfigProvider $configProvider,
         \Magento\Framework\Serialize\Serializer\Json $serializeJson,
         \Magento\Framework\Serialize\SerializerInterface $serializerInterface = null,
-        \Magento\Multishipping\Model\Checkout\Type\Multishipping $checkoutModel,
         array $data = []
     ) {
         parent::__construct($context, $data);
@@ -60,7 +53,6 @@ class Walletsystem extends \Magento\OfflinePayments\Block\Form\AbstractInstructi
         $this->serializeJson = $serializeJson;
         $this->serializer = $serializerInterface ?: \Magento\Framework\App\ObjectManager::getInstance()
             ->get(\Magento\Framework\Serialize\Serializer\JsonHexTag::class);
-        $this->checkoutModel = $checkoutModel;
     }
 
     /**
@@ -93,15 +85,5 @@ class Walletsystem extends \Magento\OfflinePayments\Block\Form\AbstractInstructi
     {
         
         return $this->configProvider->getConfig();
-    }
-
-    /**
-     * Check order is MultiShipping
-     *
-     * @return bool
-     */
-    public function getIsMultiShipping()
-    {
-        return $this->checkoutModel->getCheckoutSession()->getQuote()->getIsMultiShipping();
     }
 }

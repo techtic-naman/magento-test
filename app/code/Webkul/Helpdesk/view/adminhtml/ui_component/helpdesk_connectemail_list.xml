@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 /**
- * Webkul Software.
- *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
- */
+* Webkul Software.
+*
+* @category  Webkul
+* @package   Webkul_Helpdesk
+* @author    Webkul
+* @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+* @license   https://store.webkul.com/license.html
+*/
 -->
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
@@ -35,9 +35,6 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="update_url" xsi:type="url" path="mui/index/render"/>
-                    <item name="storageConfig" xsi:type="array">
-                        <item name="indexField" xsi:type="string">id</item>
-                    </item>
                 </item>
             </argument>
         </argument>

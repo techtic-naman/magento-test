@@ -4,8 +4,8 @@
  *
  * @category  Webkul
  * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
  * @license   https://store.webkul.com/license.html
  */
 
@@ -25,16 +25,6 @@ class ViewReply extends \Magento\Backend\App\Action
      * @var \Magento\Backend\Model\Auth\Session
      */
     protected $_authSession;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsFactory
-     */
-    protected $ticketsFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\AgentFactory
-     */
-    protected $_agentFactory;
 
     /**
      * @param Context                               $context
@@ -85,11 +75,11 @@ class ViewReply extends \Magento\Backend\App\Action
                 $resultPage->setActiveMenu('Webkul_Helpdesk::tickets');
                 return $resultPage;
             } else {
-                $this->messageManager->addErrorMessage(__("You are not authorized to access this ticket."));
+                $this->messageManager->addError(__("You are not authorized to access this ticket."));
                 return $this->resultRedirectFactory->create()->setPath('*/*/');
             }
         } else {
-            $this->messageManager->addErrorMessage(__('Ticket does not exist.'));
+            $this->messageManager->addError(__('Ticket does not exist.'));
             return $this->resultRedirectFactory->create()->setPath('*/*/');
         }
     }

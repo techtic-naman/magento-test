@@ -4,8 +4,8 @@
  *
  * @category  Webkul
  * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
  * @license   https://store.webkul.com/license.html
  */
 
@@ -33,106 +33,27 @@ class Tickets extends \Magento\Framework\App\Helper\AbstractHelper
      * @var \Magento\Customer\Model\Context
      */
     protected $_customAttribute;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsFactory
-     */
     protected $_ticketsFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ThreadFactory
-     */
     protected $_threadFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsPriorityFactory
-     */
     protected $_priorityFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsStatusFactory
-     */
     protected $_ticketsStatusFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TypeFactory
-     */
     protected $_typeFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketslaRepository
-     */
     protected $_ticketslaRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\AgentFactory
-     */
     protected $_agentFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\GroupFactory
-     */
     protected $_groupFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsAttributeValueFactory
-     */
     protected $_ticketsAttrValueFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\MailfetchFactory
-     */
     protected $_mailfetchFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\CustomerFactory
-     */
     protected $_customerFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketdraftFactory
-     */
     protected $_ticketdraftFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ResponsesFactory
-     */
     protected $_responsesFactory;
-
-    /**
-     * @var \Magento\User\Model\UserFactory
-     */
     protected $_userFactory;
-
-    /**
-     * @var \Magento\Customer\Model\Session
-     */
     protected $_mageCustomerSession;
-
-    /**
-     * @var \Magento\Framework\Session\SessionManager
-     */
     protected $_coreSession;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Data
-     */
     protected $_helper;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ResourceModel\CustomerFactory
-     */
     protected $_resCustFactory;
-
-    /**
-     * @var Encryptor
-     */
     protected $encryptor;
-
-    /**
-     * @var SerializerInterface
-     */
     protected $serializer;
+    
 
     /**
      * @param \Magento\Framework\App\Helper\Context                $context
@@ -157,7 +78,6 @@ class Tickets extends \Magento\Framework\App\Helper\AbstractHelper
      * @param \Webkul\Helpdesk\Model\Eav\CustomAttributeFactory    $customAttribute
      * @param \Webkul\Helpdesk\Model\ResourceModel\CustomerFactory $resCustFactory
      * @param Encryptor                                            $encryptor
-     * @param SerializerInterface                                  $serializer
      */
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,
@@ -569,7 +489,6 @@ class Tickets extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Returns logged in customer id
      *
-     * @param bool $isSubmit
      * @return int
      */
     public function getTsCustomerId($isSubmit = false)

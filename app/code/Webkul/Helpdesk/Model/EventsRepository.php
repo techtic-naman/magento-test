@@ -2,11 +2,10 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Model;
 
@@ -53,11 +52,6 @@ class EventsRepository implements \Webkul\Helpdesk\Api\EventsRepositoryInterface
      * @var \Webkul\Helpdesk\Model\ResponsesRepository
      */
     protected $_responseRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Tickets
-     */
-    protected $_ticketHelper;
 
     /**
      * TicketsRepository constructor.
@@ -339,15 +333,15 @@ class EventsRepository implements \Webkul\Helpdesk\Api\EventsRepositoryInterface
         }
     }
 
-    /**
-     * CheckActionType
-     *
-     * @param array $oneCondition
-     * @param bool $flag
-     * @param object $rule
-     * @param object $ticket
-     * @param int $ticketId
-     */
+   /**
+    * Check action type
+    *
+    * @param array $oneCondition
+    * @param string $flag
+    * @param object $rule
+    * @param object $ticket
+    * @param int    $ticketId
+    */
     public function checkActionType($oneCondition, $flag, $rule, $ticket, $ticketId)
     {
         if (isset($oneCondition['action-type'])) {
@@ -539,7 +533,6 @@ class EventsRepository implements \Webkul\Helpdesk\Api\EventsRepositoryInterface
      *
      * @param string $flag
      * @param object $rule
-     * @param object $ticket
      * @param int $ticketId
      */
     public function checkIfNotFlag($flag, $rule, $ticket, $ticketId)
@@ -569,8 +562,6 @@ class EventsRepository implements \Webkul\Helpdesk\Api\EventsRepositoryInterface
      * Check action condition
      *
      * @param string $actionType
-     * @param array $allCondition
-     * @param object $ticket
      */
     public function checkActionCondition($actionType, $allCondition, $ticket)
     {

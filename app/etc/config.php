@@ -359,7 +359,7 @@ return [
         'Meetanshi_OrderTracking' => 1,
         'PayPal_Braintree' => 1,
         'PayPal_BraintreeGraphQl' => 1,
-        'Productvideo_Core' => 1,
+        'Productvideo_Core' => 0,
         'Smartwave_Core' => 1,
         'Smartwave_Dailydeals' => 1,
         'Smartwave_Filterproducts' => 1,
@@ -368,6 +368,8 @@ return [
         'Smartwave_Socialfeeds' => 1,
         'Temando_ShippingRemover' => 1,
         'Webkul_Helpdesk' => 1,
+        'Webkul_Marketplace' => 1,
+        'Webkul_Mpmembership' => 1,
         'Webkul_Walletsystem' => 1
     ]
 ];

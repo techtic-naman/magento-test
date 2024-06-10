@@ -2,14 +2,14 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\Ticketsmanagement\Tickets;
 
+use Magento\Framework\Exception\AuthenticationException;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 
@@ -18,7 +18,7 @@ class Merge extends \Magento\Backend\App\Action
     /**
      * @var PageFactory
      */
-    protected $resultPageFactory;
+    protected $_resultPageFactory;
 
     /**
      * @var \Webkul\Helpdesk\Model\TicketsFactory
@@ -39,21 +39,6 @@ class Merge extends \Magento\Backend\App\Action
      * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
      */
     protected $_helpdeskLogger;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ThreadRepository
-     */
-    protected $_threadRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\EventsRepository
-     */
-    protected $_eventsRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Data
-     */
-    protected $_helperData;
 
     /**
      * @param Context                                 $context
@@ -99,7 +84,7 @@ class Merge extends \Magento\Backend\App\Action
             $data = $this->getRequest()->getParams();
             if (!$data) {
                 $this->resultRedirectFactory->create()->setPath('helpdesk/ticketsmanagement_tickets/index');
-                $this->messageManager->addErrorMessage(__('Unable to find ticket to merge'));
+                $this->messageManager->addError(__('Unable to find ticket to merge'));
                 return;
             }
             $primaryTicketId = $this->getRequest()->getParam("id");
@@ -110,7 +95,7 @@ class Merge extends \Magento\Backend\App\Action
             foreach ($data['ticket_id'] as $ticketId) {
                 $collection->addFieldToFilter('main_table.merge_tickets', ["finset"=>$ticketId]);
                 if ($collection->getSize()) {
-                    $this->messageManager->addErrorMessage(__("Ticket already merged!!"));
+                    $this->messageManager->addError(__("Ticket already merged!!"));
                     return $this->resultRedirectFactory->create()->setPath('helpdesk/ticketsmanagement_tickets/index');
 
                 }
@@ -161,14 +146,14 @@ class Merge extends \Magento\Backend\App\Action
             $wholedata['query'] = $primaryTicketNote;
             $threadId =  $this->_threadRepo->createThread($primaryTicketId, $wholedata);
             $this->_eventsRepo->checkTicketEvent("note", $primaryTicketId, "note");
-            $this->messageManager->addSuccessMessage(__("Success ! you have been successfully merged Tickets."));
+            $this->messageManager->addSuccess(__("Success ! you have been successfully merged Tickets."));
             return $this->resultRedirectFactory->create()->setPath('helpdesk/ticketsmanagement_tickets/index');
         } catch (\Magento\Framework\Exception\LocalizedException $e) {
             $this->_helpdeskLogger->info($e->getMessage());
-            $this->messageManager->addErrorMessage($e->getMessage());
+            $this->messageManager->addError($e->getMessage());
         } catch (\Exception $e) {
             $this->_helpdeskLogger->info($e->getMessage());
-            $this->messageManager->addErrorMessage($e->getMessage());
+            $this->messageManager->addError($e->getMessage());
         }
         return $this->resultRedirectFactory->create()->setPath('helpdesk/ticketsmanagement_tickets/index');
     }

@@ -33,9 +33,9 @@ enctype="multipart/form-data" method="post" id="edit_form">
             <div class="admin__field-control control">
                 <select name="type" title="Type" id="help_type" 
                 class="required-entry select validate-select admin__control-select" aria-required="true">
-                <option value=""><?= /* @noEscape */ $block->escapeHtml(__("Select")); ?>
+                <option value=""><?= $block->escapeHtml(__("Select")); ?>
                 <?php foreach ($tickettypeArr as $type): ?>
-                                <option value="<?= /* @noEscape */ $block->escapeHtml($type['value']);?>"><?=
+                                <option value="<?= $block->escapeHtml($type['value']);?>"><?=
                                     $block->escapeHtml($type['label']) ?></option>
                             <?php endforeach; ?>
                 </select>
@@ -101,27 +101,6 @@ enctype="multipart/form-data" method="post" id="edit_form">
                                             <?php } ?>
                                     </select>
                         <?php }?>
-                        <?php if ($attribute['frontend_input'] == 'date' ||
-                            $attribute['frontend_input'] == 'datetime') { ?>
-                                <input class="<?php  if ($ticketattr->getFieldDependency() ==
-                                0) { if ($attribute['is_required']) { echo 'required-entry';
-                                } } else { echo 'hide_attribute'; } ?>
-                                        input-text validate-date <?= $block->escapeHtml($attribute
-                                        ['frontend_class']); ?>"
-                                        data-hide-validation="<?php if ($attribute
-                                        ['is_required']) {echo 'required-entry'; } ?>"
-                                        for="<?php if ($ticketattr->getFieldDependency() > 0) {
-                                            echo $block->escapeHtml($ticketattr->getFieldDependency());} ?>"
-                                        type="<?= $attribute['frontend_input'] =='date' ? 'date' : 'datetime-local'?>"
-                                        name="<?= $block->escapeHtml($attribute['attribute_code']);?>"
-                                        <?php
-                                        $customAttrValue = "";
-                                        if (!empty($draftContent[$attribute['attribute_code']])) {
-                                            $customAttrValue = $draftContent[$attribute['attribute_code']];
-                                        }
-                                        ?>
-                                        value="<?= /* @noEscape */ $customAttrValue; ?>"/>
-                        <?php } ?>
 
                         <?php if ($attribute['frontend_input'] == 'textarea') { ?>
                                 <textarea class="<?php  if ($ticketattr->getFieldDependency()

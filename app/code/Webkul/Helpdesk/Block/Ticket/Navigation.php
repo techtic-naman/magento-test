@@ -4,14 +4,12 @@
  *
  * @category  Webkul
  * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
  * @license   https://store.webkul.com/license.html
  */
 
 namespace Webkul\Helpdesk\Block\Ticket;
-
-use Magento\Eav\Model\Entity\Attribute\Source\Table;
 
 class Navigation extends \Magento\Framework\View\Element\Template
 {
@@ -47,7 +45,6 @@ class Navigation extends \Magento\Framework\View\Element\Template
         \Webkul\Helpdesk\Helper\Data $helpdeskTickets,
         \Magento\Framework\Json\Helper\Data $jsonData,
         \Magento\Framework\App\ResourceConnection $resource,
-        Table $sourceTable,
         array $data = []
     ) {
         $this->_supportcenterFactory = $supportcenterFactory;
@@ -61,7 +58,6 @@ class Navigation extends \Magento\Framework\View\Element\Template
         $this->tickets = $tickets;
         $this->helpdeskTickets = $helpdeskTickets;
         $this->jsonData = $jsonData;
-        $this->sourceTable = $sourceTable;
         $this->resource = $resource->getConnection();
         parent::__construct($context, $data);
     }
@@ -204,13 +200,5 @@ class Navigation extends \Magento\Framework\View\Element\Template
     public function jsonData()
     {
         return $this->jsonData;
-    }
-
-    /**
-     * GetSelectSourceModel
-     */
-    public function getSelectSourceModel($attribute)
-    {
-        return $this->sourceTable->setAttribute($attribute);
     }
 }

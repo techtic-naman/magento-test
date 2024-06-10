@@ -2,14 +2,14 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\Responses;
 
+use Magento\Framework\Exception\AuthenticationException;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 
@@ -18,7 +18,7 @@ class Save extends \Magento\Backend\App\Action
     /**
      * @var PageFactory
      */
-    protected $resultPageFactory;
+    protected $_resultPageFactory;
 
     /**
      * @var \Webkul\Helpdesk\Model\CustomerFactory
@@ -44,16 +44,6 @@ class Save extends \Magento\Backend\App\Action
      * @var \Magento\Framework\Json\Helper\Data
      */
     protected $_jsonHelper;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ResponsesFactory
-     */
-    protected $_responsesFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ActivityRepository
-     */
-    protected $_activityRepo;
 
     /**
      * @param Context                                   $context
@@ -97,7 +87,7 @@ class Save extends \Magento\Backend\App\Action
             $responseId = isset($data['entity_id'])?$data['entity_id']:0;
             if (!$data) {
                 $this->resultRedirectFactory->create()->setPath('helpdesk/*/');
-                $this->messageManager->addErrorMessage(__('Unable to find response to save'));
+                $this->messageManager->addError(__('Unable to find response to save'));
                 return;
             }
             $data["agent_id"] = $this->_authSession->getUser()->getId();
@@ -124,11 +114,11 @@ class Save extends \Magento\Backend\App\Action
                 $model->save();
                 $this->_activityRepo->saveActivity($model->getId(), $model->getName(), "add", "response");
             }
-            $this->messageManager->addSuccessMessage(__("Response successfully saved"));
+            $this->messageManager->addSuccess(__("Response successfully saved"));
             $this->_modelSession->setFormData(false);
             return $this->resultRedirectFactory->create()->setPath('*/*/');
         } catch (\Exception $e) {
-            $this->messageManager->addErrorMessage(__("There are some error to save type"));
+            $this->messageManager->addError(__("There are some error to save type"));
             $this->_modelSession->setFormData($data);
             $this->_helpdeskLogger->info($e->getMessage());
         }

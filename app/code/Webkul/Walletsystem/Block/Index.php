@@ -1,12 +1,12 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 
 namespace Webkul\Walletsystem\Block;
@@ -279,7 +279,6 @@ class Index extends \Magento\Framework\View\Element\Template
         $amount = $transactionData->getAmount();
         $currencyCode = $this->walletHelper->getCurrentCurrencyCode();
         $precision = 2;
-        $amount = $this->walletHelper->formatAmount($amount);
         return $this->priceCurrency->format(
             $amount,
             $includeContainer = true,

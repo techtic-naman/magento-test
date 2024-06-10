@@ -4,8 +4,8 @@
  *
  * @category  Webkul
  * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
  * @license   https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Model\ResourceModel\Tickets\Grid;
@@ -30,16 +30,6 @@ class Collection extends TicketsCollection implements ApiSearchResultInterface
      * @var SearchAggregationInterface
      */
     protected $_aggregations;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Data
-     */
-    protected $data;
-
-    /**
-     * @var \Magento\Backend\Model\Auth\Session
-     */
-    protected $session;
 
     /**
      * @param EntityFactoryInterface                               $entityFactoryInterface

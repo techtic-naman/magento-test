@@ -19,7 +19,7 @@
         "magento/module-ui": "101.2.*"
     },
     "type": "magento2-module",
-    "version": "4.0.2-p2",
+    "version": "4.0.2",
     "license": [
         "proprietary"
     ],

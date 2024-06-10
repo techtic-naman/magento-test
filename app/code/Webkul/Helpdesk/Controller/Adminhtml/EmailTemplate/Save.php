@@ -2,14 +2,14 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\EmailTemplate;
 
+use Magento\Framework\Exception\AuthenticationException;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Email\Model\Template;
@@ -19,7 +19,7 @@ class Save extends \Magento\Backend\App\Action
     /**
      * @var PageFactory
      */
-    protected $resultPageFactory;
+    protected $_resultPageFactory;
 
     /**
      * @var \Magento\Backend\Model\Auth\Session
@@ -50,16 +50,6 @@ class Save extends \Magento\Backend\App\Action
      * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
      */
     protected $_helpdeskLogger;
-
-    /**
-     * @var \Magento\Email\Model\BackendTemplate
-     */
-    protected $_emailbackendTemp;
-
-    /**
-     * @var \Magento\Framework\Stdlib\DateTime\DateTime
-     */
-    protected $date;
 
     /**
      * @param Context                                     $context
@@ -106,7 +96,7 @@ class Save extends \Magento\Backend\App\Action
             $data = $this->getRequest()->getParams();
             $template = $this->_emailbackendTemp->load($id);
             if (!$template->getId() && $id) {
-                $this->messageManager->addErrorMessage(__('This Email template no longer exists.'));
+                $this->messageManager->addError(__('This Email template no longer exists.'));
                 $this->resultRedirectFactory->create()->setPath('*/*/');
                 return;
             }
@@ -148,10 +138,10 @@ class Save extends \Magento\Backend\App\Action
             }
 
             $this->_modelSession->setFormData(false);
-            $this->messageManager->addSuccessMessage(__('The email template has been saved.'));
+            $this->messageManager->addSuccess(__('The email template has been saved.'));
             return $this->resultRedirectFactory->create()->setPath('*/*/');
         } catch (\Exception $e) {
-            $this->messageManager->addErrorMessage(__($e->getMessage()));
+            $this->messageManager->addError(__($e->getMessage()));
             $this->_helpdeskLogger->info($e->getMessage());
             $this->_modelSession->setFormData($data);
             return $this->resultRedirectFactory->create()->setPath('*/*/');

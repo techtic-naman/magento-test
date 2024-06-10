@@ -2,14 +2,14 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\ConnectEmail;
 
+use Magento\Framework\Exception\AuthenticationException;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 
@@ -18,7 +18,7 @@ class Save extends \Magento\Backend\App\Action
     /**
      * @var PageFactory
      */
-    protected $resultPageFactory;
+    protected $_resultPageFactory;
 
     /**
      * @var \Magento\Backend\Model\Session
@@ -34,16 +34,6 @@ class Save extends \Magento\Backend\App\Action
      * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
      */
     protected $_helpdeskLogger;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ConnectEmailFactory
-     */
-    protected $_connectEmailFactory;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Tickets
-     */
-    protected $helper;
 
     /**
      * @param Context                                    $context
@@ -85,7 +75,7 @@ class Save extends \Magento\Backend\App\Action
             if ($this->getRequest()->getPost()) {
                 $cEmailModel = $this->_connectEmailFactory->create();
                 if (empty($data['count'])) {
-                    $data['count'] = 0;
+                    $data['count'] = $data['fetch_email_limit'];
                 }
                 $flag = true;
                 if ($cEmailId) {
@@ -110,12 +100,12 @@ class Save extends \Magento\Backend\App\Action
                         "connectemail"
                     );
                 }
-                $this->messageManager->addSuccessMessage(__("Item was successfully saved"));
+                $this->messageManager->addSuccess(__("Item was successfully saved"));
                 $this->_modelSession->setFormData(false);
             }
             return $this->resultRedirectFactory->create()->setPath('*/*/');
         } catch (\Exception $e) {
-            $this->messageManager->addErrorMessage(__("There are some error to save event"));
+            $this->messageManager->addError(__("There are some error to save event"));
             $this->_helpdeskLogger->info($e->getMessage());
             $this->_modelSession->setFormData($data);
             return $this->resultRedirectFactory->create()->setPath('*/*/');

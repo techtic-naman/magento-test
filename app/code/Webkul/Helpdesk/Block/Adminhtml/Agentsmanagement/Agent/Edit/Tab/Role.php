@@ -4,8 +4,8 @@
  *
  * @category  Webkul
  * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
  * @license   https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Block\Adminhtml\Agentsmanagement\Agent\Edit\Tab;
@@ -26,11 +26,6 @@ class Role extends \Magento\Backend\Block\Widget\Grid\Extended
      * @var \Magento\Framework\Json\EncoderInterface
      */
     protected $_jsonEncoder;
-
-    /**
-     * @var \Magento\Authorization\Model\ResourceModel\Role\CollectionFactory
-     */
-    protected $_userRolesFactory;
 
     /**
      * @param \Magento\Backend\Block\Template\Context                           $context

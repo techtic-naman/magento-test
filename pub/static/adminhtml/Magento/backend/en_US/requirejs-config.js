@@ -884,13 +884,12 @@ require.config(config);
 })();
 (function() {
 /**
- * Webkul Software.
+ * Webkul_Helpdesk requirejs config
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 var config = {
     map: {
@@ -917,10 +916,37 @@ require.config(config);
  * Webkul Software.
  *
  * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @package   Webkul_Marketplace
+ * @author    Webkul Software Private Limited
  * @copyright Webkul Software Private Limited (https://webkul.com)
  * @license   https://store.webkul.com/license.html
+ */
+ var config = {
+    'shim': {
+        'Webkul_Marketplace/js/extjs/ext-tree-checkboxCategory': [
+            'extjs/defaults'
+        ],
+    },
+    "map": {
+        "*": {
+            sellerCheckboxTree : "Webkul_Marketplace/js/extjs/ext-tree-checkboxCategory",
+            sellerCheckboxCategoryTree : "Webkul_Marketplace/js/extjs/seller-tree-checkboxCategory",
+            verifyShop : "Webkul_Marketplace/js/verifyShop"
+        }
+    },
+};
+
+require.config(config);
+})();
+(function() {
+/**
+ * Webkul Software
+ *
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
  */
 var config = {
     map: {

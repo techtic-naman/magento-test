@@ -1,12 +1,12 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Software
  *
- * @category  Webkul
- * @package   Webkul_Walletsystem
- * @author    Webkul
+ * @category Webkul
+ * @package Webkul_Walletsystem
+ * @author Webkul
  * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @license https://store.webkul.com/license.html
  */
 
 namespace Webkul\Walletsystem\Observer;
@@ -100,12 +100,6 @@ class SalesOrderSaveAfter implements ObserverInterface
         $payment = $order->getPayment();
         $method = $payment->getMethodInstance();
         $methodCode = $method->getCode();
-        $orderArray = $order->toArray();
-
-        if (array_key_exists("wallet_amount", $orderArray) && array_key_exists("base_wallet_amount", $orderArray)) {
-            $order->setWalletAmount(-$orderArray['wallet_amount']);
-            $order->setBaseWalletAmount(-$orderArray['base_wallet_amount']);
-        }
         
         if ($order->getStatus() == 'complete' && $methodCode==self::WALLET_SYSTEM_CODE) {
             $incrementId = $this->salesOrderFactory

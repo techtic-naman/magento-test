@@ -1,12 +1,11 @@
 <?php
 /**
- * Webkul Software.
+ * Webkul Helpdesk Config
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 
 namespace Webkul\Helpdesk\Cron;
@@ -16,21 +15,6 @@ namespace Webkul\Helpdesk\Cron;
  */
 class Mailfetch
 {
-    /**
-     * @var \Webkul\Helpdesk\Logger\HelpdeskLogger
-     */
-    protected $helpdeskLogger;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\MailfetchRepository
-     */
-    protected $mailfetchRepo;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\ConnectEmailFactory
-     */
-    protected $_connectEmailFactory;
-
     /**
      * Mailfetch constructor.
      *

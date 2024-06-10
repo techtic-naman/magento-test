@@ -8,7 +8,6 @@
  * @copyright Webkul Software Private Limited (https://webkul.com)
  * @license   https://store.webkul.com/license.html
  */
-
 namespace Webkul\Walletsystem\Block\Total;
 
 use Magento\Sales\Model\Order;

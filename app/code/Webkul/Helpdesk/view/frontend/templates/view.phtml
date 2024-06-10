@@ -4,8 +4,7 @@
  *
  * @category  Webkul
  * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @author    Webkul
  * @license   https://store.webkul.com/license.html
  */
 $ticketsHelper = $block->getTicketHelper();
@@ -25,10 +24,6 @@ $customerCanAddCc = $helper->getConfigCustomerCanAddCc();
 $threadLimit = $helper->getThreadLimit();
 $totalThread = $ticketsHelper->getTotalThreads($ticketId);
 $imgExtensions = explode(",", $helper->getConfigAllowedextensions());
-$customFieldAttrIds = $block->getCustomFieldAttributes($ticket->getType());
-$ticketCustomAttrIds = $ticketsHelper->getTicketAttributeDetails($ticketId)
-                            ->getColumnValues('attribute_id');
-$customFieldAttrIds = array_diff($customFieldAttrIds, $ticketCustomAttrIds);
 ?>
 <div class="wk_ts_thread_container">
     <div class="wk_ts_thread_container_left">
@@ -325,8 +320,7 @@ $customFieldAttrIds = array_diff($customFieldAttrIds, $ticketCustomAttrIds);
                                 <?php if ($thread['who_is'] == 'admin' && $thread['split_ticket']): ?>
                                     <button class="splitthread" 
                                     data-id="<?= $block->escapeHtml($thread['entity_id']) ?>"
-                                    onclick="window.open('<?= /** @noEscape */
-                                    $block->getTicketUrl($thread['split_ticket']) ?>')">
+                                    onclick="window.open('<?= $block->getTicketUrl($thread['split_ticket']) ?>')">
                                         <i class="fa fa-location-arrow"></i>
                                     </button>
                                 <?php endif; ?>
@@ -528,7 +522,7 @@ if ($fileInfo->isFile()): ?>
         <?php } ?>
     </div>
     <div class="wk_ts_thread_container_right">
-    <?php if (count($customFieldAttrIds) || count($ticketsHelper->getTicketAttributeDetails($ticketId))): ?>
+    <?php if (count($ticketsHelper->getTicketAttributeDetails($ticketId))): ?>
                 <form 
                 action="<?= $block->escapeUrl($block->getUrl(
                     'helpdesk/ticket/saveattributevalue/',
@@ -605,7 +599,7 @@ if ($fileInfo->isFile()): ?>
                                     } ?> input-text" rows="5" 
                                     cols="75" id="textar" name="custom[<?=
                                     $block->escapeHtml($attribute
-                                    ['attribute_code']);?>]">
+                                    ['attribute_code']);?>]" />
                                     <?= $block->escapeHtml($attributeValue['value']) ?>
                                     </textarea>
                                 <?php } ?>
@@ -711,84 +705,6 @@ if ($fileInfo->isFile()): ?>
                                         ['attribute_code']);?>"/>
                                     <?php endif; ?>
                                 <?php } ?>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                    <?php foreach ($customFieldAttrIds as $attrId): ?>
-                        <?php $attribute = $block->getAttributeData($attrId); ?>
-                        <div class="form-group">
-                            <h4><?= $block->escapeHtml($attribute['frontend_label']);  ?></h4>
-                            <div class="form-col">
-                            <?php if ($attribute['frontend_input'] == 'select' ||
-                                $attribute['frontend_input']=='multiselect' ||
-                                $attribute['frontend_input']=='boolean') {
-                                    $fix = "";
-                                    $multiselect = "";
-                                    if ($attribute['frontend_input'] == 'multiselect') {
-                                        $fix = "[]";
-                                        $multiselect = "multiple";
-                                    }?>
-                                    <select class="myinput-text <?php if ($attribute
-                                    ['is_required']) {echo $block->escapeHtml('required-entry'); } ?> 
-                                    input-text" name="custom[<?= $block->escapeHtml($attribute
-                                    ['attribute_code'])?>]<?= $block->escapeHtml($fix) ?>" 
-                                    <?= $block->escapeHtml($multiselect);?>>
-                                        <?php $attributeOptions =
-                                        $attribute->getSource()->getAllOptions();
-                                        foreach ($attributeOptions as $each) {
-                                            if ($each["value"] == "") { ?>
-                                                <option value="">Please select</option>
-                                            <?php } else {?>
-                                                <option value="<?= $block->escapeHtml($each["value"]);?>">
-                                                    <?= $block->escapeHtml($each["label"]);  ?>
-                                                </option>
-                                        <?php }
-                                        } ?>
-                                    </select>
-                                <?php } ?>
-                                <?php if ($attribute['frontend_input'] == 'text') { ?>
-                                    <input class="<?php if ($attribute['is_required']) {echo
-                                        $block->escapeHtml('required-entry'); } ?> 
-                                        input-text" type="text"
-                                        name="custom[<?=
-                                        $block->escapeHtml($attribute['attribute_code']);?>]" 
-                                        />
-                                <?php } ?>
-                                <?php if ($attribute['frontend_input'] == 'date' ||
-                                $attribute['frontend_input'] == 'datetime') { ?>
-                                    <input class="<?php if ($attribute['is_required']) {echo
-                                        'required-entry'; } ?> input-text datetype" 
-                                        type="<?= $attribute['frontend_input'] ==
-                                                    'date' ? 'date' : 'datetime-local'?>" 
-                                        name="custom[<?= $block->escapeHtml($attribute
-                                        ['attribute_code']);?>]" />
-                                <?php } ?>
-                                <?php if ($attribute['frontend_input'] == 'textarea') { ?>
-                                    <textarea class="<?php
-                                    if ($attribute['is_required']) {
-                                        echo 'required-entry';
-                                    } ?> input-text" rows="5" 
-                                    cols="75" id="textar" name="custom[<?=
-                                    $block->escapeHtml($attribute
-                                    ['attribute_code']);?>]"></textarea>
-                                <?php } ?>
-                                <?php if ($attribute['frontend_input'] == 'texteditor') { ?>
-                                    <textarea class="<?php
-                                    if ($attribute['is_required']) {
-                                        echo 'required-entry';
-                                    } ?> input-text" rows="5" 
-                                    cols="75" id="wk_custom_editor_field" style="width:100%;height:200px"
-                                    name="custom[<?=$block->escapeHtml($attribute['attribute_code']);?>]">
-                                    </textarea>
-                                <?php } ?>
-                                <?php if ($attribute['frontend_input'] == 'image' ||
-                                    $attribute['frontend_input'] == 'file') { ?>
-                                    <input 
-                                        class="<?php if ($attribute['is_required']) {echo
-                                            'required-entry'; } ?> input-text" type="file" 
-                                        name="<?= $block->escapeHtml($attribute
-                                        ['attribute_code']);?>"/>
-                                <?php } ?> 
                             </div>
                         </div>
                     <?php endforeach; ?>

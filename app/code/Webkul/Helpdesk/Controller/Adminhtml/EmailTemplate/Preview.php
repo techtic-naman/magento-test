@@ -2,23 +2,24 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 namespace Webkul\Helpdesk\Controller\Adminhtml\EmailTemplate;
 
+use Magento\Framework\Exception\AuthenticationException;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
+use Magento\Email\Model\Template;
 
 class Preview extends \Magento\Backend\App\Action
 {
     /**
      * @var PageFactory
      */
-    protected $resultPageFactory;
+    protected $_resultPageFactory;
 
     /**
      * @param Context     $context
@@ -45,9 +46,7 @@ class Preview extends \Magento\Backend\App\Action
             $this->getResponse()->setHeader('Content-Security-Policy', "script-src 'none'");
             return $resultPage;
         } catch (\Exception $e) {
-            $this->messageManager->addErrorMessage(
-                __('An error occurred. The email template can not be opened for preview.')
-            );
+            $this->messageManager->addError(__('An error occurred. The email template can not be opened for preview.'));
             return $this->resultRedirectFactory->create()->setPath('*/*/');
         }
     }

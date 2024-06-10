@@ -2,16 +2,13 @@
 /**
  * Webkul Software.
  *
- * @category  Webkul
- * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category Webkul
+ * @package  Webkul_Helpdesk
+ * @author   Webkul
+ * @license  https://store.webkul.com/license.html
  */
 
 namespace Webkul\Helpdesk\Model\Mail;
-
-use Magento\Framework\Mail\MimeInterface;
 
 class TransportBuilder extends \Magento\Framework\Mail\Template\TransportBuilder
 {
@@ -23,7 +20,7 @@ class TransportBuilder extends \Magento\Framework\Mail\Template\TransportBuilder
     /**
      * @var string
      */
-    protected $_headerEncoding = MimeInterface::ENCODING_QUOTED_PRINTABLE;
+  //  protected $_headerEncoding = \Zend_Mime::ENCODING_QUOTEDPRINTABLE;
 
     /**
      * @var array
@@ -38,16 +35,16 @@ class TransportBuilder extends \Magento\Framework\Mail\Template\TransportBuilder
      * @param  string $encoding
      * @return Zend_Mail Provides fluent interface
      */
-    public function setBodyHtml($html, $charset = null, $encoding = MimeInterface::ENCODING_QUOTED_PRINTABLE)
+    public function setBodyHtml($html, $charset = null, $encoding = \Laminas\Mime\Mime::ENCODING_QUOTEDPRINTABLE)
     {
         if ($charset === null) {
             $charset = $this->_charset;
         }
 
-        $mp = new \Zend_Mime_Part($html);
+        $mp = new \Laminas\Mime\Part($html);
         $mp->encoding = $encoding;
-        $mp->type = MimeInterface::TYPE_HTML;
-        $mp->disposition = MimeInterface::DISPOSITION_INLINE;
+        $mp->type = \Laminas\Mime\Mime::TYPE_HTML;
+        $mp->disposition = \Laminas\Mime\Mime::DISPOSITION_INLINE;
         $mp->charset = $charset;
         $this->_bodyHtml = $mp;
         return $this;
@@ -77,8 +74,8 @@ class TransportBuilder extends \Magento\Framework\Mail\Template\TransportBuilder
      * @param  string  $name
      * @param  string  $value
      * @param  boolean $append
-     * @return Zend_Mail           Provides fluent interface
-     * @throws Zend_Mail_Exception on attempts to create standard headers
+    * @return \Laminas\Mail\Message  Provides fluent interface
+    * @throws \Laminas\Mail\Exception\InvalidArgumentException on attempts to create standard headers
      */
     public function addHeader($name, $value, $append = false)
     {
@@ -91,7 +88,7 @@ class TransportBuilder extends \Magento\Framework\Mail\Template\TransportBuilder
             /**
              * @see Zend_Mail_Exception
              */
-            throw new \Zend_Mail_Exception('Cannot set standard header from addHeader()');
+            throw new \Laminas\Mail\Exception\InvalidArgumentException('Cannot set standard header from addHeader()');
         }
 
         $value = $this->_filterOther($value);
@@ -198,21 +195,21 @@ class TransportBuilder extends \Magento\Framework\Mail\Template\TransportBuilder
      */
     protected function _encodeHeader($value)
     {
-        if (\Zend_Mime::isPrintable($value) === false) {
-            if ($this->getHeaderEncoding() === MimeInterface::ENCODING_QUOTED_PRINTABLE) {
-                $value = \Zend_Mime::encodeQuotedPrintableHeader(
-                    $value,
-                    $this->getCharset(),
-                    MimeInterface::LINE_LENGTH,
-                    MimeInterface::LINE_END
-                );
+        if (\Laminas\Mime\Mime::isPrintable($value) === false) {
+            if ($this->getHeaderEncoding() === \Laminas\Mime\Mime::ENCODING_QUOTEDPRINTABLE) {
+            $value = \Laminas\Mime\Mime::encodeQuotedPrintableHeader(
+                $value,
+                $this->getCharset(),
+                \Laminas\Mime\Mime::LINELENGTH,
+                \Laminas\Mime\Mime::LINEEND
+            );
             } else {
-                $value = \Zend_Mime::encodeBase64Header(
-                    $value,
-                    $this->getCharset(),
-                    MimeInterface::LINE_LENGTH,
-                    MimeInterface::LINE_END
-                );
+            $value = \Laminas\Mime\Mime::encodeBase64Header(
+                $value,
+                $this->getCharset(),
+                \Laminas\Mime\Mime::LINELENGTH,
+                \Laminas\Mime\Mime::LINEEND
+            );
             }
         }
 

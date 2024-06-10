@@ -4,8 +4,8 @@
  *
  * @category  Webkul
  * @package   Webkul_Helpdesk
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
  * @license   https://store.webkul.com/license.html
  */
 
@@ -13,26 +13,6 @@ namespace Webkul\Helpdesk\Block\Ticket;
 
 class Mytickets extends Navigation
 {
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Tickets
-     */
-    protected $_ticketsHelper;
-
-    /**
-     * @var \Webkul\Helpdesk\Helper\Data
-     */
-    protected $dataHelper;
-
-    /**
-     * @var \Webkul\Helpdesk\Model\TicketsFactory
-     */
-    protected $_ticketsFactory;
-
-    /**
-     * @var \Magento\Customer\Model\Session
-     */
-    protected $session;
 
     /**
      * @param \Magento\Framework\View\Element\Template\Context      $context
@@ -50,8 +30,7 @@ class Mytickets extends Navigation
      * @param \Magento\Framework\Json\Helper\Data                   $jsonData
      * @param \Magento\Framework\App\ResourceConnection             $resource
      * @param \Magento\Customer\Model\Session                       $session
-     * @param \Magento\Eav\Model\Entity\Attribute\Source\Table      $sorceTable
-     * @param array                                                 $data
+     * @param array                                                 $data                                         $data
      */
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
@@ -69,7 +48,6 @@ class Mytickets extends Navigation
         \Magento\Framework\Json\Helper\Data $jsonData,
         \Magento\Framework\App\ResourceConnection $resource,
         \Magento\Customer\Model\Session $session,
-        \Magento\Eav\Model\Entity\Attribute\Source\Table $sorceTable,
         array $data = []
     ) {
         $this->_ticketsHelper = $ticketsHelper;
@@ -90,7 +68,6 @@ class Mytickets extends Navigation
             $helperData,
             $jsonData,
             $resource,
-            $sorceTable,
             $data
         );
     }
