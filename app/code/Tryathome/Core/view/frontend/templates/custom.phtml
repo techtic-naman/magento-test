@@ -1,0 +1,245 @@
+<style>
+    .product-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .product-image {
+        max-width: 100px;
+        margin-right: 20px;
+    }
+    .product-details {
+        flex: 1;
+    }
+    .product-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .product-price {
+        font-size: 1.5rem;
+        color: #333;
+    }
+    .product-discount {
+        font-size: 1rem;
+        color: #888;
+        text-decoration: line-through;
+    }
+    .product-save {
+        color: #f00;
+        font-size: 1rem;
+    }
+    .free-trial {
+        margin-top: 10px;
+        font-size: 0.9rem;
+        color: #007bff;
+    }
+    .close-button {
+        font-size: 1.2rem;
+        color: #888;
+        cursor: pointer;
+    }
+
+    /* for loader*/
+    .loader-overlay {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.7);
+        z-index: 1000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .loader-circle {
+        border: 5px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 5px solid #3498db;
+        width: 50px;
+        height: 50px;
+        -webkit-animation: spin 2s linear infinite; /* Safari */
+        animation: spin 2s linear infinite;
+    }
+
+    /* Safari */
+    @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    /* set book-appointment button */
+    .appointment-section {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.help-text {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #555;
+}
+
+.location-text {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #333;
+}
+
+.change-pincode {
+    margin-left: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.change-pincode:hover {
+    text-decoration: underline;
+}
+
+.cost-details {
+    margin-bottom: 20px;
+}
+
+.free-trial-cost, .service-charge, .total-cost {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.cost-amount {
+    font-weight: bold;
+}
+
+.book-appointment {
+    width: 100%;
+    background: linear-gradient(90deg, #ff8a00, #e52e71);
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 25px;
+    font-size: 16px;
+}
+
+</style>
+<div class="container">
+
+    <div id="cart-items-container"></div>
+        
+</div>
+
+<!-- Loader HTML -->
+<div id="loader" class="loader-overlay">
+    <div class="loader-circle"></div>
+</div>
+
+<script>
+    require(['jquery'], function($) {
+        function removeFromCart(itemId) {
+            $('#loader').css('display','flex');
+            $.ajax({
+                url: '<?= $block->getUrl('try-at-home/index/remove') ?>',
+                type: 'POST',
+                data: {item_id: itemId},
+                success: function(response) {
+                    if (response.success) {
+                        $('.cardremove').filter(function() {
+                            return $(this).data('item-id') == itemId;
+                        }).remove();  // Remove the product-card element with the specific data-item-id
+                       window.location.reload();
+                    } else {
+                        alert('Failed to remove item from cart: ' + response.error);
+                    }
+                }
+            });
+        }
+    
+        // Call removeFromCart() when your button is clicked
+        $(document).on('click','.remove-from-cart', function() {
+            var itemId = $(this).data('item-id');
+            removeFromCart(itemId);
+        });
+
+        function setCart() {
+            $('#loader').css('display','flex');
+            $.ajax({
+                url: '<?= $block->getUrl('try-at-home/index/setcart') ?>',
+                type: 'POST',
+                dataType: 'json',
+                showLoader: true, // Use Magento's loader
+                success: function(response) {
+                    console.log('Cart Items:', response.items);
+                    var html = '';
+                    if (response.items.length > 0) {
+                        html += '<div class="row">' ;
+                        html += '<div class="col-md-8">' ;
+                        response.items.forEach(function(data) {
+                            html +=  '<div class="row mt-2 cardremove" data-item-id="' + data.id + '">'+
+                                    '<div class="col-md-12">' +
+                                        '<div class="product-card ">' +
+                                            '<img src="' + data.image_url + '" alt="Product Image" class="product-image">' +
+                                            '<div class="product-details">' +
+                                                '<div class="product-title">' + data.name + '</div>' +
+                                                '<div>' +
+                                                    '<span class="product-price">$ ' + Number(data.price).toFixed(2) + '</span>' +
+                                                '</div>' +
+                                                '<div class="free-trial">FREE TRIAL</div>' +
+                                            '</div>' +
+                                            '<div class="close-button remove-from-cart" data-item-id="' + data.id + '">&times;</div>' +
+                                        '</div>' +
+                                    '</div>'+
+                                '</div>'; 
+                                
+                        });
+                        html += '</div>';
+                        html += `
+                            <div class="col-md-4">
+                                <div class="appointment-section">
+                                    <div class="help-text">
+                                        <span>Need help with designs or appointment?</span>
+                                        <br>
+                                        <span>Call us if you have any questions or need clarification</span>
+                                    </div>
+                                    <div class="location-text">
+                                        <span>Trial Location at ${localStorage.getItem('pincode')}</span>
+                                        <a href="#" class="change-pincode">Change Pincode</a>
+                                    </div>
+                                    <div class="cost-details">
+                                        <div class="free-trial-cost">Free Trial</div>
+                                        <div class="service-charge">Service Charge: <span class="cost-amount">Free</span></div>
+                                        <div class="total-cost">Total Cost: <span class="cost-amount">₹0</span></div>
+                                    </div>
+                                    <a href="<?= $block->getUrl('try-at-home/index/checkout') ?>" class="btn btn-primary book-appointment">BOOK APPOINTMENT</a>
+                                </div>
+                            </div>
+                            `;
+                        html +=  '</div>'+
+                                  '</div>'; 
+                    } else {
+                        html = '<p>No items found in trial cart</p>';
+                    }
+
+                $('#cart-items-container').append(html); // Append the new product card to the container
+                    // Process the response here, e.g., display the cart items
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                },complete: function() {
+                    // Hide the loader regardless of success or error
+                    $('#loader').css('display','');
+                }
+            });
+        }
+        setCart();
+    });
+</script>

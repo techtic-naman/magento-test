@@ -2,3 +2,5 @@ vendor/*
 dev/*
 pub/media/*
 var/amasty/geoip/*
+generated/*
+var/*

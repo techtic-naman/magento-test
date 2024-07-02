@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Tryathome_Core::parent" title="Core" module="Tryathome_Core" sortOrder="100" resource="Tryathome_Core::parent"/>
+        <add id="Tryathome_Core::index" title="Core Index" module="Tryathome_Core" sortOrder="10" action="core/index" resource="Tryathome_Core::index" parent="Tryathome_Core::parent"/>
+		
+    </menu>
+</config>

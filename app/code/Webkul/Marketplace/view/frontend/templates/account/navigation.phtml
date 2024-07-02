@@ -577,6 +577,22 @@ if (!$helper->getIsSeparatePanel()) {
                         </li>
                         <?php
                     } ?>
+                    <li class="nav item
+                    <?=
+                    $escaper->escapeHtml(
+                        strpos($magentoCurrentUrl, 'trial')? "current":""
+                    );
+                    ?>">
+                        <?php if (strpos($magentoCurrentUrl, 'marketplace/product/trial') !== false) { ?>
+                            <strong><?= $escaper->escapeHtml(__('Trial Product')) ?></strong>
+                        <?php } else { ?>
+                            <a href="<?= $escaper->escapeUrl($block
+                            ->getUrl('marketplace/product/trial', ['_secure' => $block
+                            ->getRequest()->isSecure()])); ?>">
+                                <?= $escaper->escapeHtml(__('Trial Product')) ?>
+                            </a>
+                        <?php } ?>
+                    </li></li>
                 </ul>
             </nav>
         </div>

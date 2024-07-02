@@ -1,0 +1,8 @@
+<!-- app/code/Vendor/Module/etc/frontend/routes.xml -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="standard">
+        <route id="try_at_home" frontName="try-at-home">
+            <module name="Tryathome_Core" />
+        </route>
+    </router>
+</config>

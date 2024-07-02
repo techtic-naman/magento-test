@@ -7,4 +7,121 @@
 		<a href="https://web.whatsapp.com://send?text=<?php echo $_product->getProductUrl();?>" target="_blank" rel="nofollow" data-tooltip="" data-placement="bottom" title="" class="share-whatsapp" data-original-title="whatsapp +">Whatsapp</a>
 		<a href="mailto:?subject=<?php echo $_product->getName();?>&amp;body=<?php echo $_product->getProductUrl();?>" target="_blank" rel="nofollow" data-tooltip="" data-placement="bottom" title="" class="share-email" data-original-title="Email">Email</a>
 	</div>
+	<form id="pincodeForm">
+        <div class="pincode-container">
+            <input type="text" id="pincode" name="pincode" placeholder="Enter Pincode">
+            <button type="submit" id="submitButton">Submit</button>
+        </div>
+    </form>
+
+	<button onclick="openModal()" style="margin-top:10px; margin-bottom:10px;">Try At Home</button>
+	<div id="myModal" class="modal">
+		<div class="modal-content">
+			<span class="close" onclick="closeModal()">&times;</span>
+			<p>Try this design at home before you buy.</p>
+			<form action="<?= $block->getUrl('checkout/cart/add') ?>" method="post"></form>
+			<button type="submit" id="trial-addtocart-button" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;" class="action primary">PROCEED TO BOOK APPOINTMENT</button>
+		</div>
+	</div>
+	<style>
+		.pincode-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        #pincode {
+            padding: 10px 80px 10px 10px; /* Add extra padding on the right for the button */
+            margin: 10px 0;
+            box-sizing: border-box; /* Ensure padding is included in the total width */
+        }
+
+        #submitButton {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #ededed;
+            color: black;
+            padding: 5px;
+            border: none;
+            border-radius:4px; /* Round right corners of the button */
+            cursor: pointer;	
+			font-size : 14px;
+        }
+		.modal {
+			display: none;
+			position: fixed;
+			z-index: 1;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+			background-color: rgba(0, 0, 0, 0.4);
+		}
+
+		.modal-content {
+			background-color: #fefefe;
+			margin: 0 auto;
+			padding: 20px;
+			border: 1px solid #888;
+			width: 100%;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			max-width: 390px !important;
+			border-radius: 10px;
+		}
+
+		.close {
+			color: #aaa;
+			float: right;
+			font-size: 28px;
+			font-weight: bold;
+		}
+
+		.close:hover,
+		.close:focus {
+			color: black;
+			text-decoration: none;
+			cursor: pointer;
+		}
+
+		/* Responsive styles */
+		@media screen and (max-width: 600px) {
+			.modal-content {
+				width: 90%;
+			}
+		}
+	</style>
+	<script>
+		document.getElementById('pincodeForm').addEventListener('submit', function(event) {
+			var pincode = document.getElementById('pincode').value.trim();
+			if (pincode === '') {
+				event.preventDefault(); // Prevent the form from submitting
+				alert('Please enter a pincode.'); // Alert the user
+			} else {
+				// Optional: Store the pincode in localStorage or handle it as needed
+				localStorage.setItem('pincode', pincode);
+			}
+		});
+
+		function openModal() {
+			var modal = document.getElementById("myModal");
+			modal.style.display = "block";
+		}
+
+		function closeModal() {
+			var modal = document.getElementById("myModal");
+			modal.style.display = "none";
+		}
+
+		window.onclick = function(event) {
+			var modal = document.getElementById("myModal");
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	</script>
 </div>

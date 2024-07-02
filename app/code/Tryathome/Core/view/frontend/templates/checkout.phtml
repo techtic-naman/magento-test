@@ -1,0 +1,269 @@
+<style>
+    .date-card {
+            cursor: pointer;
+            transition: all 0.3s;
+    }
+    .date-card:hover, .date-card.active {
+        background-color: #f0f0f0;
+    }
+    .slot-btn {
+        margin: 5px;
+    }
+    .slot-btn.active {
+        background-color: #007bff;
+        color: white;
+    }
+    .form-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .header .row-date {
+        background-color: #7e57c2;
+        color: white;
+        padding: 10px;
+        border-radius: 10px 10px 0 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .header .row-date i {
+        color: white;
+    }
+    .btn-custom {
+        background-color: #7e57c2;
+        border: none;
+    }
+    .btn-custom:hover {
+        background-color: #6d47af;
+    }
+    .book-appointment {
+        display: none;
+    }
+    /* for loader*/
+    .loader-overlay {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.7);
+        z-index: 1000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .loader-circle {
+        border: 5px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 5px solid #3498db;
+        width: 50px;
+        height: 50px;
+        -webkit-animation: spin 2s linear infinite; /* Safari */
+        animation: spin 2s linear infinite;
+    }
+     /* Safari */
+     @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<div class="container mt-5">
+    <div class="dates">
+        <h4>Select a Date</h4>
+        <div class="row text-center">
+            <?php
+            $currentDate = strtotime(date('Y-m-d') . ' +1 day');
+            for ($i = 0; $i < 6; $i++) {
+                $date = date('D', $currentDate);
+                $day = date('d', $currentDate);
+                $fullDate = date('Y-m-d',$currentDate);
+                ?>
+                <div class="col-2">
+                    <div class="card date-card p-3" data-date="<?php echo $fullDate; ?>">
+                        <p class="mb-0"><?php echo $date; ?></p>
+                        <h5><?php echo $day; ?></h5>
+                        <small></small>
+                    </div>
+                </div>
+                <?php
+                $currentDate = strtotime('+1 day', $currentDate);
+            }
+            ?>
+        </div>
+
+        <h4 class="mt-4">Select a Time</h4>
+        <div class="text-center">
+            <button class="btn btn-outline-primary slot-btn">12:00 PM</button>
+            <button class="btn btn-outline-primary slot-btn">01:30 PM</button>
+            <button class="btn btn-outline-primary slot-btn">03:00 PM</button>
+            <button class="btn btn-outline-primary slot-btn">04:30 PM</button>
+            <button class="btn btn-outline-primary slot-btn">06:00 PM</button>
+        </div>
+        <button id="fetchDataBtn" class="btn btn-primary">Get Active Values</button>
+    </div>
+    <div class="book-appointment">
+        <div class="form-container bg-light">
+        <div class="card booking-card">
+            <div class="booking-details">
+                <div class="icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <span>Sat, Jun 29, 2024</span>
+                <div class="icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <span>12:00 PM</span>
+            </div>
+            <div class="edit-icon">
+                <i class="fas fa-pen"></i>
+            </div>
+        </div>
+            <form>
+                <div class="mb-3">
+                    <label for="name" class="form-label">First Name & Last Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="First Name & Last Name">
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Street & House No.</label>
+                    <input type="text" class="form-control" id="address" placeholder="Street & House No.">
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="city" class="form-label">City</label>
+                        <input type="text" class="form-control" id="city" value="Ahmedabad">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="pincode" class="form-label">Pincode</label>
+                        <input type="text" class="form-control" id="pincode" value="380006">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="state" class="form-label">State</label>
+                    <input type="text" class="form-control" id="state" value="Gujarat">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Email">
+                </div>
+                <div class="row">
+                    <div class="col-md-2 mb-3">
+                        <label for="countryCode" class="form-label">Code</label>
+                        <input type="text" class="form-control" id="countryCode" value="+91" disabled>
+                    </div>
+                    <div class="col-md-10 mb-3">
+                        <label for="mobile" class="form-label">Mobile Number</label>
+                        <input type="text" class="form-control" id="mobile" placeholder="Mobile Number">
+                    </div>
+                </div>
+            <button type="button" class="btn btn-custom w-100" id="submitBooking">CONFIRM BOOKING</button>
+        </form>
+      </div>
+    </div>
+</div>
+<!-- Loader HTML -->
+<div id="loader" class="loader-overlay">
+    <div class="loader-circle"></div>
+</div>
+<script>
+    require(['jquery'], function($) {
+        $('.date-card').click(function(){
+            $('.date-card').removeClass('active');
+            $(this).addClass('active');
+        });
+        $('.slot-btn').click(function(){
+            $('.slot-btn').removeClass('active');
+            $(this).addClass('active');
+        });
+        $('#fetchDataBtn').click(function() {
+            var date = $('.date-card.active').data('date');
+            var time = $('.slot-btn.active').text();
+            console.log(date,time);
+
+            localStorage.setItem('activeDate', date); // Store date in localStorage
+            localStorage.setItem('activeTime', time); // Store time in localStorage
+
+            $(".dates").css('display','none');
+            $(".book-appointment").css('display','block');
+            
+            // $.ajax({
+            //     url: 'your-endpoint-url', // Replace with your actual endpoint URL
+            //     type: 'POST',
+            //     data: {date: date,time:time},
+            //     success: function(response) {
+            //         // Assuming 'response' contains an object with 'date' and 'time' properties
+            //         // Set active values for date and time based on the response
+                    
+            //     },
+            //     error: function(xhr, status, error) {
+            //         console.error("Error fetching data: ", error);
+            //     }
+            // });
+        });
+
+        $('#submitBooking').click(function() {
+            var try_date = $('.date-card.active').data('date') + convertTo24HourFormat($('.slot-btn.active').text());
+            var name = $('#name').val();
+            var house_no = $('#address').val();
+            var city = $('#city').val();
+            var pincode = $('#pincode').val();
+            var state = $('#state').val();
+            var email = $('#email').val();
+            var mobile = $('#mobile').val();
+            var countryCode = $('#countryCode').val();
+            var data = {
+                try_date: try_date,
+                name: name,
+                house_no: house_no,
+                city: city,
+                pincode: pincode,
+                state: state,
+                email: email,
+                phone_number: mobile,
+                country_code: countryCode
+            };
+            console.log(data);
+            $('#loader').css('display','flex');
+            $.ajax({
+                url: '<?= $block->getUrl('try-at-home/index/savedata') ?>', // Replace with your actual endpoint URL
+                type: 'POST',
+                data: data,
+                success: function(response) {
+                    // Assuming 'response' contains a success message
+                    // Show a success message to the user
+                    alert('Booking confirmed successfully!');
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error submitting booking: ", error);
+                },complete: function() {
+                    // Hide the loader regardless of success or error
+                    $('#loader').css('display','');
+                    // win
+                }
+            });
+        });
+
+
+    });
+
+    function convertTo24HourFormat(time12h) {
+        const [time, modifier] = time12h.split(' ');
+        let [hours, minutes] = time.split(':');
+        if (hours === '12') {
+            hours = '00';
+        }
+        if (modifier.toUpperCase() === 'PM') {
+            hours = parseInt(hours, 10) + 12;
+        }
+        return `${hours.toString().padStart(2, '0')}:${minutes}:00`;
+    }
+</script>        

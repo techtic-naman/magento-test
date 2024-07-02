@@ -6,6 +6,7 @@
             }
         }
     }</script><?php else : ?> <script>
+    var trial = false;
     require([
         'jquery',
         'mage/mage',
@@ -13,7 +14,6 @@
         'Magento_Catalog/js/catalog-add-to-cart'
     ], function ($) {
         'use strict';
-
         $('#product_addtocart_form').mage('validation', {
             radioCheckboxClosest: '.nested',
             submitHandler: function (form) {
@@ -21,24 +21,35 @@
                     bindSubmit: false
                 });
 
+                if ($(form).find('input[name="new_url"]').length <= 0) {
+                    $(form).append('<input type="hidden" name="new_url" value="<?= $block->getUrl('try-at-home/index/add') ?>" />');
+                }
+
+                if (trial) {
+                    $(form).append('<input type="hidden" name="trial" value="trial"/>');
+                } else {
+                    $(form).find('input[name="trial"]').remove();
+                }
+
                 widget.catalogAddToCart('submitForm', $(form));
 
                 return false;
             }
         });
+
+        $(document).on('click', '#trial-addtocart-button',function() {
+            trial = true;
+            $('#product_addtocart_form').submit();
+            setTimeout(() => {
+                trial = false;
+            }, 1000);
+        });
+        
     });</script><?php endif; ?> <script type="text/javascript">
 require([
-    'jquery'
+    'jquery'        
 ], function ($) {
-    var app = {
-        isAppleDevice: function() {
-          if (navigator.userAgent.match(/(iPhone|iPod|iPad|Safari)/) != null) {
-            return true;
-          }
-          return false;
-        }
-    }
-    
+
     var _second = 1000;
     var _minute = _second * 60;
     var _hour = _minute * 60;
@@ -56,24 +67,13 @@ require([
 
       var enddate = new Date($('#'+id).val());
       var dealstartdate=new Date($('#'+startdateid).val());
-      if (app.isAppleDevice() && $('#'+id).val() && $('#'+startdateid).val()) {
-        var edate = $('#'+id).val();
-        var edateParts = edate.substring(0,10).split('-');
-        var etimePart = edate.substr(11);
-        enddate = edateParts[1] + '/' + edateParts[2] + '/' + edateParts[0] + ' ' + etimePart;
-        enddate = new Date(enddate).getTime();
 
-        var sdate = $('#'+startdateid).val();
-        var sdateParts = sdate.substring(0,10).split('-');
-        var stimePart = sdate.substr(11);
-        dealstartdate = sdateParts[1] + '/' + sdateParts[2] + '/' + sdateParts[0] + ' ' + stimePart;
-        dealstartdate = new Date(dealstartdate).getTime();
-      }
       
+      var currentdate=new Date(currentdate);
 
-      var currentdate=new Date(currentdate).getTime();
       
       var distance = enddate - currentdate;
+
       if (distance < 0) {
         $('#expired').html("<div class='offermessage' >EXPIRED!</div>");
       } else if(dealstartdate > currentdate) {
@@ -101,13 +101,7 @@ require([
 
     
     var date = new Date('<?php echo $dailydealhelper->getcurrentDate() ?>');
-    if (app.isAppleDevice()) {
-      var mdate = '<?php echo $dailydealhelper->getcurrentDate() ?>';
-      var dateParts = mdate.substring(0,10).split('-');
-      var timePart = mdate.substr(11);
-      date = dateParts[1] + '/' + dateParts[2] + '/' + dateParts[0] + ' ' + timePart;
-      date = new Date(date);
-    }
+
     var day   = date.getDate();
     var month = date.getMonth();
     var year  = date.getFullYear();
@@ -115,13 +109,14 @@ require([
     var minutes = "0" + date.getMinutes();
     var seconds = "0" + date.getSeconds();
 
-    var fulldate = year+'/'+(month+1)+'/'+day+' '+hours + ':' + minutes.substr(minutes.length-2) + ':' + seconds.substr(seconds.length-2);
+    var fulldate = year+'-'+(month+1)+'-'+day+' '+hours + ':' + minutes.substr(minutes.length-2) + ':' + seconds.substr(seconds.length-2);
+
     
-    timer = setInterval(function()
+    timer = setInterval(function() 
     {
         date.setSeconds(date.getSeconds() + 1);
         var month=date.getMonth();
-        var currentdatetime=date.getFullYear()+"/"+(month+1)+"/"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+        var currentdatetime=date.getFullYear()+"-"+(month+1)+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
         showRemaining(currentdatetime);
     }, 1000);
 });</script>

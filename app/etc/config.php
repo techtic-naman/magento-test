@@ -367,6 +367,7 @@ return [
         'Smartwave_Porto' => 1,
         'Smartwave_Socialfeeds' => 1,
         'Temando_ShippingRemover' => 1,
+        'Tryathome_Core' => 1,
         'Webkul_Helpdesk' => 1,
         'Webkul_Marketplace' => 1,
         'Webkul_Mpmembership' => 1,

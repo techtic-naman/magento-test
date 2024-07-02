@@ -1,4 +1,4 @@
-a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1718021308;s:6:"expire";i:1749557308;s:4:"tags";s:37:"726_LAYOUT_GENERAL_CACHE_TAG,726_MAGE";}
+a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1719909617;s:6:"expire";i:1751445617;s:4:"tags";s:37:"726_LAYOUT_GENERAL_CACHE_TAG,726_MAGE";}
 <?xml version="1.0"?>
 <layouts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><handle id="catalog_category_view"><body/>
 </handle><handle id="catalogsearch_advanced_index"><body/>
@@ -7788,6 +7788,24 @@ a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1718021308;s:6:"expire";i:1749557308;s:4:"t
       </container>
    </referenceContainer>
 </body>
+</handle><handle id="try_at_home_index_checkout" layout="1column"><head>
+   <css src="Magento_Theme::css/font-awesome/font-awesome.min.css"/>
+</head>
+<body>
+   <referenceContainer name="content">
+      <block class="Magento\Framework\View\Element\Template" name="tryathome.core.checkout" template="Tryathome_Core::checkout.phtml"/>
+   </referenceContainer>
+</body>
+</handle><handle id="try_at_home_index_customerdetail" layout="1column"><body>
+   <referenceContainer name="content">
+      <block class="Magento\Framework\View\Element\Template" name="tryathome.core.customerdetail" template="Tryathome_Core::customerdetail.phtml"/>
+   </referenceContainer>
+</body>
+</handle><handle id="try_at_home_index_index" layout="1column" cacheable="false"><body>
+   <referenceContainer name="content">
+      <block class="Magento\Framework\View\Element\Template" name="tryathome.core.index" template="Tryathome_Core::custom.phtml"/>
+   </referenceContainer>
+</body>
 </handle><handle id="default"><body>
    <referenceBlock name="header.links">
       <block class="Magento\Framework\View\Element\Html\Link" name="helpdesk-support-link">
@@ -8344,6 +8362,20 @@ a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1718021308;s:6:"expire";i:1749557308;s:4:"t
       <block class="Magento\Framework\View\Element\Template" name="marketplace_cacheable_false_tmplate" cacheable="false"/>
    </referenceContainer>
 </body>
+</handle><handle id="marketplace_layout2_account_trial" layout="seller-2columns-left"><body>
+   <referenceBlock name="seller.page.main.title">
+      <action method="setPageTitle">
+         <argument translate="true" name="title" xsi:type="string">Marketplace Add New Product</argument>
+      </action>
+   </referenceBlock>
+   <referenceContainer name="seller.content">
+      <block class="Webkul\Marketplace\Block\Product\Create" name="marketplace_product_create" template="Webkul_Marketplace::product/create.phtml" cacheable="false">
+         <arguments>
+            <argument name="view_model" xsi:type="object">Webkul\Marketplace\ViewModel\HelperViewModel</argument>
+         </arguments>
+      </block>
+   </referenceContainer>
+</body>
 </handle><handle id="marketplace_layout2_order_creditmemo_create" layout="seller-2columns-left"><update handle="marketplace_styles"/>
 <body>
    <referenceBlock name="seller.page.main.title">
@@ -8857,6 +8889,20 @@ a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1718021308;s:6:"expire";i:1749557308;s:4:"t
    <referenceContainer name="seller.content">
       <uiComponent name="marketplace_products_listing"/>
       <block class="Magento\Framework\View\Element\Template" name="marketplace_product_list_js" template="Webkul_Marketplace::layout2/product/list/js.phtml" cacheable="false" before="-"/>
+   </referenceContainer>
+</body>
+</handle><handle id="marketplace_layout2_product_trial" layout="seller-2columns-left"><body>
+   <referenceBlock name="seller.page.main.title">
+      <action method="setPageTitle">
+         <argument translate="true" name="title" xsi:type="string">Marketplace Add New Product</argument>
+      </action>
+   </referenceBlock>
+   <referenceContainer name="seller.content">
+      <block class="Webkul\Marketplace\Block\Product\Create" name="marketplace_product_create" template="Webkul_Marketplace::product/create.phtml" cacheable="false">
+         <arguments>
+            <argument name="view_model" xsi:type="object">Webkul\Marketplace\ViewModel\HelperViewModel</argument>
+         </arguments>
+      </block>
    </referenceContainer>
 </body>
 </handle><handle id="marketplace_layout2_transaction_history" layout="seller-2columns-left"><body>
@@ -9506,6 +9552,22 @@ a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1718021308;s:6:"expire";i:1749557308;s:4:"t
    <referenceContainer name="content">
       <uiComponent name="marketplace_products_listing"/>
       <block class="Magento\Framework\View\Element\Template" name="marketplace_product_list_js" template="Webkul_Marketplace::layout2/product/list/js.phtml" cacheable="false" before="-"/>
+   </referenceContainer>
+</body>
+</handle><handle id="marketplace_product_trial"><update handle="customer_account"/>
+<update handle="marketplace_styles"/>
+<body>
+   <referenceBlock name="page.main.title">
+      <action method="setPageTitle">
+         <argument translate="true" name="title" xsi:type="string">Marketplace Trial Product</argument>
+      </action>
+   </referenceBlock>
+   <referenceContainer name="content">
+      <block class="Webkul\Marketplace\Block\Product\Create" name="marketplace_product_create" template="Webkul_Marketplace::product/trial.phtml" cacheable="false">
+         <arguments>
+            <argument name="view_model" xsi:type="object">Webkul\Marketplace\ViewModel\HelperViewModel</argument>
+         </arguments>
+      </block>
    </referenceContainer>
 </body>
 </handle><handle id="marketplace_product_view_type_simple"><update handle="catalog_product_view_type_simple"/>
